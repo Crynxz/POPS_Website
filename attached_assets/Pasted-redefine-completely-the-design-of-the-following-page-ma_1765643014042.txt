@@ -1,0 +1,2308 @@
+redefine completely the design of the following page, making it as clean, premium and professional looking as possible, without erasing any of its written content: "<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POPS - Intermediário de Cuidados Domiciliários Verificados | Lista de Espera</title>
+    <meta name="description" content="Cuidadores verificados, confiáveis e certificados. Inscreva-se na lista de espera da POPS e receba descontos exclusivos no lançamento.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* =========================================
+DESIGN SYSTEM & GLOBAL VARIABLES
+========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+            --primary: #0E6973; /* Deeper, more premium Teal */
+            --primary-dark: #084B52;
+            --primary-light: #E2F3F5;
+            --primary-soft: rgba(14, 105, 115, 0.08);
+            
+            --secondary: #FF8B5B; /* Warm Coral */
+            --secondary-hover: #E57040;
+            
+            --text-main: #111827;
+            --text-body: #4B5563;
+            --text-muted: #9CA3AF;
+            
+            --bg-body: #FAFAFA;
+            --bg-surface: #FFFFFF;
+            --bg-surface-alt: #F3F4F6;
+            
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            
+            --border-radius-sm: 8px;
+            --border-radius-md: 16px;
+            --border-radius-lg: 24px;
+            
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            --shadow-colored: 0 20px 40px -5px rgba(14, 105, 115, 0.15);
+            
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--text-body);
+            background-color: var(--bg-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* =========================================
+           UTILITY CLASSES
+           ========================================= */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .text-center { text-align: center; }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-main);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.03em; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.02em; margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; }
+
+        p { margin-bottom: 1.5rem; font-size: 1.125rem; }
+
+        .highlight { color: var(--primary); }
+        .highlight-secondary { color: var(--secondary); }
+
+        .section-padding { padding: 6rem 0; }
+        .bg-white { background: var(--bg-surface); }
+        .bg-alt { background: var(--bg-surface-alt); }
+
+/* BUTTONS */
+.btn {
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(32, 128, 141, 0.25);
+    position: relative;
+    z-index: 1;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(32, 128, 141, 0.35);
+}
+
+.btn-secondary {
+    background: var(--bg-white);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.btn-secondary:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(32, 128, 141, 0.2);
+}
+
+/* HEADER */
+header {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px); /* Efeito de vidro fosco */
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.cta-group {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+/* HERO SECTION */
+.hero {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, rgba(32, 128, 141, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.hero-text > span {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.hero-badges {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    flex-wrap: wrap;
+}
+
+.hero-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.hero-badge i {
+    color: var(--success);
+    font-size: 1.1rem;
+}
+
+.hero-image {
+    position: relative;
+    perspective: 1000px;
+}
+
+.hero-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+}
+
+.hero-image img:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(32, 128, 141, 0.2);
+}
+
+/* TRUST SECTION */
+.trust-section {
+    background: linear-gradient(135deg, var(--accent) 0%, rgba(42, 159, 168, 0.05) 100%);
+    padding: 6rem 0;
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.trust-item {
+    background: var(--bg-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.trust-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.trust-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 1.75rem;
+}
+
+.trust-item h3 {
+    margin-bottom: 0.75rem;
+}
+
+.trust-item p {
+    font-size: 0.95rem;
+    color: var(--text-lighter);
+}
+
+.trust-stat {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.trust-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-lighter);
+    font-weight: 700;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.section-header h2 {
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--text-light);
+}
+
+/* TIERS SECTION */
+.tiers-section {
+    padding: 6rem 0;
+    background: var(--bg-white);
+}
+
+.tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.tier-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 2.5rem;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.tier-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.tier-card.featured {
+    border: 2px solid var(--primary);
+    background: linear-gradient(135deg, rgba(32, 128, 141, 0.02) 0%, var(--bg-white) 100%);
+    transform: translateY(-8px);
+}
+
+.tier-card.featured:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(32, 128, 141, 0.15);
+}
+
+.tier-tag {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 0.4rem 1.25rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(32, 128, 141, 0.25);
+}
+
+.tier-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.tier-desc {
+    color: var(--text-lighter);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.tier-price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 1rem 0 0.5rem;
+}
+
+.tier-price span {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+.tier-features {
+    list-style: none;
+    margin: 2rem 0;
+    flex-grow: 1;
+}
+
+.tier-features li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.tier-features li::before {
+    content: "\f058";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--success);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.tier-features li strong {
+    color: var(--text-dark);
+}
+
+.tier-card .btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.tiers-disclaimer {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-lighter);
+    font-size: 0.9rem;
+}
+
+/* MARKET DATA SECTION */
+.market-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, rgba(32, 128, 141, 0.08) 0%, transparent 100%);
+}
+
+.market-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.market-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-number {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.market-image {
+    text-align: center;
+}
+
+.market-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+/* APP FEATURES SECTION */
+.app-section {
+    padding: 6rem 0;
+    background: var(--bg-light);
+}
+
+.app-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.app-text h2 {
+    margin-bottom: 1.5rem;
+}
+
+.app-text p {
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+.feature-list { margin-top: 2.5rem; }
+
+.feature-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+}
+
+.feature-icon-small {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.feature-item h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.feature-item p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.phone-mockup {
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: var(--shadow-lg);
+    display: block;
+}
+
+.floating-notification {
+    position: absolute;
+    top: 20%;
+    right: -20px;
+    background: white;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    width: 280px;
+    border-left: 4px solid var(--success);
+}
+
+/* =========================================
+           VETTING / PROCESS SECTION (NOVO)
+           ========================================= */
+        .vetting-section {
+            padding: 6rem 0;
+            background: var(--bg-white);
+        }
+
+        .vetting-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .vetting-header .subtitle {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .vetting-header h2 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .vetting-header h2 .highlight-text {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* Sublinhado sutil na palavra chave */
+        .vetting-header h2 .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(32, 128, 141, 0.1);
+            z-index: -1;
+        }
+
+        .vetting-header p {
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+
+        .vetting-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .v-step {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .v-step:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: var(--bg-white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .v-step-icon {
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(32, 128, 141, 0.15); /* Primary color low opacity */
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .v-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: var(--accent);
+            color: var(--primary-dark);
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .v-content h3 {
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .v-content p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* =========================================
+           TECH SECTION
+           ========================================= */
+        .tech-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--accent) 0%, rgba(42, 159, 168, 0.05) 100%);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .tech-section h2 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-section > .container > p {
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .monitor-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1.75rem;
+            align-items: flex-start;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .monitor-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .monitor-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .monitor-card h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .monitor-card p {
+            font-size: 0.95rem;
+            color: var(--text-lighter);
+            margin: 0;
+        }
+
+        .tech-image {
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .tech-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* =========================================
+           PAYMENT SECTION
+           ========================================= */
+        .payment-section {
+            padding: 6rem 0;
+            background: var(--bg-white);
+            text-align: center;
+        }
+
+        .payment-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .shield-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.15) 0%, rgba(39, 174, 96, 0.05) 100%);
+            border: 2px solid rgba(39, 174, 96, 0.3);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: var(--success);
+        }
+
+        .payment-section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-section > .payment-container > p {
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-info-box {
+            background: var(--accent);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .payment-info-box strong {
+            color: var(--primary);
+        }
+
+        /* =========================================
+           CTA SECTION
+           ========================================= */
+        .cta-section {
+            padding: 4rem 0;
+            text-align: center;
+            background: var(--bg-light);
+        }
+
+        .cta-section h3 {
+            margin-bottom: 2rem;
+        }
+
+/* WAITLIST SECTION */
+.waitlist-section {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 6rem 0;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.waitlist-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.1;
+}
+
+.waitlist-container {
+    position: relative;
+    z-index: 1;
+    background: white;
+    padding: 3.5rem;
+    border-radius: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-dark);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.waitlist-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: white;
+}
+
+.waitlist-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.waitlist-header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.waitlist-benefit {
+    background: linear-gradient(135deg, rgba(32, 128, 141, 0.1) 0%, transparent 100%);
+    border-left: 4px solid var(--secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.waitlist-benefit h4 {
+    color: white;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.waitlist-benefit p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.form-input, .form-select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: var(--transition);
+    background: white;
+    color: var(--text-dark);
+}
+
+.form-input:focus, .form-select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(32, 128, 141, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-input::placeholder {
+    color: var(--text-lighter);
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.form-disclaimer {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    color: #666;
+    text-align: center;
+}
+
+.promo-badge {
+    display: inline-block;
+    background: var(--secondary);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 24px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    margin-right: auto;
+}
+
+/* FOOTER */
+footer {
+    background: linear-gradient(135deg, #0f1517 0%, #1a1c1c 100%);
+    color: #d0d0d0;
+    padding: 4rem 0 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.footer-desc {
+    font-size: 0.9rem;
+    color: #999;
+    max-width: 300px;
+    line-height: 1.6;
+}
+
+.footer-links h4 {
+    color: white;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: #999;
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--primary-light);
+    transform: translateX(4px);
+}
+
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+
+    .hero-grid,
+    .app-content,
+    .footer-grid,
+    .trust-grid,
+    .market-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .nav-links, .cta-group {
+        display: none;
+    }
+
+    .hero {
+        padding: 4rem 0;
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .tiers-section, .app-section, .waitlist-section {
+        padding: 4rem 0;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+    }
+
+    .waitlist-container {
+        padding: 2rem 1.5rem;
+    }
+
+    .vetting-steps::before {
+        left: 20px;
+    }
+
+    .v-step {
+        width: 100%;
+        left: 0 !important;
+        padding-left: 60px;
+        padding-right: 0;
+        text-align: left;
+    }
+
+    .v-step:nth-child(odd),
+    .v-step:nth-child(even) {
+        text-align: left;
+    }
+
+    .v-step:nth-child(odd) .v-step-icon,
+    .v-step:nth-child(even) .v-step-icon {
+        left: -5px;
+        right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+
+    .hero-badges {
+        gap: 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .tier-card {
+        padding: 1.75rem;
+    }
+
+    .feature-item {
+        gap: 1rem;
+    }
+
+    .feature-icon-small {
+        width: 45px;
+        height: 45px;
+        font-size: 1.25rem;
+    }
+
+    .trust-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .waitlist-header h2 {
+        font-size: 2rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .market-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.phone-mockup {
+    animation: float 6s ease-in-out infinite;
+    box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25), 
+                0 30px 60px -30px rgba(0, 0, 0, 0.3);
+}
+
+.waitlist-container {
+    background: #ffffff;
+    padding: 3.5rem;
+    border-radius: 24px; /* Mais arredondado */
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-dark);
+    /* Sombra mais suave e colorida */
+    box-shadow: 0 20px 60px rgba(32, 128, 141, 0.15); 
+    border: 1px solid rgba(255,255,255,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Adicionar uma borda colorida no topo */
+.waitlist-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.mobile-sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    z-index: 9999;
+    border-top: 1px solid var(--border-light);
+}
+
+@media (max-width: 768px) {
+    .mobile-sticky-cta {
+        display: block;
+        animation: slideUp 0.5s ease-out 2s forwards; /* Aparece após 2 segundos */
+        transform: translateY(100%);
+    }
+    
+    footer { padding-bottom: 80px; } /* Espaço para não tapar o footer */
+}
+
+@keyframes slideUp {
+    to { transform: translateY(0); }
+}
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="container">
+        <nav>
+            <a href="#inicio" class="logo">POPS</a>
+            <ul class="nav-links">
+                <li><a href="#mercado">O Mercado</a></li>
+                <li><a href="#diferenciais">O que nos Diferencia</a></li>
+                <li><a href="#precos">Preços</a></li>
+                <li><a href="#seguranca">Segurança</a></li>
+                <li><a href="parcerias.html" class="highlight-secondary">Parceiros</a></li> </ul>
+            </ul>
+            <div class="cta-group">
+                <a href="#waitlist" class="btn btn-secondary">
+                    <i class="fas fa-user-tie"></i> Sou Cuidador
+                </a>
+                <a href="#waitlist" class="btn btn-primary">
+                    <i class="fas fa-heart"></i> Para Famílias
+                </a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero" id="inicio">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <span>Brevemente Disponível</span>
+                <h1>Cuidadores verificados, <span class="highlight">à distância de um clique</span>.</h1>
+                <p>Mais de 500 mil famílias portuguesas procuram soluções. A POPS conecta-o a profissionais certificados, com antecedentes verificados e garantia de qualidade. Inscreva-se na lista de espera e garanta acesso antecipado com <strong>descontos exclusivos de lançamento</strong>.</p>
+                
+               <div class="hero-cta" style="flex-direction: column; align-items: flex-start; gap: 1rem;">
+    <p style="font-size: 0.9rem; font-weight: 600; color: var(--text-lighter); margin-bottom: 0.5rem;">Qual é o seu objetivo?</p>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#waitlist" onclick="selectProfile('familia')" class="btn btn-primary" style="padding: 1rem 2rem; box-shadow: 0 10px 25px rgba(32, 128, 141, 0.3);">
+            <i class="fas fa-heart"></i> Preciso de Cuidados
+        </a>
+        <a href="#waitlist" onclick="selectProfile('cuidador')" class="btn btn-secondary" style="padding: 1rem 2rem; background: transparent; border-width: 2px;">
+            <i class="fas fa-user-nurse"></i> Quero Trabalhar
+        </a>
+    </div>
+    <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">
+        <i class="fas fa-bolt" style="color: var(--secondary);"></i> Junte-se a +500 pessoas na lista de espera hoje.
+    </div>
+</div>
+
+                <div class="hero-badges">
+                    <div class="hero-badge">
+                        <i class="fas fa-check-circle"></i>
+                        Verificação Criminal Rigorosa
+                    </div>
+                    <div class="hero-badge">
+                        <i class="fas fa-check-circle"></i>
+                        Certificações Validadas
+                    </div>
+                    <div class="hero-badge">
+                        <i class="fas fa-check-circle"></i>
+                        Suporte 24/7
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=700&fit=crop" alt="Cuidadora POPS a auxiliar idoso">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- REALITY / MARKET SECTION -->
+<section class="reality-section" style="padding: 6rem 0; background-color: #f8f9fa;">
+    <div class="container">
+        <div class="section-header" style="margin-bottom: 3rem;">
+            <span class="highlight" style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Uma Realidade Transversal</span>
+            <h2>O cuidado ao domicílio não é apenas sobre envelhecer.<br>É sobre viver com qualidade.</h2>
+            <p>Em Portugal, milhões de pessoas enfrentam desafios diários que exigem apoio especializado. A POPS existe para todas elas, em qualquer fase da vida.</p>
+        </div>
+
+        <div class="reality-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+            
+            <!-- Card 1: Senior -->
+            <div class="reality-card" style="background: white; padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary); box-shadow: var(--shadow-sm);">
+                <div class="icon-box" style="margin-bottom: 1.5rem; color: var(--primary); font-size: 2rem;">
+                    <i class="fas fa-hands-holding-circle"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Séniores e Longevidade</h3>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Apoio para manter a independência em casa, desde a companhia até cuidados de higiene e medicação.</p>
+            </div>
+
+            <!-- Card 2: Disability & Inclusion -->
+            <div class="reality-card" style="background: white; padding: 2rem; border-radius: 12px; border-left: 4px solid var(--secondary); box-shadow: var(--shadow-sm);">
+                <div class="icon-box" style="margin-bottom: 1.5rem; color: var(--secondary); font-size: 2rem;">
+                    <i class="fas fa-wheelchair"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Deficiência e Inclusão</h3>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Suporte especializado para quaisquer tipos de deficiências físicas ou intelectuais, qualquer idade.</p>
+            </div>
+
+            <!-- Card 3: Post-Op & Health -->
+            <div class="reality-card" style="background: white; padding: 2rem; border-radius: 12px; border-left: 4px solid var(--success); box-shadow: var(--shadow-sm);">
+                <div class="icon-box" style="margin-bottom: 1.5rem; color: var(--success); font-size: 2rem;">
+                    <i class="fas fa-user-nurse"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Saúde e Pós-Operatório</h3>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Recuperação de cirurgias, acidentes ou gestão de doenças crónicas em qualquer idade ativa.</p>
+            </div>
+
+            <!-- Card 4: Domestic & Family -->
+            <div class="reality-card" style="background: white; padding: 2rem; border-radius: 12px; border-left: 4px solid #9b59b6; box-shadow: var(--shadow-sm);">
+                <div class="icon-box" style="margin-bottom: 1.5rem; color: #9b59b6; font-size: 2rem;">
+                    <i class="fas fa-house-user"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Apoio Doméstico</h3>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Ajuda nas tarefas domésticas, refeições e organização para famílias que precisam de focar no que importa.</p>
+            </div>
+
+        </div>
+
+        <!-- Data Visualization -->
+        <div class="data-insight" style="background: white; border-radius: 16px; padding: 3rem; box-shadow: var(--shadow-md); display: flex; flex-wrap: wrap; align-items: center; gap: 3rem;">
+            <div class="data-text" style="flex: 1; min-width: 300px;">
+                <h3 style="margin-bottom: 1rem;">Os números de uma necessidade silenciosa</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    Muitas vezes associamos o cuidado apenas à terceira idade, mas a realidade em Portugal é muito mais vasta. 
+                    Existem centenas de milhares de famílias a gerir doenças crónicas, deficiências ou recuperações temporárias sem apoio profissional.
+                </p>
+                <ul class="data-list" style="list-style: none;">
+                    <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--success);"></i> <strong>+300.000</strong> pessoas em idade ativa com doenças crónicas
+                    </li>
+                    <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--success);"></i> <strong>+700.000</strong> cuidadores informais a precisar de descanso
+                    </li>
+                    <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--success);"></i> <strong>+150.000</strong> recuperações pós-operatórias anuais
+                    </li>
+                </ul>
+            </div>
+
+            <div class="data-chart" style="flex: 1; min-width: 300px; text-align: center;">
+                 <!-- Chart Image Placeholder - Replace src with the actual generated chart URL -->
+                 <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/2db78f5abb23956422227c4f406f8dbf/fda6c201-cc72-4944-a59d-719dfd79c2a8/2c5673b4.png" alt="Gráfico de Necessidades de Cuidado em Portugal" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-sm);">
+                 <p style="font-size: 0.8rem; color: #888; margin-top: 0.5rem;">Estimativa de população com necessidade potencial de apoio (Fonte: Dados Demográficos Nacionais)</p>
+            </div>
+        </div>
+
+        <div class="text-center" style="margin-top: 3rem;">
+             <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">A sua situação enquadra-se nestas categorias?</p>
+             <a href="#waitlist" class="btn btn-primary">Encontrar o Apoio Certo</a>
+        </div>
+
+    </div>
+</section>
+
+<section class="comparison-section" style="padding: 6rem 0; background: white;">
+    <div class="container">
+        <div class="section-header">
+            <span class="highlight" style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">A Verdade do Mercado</span>
+            <h2>Porque a POPS é a <span class="highlight">evolução</span>.</h2>
+            <p>O modelo tradicional obriga-o a escolher entre segurança (caro) ou preço (risco). Nós eliminamos essa escolha.</p>
+        </div>
+
+        <style>
+            .comp-wrapper {
+                overflow-x: auto;
+                border-radius: 16px;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+                border: 1px solid var(--border-light);
+            }
+            .comp-table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0;
+                min-width: 800px; /* Garante que não parte em mobile */
+            }
+            .comp-table th {
+                padding: 1.5rem;
+                text-align: left;
+                background: #fff;
+                border-bottom: 2px solid var(--border-light);
+                vertical-align: middle;
+            }
+            .comp-table td {
+                padding: 1.25rem 1.5rem;
+                border-bottom: 1px solid var(--border-light);
+                vertical-align: middle;
+                color: var(--text-light);
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            /* Coluna da Esquerda (Critérios) */
+            .criteria-col {
+                width: 25%;
+                font-weight: 700;
+                color: var(--text-dark);
+                background: #fff;
+            }
+            .criteria-icon {
+                color: var(--primary-light);
+                margin-right: 10px;
+                width: 20px;
+                text-align: center;
+            }
+            /* Coluna do Meio (Mercado Informal) */
+            .informal-col {
+                width: 35%;
+                background: #fcfcfc; /* Ligeiramente cinza */
+            }
+            .informal-header {
+                font-size: 1.1rem;
+                color: var(--text-light);
+                font-weight: 600;
+            }
+            .status-icon.bad { color: #e74c3c; margin-right: 8px; font-size: 1.1rem; }
+            
+            /* Coluna da Direita (POPS - Destaque) */
+            .pops-col {
+                width: 40%;
+                background: rgba(32, 128, 141, 0.03); /* Var primary muito leve */
+                position: relative;
+            }
+            .pops-header {
+                color: var(--primary);
+                font-size: 1.3rem;
+                font-weight: 800;
+            }
+            .pops-header span {
+                display: block;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: var(--success);
+                margin-bottom: 4px;
+            }
+            .pops-cell {
+                color: var(--text-dark) !important;
+                font-weight: 500;
+            }
+            .status-icon.good { color: var(--success); margin-right: 8px; font-size: 1.1rem; }
+
+            /* Highlight na coluna POPS */
+            th.pops-col { border-top: 4px solid var(--primary); }
+        </style>
+
+        <div class="comp-wrapper">
+            <table class="comp-table">
+                <thead>
+                    <tr>
+                        <th class="criteria-col" style="border-bottom: none;"></th> <th class="informal-col">
+                            <div class="informal-header">Mercado Tradicional</div>
+                            <span style="font-size: 0.85rem; font-weight: 400; color: #999;">Agências ou Informal</span>
+                        </th>
+                        <th class="pops-col">
+                            <div class="pops-header">
+                                <span>Recomendado</span>
+                                Plataforma POPS
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="criteria-col">
+                            <i class="fas fa-shield-halved criteria-icon"></i> Segurança
+                        </td>
+                        <td class="informal-col">
+                            <i class="fas fa-times status-icon bad"></i>
+                            Verificação manual difícil ou inexistente. Alto risco de fraude.
+                        </td>
+                        <td class="pops-col pops-cell">
+                            <i class="fas fa-check-circle status-icon good"></i>
+                            <strong>Verificação Obrigatória.</strong> Criminal e Identidade validados antes do 1º serviço.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-col">
+                            <i class="fas fa-map-location-dot criteria-icon"></i> Controlo
+                        </td>
+                        <td class="informal-col">
+                            <i class="fas fa-times status-icon bad"></i>
+                            "Caixa negra". A família não sabe se o cuidador cumpriu o horário.
+                        </td>
+                        <td class="pops-col pops-cell">
+                            <i class="fas fa-check-circle status-icon good"></i>
+                            <strong>GPS em Tempo Real.</strong> Notificações de Check-in/out e prova de presença.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-col">
+                            <i class="fas fa-user-graduate criteria-icon"></i> Qualificação
+                        </td>
+                        <td class="informal-col">
+                            <i class="fas fa-times status-icon bad"></i>
+                            Diplomas difíceis de verificar. Risco de cuidadores sem formação.
+                        </td>
+                        <td class="pops-col pops-cell">
+                            <i class="fas fa-check-circle status-icon good"></i>
+                           <strong>Certificados Validados.</strong> Confirmação direta com escolas e ordens.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-col">
+                            <i class="fas fa-file-invoice criteria-icon"></i> Legalidade
+                        </td>
+                        <td class="informal-col">
+                            <i class="fas fa-times status-icon bad"></i>
+                            Pagamentos em dinheiro. Sem recibos para dedução no IRS.
+                        </td>
+                        <td class="pops-col pops-cell">
+                            <i class="fas fa-check-circle status-icon good"></i>
+                            <strong>100% Legal.</strong> Faturação automática e benefícios fiscais de saúde.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-col">
+                            <i class="fas fa-tags criteria-icon"></i> Custo
+                        </td>
+                        <td class="informal-col">
+                               <i class="fas fa-times status-icon bad"></i>
+                            Preços arbitrários ou comissões de agência muito elevadas.
+                        </td>
+                        <td class="pops-col pops-cell">
+                              <i class="fas fa-check-circle status-icon good"></i>
+                        <strong>Transparente e Justo.</strong> A partir de 9€/h.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="text-center mt-2">
+            <p style="font-size: 0.9rem; color: var(--text-light);">A escolha inteligente é a escolha segura.</p>
+        </div>
+    </div>
+</section>
+
+<section class="vetting-section" id="seguranca">
+        <div class="container">
+            <div class="vetting-header">
+                <span class="subtitle">Processo em 4 Etapas</span>
+                <h2>Segurança não é só <span class="highlight-text">uma Promessa</span>.<br/>É um protocolo.</h2>
+                <p>O mercado informal coloca em risco famílias. A POPS implementa verificação rigorosa—obrigatória, documentada e transparente.</p>
+            </div>
+    
+            <div class="vetting-steps">
+                <div class="v-step">
+                    <div class="v-step-icon">01</div>
+                    <div class="v-content">
+                        <span class="v-badge">Identidade Real</span>
+                        <h3>Validação Documental Rigorosa</h3>
+                        <p>Verificamos manualmente Cartão de Cidadão, NIF, e dados de residência. Todos os cuidadores têm identidade confirmada e rastreável.</p>
+                    </div>
+                </div>
+    
+                <div class="v-step">
+                    <div class="v-step-icon">02</div>
+                    <div class="v-content">
+                        <span class="v-badge">Segurança Crítica</span>
+                        <h3>Registo Criminal Obrigatório</h3>
+                        <p>Exigimos consulta do Registo Criminal específico para contacto com populações vulneráveis. Repetido anualmente para garantir conformidade contínua.</p>
+                    </div>
+                </div>
+    
+                <div class="v-step">
+                    <div class="v-step-icon">03</div>
+                    <div class="v-content">
+                        <span class="v-badge">Qualificação Real</span>
+                        <h3>Certificações Validadas</h3>
+                        <p>Para serviços Completos e Premium, contactamos escolas e Ordens Profissionais para confirmar a autenticidade de diplomas e certificações.</p>
+                    </div>
+                </div>
+    
+                <div class="v-step">
+                    <div class="v-step-icon">04</div>
+                    <div class="v-content">
+                        <span class="v-badge">Qualidade Contínua</span>
+                        <h3>Monitorização e Avaliações</h3>
+                        <p>Cuidadores com classificação baixa recebem intervenção ou remoção. O sistema garante que apenas os melhores continuam a trabalhar.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="text-center" style="margin-top: 4rem;">
+                <a href="#waitlist" class="btn btn-primary">
+                    <i class="fas fa-check-circle"></i>
+                    Quero Cuidadores Verificados
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-section">
+        <div class="container">
+            <div class="tech-grid">
+                <div>
+                    <h2>Segurança através da Tecnologia</h2>
+                    <p>A nossa app foi desenhada para eliminar a "caixa negra" dos cuidados domiciliários. Você sabe sempre o que está a acontecer.</p>
+
+                    <div class="monitor-card">
+                        <div class="monitor-icon">
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4>GPS em Tempo Real</h4>
+                            <p>Saiba o momento exato em que o cuidador chega e sai da sua casa através de notificações automáticas de Check-in e Check-out.</p>
+                        </div>
+                    </div>
+
+                    <div class="monitor-card">
+                        <div class="monitor-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div>
+                            <h4>Checklists e Relatórios</h4>
+                            <p>O cuidador preenche um relatório digital das tarefas realizadas (ex: medicação, higiene). Nada fica por registar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-image">
+                    <img src="images/468bc883dda769afbd066f44d5aa8b8a.jpg" alt="Família a olhar para tablet com segurança">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+
+
+<!-- TRUST SECTION -->
+<section class="trust-section" id="diferenciais">
+    <div class="container">
+        <div class="section-header">
+            <h2>O Ecossistema POPS: <span class="highlight">Tecnologia & Confiança</span></h2>
+            <p>Resolvemos a fragmentação do mercado com uma solução integrada. Unimos segurança, saúde e gestão numa só plataforma.</p>
+        </div>
+
+        <section class="partners-preview" style="padding: 4rem 0; background: #f8f9fa; border-top: 1px solid var(--border-light);">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+            <div style="max-width: 600px;">
+                <span class="highlight" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Ecossistema POPS</span>
+                <h3 style="font-size: 1.8rem; margin-top: 0.5rem;">Apoiados por quem sabe.</h3>
+                <p style="font-size: 1rem; color: var(--text-light);">Os nossos cuidadores não são apenas verificados, são formados e certificados pelas melhores instituições.</p>
+            </div>
+            <a href="parcerias.html" class="btn btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+                Ver Todos os Parceiros <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+            </a>
+        </div>
+
+        <div class="logos-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; align-items: center; opacity: 0.7;">
+            <div class="partner-logo" style="text-align: center; filter: grayscale(100%); transition: var(--transition);">
+                <i class="fas fa-university" style="font-size: 2.5rem; color: #ccc;"></i>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #ccc; margin-top: 5px;">Escola Saúde</div>
+            </div>
+             <div class="partner-logo" style="text-align: center; filter: grayscale(100%); transition: var(--transition);">
+                <i class="fas fa-cross" style="font-size: 2.5rem; color: #ccc;"></i>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #ccc; margin-top: 5px;">Cruz Vermelha</div>
+            </div>
+             <div class="partner-logo" style="text-align: center; filter: grayscale(100%); transition: var(--transition);">
+                <i class="fas fa-brain" style="font-size: 2.5rem; color: #ccc;"></i>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #ccc; margin-top: 5px;">Assoc. Alzheimer</div>
+            </div>
+             <div class="partner-logo" style="text-align: center; filter: grayscale(100%); transition: var(--transition);">
+                <i class="fas fa-certificate" style="font-size: 2.5rem; color: #ccc;"></i>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #ccc; margin-top: 5px;">Certif. PT</div>
+            </div>
+             <div class="partner-logo" style="text-align: center; filter: grayscale(100%); transition: var(--transition);">
+                <i class="fas fa-user-nurse" style="font-size: 2.5rem; color: #ccc;"></i>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #ccc; margin-top: 5px;">Ordem Enferm.</div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .partner-logo:hover {
+            filter: grayscale(0%) !important;
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        .partner-logo:hover i, .partner-logo:hover div {
+            color: var(--primary) !important;
+        }
+    </style>
+</section>
+
+        <style>
+            .trust-item-hidden {
+                display: none; /* Oculto por defeito */
+            }
+            .trust-item.fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
+
+        <div class="trust-grid" id="trustGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;">
+            
+            <div class="trust-item">
+                <div class="trust-icon">
+                    <i class="fas fa-map-location-dot"></i>
+                </div>
+                <h3>Monitorização GPS Real</h3>
+                <p>Acabou a incerteza. Receba notificações de <strong>Check-in</strong> e <strong>Check-out</strong> no seu telemóvel. O sistema valida a presença física do cuidador para garantir o cumprimento do horário.</p>
+            </div>
+
+            <div class="trust-item">
+                <div class="trust-icon">
+                    <i class="fas fa-file-medical-alt"></i>
+                </div>
+                <h3>Diário Clínico Digital</h3>
+                <p>No decorrer de um serviço, o cuidador valida na app cada tarefa concluída (higiene, medicação, refeições, etc), gerando no fim um relatório diário que pode consultar a qualquer momento.</p>
+            </div>
+
+            <div class="trust-item">
+                <div class="trust-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Matching Inteligente (IA)</h3>
+                <p>O nosso algoritmo cruza geolocalização, experiência e patologias específicas (ex: Alzheimer, Parkinson) para lhe sugerir os cuidadores ideais em segundos, não em dias.</p>
+            </div>
+
+            <div class="trust-item">
+                <div class="trust-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h3>Preços Transparentes</h3>
+                <p>Nada de orçamentos. Os valores são tabelados e claros desde o início (9€ a 30€+), com <strong>faturação automática</strong> e benefícios fiscais inclusos.</p>
+            </div>
+
+            <div class="trust-item trust-item-hidden">
+                <div class="trust-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Pagamento Seguro (Escrow)</h3>
+                <p>O seu dinheiro fica protegido. O pagamento só é libertado ao cuidador 48h horas após a conclusão do serviço e a sua validação. Proteção total contra faltas ou incumprimento.</p>
+            </div>
+
+            <div class="trust-item trust-item-hidden">
+                <div class="trust-icon">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <h3>Gestão Burocrática Zero</h3>
+                <p>Nós tratamos dos contratos, seguros e da emissão automática de faturas para o seu IRS. Preços transparentes e tabelados (9€ a 30€+), sem negociações desconfortáveis.</p>
+            </div>
+
+            <div class="trust-item trust-item-hidden">
+                <div class="trust-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>Ranking de Qualidade</h3>
+                <p>Premiamos a excelência. Os cuidadores progridem em ranks de Bronze a Ouro com base em avaliações reais. Você escolhe apenas os melhores.</p>
+            </div>
+
+            <div class="trust-item trust-item-hidden">
+                <div class="trust-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Formação Contínua</h3>
+                <p>Investimos nos cuidadores. Através de parceria com escolas e instituições oficiais, oferecemos acesso a cursos online (LMS) em Demências, Paliativos e Mobilidade, garantindo que quem cuida de si está sempre a evoluir.</p>
+            </div>
+
+             <div class="trust-item trust-item-hidden">
+                <div class="trust-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Suporte Humano 24/7</h3>
+                <p>A tecnologia ajuda, mas os humanos resolvem. A nossa equipa de mediação está disponível a qualquer hora para resolver qualquer imprevisto ou problema.</p>
+            </div>
+
+            <div class="trust-item trust-item-hidden">
+                <div class="trust-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Contratação Flexível</h3>
+                <p>Precisa de alguém só para este Sábado à noite? Ou acompanhamento diário? Sem contratos de fidelização rígidos. Reserve cuidados pontuais ou mensais com facilidade.</p>
+            </div>
+
+        </div>
+
+        <div class="text-center" style="margin-top: 3rem;">
+            <button id="btnShowMore" class="btn btn-secondary" style="min-width: 200px;">
+                Mostrar Mais Diferenciais <i class="fas fa-chevron-down" style="margin-left: 8px;"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btnShowMore').addEventListener('click', function() {
+            const hiddenItems = document.querySelectorAll('.trust-item-hidden');
+            const btn = this;
+            const isExpanded = btn.getAttribute('data-expanded') === 'true';
+
+            if (!isExpanded) {
+                // Mostrar Itens
+                hiddenItems.forEach(item => {
+                    item.style.display = 'block';
+                    item.classList.add('fade-in'); // Adiciona animação
+                });
+                btn.innerHTML = 'Mostrar Menos <i class="fas fa-chevron-up" style="margin-left: 8px;"></i>';
+                btn.setAttribute('data-expanded', 'true');
+            } else {
+                // Esconder Itens
+                hiddenItems.forEach(item => {
+                    item.style.display = 'none';
+                    item.classList.remove('fade-in');
+                });
+                btn.innerHTML = 'Mostrar Mais Diferenciais <i class="fas fa-chevron-down" style="margin-left: 8px;"></i>';
+                btn.setAttribute('data-expanded', 'false');
+                // Scroll suave de volta para o topo da secção para não perder o utilizador
+                document.getElementById('diferenciais').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</section>
+<!-- TIERS SECTION -->
+<section class="tiers-section" id="precos">
+    <div class="container">
+        <div class="section-header">
+            <h2>Planos de Cuidado <span class="highlight">(Previsão)</span></h2>
+            <p>Flexibilidade total: pague apenas pelo que precisa. Desconto de até 30% em contratos de longa duração.</p>
+        </div>
+
+        <div class="tiers-grid">
+            <div class="tier-card">
+                <h3>Cuidados Básicos</h3>
+                <p class="tier-desc">Ideal para companhia e apoio leve.</p>
+                <div class="tier-price">9€ - 13€<span>/hora</span></div>
+                <ul class="tier-features">
+                    <li>Companhia social e conversa</li>
+                    <li>Supervisionamento de atividades</li>
+                    <li>Pequenas ajudas com refeições</li>
+                    <li>Limpeza leve</li>
+                    <li>Acompanhamento a consultas</li>
+                </ul>
+                <a href="#waitlist" class="btn btn-secondary">Tenho Interesse</a>
+            </div>
+
+            <div class="tier-card featured">
+                <span class="tier-tag">Mais Popular</span>
+                <h3>Cuidados Completos</h3>
+                <p class="tier-desc">Higiene, mobilidade e gestão doméstica.</p>
+                <div class="tier-price">14€ - 20€<span>/hora</span></div>
+                <ul class="tier-features">
+                    <li><strong>Tudo do plano Básico, mais:</strong></li>
+                    <li>Higiene pessoal completa</li>
+                    <li>Apoio na mobilidade</li>
+                    <li>Ajuda a vestir/despir</li>
+                    <li>Preparação de refeições</li>
+                    <li>Gestão de roupa e limpeza</li>
+                </ul>
+                <a href="#waitlist" class="btn btn-primary">Pré-Inscrição</a>
+            </div>
+
+            <div class="tier-card">
+                <h3>Premium</h3>
+                <p class="tier-desc">Pós-operatório, monitorização e especialização.</p>
+                <div class="tier-price">21€ - 30€+<span>/hora</span></div>
+                <ul class="tier-features">
+                    <li><strong>Tudo do plano Completo, mais:</strong></li>
+                    <li>Cuidadores com Certificação</li>
+                    <li>Especialização em Alzheimer</li>
+                    <li>Prevenção de úlceras</li>
+                    <li>Equipamentos técnicos</li>
+                    <li>Estimulação cognitiva</li>
+                </ul>
+                <a href="#waitlist" class="btn btn-secondary">Saber Mais</a>
+            </div>
+        </div>
+
+        <p class="tiers-disclaimer">
+            <i class="fas fa-asterisk"></i> Preços meramente indicativos. Valores finais definidos no lançamento. Descontos de 20-30% em contratos mensais e de permanência.
+        </p>
+    </div>
+</section>
+
+<!-- APP FEATURES SECTION -->
+<section class="app-section">
+    <div class="container">
+        <div class="app-content">
+            <div class="app-text">
+                <h2>A App POPS: Controlo Total na Palma da Tua Mão</h2>
+                <p>Tecnologia moderna que simplifica cuidados complexos. Conheça as funcionalidades que estamos a desenvolver:</p>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon-small">
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4>GPS em Tempo Real & Check-in.</h4>
+                            <p>Saiba exatamente quando o cuidador chega e sai. Notificações automáticas e localização confirmada.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon-small">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div>
+                            <h4>Dashboard de Família - Olhos na Casa, Mesmo à Distância.</h4>
+                            <p>Relatórios digitais detalhados: medicação, alimentação, higiene, observações do cuidador em tempo real.</p>
+                           
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon-small">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div>
+                            <h4>Chat Seguro Encriptado.</h4>
+                            <p>Comunicação direta, rápida e privada entre família e cuidador. Respostas que ficam documentadas.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon-small">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div>
+                            <h4>Sistema de Avaliações Transparente.</h4>
+                            <p>Avalie cada visita. Seu feedback determina o ranking e o futuro dos cuidadores na plataforma.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phone-mockup" style="position: relative; perspective: 1000px;">
+                <!-- Phone Frame -->
+                <div style="background: #000; border-radius: 40px; padding: 12px; width: 320px; margin: 0 auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);">
+                    <!-- Notch -->
+                    <div style="background: #000; height: 28px; border-radius: 0 0 20px 20px; margin: -12px -12px 0 -12px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px;">
+                        <div style="width: 150px; height: 6px; background: #000; border-radius: 10px;"></div>
+                    </div>
+                    
+                    <!-- Screen Content -->
+                    <div style="background: linear-gradient(135deg, #e8f5f7 0%, #f0f9fa 100%); border-radius: 32px; padding: 0; overflow: hidden; aspect-ratio: 9/19.5;">
+                        
+                        <!-- Status Bar -->
+                        <div style="background: linear-gradient(135deg, #20808D 0%, #1a636e 100%); color: white; padding: 8px 16px; font-size: 12px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>09:41</span>
+                            <div style="display: flex; gap: 4px;">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                            </div>
+                        </div>
+
+                        <!-- App Header -->
+                        <div style="background: white; padding: 16px; border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #20808D 0%, #2a9fa8 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 700;">P</div>
+                            <div>
+                                <div style="font-weight: 600; color: #1F2121; font-size: 14px;">POPS</div>
+                                <div style="font-size: 11px; color: #626C71;">Meu Cuidador</div>
+                            </div>
+                        </div>
+
+                        <!-- Notification Badge -->
+                        <div style="background: #27AE60; color: white; margin: 12px; padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 10px; font-size: 13px;">
+                            <i class="fas fa-check-circle" style="font-size: 18px;"></i>
+                            <div>
+                                <div style="font-weight: 600; margin-bottom: 2px;">Check-in Confirmado</div>
+                                <div style="font-size: 11px; opacity: 0.9;">Maria Silva • 09:35</div>
+                            </div>
+                        </div>
+
+                        <!-- Current Service -->
+                        <div style="background: white; margin: 0 12px 12px; padding: 12px; border-radius: 12px; border-left: 4px solid #20808D; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                            <div style="font-weight: 600; color: #1F2121; font-size: 13px; margin-bottom: 8px;">Serviço Ativo Agora</div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 600; color: #1F2121;">Cuidados Completos</div>
+                                    <div style="font-size: 11px; color: #626C71;">Desde 09:00</div>
+                                </div>
+                                <div style="background: #e8f5f7; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; color: #20808D;">2h 41m</div>
+                            </div>
+                        </div>
+
+                        <!-- Task Checklist -->
+                        <div style="background: white; margin: 0 12px 12px; padding: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                            <div style="font-weight: 600; color: #1F2121; font-size: 13px; margin-bottom: 10px;">Tarefas Concluídas</div>
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                <i class="fas fa-check-circle" style="color: #27AE60; font-size: 16px;"></i>
+                                <span style="font-size: 12px; color: #1F2121;">Higiene pessoal</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                <i class="fas fa-check-circle" style="color: #27AE60; font-size: 16px;"></i>
+                                <span style="font-size: 12px; color: #1F2121;">Refeição preparada</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-check-circle" style="color: #27AE60; font-size: 16px;"></i>
+                                <span style="font-size: 12px; color: #1F2121;">Medicação administrada</span>
+                            </div>
+                        </div>
+
+                        <!-- GPS Location -->
+                        <div style="background: white; margin: 0 12px 12px; padding: 10px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center;">
+                            <div style="font-size: 11px; color: #626C71; margin-bottom: 4px;">📍 Localização</div>
+                            <div style="background: linear-gradient(135deg, #20808D, #2a9fa8); height: 60px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">
+                                <i class="fas fa-map-location-dot"></i> No Local
+                            </div>
+                        </div>
+
+                        <!-- Bottom Action -->
+                        <div style="padding: 12px; display: flex; gap: 8px;">
+                            <button style="flex: 1; padding: 10px; background: linear-gradient(135deg, #20808D 0%, #1a636e 100%); color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Chat</button>
+                            <button style="flex: 1; padding: 10px; background: white; color: #20808D; border: 2px solid #20808D; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Avaliar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WAITLIST SECTION -->
+<section class="waitlist-section" id="waitlist">
+    <div class="container">
+        <div class="waitlist-header">
+            <span class="promo-badge"><i class="fas fa-gift"></i> Oferta de Lançamento</span>
+            <h2>Conecte-se à Melhor Rede de Cuidados ao Domíciliário do País</h2>
+            <p>Inscreva-se na lista de espera e garanta prioridade no lançamento com descontos exclusivos. Primeiros 500 inscritos recebem 25% de desconto nos primeiros 3 meses.</p>
+        </div>
+
+        <div class="waitlist-container">
+            <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--text-dark);">Garantir Acesso Antecipado</h3>
+
+            
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 0.95rem;">Preencha o formulário para entrar na lista. Será o primeiro a saber quando chegarmos à sua localidade.</p>
+
+            <form action="https://formsubmit.co/aplicacoes@popspt.com" method="POST" onsubmit="return validateForm()">
+                <input type="hidden" name="_subject" value="Nova Inscrição Lista de Espera POPS">
+                <input type="hidden" name="_autoresponse" value="Obrigado por se inscrever na POPS! Receberá em breve o Guia de Segurança em Cuidados Domiciliários.">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="source" value="landing_page_waitlist">
+
+                <div class="form-group">
+                    <label class="form-label">Nome Completo</label>
+                    <input type="text" name="nome" class="form-input" placeholder="O seu nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-input" placeholder="seu@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Telefone (com indicativo)</label>
+                    <input type="tel" name="telefone" class="form-input" placeholder="+351 91 234 5678" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Data de Nascimento</label>
+                        <input type="date" name="nascimento" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Localidade / Código Postal</label>
+                        <input type="text" name="localidade" class="form-input" placeholder="Ex: Porto, 4000-000" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Você é...</label>
+                    <select name="perfil" class="form-select" required>
+                        <option value="" disabled selected>Selecione uma opção...</option>
+                        <option value="familia">👨‍👩‍👧 Família (Procuro Cuidador)</option>
+                        <option value="cuidador">👩‍⚕️ Profissional (Quero Trabalhar)</option>
+                        <option value="instituicao">🏥 Instituição / Lar</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Tipo de Serviço de Interesse</label>
+                    <select name="servico" class="form-select" required>
+                        <option value="" disabled selected>Selecione...</option>
+                        <option value="basico">Cuidados Básicos (Companhia, apoio leve)</option>
+                        <option value="completo">Cuidados Completos (Higiene, mobilidade)</option>
+                        <option value="premium">Premium (Pós-operatório, especializado)</option>
+                        <option value="ainda_nao_sei">Ainda não tenho certeza</option>
+                    </select>
+                </div>
+
+                <div class="waitlist-benefit">
+                    <h4 style="color: black;"><i class="fas fa-percentage"></i> Seu Benefício Exclusivo</h4>
+                    <p style="color: black;"><strong>25% de desconto</strong> nos primeiros 3 meses de serviço.</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-submit">
+                    <i class="fas fa-paper-plane"></i> Inscrever-me Agora
+                </button>
+
+                <p class="form-disclaimer">
+                    <i class="fas fa-lock"></i> Seus dados são seguros e criptografados. Usados apenas pela POPS para notificações de lançamento e ofertas exclusivas.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">POPS</div>
+                <p class="footer-desc">
+                    Intermediário de Oportunidades para Profissionais de Saúde. Transformamos o cuidado domiciliário em Portugal através de tecnologia, confiança e profissionalismo.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Plataforma</h4>
+                <ul>
+                    <li><a href="#waitlist">Lista de Espera</a></li>
+                    <li><a href="#diferenciais">O que Diferencia</a></li>
+                    <li><a href="#precos">Preços</a></li>
+                    <li><a href="#seguranca">Segurança</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Comunidade</h4>
+                <ul>
+                    <li><a href="#waitlist">Para Cuidadores</a></li>
+                    <li><a href="#waitlist">Para Famílias</a></li>
+                    <li><a href="#">Blog (Brevemente)</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Conformidade RGPD</a></li>
+                    <li><a href="#">Contactos</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2025 POPS - Intermediário de Cuidados Domiciliários. Todos os direitos reservados. | Portugal 
+        </div>
+    </div>
+</footer>
+
+<script>
+function validateForm() {
+    const email = document.querySelector('input[name="email"]').value;
+    const telefone = document.querySelector('input[name="telefone"]').value;
+    
+    // Email validation
+    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Por favor, insira um email válido.');
+        return false;
+    }
+    
+    // Phone validation (Portuguese format)
+    const phoneRegex = /^\\+?351\\s?[91]\\d{8}$/;
+    if (!phoneRegex.test(telefone.replace(/\\s/g, ''))) {
+        alert('Por favor, insira um número de telefone válido (ex: +351 91 1234567).');
+        return false;
+    }
+    
+    return true;
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// Analytics tracking (optional)
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('POPS Landing Page carregada com sucesso');
+});
+
+function selectProfile(profileType) {
+    const select = document.querySelector('select[name="perfil"]');
+    if(select) {
+        select.value = profileType;
+    }
+}
+</script>
+
+<div class="mobile-sticky-cta">
+    <a href="#waitlist" class="btn btn-primary" style="width: 100%; justify-content: center; border-radius: 12px;">
+        <i class="fas fa-ticket-alt"></i> Entrar na Lista de Espera
+    </a>
+</div>
+
+</body>
+</html>"
