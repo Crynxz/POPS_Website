@@ -1,124 +1,83 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Heart, Accessibility, Stethoscope, Home, Check } from "lucide-react";
-
-const realityCards = [
-  {
-    icon: Heart,
-    title: "Séniores e Longevidade",
-    description: "Apoio para manter a independência em casa, desde a companhia até cuidados de higiene e medicação.",
-    color: "text-primary",
-    borderColor: "border-l-primary",
-  },
-  {
-    icon: Accessibility,
-    title: "Deficiência e Inclusão",
-    description: "Suporte especializado para quaisquer tipos de deficiências físicas ou intelectuais, qualquer idade.",
-    color: "text-chart-2",
-    borderColor: "border-l-chart-2",
-  },
-  {
-    icon: Stethoscope,
-    title: "Saúde e Pós-Operatório",
-    description: "Recuperação de cirurgias, acidentes ou gestão de doenças crónicas em qualquer idade ativa.",
-    color: "text-status-online",
-    borderColor: "border-l-status-online",
-  },
-  {
-    icon: Home,
-    title: "Apoio Doméstico",
-    description: "Ajuda nas tarefas domésticas, refeições e organização para famílias que precisam de focar no que importa.",
-    color: "text-chart-3",
-    borderColor: "border-l-chart-3",
-  },
-];
-
-const dataPoints = [
-  { value: "+300.000", label: "pessoas em idade ativa com doenças crónicas" },
-  { value: "+700.000", label: "cuidadores informais a precisar de descanso" },
-  { value: "+150.000", label: "recuperações pós-operatórias anuais" },
-];
+import { HandHeart, Accessibility, Stethoscope, Home, Check } from "lucide-react";
 
 export default function RealitySection() {
-  const scrollToWaitlist = () => {
-    document.querySelector("#waitlist")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section id="mercado" className="py-16 md:py-20 lg:py-24 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <div className="text-center mb-12">
-          <Badge variant="secondary" className="mb-4 text-xs font-bold uppercase tracking-widest text-primary">
-            Uma Realidade Transversal
-          </Badge>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-4">
-            O cuidado ao domicílio não é apenas sobre envelhecer.
-            <br className="hidden md:block" />
-            É sobre viver com qualidade.
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Em Portugal, milhões de pessoas enfrentam desafios diários que exigem apoio especializado. A POPS existe para todas elas, em qualquer fase da vida.
-          </p>
+    <section className="reality-section fade-in-section" id="mercado" style={{ padding: '6rem 0', backgroundColor: '#f8f9fa' }}>
+      <div className="container">
+        <div className="section-header" style={{ marginBottom: '3rem', textAlign: 'center' }}>
+          <span className="highlight" style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 700 }}>Uma Realidade Transversal</span>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--text-dark)', marginBottom: '1rem' }}>O cuidado ao domicílio não é apenas sobre envelhecer.<br />É sobre viver com qualidade.</h2>
+          <p style={{ fontSize: '1.1rem', color: 'var(--text-light)', maxWidth: '600px', margin: '0 auto' }}>Em Portugal, milhões de pessoas enfrentam desafios diários que exigem apoio especializado. A POPS existe para todas elas, em qualquer fase da vida.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {realityCards.map((card, index) => (
-            <Card
-              key={index}
-              className={`border-l-4 ${card.borderColor} transition-all duration-300 hover:-translate-y-1`}
-              data-testid={`card-reality-${index}`}
-            >
-              <CardContent className="p-6">
-                <div className={`mb-4 ${card.color}`}>
-                  <card.icon className="w-8 h-8" />
+        <div className="reality-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
+            {/* Card 1 */}
+            <div className="reality-card" style={{ background: 'white', padding: '2rem', borderRadius: '12px', borderLeft: '4px solid var(--primary)', boxShadow: 'var(--shadow-sm)' }}>
+                <div className="icon-box" style={{ marginBottom: '1.5rem', color: 'var(--primary)' }}>
+                    <HandHeart size={40} />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{card.title}</h3>
-                <p className="text-sm text-muted-foreground">{card.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 600 }}>Séniores e Longevidade</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-light)' }}>Apoio para manter a independência em casa, desde a companhia até cuidados de higiene e medicação.</p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="reality-card" style={{ background: 'white', padding: '2rem', borderRadius: '12px', borderLeft: '4px solid var(--secondary)', boxShadow: 'var(--shadow-sm)' }}>
+                <div className="icon-box" style={{ marginBottom: '1.5rem', color: 'var(--secondary)' }}>
+                    <Accessibility size={40} />
+                </div>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 600 }}>Deficiência e Inclusão</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-light)' }}>Suporte especializado para quaisquer tipos de deficiências físicas ou intelectuais, qualquer idade.</p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="reality-card" style={{ background: 'white', padding: '2rem', borderRadius: '12px', borderLeft: '4px solid var(--success)', boxShadow: 'var(--shadow-sm)' }}>
+                <div className="icon-box" style={{ marginBottom: '1.5rem', color: 'var(--success)' }}>
+                    <Stethoscope size={40} />
+                </div>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 600 }}>Saúde e Pós-Operatório</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-light)' }}>Recuperação de cirurgias, acidentes ou gestão de doenças crónicas em qualquer idade ativa.</p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="reality-card" style={{ background: 'white', padding: '2rem', borderRadius: '12px', borderLeft: '4px solid #9b59b6', boxShadow: 'var(--shadow-sm)' }}>
+                <div className="icon-box" style={{ marginBottom: '1.5rem', color: '#9b59b6' }}>
+                    <Home size={40} />
+                </div>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 600 }}>Apoio Doméstico</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-light)' }}>Ajuda nas tarefas domésticas, refeições e organização para famílias que precisam de focar no que importa.</p>
+            </div>
         </div>
 
-        <Card className="overflow-hidden">
-          <CardContent className="p-8 md:p-10">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Os números de uma necessidade silenciosa
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Muitas vezes associamos o cuidado apenas à terceira idade, mas a realidade em Portugal é muito mais vasta. Existem centenas de milhares de famílias a gerir doenças crónicas, deficiências ou recuperações temporárias sem apoio profissional.
+        {/* Data Visualization */}
+        <div className="data-insight" style={{ background: 'white', borderRadius: '16px', padding: '3rem', boxShadow: 'var(--shadow-md)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '3rem' }}>
+            <div className="data-text" style={{ flex: 1, minWidth: '300px' }}>
+                <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem', fontWeight: 700 }}>Os números de uma necessidade silenciosa</h3>
+                <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', color: 'var(--text-body)' }}>
+                    Muitas vezes associamos o cuidado apenas à terceira idade, mas a realidade em Portugal é muito mais vasta. 
+                    Existem centenas de milhares de famílias a gerir doenças crónicas, deficiências ou recuperações temporárias sem apoio profissional.
                 </p>
-                <ul className="space-y-3">
-                  {dataPoints.map((point, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-status-online flex-shrink-0" />
-                      <span className="text-foreground">
-                        <strong>{point.value}</strong> {point.label}
-                      </span>
+                <ul className="data-list" style={{ listStyle: 'none', padding: 0 }}>
+                    <li style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
+                        <Check size={20} className="text-success" /> <strong>+300.000</strong> pessoas em idade ativa com doenças crónicas
                     </li>
-                  ))}
+                    <li style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
+                        <Check size={20} className="text-success" /> <strong>+700.000</strong> cuidadores informais a precisar de descanso
+                    </li>
+                    <li style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
+                        <Check size={20} className="text-success" /> <strong>+150.000</strong> recuperações pós-operatórias anuais
+                    </li>
                 </ul>
-              </div>
-              <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-8 text-center">
-                <div className="text-6xl font-bold text-primary mb-2">1.15M+</div>
-                <p className="text-muted-foreground text-sm">
-                  Estimativa de população com necessidade potencial de apoio
-                </p>
-                <p className="text-xs text-muted-foreground mt-2">
-                  Fonte: Dados Demográficos Nacionais
-                </p>
-              </div>
             </div>
-          </CardContent>
-        </Card>
 
-        <div className="text-center mt-10">
-          <p className="text-lg text-foreground mb-4">A sua situação enquadra-se nestas categorias?</p>
-          <Button size="lg" onClick={scrollToWaitlist} data-testid="button-encontrar-apoio">
-            Encontrar o Apoio Certo
-          </Button>
+            <div className="data-chart" style={{ flex: 1, minWidth: '300px', textAlign: 'center' }}>
+                 <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/2db78f5abb23956422227c4f406f8dbf/fda6c201-cc72-4944-a59d-719dfd79c2a8/2c5673b4.png" alt="Gráfico de Necessidades de Cuidado em Portugal" style={{ width: '100%', borderRadius: '8px', boxShadow: 'var(--shadow-sm)' }} loading="lazy" />
+                 <p style={{ fontSize: '0.8rem', color: '#888', marginTop: '0.5rem' }}>Estimativa de população com necessidade potencial de apoio (Fonte: Dados Demográficos Nacionais)</p>
+            </div>
+        </div>
+
+        <div className="text-center" style={{ marginTop: '3rem' }}>
+             <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', color: 'var(--text-body)' }}>A sua situação enquadra-se nestas categorias?</p>
+             <a href="#waitlist" className="btn btn-primary">Encontrar o Apoio Certo</a>
         </div>
       </div>
     </section>

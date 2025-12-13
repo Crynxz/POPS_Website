@@ -1,194 +1,91 @@
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { Loader2, CheckCircle, Shield, Clock, Users } from "lucide-react";
+import { Gift, Lock, Percent, Send } from "lucide-react";
 
 interface WaitlistSectionProps {
   selectedProfile?: "familia" | "cuidador";
 }
 
 export default function WaitlistSection({ selectedProfile }: WaitlistSectionProps) {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    profile: selectedProfile || "",
-    location: "",
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.profile) {
-      toast({
-        title: "Campos obrigatórios",
-        description: "Por favor preencha todos os campos obrigatórios.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-    
-    // todo: remove mock functionality - simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    toast({
-      title: "Inscrição confirmada!",
-      description: "Entraremos em contacto em breve com descontos exclusivos.",
-    });
-  };
-
-  const trustBadges = [
-    { icon: Shield, label: "Dados Protegidos" },
-    { icon: Clock, label: "Resposta em 24h" },
-    { icon: Users, label: "+500 inscritos" },
-  ];
-
-  if (isSubmitted) {
-    return (
-      <section id="waitlist" className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-primary/10 to-background">
-        <div className="max-w-xl mx-auto px-6 md:px-8">
-          <Card className="relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary to-chart-2" />
-            <CardContent className="p-8 md:p-10 text-center">
-              <div className="w-16 h-16 rounded-full bg-status-online/20 flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-8 h-8 text-status-online" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Está na Lista de Espera!
-              </h2>
-              <p className="text-muted-foreground mb-6">
-                Obrigado por se inscrever. Entraremos em contacto em breve com descontos exclusivos de lançamento.
-              </p>
-              <Button variant="outline" onClick={() => setIsSubmitted(false)}>
-                Fazer nova inscrição
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section id="waitlist" className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-primary/10 to-background">
-      <div className="max-w-xl mx-auto px-6 md:px-8">
-        <Card className="relative overflow-hidden shadow-xl">
-          <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary to-chart-2" />
-          <CardContent className="p-8 md:p-10">
-            <div className="text-center mb-8">
-              <span className="inline-block bg-chart-2 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-4">
-                Oferta de Lançamento
-              </span>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                Junte-se à Lista de Espera
-              </h2>
-              <p className="text-muted-foreground">
-                Garanta acesso prioritário e descontos exclusivos de até 30%.
+    <section className="waitlist-section fade-in-section" id="waitlist">
+      <div className="container">
+        <div className="waitlist-header">
+          <span className="promo-badge"><Gift size={14} style={{ display: 'inline', marginRight: '5px' }} /> Oferta de Lançamento</span>
+          <h2>Conecte-se à Melhor Rede de Cuidados ao Domíciliário do País</h2>
+          <p>Inscreva-se na lista de espera e garanta prioridade no lançamento com descontos exclusivos. Primeiros 500 inscritos recebem 25% de desconto nos primeiros 3 meses.</p>
+        </div>
+
+        <div className="waitlist-container">
+          <h3 style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'var(--text-dark)' }}>Garantir Acesso Antecipado</h3>
+          <p style={{ textAlign: 'center', color: '#666', marginBottom: '2rem', fontSize: '0.95rem' }}>Preencha o formulário para entrar na lista. Será o primeiro a saber quando chegarmos à sua localidade.</p>
+
+          <form action="https://formsubmit.co/aplicacoes@popspt.com" method="POST">
+             <input type="hidden" name="_subject" value="Nova Inscrição Lista de Espera POPS" />
+             <input type="hidden" name="_autoresponse" value="Obrigado por se inscrever na POPS! Receberá em breve o Guia de Segurança em Cuidados Domiciliários." />
+             <input type="hidden" name="_template" value="table" />
+             <input type="hidden" name="source" value="landing_page_waitlist" />
+
+             <div className="form-group">
+                <label className="form-label">Nome Completo</label>
+                <input type="text" name="nome" className="form-input" placeholder="O seu nome" required />
+             </div>
+
+             <div className="form-group">
+                <label className="form-label">Email</label>
+                <input type="email" name="email" className="form-input" placeholder="seu@email.com" required />
+             </div>
+
+             <div className="form-group">
+                <label className="form-label">Telefone (com indicativo)</label>
+                <input type="tel" name="telefone" className="form-input" placeholder="+351 91 234 5678" required />
+             </div>
+
+             <div className="form-row">
+                <div className="form-group">
+                    <label className="form-label">Data de Nascimento</label>
+                    <input type="date" name="nascimento" className="form-input" required />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Localidade / Código Postal</label>
+                    <input type="text" name="localidade" className="form-input" placeholder="Ex: Porto, 4000-000" required />
+                </div>
+             </div>
+             
+             <div className="form-group">
+                <label className="form-label">Você é...</label>
+                <select name="perfil" className="form-select" required defaultValue={selectedProfile || ""}>
+                  <option value="" disabled>Selecione uma opção...</option>
+                  <option value="familia">👨‍👩‍👧 Família (Procuro Cuidador)</option>
+                  <option value="cuidador">👩‍⚕️ Profissional (Quero Trabalhar)</option>
+                  <option value="instituicao">🏥 Instituição / Lar</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Tipo de Serviço de Interesse</label>
+                <select name="servico" className="form-select" required defaultValue="">
+                    <option value="" disabled>Selecione...</option>
+                    <option value="basico">Cuidados Básicos (Companhia, apoio leve)</option>
+                    <option value="completo">Cuidados Completos (Higiene, mobilidade)</option>
+                    <option value="premium">Premium (Pós-operatório, especializado)</option>
+                    <option value="ainda_nao_sei">Ainda não tenho certeza</option>
+                </select>
+              </div>
+
+              <div className="waitlist-benefit">
+                <h4 style={{ color: 'black' }}><Percent size={18} style={{ marginRight: '8px' }} /> Seu Benefício Exclusivo</h4>
+                <p style={{ color: 'black' }}><strong>25% de desconto</strong> nos primeiros 3 meses de serviço.</p>
+              </div>
+
+              <button type="submit" className="btn btn-primary form-submit">
+                <Send size={18} style={{ marginRight: '8px' }} /> Inscrever-me Agora
+              </button>
+
+              <p className="form-disclaimer">
+                <Lock size={12} style={{ display: 'inline', marginRight: '4px' }} /> Seus dados são seguros e criptografados. Usados apenas pela POPS para notificações de lançamento e ofertas exclusivas.
               </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Nome Completo *</Label>
-                  <Input
-                    id="name"
-                    placeholder="O seu nome"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    data-testid="input-name"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="email@exemplo.pt"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    data-testid="input-email"
-                  />
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Telefone</Label>
-                  <Input
-                    id="phone"
-                    placeholder="+351 912 345 678"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    data-testid="input-phone"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="location">Localização</Label>
-                  <Input
-                    id="location"
-                    placeholder="Lisboa, Porto, etc."
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    data-testid="input-location"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="profile">Sou *</Label>
-                <Select
-                  value={formData.profile}
-                  onValueChange={(value) => setFormData({ ...formData, profile: value })}
-                >
-                  <SelectTrigger data-testid="select-profile">
-                    <SelectValue placeholder="Selecione o seu perfil" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="familia">Família - Procuro Cuidador</SelectItem>
-                    <SelectItem value="cuidador">Cuidador - Quero Trabalhar</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting} data-testid="button-submit-waitlist">
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    A processar...
-                  </>
-                ) : (
-                  "Garantir o Meu Lugar"
-                )}
-              </Button>
-
-              <p className="text-xs text-center text-muted-foreground">
-                Ao submeter, aceita receber comunicações da POPS. Pode cancelar a qualquer momento.
-              </p>
-            </form>
-
-            <div className="flex flex-wrap justify-center gap-6 mt-8 pt-6 border-t border-border">
-              {trustBadges.map((badge, index) => (
-                <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <badge.icon className="w-4 h-4 text-primary" />
-                  <span>{badge.label}</span>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+          </form>
+        </div>
       </div>
     </section>
   );

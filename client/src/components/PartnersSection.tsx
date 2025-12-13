@@ -1,50 +1,47 @@
-import { Badge } from "@/components/ui/badge";
+import { Link } from "wouter";
+import { ArrowRight, University, Cross, Brain, Award, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { School, Cross, Brain, Award, Stethoscope, ArrowRight } from "lucide-react";
 
-const partners = [
-  { icon: School, name: "Escola Saúde" },
-  { icon: Cross, name: "Cruz Vermelha" },
-  { icon: Brain, name: "Assoc. Alzheimer" },
-  { icon: Award, name: "Certif. PT" },
-  { icon: Stethoscope, name: "Ordem Enferm." },
-];
-
-export default function PartnersSection() {
+export function PartnersSection() {
   return (
-    <section className="py-12 md:py-16 bg-muted/30 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <div className="flex flex-wrap justify-between items-end gap-6 mb-8">
-          <div className="max-w-xl">
-            <Badge variant="secondary" className="mb-2 text-xs font-bold uppercase tracking-widest text-primary">
-              Ecossistema POPS
-            </Badge>
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Apoiados por quem sabe.</h3>
-            <p className="text-muted-foreground">
-              Os nossos cuidadores não são apenas verificados, são formados e certificados pelas melhores instituições.
-            </p>
-          </div>
-          <Button variant="outline" data-testid="button-ver-parceiros">
-            Ver Todos os Parceiros
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-          {partners.map((partner, index) => (
-            <div
-              key={index}
-              className="text-center opacity-50 hover:opacity-100 transition-all duration-300 group cursor-pointer"
-              data-testid={`partner-${index}`}
-            >
-              <partner.icon className="w-10 h-10 mx-auto mb-2 text-muted-foreground group-hover:text-primary transition-colors" />
-              <p className="text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">
-                {partner.name}
-              </p>
+    <section className="partners-preview fade-in-section" style={{ padding: '4rem 0', background: '#f8f9fa', borderTop: '1px solid var(--border-light)' }}>
+        <div className="container">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+                <div style={{ maxWidth: '600px' }}>
+                    <span className="highlight" style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Ecossistema POPS</span>
+                    <h3 style={{ fontSize: '1.8rem', marginTop: '0.5rem' }}>Apoiados por quem sabe.</h3>
+                    <p style={{ fontSize: '1rem', color: 'var(--text-light)' }}>Os nossos cuidadores não são apenas verificados, são formados e certificados pelas melhores instituições.</p>
+                </div>
+                <Link href="/parceiros">
+                    <Button variant="outline" className="gap-2">
+                        Ver Todos os Parceiros <ArrowRight className="w-4 h-4" />
+                    </Button>
+                </Link>
             </div>
-          ))}
+
+            <div className="logos-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '2rem', alignItems: 'center', opacity: 0.7 }}>
+                <div className="partner-logo text-center grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:opacity-100 group">
+                    <University className="w-10 h-10 mx-auto text-gray-400 group-hover:text-primary mb-2" />
+                    <div className="text-xs font-bold text-gray-400 group-hover:text-primary">Escola Saúde</div>
+                </div>
+                 <div className="partner-logo text-center grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:opacity-100 group">
+                    <Cross className="w-10 h-10 mx-auto text-gray-400 group-hover:text-primary mb-2" />
+                    <div className="text-xs font-bold text-gray-400 group-hover:text-primary">Cruz Vermelha</div>
+                </div>
+                 <div className="partner-logo text-center grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:opacity-100 group">
+                    <Brain className="w-10 h-10 mx-auto text-gray-400 group-hover:text-primary mb-2" />
+                    <div className="text-xs font-bold text-gray-400 group-hover:text-primary">Assoc. Alzheimer</div>
+                </div>
+                 <div className="partner-logo text-center grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:opacity-100 group">
+                    <Award className="w-10 h-10 mx-auto text-gray-400 group-hover:text-primary mb-2" />
+                    <div className="text-xs font-bold text-gray-400 group-hover:text-primary">Certif. PT</div>
+                </div>
+                 <div className="partner-logo text-center grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:opacity-100 group">
+                    <User className="w-10 h-10 mx-auto text-gray-400 group-hover:text-primary mb-2" />
+                    <div className="text-xs font-bold text-gray-400 group-hover:text-primary">Ordem Enferm.</div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
   );
 }
