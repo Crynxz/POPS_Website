@@ -16,44 +16,30 @@ import { PartnersSection } from "@/components/PartnersSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 
 export default function Home() {
-  // Estado para controlar a seleção no Hero (Cuidador vs Família)
-  const [selectedProfile, setSelectedProfile] = useState<"familia" | "cuidador" | undefined>();
-  
-  // Ativar animações de scroll
+  const [selectedProfile, setSelectedProfile] = useState<
+    "familia" | "cuidador" | undefined
+  >();
+
   useScrollAnimation();
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      {/* Header Global */}
+    <div className="min-h-screen bg-background flex flex-col w-full overflow-x-hidden">
       <Header />
 
-      <main className="flex-1">
-        {/* Secções */}
+      <main className="flex-1 w-full">
         <HeroSection onSelectProfile={setSelectedProfile} />
-        
         <RealitySection />
-        
         <ComparisonSection />
-        
         <VettingSection />
-        
         <TechSection />
-        
         <TrustSection />
-        
         <PartnersSection />
-        
         <PricingSection />
-        
         <AppFeaturesSection />
-
         <TestimonialsSection />
-        
-        {/* Formulário de Lista de Espera */}
         <WaitlistSection selectedProfile={selectedProfile} />
       </main>
 
-      {/* Footer Global */}
       <Footer />
     </div>
   );

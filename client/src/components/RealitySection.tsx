@@ -48,32 +48,7 @@ export default function RealitySection() {
             </div>
         </div>
 
-        {/* Data Visualization */}
-        <div className="data-insight" style={{ background: 'white', borderRadius: '16px', padding: '3rem', boxShadow: 'var(--shadow-md)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '3rem' }}>
-            <div className="data-text" style={{ flex: 1, minWidth: '300px' }}>
-                <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem', fontWeight: 700 }}>Os números de uma necessidade silenciosa</h3>
-                <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', color: 'var(--text-body)' }}>
-                    Muitas vezes associamos o cuidado apenas à terceira idade, mas a realidade em Portugal é muito mais vasta. 
-                    Existem centenas de milhares de famílias a gerir doenças crónicas, deficiências ou recuperações temporárias sem apoio profissional.
-                </p>
-                <ul className="data-list" style={{ listStyle: 'none', padding: 0 }}>
-                    <li style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
-                        <Check size={20} className="text-success" /> <strong>+300.000</strong> pessoas em idade ativa com doenças crónicas
-                    </li>
-                    <li style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
-                        <Check size={20} className="text-success" /> <strong>+700.000</strong> cuidadores informais a precisar de descanso
-                    </li>
-                    <li style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
-                        <Check size={20} className="text-success" /> <strong>+150.000</strong> recuperações pós-operatórias anuais
-                    </li>
-                </ul>
-            </div>
-
-            <div className="data-chart" style={{ flex: 1, minWidth: '300px', textAlign: 'center' }}>
-                 <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/2db78f5abb23956422227c4f406f8dbf/fda6c201-cc72-4944-a59d-719dfd79c2a8/2c5673b4.png" alt="Gráfico de Necessidades de Cuidado em Portugal" style={{ width: '100%', borderRadius: '8px', boxShadow: 'var(--shadow-sm)' }} loading="lazy" />
-                 <p style={{ fontSize: '0.8rem', color: '#888', marginTop: '0.5rem' }}>Estimativa de população com necessidade potencial de apoio (Fonte: Dados Demográficos Nacionais)</p>
-            </div>
-        </div>
+       
 
         <div className="text-center" style={{ marginTop: '3rem' }}>
              <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', color: 'var(--text-body)' }}>A sua situação enquadra-se nestas categorias?</p>

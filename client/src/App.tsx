@@ -8,6 +8,7 @@ import { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
 import NotFound from "@/pages/not-found";
 
+
 const queryClient = new QueryClient();
 
 // Lazy Loading das Páginas
