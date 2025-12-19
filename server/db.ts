@@ -1,22 +1,20 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
-import pg from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
 import * as schema from '@shared/schema';
 
-let pool: pg.Pool | null = null;
+let pool: pkg.Pool | null = null;
 let db: any = null;
 
 if (process.env.DATABASE_URL) {
   try {
-    pool = new pg.Pool({ 
+    pool = new Pool({ 
       connectionString: process.env.DATABASE_URL,
-      // Configurações recomendadas para Serverless
       max: 1,
-      idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 2000,
     });
     db = drizzle(pool, { schema });
   } catch (err) {
-    console.error("Failed to initialize database pool:", err);
+    console.error("Database connection error:", err);
   }
 }
 
