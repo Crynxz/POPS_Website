@@ -1,13 +1,5 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite",
-  "public": "dist",
-  "routes": [
-    {
-      "src": "/(.*)",
-      "methods": ["GET"],
-      "dest": "/index.html"
-    }
-  ]
+  "framework": "vite"
 }
