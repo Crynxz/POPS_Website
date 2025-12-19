@@ -78,6 +78,8 @@ const translations = {
     "waitlist.benefit.title": "Benefício exclusivo ativado",
     "waitlist.benefit.desc": "Ao submeter, garante o seu lugar para o desconto de 25%.",
     "waitlist.cta": "Inscrever-me Agora",
+    "waitlist.success.title": "Obrigado!",
+    "waitlist.success.desc": "O teu registo foi confirmado. Receberás um email em breve.",
     "waitlist.security.ssl": "Dados protegidos por encriptação SSL",
     "waitlist.security.rgpd": "Conformidade Total RGPD",
     "waitlist.security.social": "Junte-se a +500 famílias"
@@ -151,6 +153,8 @@ const translations = {
     "waitlist.benefit.title": "Exclusive benefit activated",
     "waitlist.benefit.desc": "Submitting guarantees your spot for the 25% discount.",
     "waitlist.cta": "Sign Up Now",
+    "waitlist.success.title": "Thank you!",
+    "waitlist.success.desc": "Your registration has been confirmed. You will receive an email shortly.",
     "waitlist.security.ssl": "Data protected by SSL encryption",
     "waitlist.security.rgpd": "Full GDPR Compliance",
     "waitlist.security.social": "Join +500 families"
