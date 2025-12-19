@@ -21,30 +21,34 @@ app.use((req, res, next) => {
   next();
 });
 
-// Inicialização assíncrona
-(async () => {
-  const server = registerRoutes(app);
+// Create server and register routes immediately
+const server = registerRoutes(app);
 
-  // Error handling
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-    res.status(status).json({ message });
-  });
+// Global Error Handler
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  const status = err.status || err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  res.status(status).json({ message });
+});
 
-  if (process.env.NODE_ENV !== "production") {
+// Setup environment-specific logic
+if (process.env.NODE_ENV !== "production") {
+  (async () => {
     await setupVite(server, app);
-  } else if (!process.env.VERCEL) {
-    serveStatic(app);
-  }
-
-  // SÓ inicia o listener local se não estiver no Vercel
+    const PORT = 5000;
+    server.listen(PORT, "0.0.0.0", () => {
+      log(`serving on port ${PORT}`);
+    });
+  })();
+} else {
+  // In production (non-Vercel), we need to serve static files and listen
   if (!process.env.VERCEL) {
+    serveStatic(app);
     const PORT = 5000;
     server.listen(PORT, "0.0.0.0", () => {
       log(`serving on port ${PORT}`);
     });
   }
-})();
+}
 
 export default app;
