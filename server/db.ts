@@ -6,8 +6,10 @@ import * as schema from '../shared/schema';
 let dbInstance: any = null;
 
 export function getDb() {
+  // Se já existir uma ligação, reutiliza-a
   if (dbInstance) return dbInstance;
 
+  // Se não houver URL, não tenta ligar
   if (!process.env.DATABASE_URL) {
     return null;
   }
@@ -18,13 +20,11 @@ export function getDb() {
       max: 1,
       ssl: { rejectUnauthorized: false }
     });
+    
     dbInstance = drizzle(pool, { schema });
     return dbInstance;
   } catch (err) {
-    console.error("Database connection error:", err);
+    console.error("Database initialization error:", err);
     return null;
   }
 }
-
-// Para manter compatibilidade com o resto do código
-export const db = getDb();

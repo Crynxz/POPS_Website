@@ -1,12 +1,18 @@
-import express from 'express';
-// Make sure this path points to your new routes file
-import { registerRoutes } from '../server/routes'; 
+export default async (req: any, res: any) => {
+  if (req.url.endsWith("/health")) {
+    return res.status(200).json({ status: "alive", bridge: true });
+  }
 
-const app = express();
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-registerRoutes(app);
-
-export default app;
+  try {
+    // Importação limpa do servidor Express
+    const { default: app } = await import("../server/index");
+    return app(req, res);
+  } catch (err: any) {
+    console.error("Vercel Function Error:", err);
+    return res.status(500).json({ 
+      error: "FUNCTION_INVOCATION_ERROR", 
+      message: err.message,
+      stack: err.stack 
+    });
+  }
+};

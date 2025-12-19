@@ -38,8 +38,7 @@ export class DatabaseStorage implements IStorage {
     try {
       const [entry] = await db.select().from(waitlist).where(eq(waitlist.email, email));
       return entry;
-    } catch (dbError) {
-      console.error("Database read error:", dbError);
+    } catch (e) {
       return memStorage.getWaitlistEntryByEmail(email);
     }
   }
@@ -50,8 +49,8 @@ export class DatabaseStorage implements IStorage {
     try {
       const [entry] = await db.insert(waitlist).values(insertEntry).returning();
       return entry;
-    } catch (dbError) {
-      console.error("Database write error, falling back to memory:", dbError);
+    } catch (e) {
+      console.error("DB Write failed, using memory fallback", e);
       return memStorage.createWaitlistEntry(insertEntry);
     }
   }
@@ -60,53 +59,35 @@ export class DatabaseStorage implements IStorage {
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private waitlist: Map<number, Waitlist>;
-  private userCounter: number = 1;
-  private waitlistCounter: number = 1;
+  private uId = 1;
+  private wId = 1;
 
   constructor() {
     this.users = new Map();
     this.waitlist = new Map();
   }
 
-  async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+  async getUser(id: number) { return this.users.get(id); }
+  async getUserByUsername(u: string) { return Array.from(this.users.values()).find(x => x.username === u); }
+  async createUser(u: InsertUser) {
+    const res = { ...u, id: this.uId++ };
+    this.users.set(res.id, res);
+    return res;
   }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async getWaitlistEntryByEmail(e: string) {
+    return Array.from(this.waitlist.values()).find(x => x.email.toLowerCase() === e.toLowerCase());
   }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.userCounter++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
-  }
-
-  async getWaitlistEntryByEmail(email: string): Promise<Waitlist | undefined> {
-    return Array.from(this.waitlist.values()).find(
-      (entry) => entry.email.toLowerCase() === email.toLowerCase(),
-    );
-  }
-
-  async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
-    const id = this.waitlistCounter++;
-    const entry: Waitlist = { 
-      ...insertEntry, 
-      id,
-      phone: insertEntry.phone ?? null,
-      location: insertEntry.location ?? null,
-      birthDate: insertEntry.birthDate ?? null,
-      profile: insertEntry.profile ?? null,
-      interest: insertEntry.interest ?? null,
-      createdAt: new Date()
+  async createWaitlistEntry(w: InsertWaitlist) {
+    const res: Waitlist = { 
+      ...w, id: this.wId++, 
+      phone: w.phone || null, location: w.location || null,
+      birthDate: w.birthDate || null, profile: w.profile || null,
+      interest: w.interest || null, createdAt: new Date()
     };
-    this.waitlist.set(id, entry);
-    return entry;
+    this.waitlist.set(res.id, res);
+    return res;
   }
 }
 
 const memStorage = new MemStorage();
-export const storage = process.env.DATABASE_URL ? new DatabaseStorage() : memStorage;
+export const storage = new DatabaseStorage();
