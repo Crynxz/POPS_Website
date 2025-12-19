@@ -33,11 +33,11 @@ export default function VettingSection() {
   ];
 
   return (
-    <section className="py-24 bg-white dark:bg-slate-900 transition-colors duration-300" id="seguranca">
+    <section className="py-24 bg-white transition-colors duration-300" id="seguranca">
       <div className="container mx-auto px-6">
         <div className="text-center mb-20 max-w-3xl mx-auto">
           <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">Protocolo de Segurança</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
             Confiança não se pede.<br/>
             <span className="relative inline-block">
               Verifica-se.
@@ -46,17 +46,17 @@ export default function VettingSection() {
               </svg>
             </span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p className="text-lg text-slate-600 leading-relaxed">
             O mercado informal coloca em risco famílias todos os dias. A POPS implementa um processo de verificação rigoroso, em 4 etapas, obrigatório para todos os profissionais.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
           {/* Connecting Line (Desktop) */}
-          <div className="hidden lg:block absolute top-12 left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-slate-200 dark:from-slate-700 via-primary/20 to-slate-200 dark:to-slate-700 -z-10"></div>
+          <div className="hidden lg:block absolute top-12 left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-slate-200 via-primary/20 to-slate-200 -z-10"></div>
 
           {steps.map((step, i) => (
-            <div key={i} className="relative group bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 transition-all duration-300">
+            <div key={i} className="relative group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 transition-all duration-300">
               
               <div className="flex justify-center mb-6 relative">
                 <div className={`w-24 h-24 rounded-full ${step.bg} border-4 border-white flex items-center justify-center ${step.color} shadow-sm group-hover:scale-110 transition-transform duration-300`}>
@@ -68,8 +68,8 @@ export default function VettingSection() {
               </div>
 
               <div className="text-center">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">{step.title}</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{step.desc}</p>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{step.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
               </div>
 
               <div className="mt-6 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
@@ -82,7 +82,7 @@ export default function VettingSection() {
         </div>
 
         <div className="mt-16 text-center">
-          <a href="#waitlist" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 dark:bg-primary text-white rounded-xl font-semibold hover:bg-slate-800 dark:hover:bg-primary/90 transition-all shadow-lg hover:-translate-y-1 group">
+          <a href="#waitlist" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 transition-all shadow-lg hover:-translate-y-1 group">
             Quero Cuidadores Verificados 
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </a>

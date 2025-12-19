@@ -34,8 +34,8 @@ export default function StickyFloatingCTA({ selectedProfile }: StickyFloatingCTA
         icon: Heart,
         label: t("hero.cta.find") || "Find Caregivers",
         color: "from-red-500 to-pink-500",
-        bgColor: "bg-red-50 dark:bg-red-950",
-        borderColor: "border-red-200 dark:border-red-800",
+        bgColor: "bg-red-50",
+        borderColor: "border-red-200",
         shadowColor: "shadow-red-500/20"
       };
     } else if (selectedProfile === "cuidador") {
@@ -43,8 +43,8 @@ export default function StickyFloatingCTA({ selectedProfile }: StickyFloatingCTA
         icon: Stethoscope,
         label: t("hero.cta.work") || "Start Working",
         color: "from-blue-500 to-cyan-500",
-        bgColor: "bg-blue-50 dark:bg-blue-950",
-        borderColor: "border-blue-200 dark:border-blue-800",
+        bgColor: "bg-blue-50",
+        borderColor: "border-blue-200",
         shadowColor: "shadow-blue-500/20"
       };
     }
@@ -54,8 +54,8 @@ export default function StickyFloatingCTA({ selectedProfile }: StickyFloatingCTA
       icon: Heart,
       label: "Junte-se à nossa Waitlist",
       color: "from-primary to-teal-500",
-      bgColor: "bg-slate-50 dark:bg-slate-800",
-      borderColor: "border-slate-200 dark:border-slate-700",
+      bgColor: "bg-slate-50",
+      borderColor: "border-slate-200",
       shadowColor: "shadow-primary/20"
     };
   };
@@ -90,10 +90,10 @@ export default function StickyFloatingCTA({ selectedProfile }: StickyFloatingCTA
 
                 {/* Text content */}
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
                     {selectedProfile ? "Your Next Step" : "Pronto para Começar?"}
                   </p>
-                  <p className="text-sm font-bold text-slate-900 dark:text-white truncate">
+                  <p className="text-sm font-bold text-slate-900 truncate">
                     {content.label}
                   </p>
                 </div>
@@ -149,7 +149,7 @@ export default function StickyFloatingCTA({ selectedProfile }: StickyFloatingCTA
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleDismiss}
-              className="absolute -top-3 -right-3 w-9 h-9 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 shadow-lg hover:shadow-xl transition-shadow duration-200"
+              className="absolute -top-3 -right-3 w-9 h-9 bg-white rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-700 shadow-lg hover:shadow-xl transition-shadow duration-200"
               aria-label="Close"
             >
               <X className="w-5 h-5" />

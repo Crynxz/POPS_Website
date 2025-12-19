@@ -73,13 +73,13 @@ export default function TrustSection() {
   const visibleFeatures = isExpanded ? allFeatures : allFeatures.slice(0, 4);
 
   return (
-    <section className="py-24 bg-white dark:bg-slate-900 transition-colors duration-300" id="diferenciais">
+    <section className="py-24 bg-white transition-colors duration-300" id="diferenciais">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
             O Ecossistema POPS: <span className="text-primary">Tecnologia & Confiança</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
             Resolvemos a fragmentação do mercado com uma solução integrada. Unimos segurança, saúde e gestão numa só plataforma.
           </p>
         </div>
@@ -88,13 +88,13 @@ export default function TrustSection() {
           {visibleFeatures.map((feature, i) => (
             <div 
               key={i} 
-              className={`p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-primary/20 hover:bg-white dark:hover:bg-slate-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-${(i % 4) * 100}`}
+              className={`p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary/20 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-${(i % 4) * 100}`}
             >
-              <div className="w-14 h-14 bg-white dark:bg-slate-700 rounded-2xl shadow-sm flex items-center justify-center text-primary mb-6 transition-colors border border-slate-50 dark:border-slate-600">
+              <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-primary mb-6 transition-colors border border-slate-50">
                 <feature.icon size={28} />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 leading-tight">{feature.title}</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{feature.desc}</p>
+              <h3 className="text-lg font-bold text-slate-900 mb-3 leading-tight">{feature.title}</h3>
+              <p className="text-sm text-slate-500 leading-relaxed">{feature.desc}</p>
             </div>
           ))}
         </div>
@@ -108,7 +108,7 @@ export default function TrustSection() {
               }
               setIsExpanded(!isExpanded);
             }}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-primary/30 transition-all shadow-sm active:scale-95"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold hover:bg-slate-50 hover:border-primary/30 transition-all shadow-sm active:scale-95"
           >
             {isExpanded ? (
               <>Mostrar Menos <ChevronUp size={20} className="text-primary" /></>

@@ -2,25 +2,25 @@ import { Shield, X, Check } from "lucide-react";
 
 export default function ComparisonSection() {
   return (
-    <section className="py-24 bg-slate-50 dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 transition-colors duration-300">
+    <section className="py-24 bg-slate-50 border-y border-slate-200 transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">A Verdade do Mercado</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
             Porque a POPS é a <span className="text-primary">evolução</span>.
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             O modelo tradicional obriga-o a escolher entre segurança (caro) ou preço (risco). Nós eliminamos essa escolha.
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto bg-white dark:bg-slate-800 rounded-3xl shadow-xl overflow-hidden border border-slate-100 dark:border-slate-700">
+        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
           <div className="grid md:grid-cols-3">
             
             {/* Header Column (Hidden on mobile mostly) */}
-            <div className="hidden md:block p-8 bg-slate-50 dark:bg-slate-700 border-r border-slate-100 dark:border-slate-600">
+            <div className="hidden md:block p-8 bg-slate-50 border-r border-slate-100">
               <div className="h-16 mb-8"></div> {/* Spacer */}
-              <div className="space-y-8 font-semibold text-slate-700 dark:text-slate-300">
+              <div className="space-y-8 font-semibold text-slate-700">
                 <div className="h-12 flex items-center">Segurança</div>
                 <div className="h-12 flex items-center">Controlo</div>
                 <div className="h-12 flex items-center">Qualificação</div>
@@ -30,14 +30,14 @@ export default function ComparisonSection() {
             </div>
 
             {/* Informal Market */}
-            <div className="p-8 border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-700 relative opacity-70 grayscale transition-all hover:grayscale-0 hover:opacity-100">
+            <div className="p-8 border-b md:border-b-0 md:border-r border-slate-100 relative opacity-70 grayscale transition-all hover:grayscale-0 hover:opacity-100">
               <div className="h-16 mb-8 flex flex-col justify-center">
-                <h3 className="font-bold text-slate-900 dark:text-white text-lg">Mercado Tradicional</h3>
-                <span className="text-xs text-slate-500 dark:text-slate-400">Agências ou Informal</span>
+                <h3 className="font-bold text-slate-900 text-lg">Mercado Tradicional</h3>
+                <span className="text-xs text-slate-500">Agências ou Informal</span>
               </div>
               
               <div className="space-y-8">
-                <div className="h-12 flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+                <div className="h-12 flex items-center gap-3 text-sm text-slate-600">
                   <X className="w-5 h-5 text-red-400 shrink-0" /> Verificação manual difícil ou inexistente. Alto risco de fraude.
                 </div>
                 <div className="h-12 flex items-center gap-3 text-sm text-slate-600">
@@ -56,17 +56,17 @@ export default function ComparisonSection() {
             </div>
 
             {/* POPS */}
-            <div className="p-8 bg-primary/5 dark:bg-primary/10 relative">
+            <div className="p-8 bg-primary/5 relative">
               <div className="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
               <div className="h-16 mb-8 flex flex-col justify-center">
                 <h3 className="font-bold text-primary text-xl flex items-center gap-2">
                   Recomendado
                 </h3>
-                <span className="text-xs text-primary/70 dark:text-primary/60 font-semibold uppercase tracking-wider">Plataforma POPS</span>
+                <span className="text-xs text-primary/70 font-semibold uppercase tracking-wider">Plataforma POPS</span>
               </div>
 
               <div className="space-y-8">
-                <div className="h-12 flex items-center gap-3 text-sm font-medium text-slate-800 dark:text-slate-200">
+                <div className="h-12 flex items-center gap-3 text-sm font-medium text-slate-800">
                   <Check className="w-5 h-5 text-primary shrink-0" /> <span><strong>Verificação Obrigatória.</strong> Criminal e Identidade validados.</span>
                 </div>
                 <div className="h-12 flex items-center gap-3 text-sm font-medium text-slate-800">

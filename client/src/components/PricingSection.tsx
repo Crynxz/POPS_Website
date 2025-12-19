@@ -30,33 +30,33 @@ export default function PricingSection() {
   ];
 
   return (
-    <section className="py-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300" id="precos">
+    <section className="py-24 bg-slate-50 transition-colors duration-300" id="precos">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">Planos de Cuidado <span className="text-primary">(Previsão)</span></h2>
-          <p className="text-slate-600 dark:text-slate-400">Flexibilidade total: pague apenas pelo que precisa. Desconto de até 30% em contratos de longa duração.</p>
+          <h2 className="text-3xl font-bold mb-4 text-slate-900">Planos de Cuidado <span className="text-primary">(Previsão)</span></h2>
+          <p className="text-slate-600">Flexibilidade total: pague apenas pelo que precisa. Desconto de até 30% em contratos de longa duração.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
           {tiers.map((tier, i) => (
-            <div key={i} className={`p-8 rounded-3xl border ${tier.style} dark:bg-slate-800 dark:border-slate-700`}>
+            <div key={i} className={`p-8 rounded-3xl border ${tier.style}`}>
               {tier.highlight && (
                 <div className="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full absolute top-6 right-6">
                   Mais Popular
                 </div>
               )}
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">{tier.name}</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">{tier.desc}</p>
+              <h3 className="text-xl font-bold text-slate-900">{tier.name}</h3>
+              <p className="text-sm text-slate-500 mb-6">{tier.desc}</p>
               
-              <div className="text-4xl font-extrabold text-slate-900 dark:text-white mb-6">
-                {tier.price}<span className="text-lg font-medium text-slate-400 dark:text-slate-500">/h</span>
+              <div className="text-4xl font-extrabold text-slate-900 mb-6">
+                {tier.price}<span className="text-lg font-medium text-slate-400">/h</span>
               </div>
 
               <ul className="space-y-4 mb-8">
-                {tier.highlight && <li className="text-sm font-bold text-slate-900 dark:text-white">Tudo do plano Básico, mais:</li>}
-                {i === 2 && <li className="text-sm font-bold text-slate-900 dark:text-white">Tudo do plano Completo, mais:</li>}
+                {tier.highlight && <li className="text-sm font-bold text-slate-900">Tudo do plano Básico, mais:</li>}
+                {i === 2 && <li className="text-sm font-bold text-slate-900">Tudo do plano Completo, mais:</li>}
                 {tier.features.map((feat, j) => (
-                  <li key={j} className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+                  <li key={j} className="flex items-center gap-3 text-sm text-slate-600">
                     <Check className="w-4 h-4 text-green-500" /> {feat}
                   </li>
                 ))}
@@ -67,7 +67,7 @@ export default function PricingSection() {
                 className={`w-full py-3 rounded-xl font-semibold flex justify-center transition-all ${
                   tier.highlight 
                     ? "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25" 
-                    : "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600"
+                    : "bg-slate-100 text-slate-900 hover:bg-slate-200"
                 }`}
               >
                 {tier.cta}
@@ -76,7 +76,7 @@ export default function PricingSection() {
           ))}
         </div>
         
-        <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-8">*Preços meramente indicativos. Valores finais definidos no lançamento. Descontos de 20-30% em contratos mensais e de permanência.</p>
+        <p className="text-center text-xs text-slate-400 mt-8">*Preços meramente indicativos. Valores finais definidos no lançamento. Descontos de 20-30% em contratos mensais e de permanência.</p>
       </div>
     </section>
   );

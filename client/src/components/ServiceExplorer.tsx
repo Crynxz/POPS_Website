@@ -57,20 +57,20 @@ export default function ServiceExplorer() {
   }
 
   return (
-    <section className="py-24 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-300" id="mercado">
+    <section className="py-24 bg-white relative overflow-hidden transition-colors duration-300" id="mercado">
       <div className="container mx-auto px-6 relative z-10">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">{t("services.badge")}</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
             {t("services.title")}
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
+          <p className="text-lg text-slate-600">
             {t("services.desc")}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 bg-slate-50 dark:bg-slate-800 rounded-[2.5rem] p-4 md:p-6 border border-slate-100 dark:border-slate-700 shadow-xl">
+        <div className="grid lg:grid-cols-12 gap-8 bg-slate-50 rounded-[2.5rem] p-4 md:p-6 border border-slate-100 shadow-xl">
           
           {/* Navigation (Left) */}
           <div className="lg:col-span-4 flex flex-col gap-3">
@@ -80,21 +80,21 @@ export default function ServiceExplorer() {
                 onClick={() => setActiveTab(service)}
                 className={`text-left p-5 rounded-2xl transition-all duration-300 group relative overflow-hidden border ${
                   activeTab.id === service.id 
-                    ? "bg-white dark:bg-slate-700 shadow-md border-slate-100 dark:border-slate-600 scale-[1.02]" 
-                    : "hover:bg-white/50 dark:hover:bg-slate-700/50 border-transparent hover:border-slate-200 dark:hover:border-slate-600"
+                    ? "bg-white shadow-md border-slate-100 scale-[1.02]" 
+                    : "hover:bg-white/50 border-transparent hover:border-slate-200"
                 }`}
               >
                 <div className="flex items-center gap-4 relative z-10">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                    activeTab.id === service.id ? `${service.color} text-white` : "bg-slate-200 dark:bg-slate-600 text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200"
+                    activeTab.id === service.id ? `${service.color} text-white` : "bg-slate-200 text-slate-500 group-hover:text-slate-700"
                   }`}>
                     <service.icon size={20} />
                   </div>
                   <div>
-                    <h3 className={`font-bold text-base ${activeTab.id === service.id ? "text-slate-900 dark:text-white" : "text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white"}`}>
+                    <h3 className={`font-bold text-base ${activeTab.id === service.id ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900"}`}>
                       {service.title}
                     </h3>
-                    <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 hidden sm:block">{service.subtitle}</p>
+                    <p className="text-xs text-slate-400 mt-0.5 hidden sm:block">{service.subtitle}</p>
                   </div>
                   {activeTab.id === service.id && (
                     <ArrowRight className="ml-auto text-primary w-4 h-4 animate-in fade-in slide-in-from-left-2" />
@@ -105,7 +105,7 @@ export default function ServiceExplorer() {
           </div>
 
           {/* Visualization (Right) */}
-          <div className="lg:col-span-8 bg-white dark:bg-slate-900 rounded-[2rem] p-8 md:p-12 border border-slate-100 dark:border-slate-700 relative overflow-hidden flex flex-col justify-center min-h-[400px]">
+          <div className="lg:col-span-8 bg-white rounded-[2rem] p-8 md:p-12 border border-slate-100 relative overflow-hidden flex flex-col justify-center min-h-[400px]">
             {/* Background Blob */}
             <div className={`absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-10 blur-[80px] transition-colors duration-500 ${activeTab.color}`}></div>
             
@@ -119,17 +119,17 @@ export default function ServiceExplorer() {
                 className="relative z-10"
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-100 dark:bg-slate-800 ${activeTab.textColor}`}>
+                  <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-100 ${activeTab.textColor}`}>
                     {activeTab.title}
                   </div>
-                  <div className="h-px bg-slate-100 dark:bg-slate-700 flex-1"></div>
+                  <div className="h-px bg-slate-100 flex-1"></div>
                 </div>
 
-                <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+                <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
                   {activeTab.subtitle}
                 </h3>
                 
-                <p className="text-lg text-slate-600 dark:text-slate-300 mb-10 leading-relaxed max-w-2xl">
+                <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-2xl">
                   {activeTab.description}
                 </p>
 
@@ -137,7 +137,7 @@ export default function ServiceExplorer() {
                   {activeTab.features.map((feature, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className={`w-2 h-2 rounded-full ${activeTab.color}`}></div>
-                      <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{feature}</span>
+                      <span className="text-sm font-medium text-slate-700">{feature}</span>
                     </div>
                   ))}
                 </div>
