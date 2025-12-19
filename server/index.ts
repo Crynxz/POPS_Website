@@ -19,37 +19,35 @@ app.use((req, res, next) => {
   next();
 });
 
-// Registo imediato de rotas
-registerRoutes(app);
+// Create a configured app instance
+const startApp = async () => {
+  // Registo imediato de rotas
+  registerRoutes(app);
 
-// Error handling
-app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-  const status = err.status || err.statusCode || 500;
-  const message = err.message || "Internal Server Error";
-  res.status(status).json({ message });
-});
+  // Error handling
+  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(status).json({ message });
+  });
 
-// Desenvolvimento vs Produção
-if (app.get("env") === "development") {
-  (async () => {
-    const { createServer } = await import("http");
-    const { setupVite } = await import("./vite");
-    const server = createServer(app);
-    await setupVite(server, app);
-    server.listen(5000, "0.0.0.0", () => log("serving on port 5000"));
-  })();
-} else {
-  // Em produção (non-Vercel environments like Replit)
+  // Local/Dev only logic
   if (!process.env.VERCEL) {
-    (async () => {
+    if (app.get("env") === "development") {
+      const { createServer } = await import("http");
+      const { setupVite } = await import("./vite");
+      const server = createServer(app);
+      await setupVite(server, app);
+      server.listen(5000, "0.0.0.0", () => log("serving on port 5000"));
+    } else {
       const { serveStatic } = await import("./vite");
       serveStatic(app);
-      const PORT = 5000;
-      app.listen(PORT, "0.0.0.0", () => {
-        log(`serving on port ${PORT}`);
-      });
-    })();
+      app.listen(5000, "0.0.0.0", () => log("serving on port 5000"));
+    }
   }
-}
+};
+
+// Initialize
+startApp();
 
 export default app;
