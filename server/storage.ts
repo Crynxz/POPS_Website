@@ -7,6 +7,7 @@ export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  getWaitlistEntryByEmail(email: string): Promise<Waitlist | undefined>;
   createWaitlistEntry(entry: InsertWaitlist): Promise<Waitlist>;
 }
 
@@ -29,14 +30,26 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
+  async getWaitlistEntryByEmail(email: string): Promise<Waitlist | undefined> {
+    if (!db) return undefined;
+    const [entry] = await db.select().from(waitlist).where(eq(waitlist.email, email));
+    return entry;
+  }
+
   async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
+    console.log("DatabaseStorage: Attempting to create waitlist entry for", insertEntry.email);
     if (!db) {
       // Fallback para MemStorage temporário se o DB falhar em produção
       console.warn("Database not available, using temporary memory storage");
       return memStorage.createWaitlistEntry(insertEntry);
     }
-    const [entry] = await db.insert(waitlist).values(insertEntry).returning();
-    return entry;
+    try {
+      const [entry] = await db.insert(waitlist).values(insertEntry).returning();
+      return entry;
+    } catch (dbError) {
+      console.error("Critical Database Error during waitlist insertion:", dbError);
+      throw dbError;
+    }
   }
 }
 
@@ -64,6 +77,12 @@ export class MemStorage implements IStorage {
     const user: User = { ...insertUser, id };
     this.users.set(id, user);
     return user;
+  }
+
+  async getWaitlistEntryByEmail(email: string): Promise<Waitlist | undefined> {
+    return Array.from(this.waitlist.values()).find(
+      (entry) => entry.email.toLowerCase() === email.toLowerCase(),
+    );
   }
 
   async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {

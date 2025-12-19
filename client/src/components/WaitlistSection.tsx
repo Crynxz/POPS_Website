@@ -36,11 +36,16 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
         title: "Sucesso!",
         description: "Ficaste registado na nossa lista de espera.",
       });
-    } catch (error) {
+    } catch (error: any) {
+      const errorData = await error.json().catch(() => ({}));
+      const isDuplicate = error.status === 409;
+
       toast({
-        title: "Erro",
-        description: "Não foi possível processar o teu pedido. Tenta novamente.",
-        variant: "destructive",
+        title: isDuplicate ? "Aviso" : "Erro",
+        description: isDuplicate 
+          ? "Este email já está registado na nossa lista de espera." 
+          : "Não foi possível processar o teu pedido. Tenta novamente.",
+        variant: isDuplicate ? "default" : "destructive",
       });
     } finally {
       setIsSubmitting(false);
