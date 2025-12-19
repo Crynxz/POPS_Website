@@ -1,7 +1,7 @@
 import { type User, type InsertUser, type Waitlist, type InsertWaitlist, users, waitlist } from "../shared/schema";
-import { randomUUID } from "crypto";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
+import { randomUUID } from "crypto";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -31,24 +31,18 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getWaitlistEntryByEmail(email: string): Promise<Waitlist | undefined> {
-    if (!db) {
-      return memStorage.getWaitlistEntryByEmail(email);
-    }
+    if (!db) return memStorage.getWaitlistEntryByEmail(email);
     try {
       const [entry] = await db.select().from(waitlist).where(eq(waitlist.email, email));
       return entry;
     } catch (dbError) {
       console.error("Database error in getWaitlistEntryByEmail:", dbError);
-      // If DB fails (e.g. table doesn't exist), fallback to memory for checking
       return memStorage.getWaitlistEntryByEmail(email);
     }
   }
 
   async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
-    console.log("DatabaseStorage: Attempting to create waitlist entry for", insertEntry.email);
     if (!db) {
-      // Fallback para MemStorage temporário se o DB falhar em produção
-      console.warn("Database not available, using temporary memory storage");
       return memStorage.createWaitlistEntry(insertEntry);
     }
     try {
