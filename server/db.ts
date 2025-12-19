@@ -6,17 +6,17 @@ import * as schema from '../shared/schema';
 let dbInstance: any = null;
 
 export function getDb() {
-  // Se já existir uma ligação, reutiliza-a
   if (dbInstance) return dbInstance;
 
-  // Se não houver URL, não tenta ligar
-  if (!process.env.DATABASE_URL) {
+  const url = process.env.DATABASE_URL;
+  if (!url) {
+    console.warn("DATABASE_URL is missing. Database features will be unavailable.");
     return null;
   }
 
   try {
     const pool = new Pool({ 
-      connectionString: process.env.DATABASE_URL,
+      connectionString: url,
       max: 1,
       ssl: { rejectUnauthorized: false }
     });
@@ -24,7 +24,7 @@ export function getDb() {
     dbInstance = drizzle(pool, { schema });
     return dbInstance;
   } catch (err) {
-    console.error("Database initialization error:", err);
+    console.error("Database initialization failed:", err);
     return null;
   }
 }

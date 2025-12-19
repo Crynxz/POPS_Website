@@ -2,14 +2,12 @@ import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-// TABELA DE UTILIZADORES
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
 });
 
-// TABELA DA WAITLIST (Sincronizada com o teu SQL do Supabase)
 export const waitlist = pgTable("waitlist", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -19,7 +17,6 @@ export const waitlist = pgTable("waitlist", {
   location: text("location"),
   profile: text("profile"),
   interest: text("interest"),
-  // Sincronizado com 'timestamp with time zone'
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 

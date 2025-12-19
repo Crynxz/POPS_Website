@@ -1,18 +1,25 @@
 export default async (req: any, res: any) => {
+  // Rota de diagnóstico ultra-rápida
   if (req.url.endsWith("/health")) {
-    return res.status(200).json({ status: "alive", bridge: true });
+    return res.status(200).json({ 
+      status: "alive", 
+      config: {
+        hasDbUrl: !!process.env.DATABASE_URL,
+        hasResendKey: !!process.env.RESEND_API_KEY,
+        nodeEnv: process.env.NODE_ENV
+      }
+    });
   }
 
   try {
-    // Importação limpa do servidor Express
     const { default: app } = await import("../server/index");
     return app(req, res);
   } catch (err: any) {
-    console.error("Vercel Function Error:", err);
+    console.error("Vercel Bridge Failure:", err);
     return res.status(500).json({ 
-      error: "FUNCTION_INVOCATION_ERROR", 
+      error: "SERVER_BOOT_ERROR", 
       message: err.message,
-      stack: err.stack 
+      hint: "Check environment variables and build logs."
     });
   }
 };
