@@ -30,7 +30,7 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 // Desenvolvimento vs Produção
-if (process.env.NODE_ENV !== "production") {
+if (app.get("env") === "development") {
   (async () => {
     const { createServer } = await import("http");
     const { setupVite } = await import("./vite");
@@ -38,12 +38,18 @@ if (process.env.NODE_ENV !== "production") {
     await setupVite(server, app);
     server.listen(5000, "0.0.0.0", () => log("serving on port 5000"));
   })();
-} else if (!process.env.VERCEL) {
-  (async () => {
-    const { serveStatic } = await import("./vite");
-    serveStatic(app);
-    app.listen(5000, "0.0.0.0", () => log("serving on port 5000"));
-  })();
+} else {
+  // Em produção (non-Vercel environments like Replit)
+  if (!process.env.VERCEL) {
+    (async () => {
+      const { serveStatic } = await import("./vite");
+      serveStatic(app);
+      const PORT = 5000;
+      app.listen(PORT, "0.0.0.0", () => {
+        log(`serving on port ${PORT}`);
+      });
+    })();
+  }
 }
 
 export default app;
