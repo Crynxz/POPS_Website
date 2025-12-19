@@ -1,38 +1,40 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes";
 import { log } from "./log";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Middleware de Logs (apenas para API)
-app.use((req, res, next) => {
-  if (req.path.startsWith("/api")) {
-    const start = Date.now();
-    res.on("finish", () => {
-      const duration = Date.now() - start;
-      log(`${req.method} ${req.path} ${res.statusCode} in ${duration}ms`);
-    });
-  }
-  next();
-});
-
-// Regista as rotas
-registerRoutes(app);
-
-// Error handling
-app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-  const status = err.status || err.statusCode || 500;
-  res.status(status).json({ 
-    message: "Internal Error", 
-    details: err.message || "Unknown error"
+// Rota de teste absoluto (não depende de nenhum outro ficheiro)
+app.get("/api/ping", (_req, res) => {
+  res.json({ 
+    status: "online", 
+    message: "Express is running",
+    timestamp: new Date().toISOString()
   });
 });
 
-// Lógica de servidor local (Não corre no Vercel)
-if (!process.env.VERCEL) {
-  const startLocal = async () => {
+// Inicialização segura e tardia das rotas e lógica
+const init = async () => {
+  try {
+    const { registerRoutes } = await import("./routes");
+    registerRoutes(app);
+    log("Routes registered successfully");
+  } catch (err: any) {
+    console.error("Failed to register routes:", err);
+  }
+
+  // Error handling
+  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+    const status = err.status || err.statusCode || 500;
+    res.status(status).json({ 
+      message: "Internal Server Error", 
+      details: err.message 
+    });
+  });
+
+  // Lógica local (Ignorada no Vercel)
+  if (!process.env.VERCEL) {
     try {
       const { createServer } = await import("http");
       const server = createServer(app);
@@ -46,10 +48,12 @@ if (!process.env.VERCEL) {
       const PORT = Number(process.env.PORT) || 5000;
       server.listen(PORT, "0.0.0.0", () => log(`serving on port ${PORT}`));
     } catch (e) {
-      console.error("Local startup failed:", e);
+      console.error("Local server start failed:", e);
     }
-  };
-  startLocal();
-}
+  }
+};
+
+// Inicia o processo de configuração mas exporta o app imediatamente
+init();
 
 export default app;
