@@ -1,41 +1,32 @@
-import express from "express";
 import { z } from "zod";
 
-const app = express();
-app.use(express.json());
+export default async function handler(req: any, res: any) {
+  const { method, url } = req;
 
-// 1. ROTAS DE DIAGNÓSTICO (Sem dependências pesadas)
-app.get("/api/health", (req, res) => {
-  res.json({ 
-    status: "ok", 
-    message: "Function is alive",
-    node: process.version,
-    memory: process.memoryUsage().heapUsed
-  });
-});
+  // 1. Health Check & Ping (Ultra-fast, no dependencies)
+  if (url.endsWith("/health") || url.endsWith("/ping")) {
+    return res.status(200).json({ 
+      status: "ok", 
+      source: "native-vercel-handler",
+      timestamp: new Date().toISOString() 
+    });
+  }
 
-app.get("/api/ping", (req, res) => {
-  res.json({ status: "online", timestamp: new Date().toISOString() });
-});
+  // 2. Only allow POST for waitlist
+  if (method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
-// 2. ROTA DA WAITLIST (Importações dinâmicas para evitar crash no boot)
-app.post("/api/waitlist", async (req, res) => {
   try {
-    console.log("Processing waitlist request for:", req.body?.email);
-    
-    // Check if body is empty
-    if (!req.body || Object.keys(req.body).length === 0) {
-      console.error("Empty request body received");
-      return res.status(400).json({ error: "Empty request body" });
-    }
-    
-    // Importações "Lazy"
+    console.log("Starting waitlist process for:", req.body?.email);
+
+    // Dynamic imports inside the handler to prevent boot-time crashes
     const pg = await import("pg");
     const { drizzle } = await import("drizzle-orm/node-postgres");
     const { pgTable, text, serial, timestamp } = await import("drizzle-orm/pg-core");
     const { createInsertSchema } = await import("drizzle-zod");
 
-    // Definição local do Schema para garantir isolamento total
+    // Define Schema
     const waitlist = pgTable("waitlist", {
       id: serial("id").primaryKey(),
       name: text("name").notNull(),
@@ -52,11 +43,12 @@ app.post("/api/waitlist", async (req, res) => {
       email: z.string().email(),
     });
 
+    // Validate Data
     const data = insertSchema.parse(req.body);
 
-    // Ligação à Base de Dados
+    // Database Operation
     if (process.env.DATABASE_URL) {
-      const Pool = pg.default.Pool || (pg as any).Pool;
+      const Pool = (pg.default as any)?.Pool || (pg as any).Pool;
       const pool = new Pool({
         connectionString: process.env.DATABASE_URL,
         max: 1,
@@ -68,11 +60,12 @@ app.post("/api/waitlist", async (req, res) => {
         ...data,
         createdAt: new Date()
       });
-      console.log("Database save: Success");
-      await pool.end(); // Fecha a ligação imediatamente (importante para serverless)
+      
+      console.log("Successfully saved to database");
+      await pool.end();
     }
 
-    // Enviar Email via Resend
+    // Email Operation
     if (process.env.RESEND_API_KEY) {
       try {
         const { Resend } = await import("resend");
@@ -83,22 +76,25 @@ app.post("/api/waitlist", async (req, res) => {
           subject: 'Bem-vindo à lista de espera da POPS!',
           html: `<p>Olá ${data.name},</p><p>Obrigado por te juntares à nossa lista de espera da POPS!</p>`
         });
-        console.log("Email send: Success");
+        console.log("Email sent successfully");
       } catch (emailErr) {
-        console.error("Resend error:", emailErr);
+        console.error("Email failure:", emailErr);
       }
     }
 
-    res.status(201).json({ success: true });
+    return res.status(201).json({ success: true });
 
   } catch (error: any) {
-    console.error("Waitlist Error:", error);
-    res.status(error instanceof z.ZodError ? 400 : 500).json({ 
-      message: "Erro no processamento",
-      error: error.message,
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    console.error("Critical Handler Error:", error);
+    
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ message: "Dados inválidos", details: error.errors });
+    }
+
+    return res.status(500).json({ 
+      message: "Erro interno no servidor",
+      debug: error.message,
+      stack: error.stack
     });
   }
-});
-
-export default app;
+}
