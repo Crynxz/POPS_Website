@@ -1,0 +1,21 @@
+{
+  "name": "POPS - Cuidados Domiciliários Verificados",
+  "short_name": "POPS",
+  "description": "Plataforma líder em apoio domiciliário em Portugal com cuidadores certificados.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0E6973",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

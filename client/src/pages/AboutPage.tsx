@@ -144,8 +144,8 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans text-slate-900">
       <SEO 
-        title="Sobre a POPS - A Nossa Missão" 
-        description="Conheça a equipa e a missão por trás da POPS. Estamos a redefinir o cuidado domiciliário em Portugal com tecnologia e empatia."
+        title="Sobre a POPS - Líder em Apoio Domiciliário em Portugal" 
+        description="Conheça a missão da POPS: elevar o padrão do apoio domiciliário em Portugal através de tecnologia e cuidadores certificados. Especialistas em descanso do cuidador e apoio a doentes crónicos."
       />
       
       <Header />

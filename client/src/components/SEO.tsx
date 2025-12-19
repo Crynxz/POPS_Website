@@ -9,9 +9,9 @@ interface SEOProps {
 }
 
 export default function SEO({ 
-  title = "POPS - Rede de Cuidados Domiciliários Verificados", 
-  description = "A POPS oferece os melhores serviços de apoio domiciliário em Portugal. Conectamos famílias a cuidadores qualificados e verificados para serviços ao domicílio com total segurança.", 
-  keywords = "apoio domiciliário, serviços ao domicílio, cuidadores, idosos, saúde, enfermagem, lar, pops, portugal, lisboa, porto",
+  title = "POPS - Intermediário de Cuidados Domiciliários Verificados em Portugal", 
+  description = "A POPS é a plataforma líder em apoio domiciliário em Portugal. Encontre cuidadores certificados, auxiliares de geriatria e serviços de enfermagem ao domicílio com verificação rigorosa e tecnologia de monitorização.", 
+  keywords = "apoio domiciliário, serviços ao domicílio, cuidadores idosos, enfermagem domicílio, auxiliares geriatria, cuidados paliativos, descanso do cuidador, pops portugal, lisboa, porto",
   image = "/og-image.jpg",
   url = "https://popshomecare.vercel.app"
 }: SEOProps) {
@@ -22,9 +22,15 @@ export default function SEO({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={url} />
+      
+      {/* Hreflang for SEO Internationalization */}
+      <link rel="alternate" href={url} hrefLang="pt-PT" />
+      <link rel="alternate" href={`${url}?lang=en`} hrefLang="en-US" />
+      <link rel="alternate" href={url} hrefLang="x-default" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
+      <meta property="og:locale" content="pt_PT" />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
@@ -37,48 +43,73 @@ export default function SEO({
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
 
-      {/* JSON-LD Schema Markup */}
+      {/* JSON-LD Schema Markup: LocalBusiness + Services */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "POPS - Cuidados Domiciliários Verificados",
-          "image": "https://popshomecare.vercel.app/og-image.jpg",
-          "@id": "https://popshomecare.vercel.app",
-          "url": "https://popshomecare.vercel.app",
-          "telephone": "+351912345678",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Lisboa",
-            "addressLocality": "Lisboa",
-            "addressRegion": "Lisboa",
-            "postalCode": "1000",
-            "addressCountry": "PT"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 38.7223,
-            "longitude": -9.1393
-          },
-          "description": description,
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ],
-            "opens": "00:00",
-            "closes": "23:59"
-          },
-          "sameAs": [
-            "https://www.facebook.com/pops",
-            "https://www.instagram.com/pops",
-            "https://www.linkedin.com/company/pops"
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              "name": "POPS - Apoio Domiciliário",
+              "image": "https://popshomecare.vercel.app/og-image.jpg",
+              "@id": "https://popshomecare.vercel.app",
+              "url": "https://popshomecare.vercel.app",
+              "telephone": "+351915613345",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Lisboa",
+                "addressLocality": "Lisboa",
+                "addressRegion": "Lisboa",
+                "postalCode": "1000",
+                "addressCountry": "PT"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 38.7223,
+                "longitude": -9.1393
+              },
+              "description": description,
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                "opens": "00:00",
+                "closes": "23:59"
+              },
+              "sameAs": [
+                "https://www.facebook.com/pops",
+                "https://www.instagram.com/pops",
+                "https://www.linkedin.com/company/pops"
+              ]
+            },
+            {
+              "@type": "Service",
+              "serviceType": "Apoio Domiciliário",
+              "provider": { "@id": "https://popshomecare.vercel.app" },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Portugal"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Serviços de Cuidado",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Apoio Sénior e Geriatria"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Enfermagem e Cuidados de Saúde"
+                    }
+                  }
+                ]
+              }
+            }
           ]
         })}
       </script>
