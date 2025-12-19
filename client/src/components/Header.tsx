@@ -12,7 +12,6 @@ export default function Header({ variant = "default" }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [activeHash, setActiveHash] = useState("");
 
