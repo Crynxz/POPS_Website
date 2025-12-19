@@ -31,9 +31,17 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getWaitlistEntryByEmail(email: string): Promise<Waitlist | undefined> {
-    if (!db) return undefined;
-    const [entry] = await db.select().from(waitlist).where(eq(waitlist.email, email));
-    return entry;
+    if (!db) {
+      return memStorage.getWaitlistEntryByEmail(email);
+    }
+    try {
+      const [entry] = await db.select().from(waitlist).where(eq(waitlist.email, email));
+      return entry;
+    } catch (dbError) {
+      console.error("Database error in getWaitlistEntryByEmail:", dbError);
+      // If DB fails (e.g. table doesn't exist), fallback to memory for checking
+      return memStorage.getWaitlistEntryByEmail(email);
+    }
   }
 
   async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
@@ -47,8 +55,8 @@ export class DatabaseStorage implements IStorage {
       const [entry] = await db.insert(waitlist).values(insertEntry).returning();
       return entry;
     } catch (dbError) {
-      console.error("Critical Database Error during waitlist insertion:", dbError);
-      throw dbError;
+      console.error("Critical Database Error, falling back to memory:", dbError);
+      return memStorage.createWaitlistEntry(insertEntry);
     }
   }
 }
