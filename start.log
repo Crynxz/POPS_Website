@@ -1,0 +1,21 @@
+
+> rest-express@1.0.0 start
+> NODE_ENV=production node dist/index.js
+
+file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:1
+var af=Object.create;var $r=Object.defineProperty;var nf=Object.getOwnPropertyDescriptor;var tf=Object.getOwnPropertyNames;var rf=Object.getPrototypeOf,of=Object.prototype.hasOwnProperty;var g=(a=>typeof require<"u"?require:typeof Proxy<"u"?new Proxy(a,{get:(e,i)=>(typeof require<"u"?require:e)[i]}):a)(function(a){if(typeof require<"u")return require.apply(this,arguments);throw Error('Dynamic require of "'+a+'" is not supported')});var v=(a,e)=>()=>(e||a((e={exports:{}}).exports,e),e.exports);var sf=(a,e,i,n)=>{if(e&&typeof e=="object"||typeof e=="function")for(let t of tf(e))!of.call(a,t)&&t!==i&&$r(a,t,{get:()=>e[t],enumerable:!(n=nf(e,t))||n.enumerable});return a};var cf=(a,e,i)=>(i=a!=null?af(rf(a)):{},sf(e||!a||!a.__esModule?$r(i,"default",{value:a,enumerable:!0}):i,a));var de=v((Ww,Xr)=>{var pf=g("path").relative;Xr.exports=mf;var lf=process.cwd();function Gr(a,e){for(var i=a.split(/[ ,]+/),n=String(e).toLowerCase(),t=0;t<i.length;t++){var r=i[t];if(r&&(r==="*"||r.toLowerCase()===n))return!0}return!1}function uf(a,e,i){var n=Object.getOwnPropertyDescriptor(a,e),t=n.value;return n.get=function(){return t},n.writable&&(n.set=function(o){return t=o}),delete n.value,delete n.writable,Object.defineProperty(a,e,n),n}function df(a){for(var e="",i=0;i<a;i++)e+=", arg"+i;return e.substr(2)}function ff(a){var e=this.name+": "+this.namespace;this.message&&(e+=" deprecated "+this.message);for(var i=0;i<a.length;i++)e+=`
+                                                                                                                                                                                                                                                                                                                                                                                             ^
+
+Error: Dynamic require of "path" is not supported
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:1:382
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:1:813
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:1:458
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:20:17948
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:1:458
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:63:582
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:1:458
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:63:1653
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:1:458
+    at file:///Users/joaosousa/Desktop/POPS_Website/dist/index.js:63:1670
+
+Node.js v25.2.1
