@@ -114,45 +114,43 @@ export function PartnersPage() {
         title="Parceiros POPS - Junte-se à Rede de Excelência" 
         description="Torne-se um parceiro oficial da POPS. Aumente a sua visibilidade, aceda a novos clientes e faça parte da revolução nos cuidados domiciliários."
       />
-      <Header variant="light" />
+      <Header />
 
       <main className="flex-1">
         {/* HERO SECTION */}
-        <section className="relative pt-32 pb-24 bg-slate-900 text-white overflow-hidden">
-          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+        <section className="relative pt-32 pb-24 bg-slate-50 overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="mb-8 flex justify-center">
               <Link href="/">
-                <a className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium group">
+                <a className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors text-sm font-medium group">
                   <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-1" /> Voltar à página inicial
                 </a>
               </Link>
             </div>
 
             <div className="text-center max-w-4xl mx-auto">
-           
-              
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-slate-900 leading-[1.1]">
                 Parceiros que elevam <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-blue-300">Parceiros que Elevam o Padrão de Cuidado.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-teal-500 to-primary">o Padrão de Cuidado.</span>
               </h1>
               
-              <p className="text-lg text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto">
                 A POPS colabora com as instituições mais respeitadas de Portugal para garantir certificação, formação contínua e excelência em cada serviço prestado.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
                   href="#contact-form" 
-                  className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 hover:-translate-y-1"
+                  className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 hover:-translate-y-1 active:scale-95"
                 >
                   Tornar-se Parceiro
                 </a>
                 <a 
                   href="#rede" 
-                  className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-white/5 border border-white/10 text-white rounded-xl font-bold hover:bg-white/10 transition-all"
+                  className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 transition-all active:scale-95 shadow-sm"
                 >
                   Ver Rede Atual
                 </a>

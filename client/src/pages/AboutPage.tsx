@@ -248,8 +248,8 @@ export default function AboutPage() {
 
                 {/* Vision */}
                 <FadeIn delay={400}>
-                  <div className="group h-full bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-slate-700 p-8 hover:border-primary/50 relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/30 transition-colors duration-500"></div>
+                  <div className="group h-full bg-gradient-to-br from-primary to-primary-dark rounded-2xl border border-primary/20 p-8 hover:shadow-xl transition-all duration-500 relative overflow-hidden shadow-lg">
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/20 transition-colors duration-500"></div>
                     
                     <div className="flex items-start gap-4 mb-4 relative z-10">
                       <div className="p-3 rounded-lg bg-white/10 border border-white/20 group-hover:bg-white/20 transition-all">
@@ -257,7 +257,7 @@ export default function AboutPage() {
                       </div>
                       <h3 className="text-xl font-bold text-white mt-0.5">Visão</h3>
                     </div>
-                    <p className="text-slate-300 leading-relaxed group-hover:text-white transition-colors relative z-10">
+                    <p className="text-primary-light/90 leading-relaxed group-hover:text-white transition-colors relative z-10">
                       Ser o motor da transformação digital do apoio domiciliário em Portugal. Queremos evoluir de um modelo fragmentado para um ecossistema integrado com o SNS e Famílias.
                     </p>
                   </div>
@@ -325,20 +325,20 @@ export default function AboutPage() {
         <section className="py-24 lg:py-32 bg-gradient-to-b from-white to-slate-50">
           <div className="container mx-auto px-6">
             <FadeIn>
-              <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative bg-white border border-slate-200 rounded-[3rem] overflow-hidden shadow-2xl">
                 {/* Decorative backgrounds */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-primary/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
                 
                 <div className="relative z-10 px-8 md:px-16 py-16 md:py-24 text-center max-w-3xl mx-auto">
                   <FadeIn delay={100}>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 tracking-tight">
                       Faça parte da mudança.
                     </h2>
                   </FadeIn>
                   
                   <FadeIn delay={200}>
-                    <p className="text-slate-300 text-lg mb-10">
+                    <p className="text-slate-600 text-lg mb-10">
                       Seja para encontrar o cuidador ideal ou para exercer a sua profissão com dignidade.
                     </p>
                   </FadeIn>
@@ -347,13 +347,13 @@ export default function AboutPage() {
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                       <a 
                         href="/#waitlist" 
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl hover:scale-105 focus:ring-4 focus:ring-primary/30 focus:outline-none"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:-translate-y-1 active:scale-95"
                       >
                         Começar Agora <ArrowRight size={18} />
                       </a>
                       <a 
                         href="/carreiras" 
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-lg font-semibold hover:bg-white/20 hover:border-white/40 transition-all focus:ring-4 focus:ring-white/20 focus:outline-none"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 transition-all hover:shadow-md active:scale-95"
                       >
                         Ver Vagas
                       </a>

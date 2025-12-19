@@ -116,37 +116,40 @@ export default function CareersPage() {
         </section>
 
         {/* OPEN POSITIONS */}
-        <section id="vagas" className="py-24 bg-slate-900 text-white relative overflow-hidden">
-           <div className="absolute inset-0 bg-slate-950/50"></div>
+        <section id="vagas" className="py-24 bg-slate-50 relative overflow-hidden">
+           <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
+           </div>
+           
            <div className="container mx-auto px-6 relative z-10 max-w-5xl">
               <div className="text-center mb-16">
-                 <span className="text-primary-light font-bold tracking-widest text-xs uppercase mb-3 block">Estamos a contratar</span>
-                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Vagas Disponíveis</h2>
+                 <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">Estamos a contratar</span>
+                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Vagas Disponíveis</h2>
               </div>
 
               <div className="space-y-4">
                  {positions.map((job) => (
                     <FadeIn key={job.id} delay={job.id * 100}>
-                       <div className="bg-slate-800 border border-slate-700 hover:border-primary/50 p-6 md:p-8 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-slate-800/80 transition-all group cursor-pointer">
+                       <div className="bg-white border border-slate-200 hover:border-primary/50 p-6 md:p-8 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:shadow-xl transition-all group cursor-pointer">
                           <div>
                              <div className="flex items-center gap-3 mb-2">
-                                <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">{job.title}</h3>
-                                <span className="px-3 py-1 rounded-full bg-slate-700 text-xs font-semibold text-slate-300 border border-slate-600">{job.department}</span>
+                                <h3 className="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">{job.title}</h3>
+                                <span className="px-3 py-1 rounded-full bg-slate-100 text-xs font-semibold text-slate-600 border border-slate-200">{job.department}</span>
                              </div>
-                             <div className="flex flex-wrap gap-4 text-sm text-slate-400">
-                                <div className="flex items-center gap-1.5"><Briefcase size={16} /> {job.type}</div>
-                                <div className="flex items-center gap-1.5"><MapPin size={16} /> {job.location}</div>
-                                <div className="flex items-center gap-1.5"><Clock size={16} /> Publicado há 2 dias</div>
+                             <div className="flex flex-wrap gap-4 text-sm text-slate-500">
+                                <div className="flex items-center gap-1.5"><Briefcase size={16} className="text-primary" /> {job.type}</div>
+                                <div className="flex items-center gap-1.5"><MapPin size={16} className="text-primary" /> {job.location}</div>
+                                <div className="flex items-center gap-1.5"><Clock size={16} className="text-primary" /> Publicado há 2 dias</div>
                              </div>
                           </div>
                           
                           <div className="flex items-center gap-4 w-full md:w-auto">
                              <div className="hidden md:flex gap-2">
                                 {job.tags.map(tag => (
-                                   <span key={tag} className="px-3 py-1 rounded-lg bg-slate-900 text-xs text-slate-400 border border-slate-700">{tag}</span>
+                                   <span key={tag} className="px-3 py-1 rounded-lg bg-slate-50 text-xs text-slate-500 border border-slate-100">{tag}</span>
                                 ))}
                              </div>
-                             <button className="ml-auto md:ml-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-slate-900 group-hover:bg-primary group-hover:text-white transition-colors">
+                             <button className="ml-auto md:ml-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white group-hover:bg-primary transition-colors shadow-lg">
                                 <ArrowRight size={20} />
                              </button>
                           </div>
@@ -155,10 +158,10 @@ export default function CareersPage() {
                  ))}
               </div>
 
-              <div className="mt-12 text-center bg-slate-800/50 rounded-2xl p-8 border border-slate-700 border-dashed">
-                 <h4 className="text-xl font-bold mb-2">Não encontrou a sua vaga?</h4>
-                 <p className="text-slate-400 mb-6">Estamos sempre à procura de talento. Envie-nos uma candidatura espontânea.</p>
-                 <a href="mailto:talento@popspt.com" className="inline-flex items-center gap-2 text-primary font-bold hover:text-white transition-colors">
+              <div className="mt-12 text-center bg-white rounded-2xl p-8 border border-slate-200 border-dashed">
+                 <h4 className="text-xl font-bold mb-2 text-slate-900">Não encontrou a sua vaga?</h4>
+                 <p className="text-slate-600 mb-6">Estamos sempre à procura de talento. Envie-nos uma candidatura espontânea.</p>
+                 <a href="mailto:talento@popspt.com" className="inline-flex items-center gap-2 text-primary font-bold hover:text-primary-dark transition-colors">
                     Enviar Email <ArrowRight size={16} />
                  </a>
               </div>
