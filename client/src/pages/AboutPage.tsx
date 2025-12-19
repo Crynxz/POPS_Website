@@ -207,6 +207,7 @@ export default function AboutPage() {
                           src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80" 
                           alt="Ambiente profissional POPS" 
                           className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-700"
+                          loading="lazy"
                        />
                   
                   {/* Floating stats card */}

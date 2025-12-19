@@ -14,9 +14,8 @@ import CookieConsent from "@/components/CookieConsent";
 
 const queryClient = new QueryClient();
 
-// Lazy Loading das Páginas
+// Lazy Loading das Páginas e Componentes Pesados
 const Home = lazy(() => import("@/pages/home"));
-// PartnersPage é um named export, precisamos de adaptar para lazy
 const PartnersPage = lazy(() => import("@/pages/PartnersPage").then(module => ({ default: module.PartnersPage })));
 const AboutPage = lazy(() => import("@/pages/AboutPage"));
 const CareersPage = lazy(() => import("@/pages/CareersPage"));

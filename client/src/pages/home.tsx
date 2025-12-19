@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,14 +8,13 @@ import SplashScreen from "@/components/SplashScreen";
 import StickyFloatingCTA from "@/components/StickyFloatingCTA";
 
 import HeroSection from "@/components/HeroSection";
-import ServiceExplorer from "@/components/ServiceExplorer";
-import ComparisonSection from "@/components/ComparisonSection";
-import VettingSection from "@/components/VettingSection";
-import TechSection from "@/components/TechSection";
-import TrustSection from "@/components/TrustSection";
-import PricingSection from "@/components/PricingSection";
-
-import WaitlistSection from "@/components/WaitlistSection";
+const ServiceExplorer = lazy(() => import("@/components/ServiceExplorer"));
+const ComparisonSection = lazy(() => import("@/components/ComparisonSection"));
+const VettingSection = lazy(() => import("@/components/VettingSection"));
+const TechSection = lazy(() => import("@/components/TechSection"));
+const TrustSection = lazy(() => import("@/components/TrustSection"));
+const PricingSection = lazy(() => import("@/components/PricingSection"));
+const WaitlistSection = lazy(() => import("@/components/WaitlistSection"));
 import { PartnersSection } from "@/components/PartnersSection";
 
 
@@ -58,41 +57,54 @@ export default function Home() {
         {/* Secções */}
         <HeroSection onSelectProfile={setSelectedProfile} />
         
-        <FadeIn>
-          <ServiceExplorer />
-        </FadeIn>
+        <Suspense fallback={<div className="h-96" />}>
+          <FadeIn>
+            <ServiceExplorer />
+          </FadeIn>
+        </Suspense>
         
-        <FadeIn>
-          <ComparisonSection />
-        </FadeIn>
+        <Suspense fallback={<div className="h-96" />}>
+          <FadeIn>
+            <ComparisonSection />
+          </FadeIn>
+        </Suspense>
         
-        <FadeIn>
-          <VettingSection />
-        </FadeIn>
+        <Suspense fallback={<div className="h-96" />}>
+          <FadeIn>
+            <VettingSection />
+          </FadeIn>
+        </Suspense>
         
-        <FadeIn>
-          <TechSection />
-        </FadeIn>
+        <Suspense fallback={<div className="h-96" />}>
+          <FadeIn>
+            <TechSection />
+          </FadeIn>
+        </Suspense>
         
-        <FadeIn>
-          <TrustSection />
-        </FadeIn>
+        <Suspense fallback={<div className="h-96" />}>
+          <FadeIn>
+            <TrustSection />
+          </FadeIn>
+        </Suspense>
         
         <FadeIn>
           <PartnersSection />
         </FadeIn>
         
-                <FadeIn>
-                  <PricingSection />
-                </FadeIn>
-
-           
+        <Suspense fallback={<div className="h-96" />}>
+          <FadeIn>
+            <PricingSection />
+          </FadeIn>
+        </Suspense>
                   
               
                 
-                {/* Formulário de Lista de Espera */}        <FadeIn>
-          <WaitlistSection selectedProfile={selectedProfile} />
-        </FadeIn>
+        {/* Formulário de Lista de Espera */}
+        <Suspense fallback={<div className="h-96" />}>
+          <FadeIn>
+            <WaitlistSection selectedProfile={selectedProfile} />
+          </FadeIn>
+        </Suspense>
       </main>
 
       {/* Footer Global */}

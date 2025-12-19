@@ -123,6 +123,8 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
                                       className="w-full h-[300px] lg:h-full object-cover hover:scale-102 transition-transform duration-1000 ease-out"
                                       loading="eager"
                                       fetchPriority="high"
+                                      width="800"
+                                      height="600"
                                     />                
                 {/* Subtle Overlay - Very Light for Professional Look */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
