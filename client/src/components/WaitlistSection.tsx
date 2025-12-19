@@ -44,16 +44,24 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
     } catch (error: any) {
       console.error("Form submission error caught:", error);
       
-      const errorText = error.message || "";
-      const isDuplicate = errorText.includes("409");
-      
-      let errorMessage = "Não foi possível processar o teu pedido. Tenta novamente.";
-      if (isDuplicate) {
-        errorMessage = "Este email já está registado na nossa lista de espera.";
+      let errorMessage = "Não foi possível processar o teu pedido.";
+      let isDuplicate = false;
+
+      try {
+        // Tenta ler o JSON de erro do servidor
+        const errorText = error.message || "";
+        if (errorText.includes("409")) {
+          isDuplicate = true;
+          errorMessage = "Este email já está registado na nossa lista de espera.";
+        } else if (errorText.includes("500")) {
+          errorMessage = "Erro interno no servidor (500).";
+        }
+      } catch (e) {
+        console.error("Error parsing server response", e);
       }
 
       toast({
-        title: isDuplicate ? "Aviso" : "Erro",
+        title: isDuplicate ? "Aviso" : "Erro Crítico",
         description: errorMessage,
         variant: isDuplicate ? "default" : "destructive",
       });
