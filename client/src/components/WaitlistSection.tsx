@@ -1,4 +1,4 @@
-import { Gift, Lock, Send, Percent, ShieldCheck, Star, Loader2, CheckCircle2 } from "lucide-react";
+import { Gift, Lock, Send, Percent, ShieldCheck, Star, Loader2, CheckCircle2, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useState } from "react";
 import { apiRequest } from "@/lib/queryClient";
