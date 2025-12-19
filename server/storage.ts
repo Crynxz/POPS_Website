@@ -1,9 +1,8 @@
 import { type User, type InsertUser, type Waitlist, type InsertWaitlist, users, waitlist } from "../shared/schema";
-import { db } from "./db";
+import { getDb } from "./db";
 import { eq } from "drizzle-orm";
 
 export interface IStorage {
-  // CHANGED: id is now number to match Supabase SERIAL
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
@@ -12,60 +11,61 @@ export interface IStorage {
 }
 
 export class DatabaseStorage implements IStorage {
-  // CHANGED: id: number
   async getUser(id: number): Promise<User | undefined> {
-    if (!db) return undefined;
+    const db = getDb();
+    if (!db) return memStorage.getUser(id);
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    if (!db) return undefined;
+    const db = getDb();
+    if (!db) return memStorage.getUserByUsername(username);
     const [user] = await db.select().from(users).where(eq(users.username, username));
     return user;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    if (!db) throw new Error("Database not available");
+    const db = getDb();
+    if (!db) return memStorage.createUser(insertUser);
     const [user] = await db.insert(users).values(insertUser).returning();
     return user;
   }
 
   async getWaitlistEntryByEmail(email: string): Promise<Waitlist | undefined> {
+    const db = getDb();
     if (!db) return memStorage.getWaitlistEntryByEmail(email);
     try {
       const [entry] = await db.select().from(waitlist).where(eq(waitlist.email, email));
       return entry;
     } catch (dbError) {
-      console.error("Database error:", dbError);
+      console.error("Database read error:", dbError);
       return memStorage.getWaitlistEntryByEmail(email);
     }
   }
 
   async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
+    const db = getDb();
     if (!db) return memStorage.createWaitlistEntry(insertEntry);
     try {
       const [entry] = await db.insert(waitlist).values(insertEntry).returning();
       return entry;
     } catch (dbError) {
-      console.error("Database write error:", dbError);
+      console.error("Database write error, falling back to memory:", dbError);
       return memStorage.createWaitlistEntry(insertEntry);
     }
   }
 }
 
 export class MemStorage implements IStorage {
-  // CHANGED: Maps now use number keys
   private users: Map<number, User>;
   private waitlist: Map<number, Waitlist>;
-  private currentId: number;
-  private currentWaitlistId: number;
+  private userCounter: number = 1;
+  private waitlistCounter: number = 1;
 
   constructor() {
     this.users = new Map();
     this.waitlist = new Map();
-    this.currentId = 1;
-    this.currentWaitlistId = 1;
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -79,7 +79,7 @@ export class MemStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentId++;
+    const id = this.userCounter++;
     const user: User = { ...insertUser, id };
     this.users.set(id, user);
     return user;
@@ -92,17 +92,16 @@ export class MemStorage implements IStorage {
   }
 
   async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
-    const id = this.currentWaitlistId++;
+    const id = this.waitlistCounter++;
     const entry: Waitlist = { 
       ...insertEntry, 
       id,
-      // Fixes optional fields for memory storage
       phone: insertEntry.phone ?? null,
       location: insertEntry.location ?? null,
       birthDate: insertEntry.birthDate ?? null,
       profile: insertEntry.profile ?? null,
       interest: insertEntry.interest ?? null,
-      createdAt: new Date() // Use Date object, not string
+      createdAt: new Date()
     };
     this.waitlist.set(id, entry);
     return entry;

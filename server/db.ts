@@ -3,20 +3,28 @@ import pkg from 'pg';
 const { Pool } = pkg;
 import * as schema from '../shared/schema';
 
-let pool: any = null;
-let db: any = null;
+let dbInstance: any = null;
 
-if (process.env.DATABASE_URL) {
+export function getDb() {
+  if (dbInstance) return dbInstance;
+
+  if (!process.env.DATABASE_URL) {
+    return null;
+  }
+
   try {
-    pool = new Pool({ 
+    const pool = new Pool({ 
       connectionString: process.env.DATABASE_URL,
-      max: 1, // Keep connections low for Serverless
-      ssl: { rejectUnauthorized: false } // <--- REQUIRED for Supabase
+      max: 1,
+      ssl: { rejectUnauthorized: false }
     });
-    db = drizzle(pool, { schema });
+    dbInstance = drizzle(pool, { schema });
+    return dbInstance;
   } catch (err) {
     console.error("Database connection error:", err);
+    return null;
   }
 }
 
-export { pool, db };
+// Para manter compatibilidade com o resto do código
+export const db = getDb();
