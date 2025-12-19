@@ -1,91 +1,121 @@
-import { Gift, Lock, Percent, Send } from "lucide-react";
+import { Gift, Lock, Send, Percent, ShieldCheck, Star } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 interface WaitlistSectionProps {
   selectedProfile?: "familia" | "cuidador";
 }
 
 export default function WaitlistSection({ selectedProfile }: WaitlistSectionProps) {
+  const { t } = useLanguage();
+
   return (
-    <section className="waitlist-section fade-in-section" id="waitlist">
-      <div className="container">
-        <div className="waitlist-header">
-          <span className="promo-badge"><Gift size={14} style={{ display: 'inline', marginRight: '5px' }} /> Oferta de Lançamento</span>
-          <h2>Conecte-se à Melhor Rede de Cuidados ao Domíciliário do País</h2>
-          <p>Inscreva-se na lista de espera e garanta prioridade no lançamento com descontos exclusivos. Primeiros 500 inscritos recebem 25% de desconto nos primeiros 3 meses.</p>
+    <section className="py-24 bg-slate-50 relative overflow-hidden" id="waitlist">
+      {/* Background patterns */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        
+        <div className="bg-slate-900 rounded-[3rem] p-8 md:p-20 text-center text-white relative overflow-hidden shadow-2xl shadow-slate-900/20">
+          {/* Enhanced Decor */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-primary-light text-xs font-bold uppercase tracking-widest mb-8 border border-white/10 backdrop-blur-md">
+              <Gift size={14} className="text-secondary" /> {t("waitlist.badge")}
+            </span>
+            
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight text-white leading-[1.1]">
+              {t("waitlist.title")}
+            </h2>
+            
+            <p className="text-slate-400 text-lg md:text-xl mb-12 leading-relaxed">
+              {t("waitlist.desc")}
+            </p>
+
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm shadow-inner">
+              <form action="https://formsubmit.co/aplicacoes@popspt.com" method="POST" className="space-y-5 text-left">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.name")}</label>
+                    <input type="text" name="nome" className="w-full bg-white/10 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.phone")}</label>
+                    <input type="tel" name="telefone" className="w-full bg-white/10 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.email")}</label>
+                  <input type="email" name="email" className="w-full bg-white/10 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.birth")}</label>
+                    <input type="date" name="nascimento" className="w-full bg-white/10 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.loc")}</label>
+                    <input type="text" name="localidade" className="w-full bg-white/10 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.role")}</label>
+                    <select name="perfil" className="w-full bg-white/10 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer appearance-none" defaultValue={selectedProfile || ""}>
+                      <option value="" disabled className="bg-slate-900">{t("waitlist.form.role.ph")}</option>
+                      <option value="familia" className="bg-slate-900 text-white">{t("waitlist.form.role.family")}</option>
+                      <option value="cuidador" className="bg-slate-900 text-white">{t("waitlist.form.role.pro")}</option>
+                      <option value="instituicao" className="bg-slate-900 text-white">{t("waitlist.form.role.inst")}</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.interest")}</label>
+                    <select name="servico" className="w-full bg-white/10 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer appearance-none" defaultValue="">
+                      <option value="" disabled className="bg-slate-900">{t("waitlist.form.interest.ph")}</option>
+                      <option value="basico" className="bg-slate-900 text-white">{t("waitlist.form.interest.basic")}</option>
+                      <option value="completo" className="bg-slate-900 text-white">{t("waitlist.form.interest.complete")}</option>
+                      <option value="premium" className="bg-slate-900 text-white">{t("waitlist.form.interest.premium")}</option>
+                      <option value="ainda_nao_sei" className="bg-slate-900 text-white">{t("waitlist.form.interest.dk")}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-primary/20 to-secondary/10 border border-white/5 rounded-2xl p-5 flex items-center gap-4 group hover:bg-primary/30 transition-all duration-500">
+                   <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary shrink-0 shadow-lg shadow-secondary/10">
+                      <Percent size={24} strokeWidth={2.5} />
+                   </div>
+                   <div>
+                      <h4 className="font-bold text-white text-base">{t("waitlist.benefit.title")}</h4>
+                      <p className="text-xs text-slate-400">{t("waitlist.benefit.desc")}</p>
+                   </div>
+                </div>
+
+                <button type="submit" className="group w-full bg-primary hover:bg-primary/90 text-white font-extrabold text-lg py-5 rounded-2xl transition-all shadow-xl shadow-primary/25 flex justify-center items-center gap-3 active:scale-[0.98]">
+                  {t("waitlist.cta")} <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </button>
+
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 text-[10px] uppercase tracking-tighter font-bold text-slate-500">
+                  <div className="flex items-center gap-1.5">
+                    <Lock size={12} className="text-primary" /> {t("waitlist.security.ssl")}
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <ShieldCheck size={12} className="text-primary" /> {t("waitlist.security.rgpd")}
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Star size={12} className="text-secondary fill-secondary" /> {t("waitlist.security.social")}
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
 
-        <div className="waitlist-container">
-          <h3 style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'var(--text-dark)' }}>Garantir Acesso Antecipado</h3>
-          <p style={{ textAlign: 'center', color: '#666', marginBottom: '2rem', fontSize: '0.95rem' }}>Preencha o formulário para entrar na lista. Será o primeiro a saber quando chegarmos à sua localidade.</p>
-
-          <form action="https://formsubmit.co/aplicacoes@popspt.com" method="POST">
-             <input type="hidden" name="_subject" value="Nova Inscrição Lista de Espera POPS" />
-             <input type="hidden" name="_autoresponse" value="Obrigado por se inscrever na POPS! Receberá em breve o Guia de Segurança em Cuidados Domiciliários." />
-             <input type="hidden" name="_template" value="table" />
-             <input type="hidden" name="source" value="landing_page_waitlist" />
-
-             <div className="form-group">
-                <label className="form-label">Nome Completo</label>
-                <input type="text" name="nome" className="form-input" placeholder="O seu nome" required />
-             </div>
-
-             <div className="form-group">
-                <label className="form-label">Email</label>
-                <input type="email" name="email" className="form-input" placeholder="seu@email.com" required />
-             </div>
-
-             <div className="form-group">
-                <label className="form-label">Telefone (com indicativo)</label>
-                <input type="tel" name="telefone" className="form-input" placeholder="+351 91 234 5678" required />
-             </div>
-
-             <div className="form-row">
-                <div className="form-group">
-                    <label className="form-label">Data de Nascimento</label>
-                    <input type="date" name="nascimento" className="form-input" required />
-                </div>
-                <div className="form-group">
-                    <label className="form-label">Localidade / Código Postal</label>
-                    <input type="text" name="localidade" className="form-input" placeholder="Ex: Porto, 4000-000" required />
-                </div>
-             </div>
-             
-             <div className="form-group">
-                <label className="form-label">Você é...</label>
-                <select name="perfil" className="form-select" required defaultValue={selectedProfile || ""}>
-                  <option value="" disabled>Selecione uma opção...</option>
-                  <option value="familia">👨‍👩‍👧 Família (Procuro Cuidador)</option>
-                  <option value="cuidador">👩‍⚕️ Profissional (Quero Trabalhar)</option>
-                  <option value="instituicao">🏥 Instituição / Lar</option>
-                  <option value="outro">Outro</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">Tipo de Serviço de Interesse</label>
-                <select name="servico" className="form-select" required defaultValue="">
-                    <option value="" disabled>Selecione...</option>
-                    <option value="basico">Cuidados Básicos (Companhia, apoio leve)</option>
-                    <option value="completo">Cuidados Completos (Higiene, mobilidade)</option>
-                    <option value="premium">Premium (Pós-operatório, especializado)</option>
-                    <option value="ainda_nao_sei">Ainda não tenho certeza</option>
-                </select>
-              </div>
-
-              <div className="waitlist-benefit">
-                <h4 style={{ color: 'black' }}><Percent size={18} style={{ marginRight: '8px' }} /> Seu Benefício Exclusivo</h4>
-                <p style={{ color: 'black' }}><strong>25% de desconto</strong> nos primeiros 3 meses de serviço.</p>
-              </div>
-
-              <button type="submit" className="btn btn-primary form-submit">
-                <Send size={18} style={{ marginRight: '8px' }} /> Inscrever-me Agora
-              </button>
-
-              <p className="form-disclaimer">
-                <Lock size={12} style={{ display: 'inline', marginRight: '4px' }} /> Seus dados são seguros e criptografados. Usados apenas pela POPS para notificações de lançamento e ofertas exclusivas.
-              </p>
-          </form>
-        </div>
       </div>
     </section>
   );

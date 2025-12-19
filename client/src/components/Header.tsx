@@ -1,246 +1,162 @@
 import { Link } from "wouter";
-import { useState } from "react";
-import { Menu, X, Heart, User } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, Heart, Stethoscope, Globe, Moon, Sun } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
+import { useTheme } from "next-themes";
 
-export default function Header() {
+interface HeaderProps {
+  variant?: "default" | "light";
+}
+
+export default function Header({ variant = "default" }: HeaderProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [activeHash, setActiveHash] = useState("");
+
+  useEffect(() => {
+    setMounted(true);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+      
+      // Active link logic
+      const sections = ["mercado", "diferenciais", "precos", "seguranca"];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            setActiveHash(`#${section}`);
+            return;
+          }
+        }
+      }
+      setActiveHash("");
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: t("nav.market"), href: "/#mercado" },
+    { name: t("nav.diff"), href: "/#diferenciais" },
+    { name: t("nav.prices"), href: "/#precos" },
+    { name: t("nav.safety"), href: "/#seguranca" },
+    { name: t("nav.partners"), href: "/parceiros" },
+    { name: t("nav.about"), href: "/sobre" },
+    { name: t("nav.careers"), href: "/carreiras" },
+  ];
+
+  // Determine text color based on scroll state and variant
+  // If scrolled or menu open: dark text (because bg is white)
+  // If not scrolled and variant is light: white text (for dark backgrounds)
+  // Default: dark text
+  const isLightText = !isScrolled && !mobileMenuOpen && variant === "light";
+  
+  const textColorClass = isLightText ? "text-white" : "text-slate-900";
+  const navColorClass = isLightText ? "text-slate-200 hover:text-white" : "text-slate-600 hover:text-primary";
+  const mobileToggleClass = isLightText ? "text-white" : "text-slate-900";
 
   return (
-    <header className="site-header">
-      <div className="container header-container">
-        <nav className="main-nav">
-          {/* LOGO */}
-          <Link href="/" className="logo">POPS</Link>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled || mobileMenuOpen ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+      }`}
+    >
+      <div className="container mx-auto px-6 flex justify-between items-center">
+        {/* LOGO */}
+        <Link href="/">
+          <a className={`text-2xl font-extrabold tracking-tighter flex items-center gap-2 transition-colors ${textColorClass}`}>
+            POPS<span className="w-2 h-2 rounded-full bg-primary"></span>
+          </a>
+        </Link>
 
-          {/* MENU DESKTOP */}
-          <ul className="nav-links">
-            <li><a href="/#mercado">O Mercado</a></li>
-            <li><a href="/#diferenciais">Diferenciais</a></li>
-            <li><a href="/#precos">Preços</a></li>
-            <li><a href="/#seguranca">Segurança</a></li>
-            <li><Link href="/parceiros">Parceiros</Link></li>
-            <li><Link href="/sobre">Sobre Nós</Link></li>
-            <li><Link href="/carreiras" className="highlight">Carreiras</Link></li>
-          </ul>
-
-          {/* BOTÕES DESKTOP */}
-          <div className="cta-group">
-            <a href="/#waitlist" className="btn btn-secondary">
-              <User size={16} style={{ marginRight: '8px' }} /> Sou Cuidador
+        {/* DESKTOP NAV */}
+        <nav className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href} 
+              className={`text-sm font-medium transition-colors ${
+                (link.href.includes("#") && link.href.endsWith(activeHash)) || (window.location.pathname === link.href)
+                  ? "text-primary font-bold" 
+                  : navColorClass
+              }`}
+            >
+              {link.name}
             </a>
-            <a href="/#waitlist" className="btn btn-primary">
-              <Heart size={16} style={{ marginRight: '8px' }} /> Para Famílias
-            </a>
-          </div>
-
-          {/* BOTÃO MOBILE TOGGLE */}
-          <button 
-            className="mobile-toggle" 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Abrir Menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          ))}
         </nav>
+
+        {/* CTAs */}
+        <div className="hidden lg:flex items-center gap-4">
+          <button 
+            onClick={() => setLanguage(language === "PT" ? "EN" : "PT")}
+            className={`flex items-center gap-1 text-xs font-bold transition-colors mr-2 ${isLightText ? "text-slate-300 hover:text-white" : "text-slate-500 hover:text-primary"}`}
+            aria-label="Toggle Language"
+          >
+            <Globe size={14} /> {language}
+          </button>
+          
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className={`p-2 rounded-full transition-colors mr-2 ${isLightText ? "text-slate-300 hover:text-white hover:bg-white/10" : "text-slate-500 hover:text-primary hover:bg-slate-100"}`}
+              aria-label="Toggle Theme"
+            >
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+          )}
+
+          <a 
+            href="#waitlist" 
+            className={`text-sm font-semibold transition-colors flex items-center gap-2 ${isLightText ? "text-slate-200 hover:text-white" : "text-slate-700 hover:text-primary"}`}
+          >
+            <Stethoscope size={16} /> {t("cta.caregiver")}
+          </a>
+          <a 
+            href="#waitlist" 
+            className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary/25 flex items-center gap-2"
+          >
+            <Heart size={16} className="fill-white/20" /> {t("cta.family")}
+          </a>
+        </div>
+
+        {/* MOBILE TOGGLE */}
+        <button 
+          className={`lg:hidden p-2 transition-colors ${mobileToggleClass}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
-      {/* MENU MOBILE DROPDOWN */}
+      {/* MOBILE MENU */}
       {mobileMenuOpen && (
-        <div className="mobile-menu-dropdown">
-            <a href="/#mercado" onClick={() => setMobileMenuOpen(false)}>O Mercado</a>
-            <a href="/#diferenciais" onClick={() => setMobileMenuOpen(false)}>Diferenciais</a>
-            <a href="/#precos" onClick={() => setMobileMenuOpen(false)}>Preços</a>
-            <a href="/#seguranca" onClick={() => setMobileMenuOpen(false)}>Segurança</a>
-            <Link href="/parceiros" onClick={() => setMobileMenuOpen(false)}>Parceiros</Link>
-            <Link href="/sobre" onClick={() => setMobileMenuOpen(false)}>Sobre Nós</Link>
-            <Link href="/carreiras" onClick={() => setMobileMenuOpen(false)} className="highlight">Carreiras</Link>
-            
-            <div className="mobile-cta-group">
-              <a href="/#waitlist" className="btn btn-secondary" onClick={() => setMobileMenuOpen(false)}>
-                <User size={16} /> Sou Cuidador
-              </a>
-              <a href="/#waitlist" className="btn btn-primary" onClick={() => setMobileMenuOpen(false)}>
-                <Heart size={16} /> Para Famílias
-              </a>
-            </div>
+        <div className="absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-6 flex flex-col gap-4 lg:hidden animate-in slide-in-from-top-5">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href}
+              className="text-lg font-medium text-slate-800 py-2 border-b border-slate-50"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {link.name}
+            </a>
+          ))}
+          <div className="flex flex-col gap-3 mt-4">
+            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-3 rounded-xl border border-slate-200 flex justify-center items-center gap-2 font-semibold text-slate-700">
+              <Stethoscope size={18} /> {t("cta.caregiver")}
+            </a>
+            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-3 rounded-xl bg-primary text-white flex justify-center items-center gap-2 font-semibold">
+              <Heart size={18} /> {t("cta.family")}
+            </a>
+          </div>
         </div>
       )}
-
-      <style>{`
-        /* --- ESTILOS GERAIS DO HEADER --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #f0f0f0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            height: 80px;
-            display: flex;
-            align-items: center;
-        }
-
-        .header-container {
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            max-width: 1200px;
-        }
-
-        .main-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary, #0E6973);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        /* --- LINKS DESKTOP --- */
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-body, #4b5563);
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary, #0E6973);
-        }
-
-        .nav-links a.highlight {
-            color: var(--primary, #0E6973);
-            font-weight: 700;
-        }
-
-        /* --- BOTÕES --- */
-        .cta-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 1px solid #e5e7eb;
-            color: var(--text-main, #374151);
-        }
-        .btn-secondary:hover {
-            background-color: #f9fafb;
-            border-color: #d1d5db;
-        }
-
-        .btn-primary {
-            background-color: var(--primary, #0E6973);
-            border: 1px solid var(--primary, #0E6973);
-            color: white;
-            box-shadow: 0 2px 4px rgba(14, 105, 115, 0.2);
-        }
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-main, #333);
-            padding: 4px;
-        }
-
-        /* --- MOBILE STYLES (max-width: 1024px) --- */
-        @media (max-width: 1024px) {
-            .nav-links, .cta-group {
-                display: none;
-            }
-            
-            .mobile-toggle {
-                display: block;
-            }
-
-            .site-header {
-                position: relative; /* Importante para o dropdown absoluto */
-            }
-
-            .mobile-menu-dropdown {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                padding: 1.5rem;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                border-top: 1px solid #f0f0f0;
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-                z-index: 999;
-                animation: slideDown 0.3s ease-out forwards;
-            }
-
-            .mobile-menu-dropdown a {
-                text-decoration: none;
-                color: var(--text-body, #4b5563);
-                font-weight: 500;
-                padding: 0.75rem 0;
-                border-bottom: 1px solid #f3f4f6;
-                display: block;
-            }
-
-            .mobile-menu-dropdown a:hover {
-                color: var(--primary, #0E6973);
-                padding-left: 5px;
-            }
-
-            .mobile-cta-group {
-                display: flex;
-                flex-direction: column;
-                gap: 0.8rem;
-                margin-top: 1.5rem;
-            }
-
-            .mobile-cta-group .btn {
-                width: 100%;
-                justify-content: center;
-                padding: 0.8rem;
-            }
-            
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-        }
-      `}</style>
     </header>
   );
 }

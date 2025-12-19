@@ -1,153 +1,171 @@
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { CheckCircle, Clock, Shield, GraduationCap, Wallet, Heart, ArrowRight, Star } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import FadeIn from "@/components/FadeIn";
+import { Briefcase, Heart, Smile, Zap, MapPin, Clock, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function CareersPage() {
-  useScrollAnimation();
+  const benefits = [
+    {
+      icon: Heart,
+      title: "Trabalho com Propósito",
+      desc: "O seu código e design impactam diretamente a qualidade de vida de milhares de famílias."
+    },
+    {
+      icon: Smile,
+      title: "Cultura de Autonomia",
+      desc: "Acreditamos na responsabilidade individual. Horários flexíveis e foco em resultados."
+    },
+    {
+      icon: Zap,
+      title: "Crescimento Acelerado",
+      desc: "Somos uma startup em expansão. As oportunidades de liderança surgem naturalmente."
+    },
+    {
+      icon: Briefcase,
+      title: "Remuneração Competitiva",
+      desc: "Salário acima da média, seguro de saúde premium e equity na empresa."
+    }
+  ];
+
+  const positions = [
+    {
+      id: 1,
+      title: "Senior Full-Stack Developer",
+      type: "Full-time",
+      location: "Remoto / Lisboa",
+      department: "Engenharia",
+      tags: ["React", "Node.js", "TypeScript"]
+    },
+    {
+      id: 2,
+      title: "Product Designer (UX/UI)",
+      type: "Full-time",
+      location: "Lisboa",
+      department: "Produto",
+      tags: ["Figma", "Design Systems"]
+    },
+    {
+      id: 3,
+      title: "Customer Success Manager",
+      type: "Full-time",
+      location: "Remoto",
+      department: "Operações",
+      tags: ["Suporte", "CRM"]
+    }
+  ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: 'var(--bg-body)' }}>
-      {/* HEADER */}
+    <div className="min-h-screen bg-white flex flex-col font-sans text-slate-900">
+      <SEO 
+        title="Carreiras na POPS - Junte-se à Nossa Missão" 
+        description="Estamos à procura de talento para revolucionar o setor dos cuidados domiciliários. Veja as vagas disponíveis."
+      />
+      
       <Header />
 
-      <main style={{ flex: 1 }}>
-        {/* Hero Section */}
-        <section className="hero fade-in-section" style={{ padding: '8rem 0 6rem', position: 'relative', overflow: 'hidden' }}>
-          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-              <div>
-                <span style={{ 
-                  display: 'inline-block', 
-                  padding: '0.5rem 1rem', 
-                  borderRadius: '50px', 
-                  backgroundColor: 'rgba(14, 105, 115, 0.1)', 
-                  color: 'var(--primary)', 
-                  fontWeight: 'bold', 
-                  fontSize: '0.85rem', 
-                  marginBottom: '1.5rem',
-                  border: '1px solid rgba(14, 105, 115, 0.2)'
-                }}>
-                  Para Profissionais de Saúde
-                </span>
-                <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', lineHeight: 1.1, marginBottom: '1.5rem', color: 'var(--text-main)' }}>
-                  Valorizamos quem cuida. <br/>
-                  <span className="highlight" style={{ background: 'linear-gradient(120deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Trabalhe com dignidade.</span>
-                </h1>
-                <p style={{ fontSize: '1.25rem', color: 'var(--text-body)', lineHeight: 1.6, marginBottom: '2rem' }}>
-                  Junte-se à rede POPS e tenha acesso a pagamentos garantidos, horários flexíveis e uma plataforma que protege o seu trabalho.
-                </p>
-                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                  <a href="/#waitlist" className="btn btn-primary" onClick={() => (window as any).selectProfile?.('cuidador')}>
-                    Candidatar-me Agora
-                  </a>
-                  <a href="#beneficios" className="btn btn-secondary">
-                    Ver Benefícios
-                  </a>
-                </div>
-              </div>
-              <div style={{ position: 'relative' }}>
-                <div style={{ position: 'absolute', inset: 0, background: 'var(--secondary)', opacity: 0.1, borderRadius: '24px', transform: 'rotate(-3deg)' }}></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1584515933487-98db75f59342?w=800&auto=format&fit=crop&q=60" 
-                  alt="Enfermeiro profissional" 
-                  style={{ position: 'relative', width: '100%', borderRadius: '24px', boxShadow: 'var(--shadow-lg)' }} 
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
+      <main className="flex-1">
+        
+        {/* HERO */}
+        <section className="relative pt-32 pb-24 overflow-hidden bg-slate-50">
+           {/* Background Decor */}
+           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+
+           <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
+              <span className="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">Junte-se à Equipa</span>
+              <h1 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight text-slate-900 leading-[1.1]">
+                Construa o futuro do <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-teal-500">cuidado humano.</span>
+              </h1>
+              <p className="text-xl text-slate-600 leading-relaxed mb-10 max-w-2xl mx-auto">
+                Estamos a recrutar pessoas apaixonadas que queiram usar o seu talento para resolver um dos maiores desafios sociais da nossa geração.
+              </p>
+              <a href="#vagas" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg hover:-translate-y-1">
+                 Ver Vagas Abertas <ArrowRight size={18} />
+              </a>
+           </div>
         </section>
 
-        {/* Benefits Grid */}
-        <section id="beneficios" className="fade-in-section" style={{ padding: '6rem 0', backgroundColor: 'var(--bg-surface)' }}>
-          <div className="container">
-            <div className="text-center mb-16">
-              <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Porquê escolher a POPS?</h2>
-              <p style={{ color: 'var(--text-light)', maxWidth: '600px', margin: '0 auto' }}>Acabou a precariedade. Oferecemos a estrutura profissional que você merece.</p>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-              {[
-                { icon: Wallet, title: "Pagamentos Garantidos", desc: "Nunca mais corra atrás de pagamentos. O valor é cativo antes do serviço e libertado automaticamente para a sua conta." },
-                { icon: Clock, title: "Flexibilidade Total", desc: "Você define a sua agenda e a sua área de atuação. Trabalhe as horas que quiser, onde quiser." },
-                { icon: Shield, title: "Segurança & Seguros", desc: "Todos os serviços incluem seguro de responsabilidade civil. Trabalhe protegido contra imprevistos." },
-                { icon: GraduationCap, title: "Formação Contínua", desc: "Acesso exclusivo a cursos de especialização (Demência, Mobilidade) para subir de nível e ganhar mais." },
-                { icon: Star, title: "Carreira & Ranking", desc: "O seu mérito é recompensado. Boas avaliações permitem subir de categoria (Bronze a Diamante) e aumentar o seu preço hora." },
-                { icon: Heart, title: "Apoio Humano", desc: "Não é apenas uma app. Temos uma equipa de suporte disponível para mediar e ajudar em qualquer situação." }
-              ].map((item, i) => (
-                <div key={i} style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-light)', background: 'var(--bg-body)', transition: 'transform 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-                  <div style={{ width: '50px', height: '50px', background: 'rgba(14, 105, 115, 0.1)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', color: 'var(--primary)' }}>
-                    <item.icon size={24} />
-                  </div>
-                  <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>{item.title}</h3>
-                  <p style={{ color: 'var(--text-body)', fontSize: '0.95rem', lineHeight: '1.5' }}>{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Requirements */}
-        <section className="fade-in-section" style={{ padding: '6rem 0', backgroundColor: 'var(--bg-body)' }}>
-          <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-              <div style={{ order: 2 }}> {/* Image on right for desktop */}
-                 <div style={{ background: 'white', padding: '3rem', borderRadius: '24px', boxShadow: 'var(--shadow-lg)', border: '1px solid var(--border-light)' }}>
-                    <h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <CheckCircle className="text-primary" /> Requisitos Mínimos
-                    </h3>
-                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                      <li style={{ display: 'flex', gap: '1rem', alignItems: 'start' }}>
-                        <div style={{ width: '24px', height: '24px', background: '#e6f4f1', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 'bold' }}>1</div>
-                        <div><strong>Identificação Válida:</strong> Cartão de Cidadão ou Título de Residência válido.</div>
-                      </li>
-                      <li style={{ display: 'flex', gap: '1rem', alignItems: 'start' }}>
-                        <div style={{ width: '24px', height: '24px', background: '#e6f4f1', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 'bold' }}>2</div>
-                        <div><strong>Registo Criminal:</strong> Limpo e atualizado (para contacto com menores/idosos).</div>
-                      </li>
-                      <li style={{ display: 'flex', gap: '1rem', alignItems: 'start' }}>
-                        <div style={{ width: '24px', height: '24px', background: '#e6f4f1', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 'bold' }}>3</div>
-                        <div><strong>Experiência ou Formação:</strong> Comprovativo de curso (Auxiliar, Enfermagem) ou referências verificáveis.</div>
-                      </li>
-                      <li style={{ display: 'flex', gap: '1rem', alignItems: 'start' }}>
-                        <div style={{ width: '24px', height: '24px', background: '#e6f4f1', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 'bold' }}>4</div>
-                        <div><strong>Smartphone:</strong> Android ou iOS para utilizar a App POPS.</div>
-                      </li>
-                    </ul>
-                 </div>
+        {/* CULTURE / BENEFITS */}
+        <section className="py-24 bg-white">
+           <div className="container mx-auto px-6">
+              <div className="text-center mb-16">
+                 <h2 className="text-3xl font-bold mb-4 text-slate-900">Porquê a POPS?</h2>
+                 <p className="text-slate-600 max-w-2xl mx-auto">
+                    Não oferecemos apenas um emprego. Oferecemos a oportunidade de fazer o melhor trabalho da sua carreira.
+                 </p>
               </div>
-              <div style={{ order: 1 }}>
-                <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>O que procuramos?</h2>
-                <p style={{ fontSize: '1.1rem', color: 'var(--text-body)', marginBottom: '1.5rem' }}>
-                  Não procuramos apenas currículos, procuramos vocação. Se tem paixão por cuidar, responsabilidade e vontade de evoluir, a POPS é o seu lugar.
-                </p>
-                <p style={{ fontSize: '1.1rem', color: 'var(--text-body)', marginBottom: '2.5rem' }}>
-                  Aceitamos desde estudantes de saúde a auxiliares experientes e enfermeiros, adaptando as oportunidades ao seu nível de qualificação.
-                </p>
-                <a href="/#waitlist" className="btn btn-primary" onClick={() => (window as any).selectProfile?.('cuidador')}>
-                  Iniciar Candidatura <ArrowRight size={18} style={{ marginLeft: '8px' }} />
-                </a>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                 {benefits.map((benefit, i) => (
+                    <FadeIn key={i} delay={i * 100}>
+                       <div className="bg-slate-50 p-8 rounded-3xl shadow-sm border border-slate-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full group">
+                          <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                             <benefit.icon size={28} />
+                          </div>
+                          <h3 className="text-xl font-bold text-slate-900 mb-3">{benefit.title}</h3>
+                          <p className="text-sm text-slate-500 leading-relaxed">
+                             {benefit.desc}
+                          </p>
+                       </div>
+                    </FadeIn>
+                 ))}
               </div>
-            </div>
-          </div>
+           </div>
         </section>
 
-        {/* CTA */}
-        <section className="fade-in-section" style={{ padding: '5rem 0', background: 'linear-gradient(135deg, #111827 0%, #1f2937 100%)', color: 'white', textAlign: 'center' }}>
-          <div className="container">
-            <h2 style={{ color: 'white', marginBottom: '1.5rem' }}>Pronto para valorizar o seu trabalho?</h2>
-            <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2.5rem', fontSize: '1.2rem', maxWidth: '700px', marginInline: 'auto' }}>
-              A inscrição é gratuita. Junte-se à lista de espera e seja um dos primeiros cuidadores verificados da POPS.
-            </p>
-            <a href="/#waitlist" className="btn" style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '1rem 2.5rem', fontSize: '1.1rem', border: 'none' }} onClick={() => (window as any).selectProfile?.('cuidador')}>
-              Inscrever-me como Profissional
-            </a>
-          </div>
+        {/* OPEN POSITIONS */}
+        <section id="vagas" className="py-24 bg-slate-900 text-white relative overflow-hidden">
+           <div className="absolute inset-0 bg-slate-950/50"></div>
+           <div className="container mx-auto px-6 relative z-10 max-w-5xl">
+              <div className="text-center mb-16">
+                 <span className="text-primary-light font-bold tracking-widest text-xs uppercase mb-3 block">Estamos a contratar</span>
+                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Vagas Disponíveis</h2>
+              </div>
+
+              <div className="space-y-4">
+                 {positions.map((job) => (
+                    <FadeIn key={job.id} delay={job.id * 100}>
+                       <div className="bg-slate-800 border border-slate-700 hover:border-primary/50 p-6 md:p-8 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-slate-800/80 transition-all group cursor-pointer">
+                          <div>
+                             <div className="flex items-center gap-3 mb-2">
+                                <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">{job.title}</h3>
+                                <span className="px-3 py-1 rounded-full bg-slate-700 text-xs font-semibold text-slate-300 border border-slate-600">{job.department}</span>
+                             </div>
+                             <div className="flex flex-wrap gap-4 text-sm text-slate-400">
+                                <div className="flex items-center gap-1.5"><Briefcase size={16} /> {job.type}</div>
+                                <div className="flex items-center gap-1.5"><MapPin size={16} /> {job.location}</div>
+                                <div className="flex items-center gap-1.5"><Clock size={16} /> Publicado há 2 dias</div>
+                             </div>
+                          </div>
+                          
+                          <div className="flex items-center gap-4 w-full md:w-auto">
+                             <div className="hidden md:flex gap-2">
+                                {job.tags.map(tag => (
+                                   <span key={tag} className="px-3 py-1 rounded-lg bg-slate-900 text-xs text-slate-400 border border-slate-700">{tag}</span>
+                                ))}
+                             </div>
+                             <button className="ml-auto md:ml-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-slate-900 group-hover:bg-primary group-hover:text-white transition-colors">
+                                <ArrowRight size={20} />
+                             </button>
+                          </div>
+                       </div>
+                    </FadeIn>
+                 ))}
+              </div>
+
+              <div className="mt-12 text-center bg-slate-800/50 rounded-2xl p-8 border border-slate-700 border-dashed">
+                 <h4 className="text-xl font-bold mb-2">Não encontrou a sua vaga?</h4>
+                 <p className="text-slate-400 mb-6">Estamos sempre à procura de talento. Envie-nos uma candidatura espontânea.</p>
+                 <a href="mailto:talento@popspt.com" className="inline-flex items-center gap-2 text-primary font-bold hover:text-white transition-colors">
+                    Enviar Email <ArrowRight size={16} />
+                 </a>
+              </div>
+           </div>
         </section>
+
       </main>
-
-      {/* FOOTER */}
       <Footer />
     </div>
   );

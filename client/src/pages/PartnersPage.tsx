@@ -1,10 +1,23 @@
-import { ArrowLeft, Mail, Handshake, Star, Award, Building2 } from "lucide-react";
-import { Link } from "wouter";
-import { useScrollAnimation } from "../hooks/use-scroll-animation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import FadeIn from "@/components/FadeIn";
+import { 
+  Handshake, 
+  Users, 
+  Award, 
+  ShieldCheck, 
+  GraduationCap, 
+  TrendingUp, 
+  ArrowRight, 
+  Building2, 
+  Star,
+  Mail,
+  ChevronLeft
+} from "lucide-react";
+import { Link } from "wouter";
 
-const partners = [
+const partnerList = [
   {
     name: "CNIS",
     description: "Confederação Nacional das Instituições de Solidariedade. Parceiro chave na rede de IPSS e apoio social.",
@@ -62,202 +75,246 @@ const partners = [
 ];
 
 export function PartnersPage() {
-  useScrollAnimation();
+  const benefits = [
+    {
+      icon: Users,
+      title: "Acesso a Clientes",
+      desc: "Conectamos a sua instituição a famílias que procuram ativamente cuidados de qualidade."
+    },
+    {
+      icon: ShieldCheck,
+      title: "Validação de Confiança",
+      desc: "O selo 'Parceiro POPS' transmite segurança e credibilidade imediata aos clientes."
+    },
+    {
+      icon: TrendingUp,
+      title: "Crescimento Sustentável",
+      desc: "Aumente a sua taxa de ocupação e serviços sem custos fixos de marketing."
+    },
+    {
+      icon: GraduationCap,
+      title: "Formação e Certificação",
+      desc: "Acesso à nossa plataforma de LMS para formação contínua dos seus colaboradores."
+    },
+    {
+      icon: Award,
+      title: "Gestão Simplificada",
+      desc: "Ferramentas digitais para gerir escalas, faturação e relatórios num só lugar."
+    },
+    {
+      icon: Handshake,
+      title: "Rede de Referenciação",
+      desc: "Troca de utentes entre parceiros para garantir que nenhuma família fica sem resposta."
+    }
+  ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: 'var(--bg-body)' }}>
-      {/* HEADER */}
-      <Header />
+    <div className="min-h-screen bg-white flex flex-col font-sans">
+      <SEO 
+        title="Parceiros POPS - Junte-se à Rede de Excelência" 
+        description="Torne-se um parceiro oficial da POPS. Aumente a sua visibilidade, aceda a novos clientes e faça parte da revolução nos cuidados domiciliários."
+      />
+      <Header variant="light" />
 
-      <main style={{ flex: 1 }}>
-        {/* Hero Section */}
-        <section className="hero fade-in-section" style={{ padding: '8rem 0 4rem', position: 'relative', overflow: 'hidden' }}>
-          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <div style={{ marginBottom: '2rem' }}>
+      <main className="flex-1">
+        {/* HERO SECTION */}
+        <section className="relative pt-32 pb-24 bg-slate-900 text-white overflow-hidden">
+          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+          
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="mb-8 flex justify-center">
               <Link href="/">
-                <a style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem', transition: 'color 0.2s' }}
-                   onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'}
-                   onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>
-                  <ArrowLeft size={16} /> Voltar à página inicial
+                <a className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium group">
+                  <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-1" /> Voltar à página inicial
                 </a>
               </Link>
             </div>
 
-            <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-              <span style={{ 
-                display: 'inline-block', 
-                padding: '0.5rem 1rem', 
-                borderRadius: '50px', 
-                backgroundColor: 'rgba(14, 105, 115, 0.1)', 
-                color: 'var(--primary)', 
-                fontWeight: 'bold', 
-                fontSize: '0.85rem', 
-                marginBottom: '1.5rem',
-                border: '1px solid rgba(14, 105, 115, 0.2)'
-              }}>
-                Rede de Confiança
-              </span>
-              <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 1.1, marginBottom: '1.5rem', color: 'var(--text-main)' }}>
+            <div className="text-center max-w-4xl mx-auto">
+           
+              
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
                 Parceiros que elevam <br/>
-                <span className="highlight" style={{ background: 'linear-gradient(120deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>o padrão de cuidado.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-blue-300">Parceiros que Elevam o Padrão de Cuidado.</span>
               </h1>
-              <p style={{ fontSize: '1.25rem', color: 'var(--text-body)', lineHeight: 1.6, maxWidth: '700px', margin: '0 auto' }}>
+              
+              <p className="text-lg text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto">
                 A POPS colabora com as instituições mais respeitadas de Portugal para garantir certificação, formação contínua e excelência em cada serviço prestado.
               </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                  href="#contact-form" 
+                  className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 hover:-translate-y-1"
+                >
+                  Tornar-se Parceiro
+                </a>
+                <a 
+                  href="#rede" 
+                  className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-white/5 border border-white/10 text-white rounded-xl font-bold hover:bg-white/10 transition-all"
+                >
+                  Ver Rede Atual
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Partners Grid */}
-        <section className="fade-in-section" style={{ padding: '5rem 0', backgroundColor: 'var(--bg-surface)', borderTop: '1px solid var(--border-light)', borderBottom: '1px solid var(--border-light)' }}>
-          <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-              {partners.map((partner) => (
-                <div key={partner.name} style={{
-                  backgroundColor: 'white',
-                  borderRadius: '16px',
-                  border: '1px solid var(--border-light)',
-                  padding: '2rem',
-                  transition: 'all 0.3s ease',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  boxShadow: 'var(--shadow-sm)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                  e.currentTarget.style.borderColor = 'var(--primary)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
-                  e.currentTarget.style.borderColor = 'var(--border-light)';
-                }}
-                >
-                  <div style={{ position: 'absolute', top: 0, right: 0, padding: '1.5rem', opacity: 0.05 }}>
-                    <Building2 size={80} color="var(--primary)" />
-                  </div>
-                  
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem', position: 'relative' }}>
-                    <div style={{ 
-                      width: '70px', 
-                      height: '70px', 
-                      borderRadius: '12px', 
-                      border: '1px solid var(--border-light)', 
-                      padding: '8px', 
-                      backgroundColor: 'white',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <img src={partner.logoUrl} alt={partner.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} loading="lazy" />
-                    </div>
-                    <span style={{ 
-                      fontSize: '0.75rem', 
-                      fontWeight: 600, 
-                      padding: '4px 10px', 
-                      borderRadius: '20px', 
-                      backgroundColor: 'var(--bg-surface-alt)', 
-                      color: 'var(--text-body)',
-                      border: '1px solid var(--border-light)'
-                    }}>
-                      {partner.category}
-                    </span>
-                  </div>
+        {/* BENEFITS GRID */}
+        <section id="beneficios" className="py-24 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">Vantagens Exclusivas</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Porquê ser um Parceiro POPS?</h2>
+              <p className="text-slate-600">Oferecemos mais do que leads. Oferecemos uma infraestrutura tecnológica completa para o seu negócio.</p>
+            </div>
 
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--text-main)' }}>{partner.name}</h3>
-                  <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>{partner.description}</p>
-                </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {benefits.map((benefit, i) => (
+                <FadeIn key={i} delay={i * 100}>
+                  <div className="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 h-full">
+                    <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300 border border-slate-100">
+                      <benefit.icon size={28} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{benefit.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">{benefit.desc}</p>
+                  </div>
+                </FadeIn>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Value Proposition */}
-        <section className="fade-in-section" style={{ padding: '6rem 0', backgroundColor: 'var(--bg-body)' }}>
-          <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-              <div>
-                <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--text-main)' }}>
-                  Porquê ser Parceiro POPS?
-                </h2>
-                <p style={{ fontSize: '1.1rem', color: 'var(--text-body)', marginBottom: '2.5rem' }}>
-                  Junte-se a nós na missão de transformar o setor de cuidados em Portugal através da tecnologia e humanização.
-                </p>
-                
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                  <div style={{ display: 'flex', gap: '1rem' }}>
-                    <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(14, 105, 115, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Handshake size={24} color="var(--primary)" />
-                    </div>
-                    <div>
-                      <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.25rem' }}>Impacto Social Escalonável</h3>
-                      <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', margin: 0 }}>Faça parte de uma rede que está a mudar a vida de milhares de famílias e cuidadores.</p>
-                    </div>
-                  </div>
-                  
-                  <div style={{ display: 'flex', gap: '1rem' }}>
-                    <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(14, 105, 115, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Star size={24} color="var(--primary)" />
-                    </div>
-                    <div>
-                      <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.25rem' }}>Visibilidade e Prestígio</h3>
-                      <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', margin: 0 }}>Associe a sua marca a um projeto inovador e de alta confiança no mercado nacional.</p>
-                    </div>
-                  </div>
+        {/* PARTNERS LISTING GRID */}
+        <section id="rede" className="py-24 bg-slate-50 border-y border-slate-200">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">Rede de Confiança</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Instituições que já fazem parte</h2>
+              <p className="text-slate-600 text-lg">Unimos forças com entidades de referência nacional para elevar a qualidade do apoio domiciliário.</p>
+            </div>
 
-                  <div style={{ display: 'flex', gap: '1rem' }}>
-                    <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'rgba(14, 105, 115, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Award size={24} color="var(--primary)" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {partnerList.map((partner, i) => (
+                <FadeIn key={i} delay={i * 50}>
+                  <div className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group h-full flex flex-col">
+                    <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
+                      <Building2 size={100} className="text-primary" />
                     </div>
-                    <div>
-                      <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.25rem' }}>Excelência Certificada</h3>
-                      <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', margin: 0 }}>Colabore na definição dos mais altos padrões de formação e qualificação.</p>
+                    
+                    <div className="flex justify-between items-start mb-8 relative z-10">
+                      <div className="w-20 h-20 rounded-2xl border border-slate-100 p-2 bg-white flex items-center justify-center shadow-inner">
+                        <img 
+                          src={partner.logoUrl} 
+                          alt={partner.name} 
+                          className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500" 
+                          loading="lazy" 
+                        />
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full bg-slate-100 text-slate-500 border border-slate-200 group-hover:bg-primary/10 group-hover:text-primary group-hover:border-primary/20 transition-colors">
+                        {partner.category}
+                      </span>
                     </div>
-                  </div>
-                </div>
-              </div>
 
-              <div style={{ position: 'relative' }}>
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, var(--primary), var(--secondary))', opacity: 0.1, borderRadius: '24px', transform: 'rotate(3deg)' }}></div>
-                <div style={{ 
-                  position: 'relative', 
-                  backgroundColor: 'white', 
-                  padding: '3rem', 
-                  borderRadius: '24px', 
-                  border: '1px solid var(--border-light)',
-                  boxShadow: 'var(--shadow-lg)',
-                  textAlign: 'center'
-                }}>
-                  <div style={{ 
-                    width: '64px', 
-                    height: '64px', 
-                    backgroundColor: 'var(--primary)', 
-                    borderRadius: '16px', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    margin: '0 auto 1.5rem',
-                    color: 'white',
-                    boxShadow: '0 10px 20px rgba(14, 105, 115, 0.2)'
-                  }}>
-                    <Mail size={32} />
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 relative z-10 group-hover:text-primary transition-colors">{partner.name}</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed mb-6 flex-grow relative z-10">{partner.description}</p>
+                    
+                    <div className="pt-6 border-t border-slate-50 mt-auto flex items-center gap-2 text-xs font-bold text-slate-400 group-hover:text-primary transition-colors">
+                      <ShieldCheck size={14} /> Protocolo de Cooperação Ativo
+                    </div>
                   </div>
-                  <h3 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '1rem', color: 'var(--text-main)' }}>Vamos colaborar?</h3>
-                  <p style={{ fontSize: '1rem', color: 'var(--text-body)', marginBottom: '2rem' }}>
-                    Tem uma instituição e acredita que podemos colaborar para elevar o padrão de cuidados em Portugal?
-                  </p>
-                  <a href="mailto:parcerias@pops.com.pt" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}>
-                    Contactar Equipa de Parcerias
-                  </a>
-                </div>
-              </div>
+                </FadeIn>
+              ))}
             </div>
           </div>
         </section>
-      </main>
 
-      {/* FOOTER */}
+        {/* PROCESS STEPS */}
+        <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+           <div className="absolute inset-0 bg-slate-950/50"></div>
+           <div className="container mx-auto px-6 relative z-10">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                 <div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Processo de Admissão</h2>
+                    <p className="text-slate-400 text-lg mb-12">
+                       Mantemos um padrão de qualidade rigoroso. O nosso processo de parceria garante que apenas instituições alinhadas com os nossos valores entram na rede.
+                    </p>
+                    
+                    <div className="space-y-10">
+                       <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                             <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center font-bold text-white shadow-lg shadow-primary/30 shrink-0">1</div>
+                             <div className="w-px h-full bg-slate-800 my-2"></div>
+                          </div>
+                          <div className="pb-4">
+                             <h4 className="text-xl font-bold text-white mb-2">Candidatura Institucional</h4>
+                             <p className="text-slate-400 text-sm leading-relaxed">Preenchimento do formulário detalhado com dados da empresa, alvarás de funcionamento e certificações de qualidade.</p>
+                          </div>
+                       </div>
+                       
+                       <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                             <div className="w-12 h-12 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-slate-300 shrink-0">2</div>
+                             <div className="w-px h-full bg-slate-800 my-2"></div>
+                          </div>
+                          <div className="pb-4">
+                             <h4 className="text-xl font-bold text-white mb-2">Validação Legal & Técnica</h4>
+                             <p className="text-slate-400 text-sm leading-relaxed">A nossa equipa de compliance verifica a conformidade legal, fiscal e a idoneidade técnica da sua instituição.</p>
+                          </div>
+                       </div>
+
+                       <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                             <div className="w-12 h-12 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-slate-300 shrink-0">3</div>
+                          </div>
+                          <div>
+                             <h4 className="text-xl font-bold text-white mb-2">Integração & Ecossistema</h4>
+                             <p className="text-slate-400 text-sm leading-relaxed">Configuração da conta institucional, formação sobre a plataforma e início da rede de referenciação ativa.</p>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+
+                 <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-blue-500/20 rounded-[3rem] blur-2xl transform rotate-3"></div>
+                    <div className="relative bg-slate-800 border border-slate-700 p-8 md:p-12 rounded-[2.5rem] shadow-2xl">
+                       <div className="mb-8">
+                          <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary mb-4">
+                             <Mail size={24} />
+                          </div>
+                          <h3 className="text-2xl font-bold text-white mb-2">Candidate-se Agora</h3>
+                          <p className="text-slate-400 text-sm">Inicie o processo de parceria hoje e receba uma resposta em 48h.</p>
+                       </div>
+
+                       <form id="contact-form" action="https://formsubmit.co/parceiros@popspt.com" method="POST" className="space-y-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                             <input type="text" name="empresa" placeholder="Nome da Instituição" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:ring-2 focus:ring-primary focus:outline-none transition-all" required />
+                             <input type="text" name="nif" placeholder="NIF" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:ring-2 focus:ring-primary focus:outline-none transition-all" required />
+                          </div>
+                          <input type="text" name="responsavel" placeholder="Nome do Responsável" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:ring-2 focus:ring-primary focus:outline-none transition-all" required />
+                          <input type="email" name="email" placeholder="Email Institucional" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:ring-2 focus:ring-primary focus:outline-none transition-all" required />
+                          <input type="tel" name="telefone" placeholder="Telefone de Contacto" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3.5 text-white placeholder:text-slate-600 focus:ring-2 focus:ring-primary focus:outline-none transition-all" required />
+                          
+                          <select name="tipo" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3.5 text-white focus:ring-2 focus:ring-primary focus:outline-none cursor-pointer appearance-none" required>
+                             <option value="" disabled selected>Tipo de Parceiro</option>
+                             <option value="escola" className="bg-slate-900">Escola / Formação</option>
+                             <option value="lar" className="bg-slate-900">Lar / Residência Sénior</option>
+                             <option value="clinica" className="bg-slate-900">Clínica / Saúde</option>
+                             <option value="associacao" className="bg-slate-900">Associação</option>
+                          </select>
+
+                          <button type="submit" className="group w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/20 flex justify-center items-center gap-2 mt-6 active:scale-[0.98]">
+                             Enviar Candidatura <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                          </button>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+      </main>
       <Footer />
     </div>
   );
