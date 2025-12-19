@@ -21,7 +21,13 @@ app.get("/api/ping", (req, res) => {
 // 2. ROTA DA WAITLIST (Importações dinâmicas para evitar crash no boot)
 app.post("/api/waitlist", async (req, res) => {
   try {
-    console.log("Processing waitlist request...");
+    console.log("Processing waitlist request for:", req.body?.email);
+    
+    // Check if body is empty
+    if (!req.body || Object.keys(req.body).length === 0) {
+      console.error("Empty request body received");
+      return res.status(400).json({ error: "Empty request body" });
+    }
     
     // Importações "Lazy"
     const pg = await import("pg");
