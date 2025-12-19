@@ -1,7 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { log } from "./log";
-import { createServer } from "http";
 
 const app = express();
 app.use(express.json());
@@ -11,50 +10,40 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
-
   res.on("finish", () => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
       log(`${req.method} ${path} ${res.statusCode} in ${duration}ms`);
     }
   });
-
   next();
 });
 
-// Register routes synchronously on the app
+// Registo imediato de rotas
 registerRoutes(app);
 
-// Global Error Handler
+// Error handling
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
   const message = err.message || "Internal Server Error";
   res.status(status).json({ message });
 });
 
-// Setup environment-specific logic
+// Desenvolvimento vs Produção
 if (process.env.NODE_ENV !== "production") {
   (async () => {
-    const server = createServer(app);
+    const { createServer } = await import("http");
     const { setupVite } = await import("./vite");
+    const server = createServer(app);
     await setupVite(server, app);
-    const PORT = 5000;
-    server.listen(PORT, "0.0.0.0", () => {
-      log(`serving on port ${PORT}`);
-    });
+    server.listen(5000, "0.0.0.0", () => log("serving on port 5000"));
   })();
-} else {
-  // In production (non-Vercel environments like Replit)
-  if (!process.env.VERCEL) {
-    (async () => {
-      const { serveStatic } = await import("./vite");
-      serveStatic(app);
-      const PORT = 5000;
-      app.listen(PORT, "0.0.0.0", () => {
-        log(`serving on port ${PORT}`);
-      });
-    })();
-  }
+} else if (!process.env.VERCEL) {
+  (async () => {
+    const { serveStatic } = await import("./vite");
+    serveStatic(app);
+    app.listen(5000, "0.0.0.0", () => log("serving on port 5000"));
+  })();
 }
 
 export default app;

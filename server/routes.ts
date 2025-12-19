@@ -4,20 +4,27 @@ import { insertWaitlistSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { Resend } from "resend";
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-
 export function registerRoutes(app: Express) {
+  // Health check endpoint
   app.get("/api/ping", (_req, res) => {
-    res.json({ message: "pong" });
+    res.json({ 
+      message: "pong",
+      env: process.env.NODE_ENV,
+      database: !!process.env.DATABASE_URL,
+      resend: !!process.env.RESEND_API_KEY
+    });
   });
 
+  // Waitlist submission endpoint
   app.post("/api/waitlist", async (req, res) => {
     try {
       const data = insertWaitlistSchema.parse(req.body);
       const entry = await storage.createWaitlistEntry(data);
       
-      if (resend) {
+      // Envia email apenas se a chave existir
+      if (process.env.RESEND_API_KEY) {
         try {
+          const resend = new Resend(process.env.RESEND_API_KEY);
           await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: data.email,

@@ -12,25 +12,29 @@ export interface IStorage {
 
 export class DatabaseStorage implements IStorage {
   async getUser(id: string): Promise<User | undefined> {
-    if (!db) throw new Error("Database not initialized");
+    if (!db) return undefined;
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    if (!db) throw new Error("Database not initialized");
+    if (!db) return undefined;
     const [user] = await db.select().from(users).where(eq(users.username, username));
     return user;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    if (!db) throw new Error("Database not initialized");
+    if (!db) throw new Error("Database not available");
     const [user] = await db.insert(users).values(insertUser).returning();
     return user;
   }
 
   async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
-    if (!db) throw new Error("Database not initialized");
+    if (!db) {
+      // Fallback para MemStorage temporário se o DB falhar em produção
+      console.warn("Database not available, using temporary memory storage");
+      return memStorage.createWaitlistEntry(insertEntry);
+    }
     const [entry] = await db.insert(waitlist).values(insertEntry).returning();
     return entry;
   }
@@ -74,6 +78,5 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = process.env.DATABASE_URL 
-  ? new DatabaseStorage() 
-  : new MemStorage();
+const memStorage = new MemStorage();
+export const storage = process.env.DATABASE_URL ? new DatabaseStorage() : memStorage;
