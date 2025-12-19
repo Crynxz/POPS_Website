@@ -6,22 +6,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Middleware de Logs
+// Middleware de Logs (apenas para API)
 app.use((req, res, next) => {
-  const start = Date.now();
-  const path = req.path;
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      log(`${req.method} ${path} ${res.statusCode} in ${duration}ms`);
-    }
-  });
+  if (req.path.startsWith("/api")) {
+    const start = Date.now();
+    res.on("finish", () => {
+      const duration = Date.now() - start;
+      log(`${req.method} ${req.path} ${res.statusCode} in ${duration}ms`);
+    });
+  }
   next();
-});
-
-// Rota de teste direto no index
-app.get("/api/test-direct", (_req, res) => {
-  res.json({ ok: true, source: "server/index.ts" });
 });
 
 // Regista as rotas
@@ -30,24 +24,32 @@ registerRoutes(app);
 // Error handling
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
-  res.status(status).json({ message: "Internal Error", details: err.message });
+  res.status(status).json({ 
+    message: "Internal Error", 
+    details: err.message || "Unknown error"
+  });
 });
 
-// Lógica local
+// Lógica de servidor local (Não corre no Vercel)
 if (!process.env.VERCEL) {
-  (async () => {
-    const { createServer } = await import("http");
-    const server = createServer(app);
-    if (app.get("env") === "development") {
-      const { setupVite } = await import("./vite");
-      await setupVite(server, app);
-    } else {
-      const { serveStatic } = await import("./vite");
-      serveStatic(app);
+  const startLocal = async () => {
+    try {
+      const { createServer } = await import("http");
+      const server = createServer(app);
+      if (app.get("env") === "development") {
+        const { setupVite } = await import("./vite");
+        await setupVite(server, app);
+      } else {
+        const { serveStatic } = await import("./vite");
+        serveStatic(app);
+      }
+      const PORT = Number(process.env.PORT) || 5000;
+      server.listen(PORT, "0.0.0.0", () => log(`serving on port ${PORT}`));
+    } catch (e) {
+      console.error("Local startup failed:", e);
     }
-    const PORT = Number(process.env.PORT) || 5000;
-    server.listen(PORT, "0.0.0.0", () => log(`serving on port ${PORT}`));
-  })();
+  };
+  startLocal();
 }
 
 export default app;

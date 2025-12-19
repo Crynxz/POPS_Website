@@ -1,7 +1,9 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
-import pkg from 'pg';
-const { Pool } = pkg;
+import pg from 'pg';
 import * as schema from '../shared/schema';
+
+// Algumas versões de pg requerem desestruturação diferente em ESM
+const Pool = pg.Pool || (pg as any).default?.Pool;
 
 let dbInstance: any = null;
 
@@ -9,10 +11,7 @@ export function getDb() {
   if (dbInstance) return dbInstance;
 
   const url = process.env.DATABASE_URL;
-  if (!url) {
-    console.warn("DATABASE_URL is missing. Database features will be unavailable.");
-    return null;
-  }
+  if (!url) return null;
 
   try {
     const pool = new Pool({ 

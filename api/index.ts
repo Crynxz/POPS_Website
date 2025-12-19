@@ -15,7 +15,10 @@ export default async (req: any, res: any) => {
     const { default: app } = await import("../server/index");
     return app(req, res);
   } catch (err: any) {
-    console.error("Vercel Bridge Failure:", err);
+    console.error("Vercel Bridge Failure Details:");
+    console.error("Name:", err.name);
+    console.error("Message:", err.message);
+    console.error("Stack:", err.stack);
     return res.status(500).json({ 
       error: "SERVER_BOOT_ERROR", 
       message: err.message,
