@@ -50,10 +50,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
     { name: t("nav.careers"), href: "/carreiras" },
   ];
 
-  // Determine text color based on scroll state and variant
-  // If scrolled or menu open: dark text (because bg is white)
-  // If not scrolled and variant is light: white text (for dark backgrounds)
-  // Default: dark text
+
   const isLightText = !isScrolled && !mobileMenuOpen && variant === "light";
   
   const textColorClass = isLightText ? "text-white" : "text-slate-900";
@@ -101,15 +98,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
             <Globe size={14} /> {language}
           </button>
           
-          {mounted && (
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className={`p-2 rounded-full transition-colors mr-2 ${isLightText ? "text-slate-300 hover:text-white hover:bg-white/10" : "text-slate-500 hover:text-primary hover:bg-slate-100"}`}
-              aria-label="Toggle Theme"
-            >
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-          )}
+      
 
           <a 
             href="#waitlist" 
