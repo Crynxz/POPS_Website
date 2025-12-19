@@ -18,7 +18,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (resend) {
         try {
           await resend.emails.send({
-            from: 'POPS <welcome@popspt.com>',
+            from: 'onboarding@resend.dev',
             to: data.email,
             subject: 'Bem-vindo à lista de espera da POPS!',
             html: `<p>Olá ${data.name},</p><p>Obrigado por te juntares à nossa lista de espera...</p>`
