@@ -1,52 +1,141 @@
-import { CheckCircle, Heart, Stethoscope, Zap } from "lucide-react";
+import { CheckCircle, Heart, Stethoscope } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
+import FadeIn from "@/components/FadeIn";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 interface HeroSectionProps {
   onSelectProfile?: (profile: "familia" | "cuidador") => void;
 }
 
 export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
+  const { t } = useLanguage();
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax effects
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const yImage = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const opacityValue = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="hero fade-in-section" id="inicio">
-      <div className="container">
-        <div className="hero-grid">
-          <div className="hero-text">
-            <span>Brevemente Disponível</span>
-            <h1>Cuidadores verificados, <span className="highlight">à distância de um clique</span>.</h1>
-            <p>Mais de 500 mil famílias portuguesas procuram soluções. A POPS conecta-o a profissionais certificados, com antecedentes verificados e garantia de qualidade. Inscreva-se na lista de espera e garanta acesso antecipado com <strong>descontos exclusivos de lançamento</strong>.</p>
+    <section 
+      ref={targetRef}
+      className="relative min-h-[90vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500" 
+      id="inicio"
+    >
+      {/* Dynamic Background Parallax Blobs */}
+      <motion.div 
+        style={{ y: yText, opacity: opacityValue }}
+        className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-primary/10 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" 
+      />
+      <motion.div 
+        style={{ y: yImage, opacity: opacityValue }}
+        className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-secondary/10 dark:bg-secondary/5 rounded-full blur-[100px] pointer-events-none" 
+      />
 
-            <div className="hero-cta" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '1rem' }}>
-              <p style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Qual é o seu objetivo?</p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <a href="#waitlist" onClick={() => onSelectProfile?.('familia')} className="btn btn-primary" style={{ padding: '1rem 2rem', boxShadow: '0 10px 25px rgba(32, 128, 141, 0.3)' }}>
-                  <Heart className="w-4 h-4 mr-2" /> Preciso de Cuidados
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          {/* Text Content - Staggered Animation Entrance */}
+          <motion.div 
+            style={{ y: yImage }}
+            className="max-w-2xl"
+          >
+            <FadeIn delay={100}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-8 shadow-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                {t("hero.badge")}
+              </div>
+            </FadeIn>
+            
+            <FadeIn delay={200}>
+              <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-8 text-slate-900 dark:text-white tracking-tight">
+                {t("hero.title.1")} <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-teal-500 to-primary-dark">
+                  {t("hero.title.2")}
+                </span>
+              </h1>
+            </FadeIn>
+            
+            <FadeIn delay={300}>
+              <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed font-medium">
+                {t("hero.desc")}
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={400}>
+              <div className="flex flex-col sm:flex-row gap-5 mb-12">
+                <a 
+                  href="#waitlist" 
+                  onClick={() => onSelectProfile?.('familia')}
+                  className="group inline-flex justify-center items-center gap-3 px-10 py-5 bg-primary text-white rounded-2xl font-bold hover:bg-primary/90 transition-all shadow-2xl shadow-primary/30 hover:-translate-y-1 active:scale-95"
+                >
+                  <Heart className="w-5 h-5 fill-white/20 group-hover:scale-110 transition-transform" />
+                  {t("hero.cta.find")}
                 </a>
-                <a href="#waitlist" onClick={() => onSelectProfile?.('cuidador')} className="btn btn-secondary" style={{ padding: '1rem 2rem', background: 'transparent', borderWidth: '2px' }}>
-                  <Stethoscope className="w-4 h-4 mr-2" /> Quero Trabalhar
+                <a 
+                  href="#waitlist" 
+                  onClick={() => onSelectProfile?.('cuidador')}
+                  className="inline-flex justify-center items-center gap-3 px-10 py-5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 rounded-2xl font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:-translate-y-1 active:scale-95 shadow-sm"
+                >
+                  <Stethoscope className="w-5 h-5 text-primary" />
+                  {t("hero.cta.work")}
                 </a>
               </div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-light)', marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Zap size={14} style={{ color: 'var(--secondary)' }} /> Junte-se a +500 pessoas na lista de espera hoje.
-              </div>
-            </div>
+            </FadeIn>
 
-            <div className="hero-badges">
-                <div className="hero-badge">
-                    <CheckCircle size={18} className="text-success" />
-                    Verificação Criminal Rigorosa
+            <FadeIn delay={500}>
+              <div className="flex flex-wrap gap-y-4 gap-x-10 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <div className="flex items-center gap-2 group">
+                  <CheckCircle className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                  {t("hero.trust.1")}
                 </div>
-                <div className="hero-badge">
-                    <CheckCircle size={18} className="text-success" />
-                    Certificações Validadas
+                <div className="flex items-center gap-2 group">
+                  <CheckCircle className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                  {t("hero.trust.2")}
                 </div>
-                <div className="hero-badge">
-                    <CheckCircle size={18} className="text-success" />
-                    Suporte 24/7
+                <div className="flex items-center gap-2 group">
+                  <CheckCircle className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                  {t("hero.trust.3")}
                 </div>
-            </div>
-          </div>
-          <div className="hero-image">
-            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=700&fit=crop" alt="Cuidadora POPS a auxiliar idoso" loading="lazy" />
-          </div>
+              </div>
+            </FadeIn>
+          </motion.div>
+
+          {/* Image/Visual - Clean & Professional Design */}
+          <motion.div 
+            style={{ y: yText }}
+            className="relative hidden lg:block"
+          >
+            <FadeIn delay={300} className="relative">
+              {/* Primary Image Container - Minimalist & Professional */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/assets/heroimg.jpg" 
+                  alt="Professional Caregiver - POPS Care Platform" 
+                  className="w-full h-full object-cover hover:scale-102 transition-transform duration-1000 ease-out"
+                  loading="eager"
+                  fetchPriority="high"
+                />
+                
+                {/* Subtle Overlay - Very Light for Professional Look */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
+              </div>
+              
+              {/* Accent Line - Modern minimal detail */}
+              <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0"></div>
+            </FadeIn>
+            
+            {/* Soft Glow Effect - Professional backdrop */}
+            <div className="absolute -z-10 -top-32 -right-32 w-96 h-96 bg-primary/8 dark:bg-primary/5 rounded-full blur-3xl"></div>
+          </motion.div>
         </div>
       </div>
     </section>

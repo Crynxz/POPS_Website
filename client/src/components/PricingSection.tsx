@@ -1,71 +1,83 @@
-import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
 
 export default function PricingSection() {
+  const tiers = [
+    {
+      name: "Cuidados Básicos",
+      price: "9€ - 13€",
+      desc: "Ideal para companhia e apoio leve.",
+      features: ["Companhia social e conversa", "Supervisionamento de atividades", "Pequenas ajudas com refeições", "Limpeza leve", "Acompanhamento a consultas"],
+      cta: "Tenho Interesse",
+      style: "bg-white border-slate-200"
+    },
+    {
+      name: "Cuidados Completos",
+      price: "14€ - 20€",
+      desc: "Higiene, mobilidade e gestão doméstica.",
+      features: ["Higiene pessoal completa", "Apoio na mobilidade", "Ajuda a vestir/despir", "Preparação de refeições", "Gestão de roupa e limpeza"],
+      cta: "Pré-Inscrição",
+      highlight: true,
+      style: "bg-white border-primary shadow-2xl shadow-primary/10 relative overflow-hidden"
+    },
+    {
+      name: "Premium",
+      price: "21€ - 30€+",
+      desc: "Pós-operatório, monitorização e especialização.",
+      features: ["Cuidadores com Certificação", "Especialização em Alzheimer", "Prevenção de úlceras", "Equipamentos técnicos", "Estimulação cognitiva"],
+      cta: "Saber Mais",
+      style: "bg-white border-slate-200"
+    }
+  ];
+
   return (
-    <section className="tiers-section fade-in-section" id="precos">
-        <div className="container">
-            <div className="section-header">
-                <h2>Planos de Cuidado <span className="highlight">(Previsão)</span></h2>
-                <p>Flexibilidade total: pague apenas pelo que precisa. Desconto de até 30% em contratos de longa duração.</p>
-            </div>
-
-            <div className="tiers-grid">
-                <div className="tier-card">
-                    <h3>Cuidados Básicos</h3>
-                    <p className="tier-desc">Ideal para companhia e apoio leve.</p>
-                    <div className="tier-price">9€ - 13€<span>/hora</span></div>
-                    <ul className="tier-features">
-                        <li>Companhia social e conversa</li>
-                        <li>Supervisionamento de atividades</li>
-                        <li>Pequenas ajudas com refeições</li>
-                        <li>Limpeza leve</li>
-                        <li>Acompanhamento a consultas</li>
-                    </ul>
-                    <a href="#waitlist" className="w-full">
-                        <Button variant="secondary" className="w-full">Tenho Interesse</Button>
-                    </a>
-                </div>
-
-                <div className="tier-card featured">
-                    <span className="tier-tag">Mais Popular</span>
-                    <h3>Cuidados Completos</h3>
-                    <p className="tier-desc">Higiene, mobilidade e gestão doméstica.</p>
-                    <div className="tier-price">14€ - 20€<span>/hora</span></div>
-                    <ul className="tier-features">
-                        <li><strong>Tudo do plano Básico, mais:</strong></li>
-                        <li>Higiene pessoal completa</li>
-                        <li>Apoio na mobilidade</li>
-                        <li>Ajuda a vestir/despir</li>
-                        <li>Preparação de refeições</li>
-                        <li>Gestão de roupa e limpeza</li>
-                    </ul>
-                    <a href="#waitlist" className="w-full">
-                        <Button className="w-full btn-primary">Pré-Inscrição</Button>
-                    </a>
-                </div>
-
-                <div className="tier-card">
-                    <h3>Premium</h3>
-                    <p className="tier-desc">Pós-operatório, monitorização e especialização.</p>
-                    <div className="tier-price">21€ - 30€+<span>/hora</span></div>
-                    <ul className="tier-features">
-                        <li><strong>Tudo do plano Completo, mais:</strong></li>
-                        <li>Cuidadores com Certificação</li>
-                        <li>Especialização em Alzheimer</li>
-                        <li>Prevenção de úlceras</li>
-                        <li>Equipamentos técnicos</li>
-                        <li>Estimulação cognitiva</li>
-                    </ul>
-                    <a href="#waitlist" className="w-full">
-                        <Button variant="secondary" className="w-full">Saber Mais</Button>
-                    </a>
-                </div>
-            </div>
-
-            <p className="tiers-disclaimer">
-                <i className="fas fa-asterisk"></i> Preços meramente indicativos. Valores finais definidos no lançamento. Descontos de 20-30% em contratos mensais e de permanência.
-            </p>
+    <section className="py-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300" id="precos">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">Planos de Cuidado <span className="text-primary">(Previsão)</span></h2>
+          <p className="text-slate-600 dark:text-slate-400">Flexibilidade total: pague apenas pelo que precisa. Desconto de até 30% em contratos de longa duração.</p>
         </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
+          {tiers.map((tier, i) => (
+            <div key={i} className={`p-8 rounded-3xl border ${tier.style} dark:bg-slate-800 dark:border-slate-700`}>
+              {tier.highlight && (
+                <div className="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full absolute top-6 right-6">
+                  Mais Popular
+                </div>
+              )}
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">{tier.name}</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">{tier.desc}</p>
+              
+              <div className="text-4xl font-extrabold text-slate-900 dark:text-white mb-6">
+                {tier.price}<span className="text-lg font-medium text-slate-400 dark:text-slate-500">/h</span>
+              </div>
+
+              <ul className="space-y-4 mb-8">
+                {tier.highlight && <li className="text-sm font-bold text-slate-900 dark:text-white">Tudo do plano Básico, mais:</li>}
+                {i === 2 && <li className="text-sm font-bold text-slate-900 dark:text-white">Tudo do plano Completo, mais:</li>}
+                {tier.features.map((feat, j) => (
+                  <li key={j} className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+                    <Check className="w-4 h-4 text-green-500" /> {feat}
+                  </li>
+                ))}
+              </ul>
+
+              <a 
+                href="#waitlist" 
+                className={`w-full py-3 rounded-xl font-semibold flex justify-center transition-all ${
+                  tier.highlight 
+                    ? "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25" 
+                    : "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600"
+                }`}
+              >
+                {tier.cta}
+              </a>
+            </div>
+          ))}
+        </div>
+        
+        <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-8">*Preços meramente indicativos. Valores finais definidos no lançamento. Descontos de 20-30% em contratos mensais e de permanência.</p>
+      </div>
     </section>
   );
 }

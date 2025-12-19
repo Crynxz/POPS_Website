@@ -1,121 +1,106 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { 
+  MapPin, 
+  FileText, 
+  Brain, 
+  Wallet, 
+  ShieldCheck, 
+  FileCheck, 
+  Award, 
+  GraduationCap, 
+  Headphones, 
+  Calendar,
+  ChevronDown,
+  ChevronUp
+} from "lucide-react";
 
 export default function TrustSection() {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const allFeatures = [
+    { 
+      icon: MapPin, 
+      title: "Monitorização GPS Real", 
+      desc: "Acabou a incerteza. Receba notificações de Check-in e Check-out no seu telemóvel. O sistema valida a presença física do cuidador para garantir o cumprimento do horário." 
+    },
+    { 
+      icon: FileText, 
+      title: "Diário Clínico Digital", 
+      desc: "No decorrer de um serviço, o cuidador valida na app cada tarefa concluída (higiene, medicação, refeições, etc), gerando no fim um relatório diário que pode consultar a qualquer momento." 
+    },
+    { 
+      icon: Brain, 
+      title: "Matching Inteligente (IA)", 
+      desc: "O nosso algoritmo cruza geolocalização, experiência e patologias específicas (ex: Alzheimer, Parkinson) para lhe sugerir os cuidadores ideais em segundos, não em dias." 
+    },
+    { 
+      icon: Wallet, 
+      title: "Preços Transparentes", 
+      desc: "Nada de orçamentos. Os valores são tabelados e claros desde o início (9€ a 30€+), com faturação automática e benefícios fiscais inclusos." 
+    },
+    { 
+      icon: ShieldCheck, 
+      title: "Pagamento Seguro (Escrow)", 
+      desc: "O seu dinheiro fica protegido. O pagamento só é libertado ao cuidador 48h horas após a conclusão do serviço e a sua validação. Proteção total contra faltas ou incumprimento." 
+    },
+    { 
+      icon: FileCheck, 
+      title: "Gestão Burocrática Zero", 
+      desc: "Nós tratamos dos contratos, seguros e da emissão automática de faturas para o seu IRS. Preços transparentes e tabelados, sem negociações desconfortáveis." 
+    },
+    { 
+      icon: Award, 
+      title: "Ranking de Qualidade", 
+      desc: "Premiamos a excelência. Os cuidadores progridem em ranks de Bronze a Ouro com base em avaliações reais. Você escolhe apenas os melhores." 
+    },
+    { 
+      icon: GraduationCap, 
+      title: "Formação Contínua", 
+      desc: "Investimos nos cuidadores. Através de parceria com escolas e instituições oficiais, oferecemos acesso a cursos online (LMS) em Demências, Paliativos e Mobilidade." 
+    },
+    { 
+      icon: Headphones, 
+      title: "Suporte Humano 24/7", 
+      desc: "A tecnologia ajuda, mas os humanos resolvem. A nossa equipa de mediação está disponível a qualquer hora para resolver qualquer imprevisto ou problema." 
+    },
+    { 
+      icon: Calendar, 
+      title: "Contratação Flexível", 
+      desc: "Precisa de alguém só para este Sábado à noite? Ou acompanhamento diário? Sem contratos de fidelização rígidos. Reserve cuidados pontuais ou mensais com facilidade." 
+    },
+  ];
+
+  const visibleFeatures = isExpanded ? allFeatures : allFeatures.slice(0, 4);
+
   return (
-    <section className="trust-section fade-in-section" id="diferenciais">
-      <div className="container">
-        <div className="section-header">
-          <h2>O Ecossistema POPS: <span className="highlight">Tecnologia & Confiança</span></h2>
-          <p>Resolvemos a fragmentação do mercado com uma solução integrada. Unimos segurança, saúde e gestão numa só plataforma.</p>
+    <section className="py-24 bg-white dark:bg-slate-900 transition-colors duration-300" id="diferenciais">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
+            O Ecossistema POPS: <span className="text-primary">Tecnologia & Confiança</span>
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+            Resolvemos a fragmentação do mercado com uma solução integrada. Unimos segurança, saúde e gestão numa só plataforma.
+          </p>
         </div>
 
-        <style>
-          {`
-            .trust-item-hidden {
-                display: none;
-            }
-            .trust-item.fade-in {
-                animation: fadeIn 0.5s ease-in-out;
-            }
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-          `}
-        </style>
-
-        <div className="trust-grid" id="trustGrid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem' }}>
-
-          <div className="trust-item">
-            <div className="trust-icon">
-              <i className="fas fa-map-location-dot"></i>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 transition-all duration-500">
+          {visibleFeatures.map((feature, i) => (
+            <div 
+              key={i} 
+              className={`p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-primary/20 hover:bg-white dark:hover:bg-slate-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-${(i % 4) * 100}`}
+            >
+              <div className="w-14 h-14 bg-white dark:bg-slate-700 rounded-2xl shadow-sm flex items-center justify-center text-primary mb-6 transition-colors border border-slate-50 dark:border-slate-600">
+                <feature.icon size={28} />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 leading-tight">{feature.title}</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{feature.desc}</p>
             </div>
-            <h3>Monitorização GPS Real</h3>
-            <p>Acabou a incerteza. Receba notificações de <strong>Check-in</strong> e <strong>Check-out</strong> no seu telemóvel. O sistema valida a presença física do cuidador para garantir o cumprimento do horário.</p>
-          </div>
-
-          <div className="trust-item">
-            <div className="trust-icon">
-              <i className="fas fa-file-medical-alt"></i>
-            </div>
-            <h3>Diário Clínico Digital</h3>
-            <p>No decorrer de um serviço, o cuidador valida na app cada tarefa concluída (higiene, medicação, refeições, etc), gerando no fim um relatório diário que pode consultar a qualquer momento.</p>
-          </div>
-
-          <div className="trust-item">
-            <div className="trust-icon">
-              <i className="fas fa-brain"></i>
-            </div>
-            <h3>Matching Inteligente (IA)</h3>
-            <p>O nosso algoritmo cruza geolocalização, experiência e patologias específicas (ex: Alzheimer, Parkinson) para lhe sugerir os cuidadores ideais em segundos, não em dias.</p>
-          </div>
-
-          <div className="trust-item">
-            <div className="trust-icon">
-              <i className="fas fa-file-invoice-dollar"></i>
-            </div>
-            <h3>Preços Transparentes</h3>
-            <p>Nada de orçamentos. Os valores são tabelados e claros desde o início (9€ a 30€+), com <strong>faturação automática</strong> e benefícios fiscais inclusos.</p>
-          </div>
-
-          <div className={`trust-item ${!isExpanded ? 'trust-item-hidden' : 'fade-in'}`}>
-            <div className="trust-icon">
-              <i className="fas fa-shield-alt"></i>
-            </div>
-            <h3>Pagamento Seguro (Escrow)</h3>
-            <p>O seu dinheiro fica protegido. O pagamento só é libertado ao cuidador 48h horas após a conclusão do serviço e a sua validação. Proteção total contra faltas ou incumprimento.</p>
-          </div>
-
-          <div className={`trust-item ${!isExpanded ? 'trust-item-hidden' : 'fade-in'}`}>
-            <div className="trust-icon">
-              <i className="fas fa-file-invoice"></i>
-            </div>
-            <h3>Gestão Burocrática Zero</h3>
-            <p>Nós tratamos dos contratos, seguros e da emissão automática de faturas para o seu IRS. Preços transparentes e tabelados (9€ a 30€+), sem negociações desconfortáveis.</p>
-          </div>
-
-          <div className={`trust-item ${!isExpanded ? 'trust-item-hidden' : 'fade-in'}`}>
-            <div className="trust-icon">
-              <i className="fas fa-medal"></i>
-            </div>
-            <h3>Ranking de Qualidade</h3>
-            <p>Premiamos a excelência. Os cuidadores progridem em ranks de Bronze a Ouro com base em avaliações reais. Você escolhe apenas os melhores.</p>
-          </div>
-
-          <div className={`trust-item ${!isExpanded ? 'trust-item-hidden' : 'fade-in'}`}>
-            <div className="trust-icon">
-              <i className="fas fa-graduation-cap"></i>
-            </div>
-            <h3>Formação Contínua</h3>
-            <p>Investimos nos cuidadores. Através de parceria com escolas e instituições oficiais, oferecemos acesso a cursos online (LMS) em Demências, Paliativos e Mobilidade, garantindo que quem cuida de si está sempre a evoluir.</p>
-          </div>
-
-          <div className={`trust-item ${!isExpanded ? 'trust-item-hidden' : 'fade-in'}`}>
-            <div className="trust-icon">
-              <i className="fas fa-headset"></i>
-            </div>
-            <h3>Suporte Humano 24/7</h3>
-            <p>A tecnologia ajuda, mas os humanos resolvem. A nossa equipa de mediação está disponível a qualquer hora para resolver qualquer imprevisto ou problema.</p>
-          </div>
-
-          <div className={`trust-item ${!isExpanded ? 'trust-item-hidden' : 'fade-in'}`}>
-            <div className="trust-icon">
-              <i className="fas fa-calendar-check"></i>
-            </div>
-            <h3>Contratação Flexível</h3>
-            <p>Precisa de alguém só para este Sábado à noite? Ou acompanhamento diário? Sem contratos de fidelização rígidos. Reserve cuidados pontuais ou mensais com facilidade.</p>
-          </div>
-
+          ))}
         </div>
 
-        <div className="text-center" style={{ marginTop: '3rem' }}>
+        <div className="mt-16 text-center">
           <button 
-            id="btnShowMore" 
-            className="btn btn-secondary" 
-            style={{ minWidth: '200px' }}
             onClick={() => {
               if (isExpanded) {
                 const element = document.getElementById('diferenciais');
@@ -123,11 +108,12 @@ export default function TrustSection() {
               }
               setIsExpanded(!isExpanded);
             }}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-primary/30 transition-all shadow-sm active:scale-95"
           >
             {isExpanded ? (
-              <>Mostrar Menos <i className="fas fa-chevron-up" style={{ marginLeft: '8px' }}></i></>
+              <>Mostrar Menos <ChevronUp size={20} className="text-primary" /></>
             ) : (
-              <>Mostrar Mais Diferenciais <i className="fas fa-chevron-down" style={{ marginLeft: '8px' }}></i></>
+              <>Mostrar Mais Diferenciais <ChevronDown size={20} className="text-primary" /></>
             )}
           </button>
         </div>
