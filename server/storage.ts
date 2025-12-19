@@ -1,10 +1,10 @@
 import { type User, type InsertUser, type Waitlist, type InsertWaitlist, users, waitlist } from "../shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
-import { randomUUID } from "crypto";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
+  // CHANGED: id is now number to match Supabase SERIAL
+  getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   getWaitlistEntryByEmail(email: string): Promise<Waitlist | undefined>;
@@ -12,7 +12,8 @@ export interface IStorage {
 }
 
 export class DatabaseStorage implements IStorage {
-  async getUser(id: string): Promise<User | undefined> {
+  // CHANGED: id: number
+  async getUser(id: number): Promise<User | undefined> {
     if (!db) return undefined;
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user;
@@ -36,35 +37,38 @@ export class DatabaseStorage implements IStorage {
       const [entry] = await db.select().from(waitlist).where(eq(waitlist.email, email));
       return entry;
     } catch (dbError) {
-      console.error("Database error in getWaitlistEntryByEmail:", dbError);
+      console.error("Database error:", dbError);
       return memStorage.getWaitlistEntryByEmail(email);
     }
   }
 
   async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
-    if (!db) {
-      return memStorage.createWaitlistEntry(insertEntry);
-    }
+    if (!db) return memStorage.createWaitlistEntry(insertEntry);
     try {
       const [entry] = await db.insert(waitlist).values(insertEntry).returning();
       return entry;
     } catch (dbError) {
-      console.error("Critical Database Error, falling back to memory:", dbError);
+      console.error("Database write error:", dbError);
       return memStorage.createWaitlistEntry(insertEntry);
     }
   }
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-  private waitlist: Map<string, Waitlist>;
+  // CHANGED: Maps now use number keys
+  private users: Map<number, User>;
+  private waitlist: Map<number, Waitlist>;
+  private currentId: number;
+  private currentWaitlistId: number;
 
   constructor() {
     this.users = new Map();
     this.waitlist = new Map();
+    this.currentId = 1;
+    this.currentWaitlistId = 1;
   }
 
-  async getUser(id: string): Promise<User | undefined> {
+  async getUser(id: number): Promise<User | undefined> {
     return this.users.get(id);
   }
 
@@ -75,7 +79,7 @@ export class MemStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
+    const id = this.currentId++;
     const user: User = { ...insertUser, id };
     this.users.set(id, user);
     return user;
@@ -88,11 +92,17 @@ export class MemStorage implements IStorage {
   }
 
   async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
-    const id = randomUUID();
+    const id = this.currentWaitlistId++;
     const entry: Waitlist = { 
       ...insertEntry, 
-      id, 
-      createdAt: new Date().toISOString() 
+      id,
+      // Fixes optional fields for memory storage
+      phone: insertEntry.phone ?? null,
+      location: insertEntry.location ?? null,
+      birthDate: insertEntry.birthDate ?? null,
+      profile: insertEntry.profile ?? null,
+      interest: insertEntry.interest ?? null,
+      createdAt: new Date() // Use Date object, not string
     };
     this.waitlist.set(id, entry);
     return entry;

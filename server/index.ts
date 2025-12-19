@@ -1,7 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { log } from "./log";
-import { createServer } from "http";
 
 const app = express();
 app.use(express.json());
@@ -20,34 +19,35 @@ app.use((req, res, next) => {
   next();
 });
 
-// Regista as rotas IMEDIATAMENTE (Síncrono)
-registerRoutes(app);
-
-// Tratamento de Erros Global
-app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-  const status = err.status || err.statusCode || 500;
-  const message = err.message || "Internal Server Error";
-  res.status(status).json({ message });
+// Rota de teste direto no index
+app.get("/api/test-direct", (_req, res) => {
+  res.json({ ok: true, source: "server/index.ts" });
 });
 
-// Lógica de servidor local (Não corre no Vercel)
+// Regista as rotas
+registerRoutes(app);
+
+// Error handling
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  const status = err.status || err.statusCode || 500;
+  res.status(status).json({ message: "Internal Error", details: err.message });
+});
+
+// Lógica local
 if (!process.env.VERCEL) {
-  const server = createServer(app);
-  if (app.get("env") === "development") {
-    (async () => {
+  (async () => {
+    const { createServer } = await import("http");
+    const server = createServer(app);
+    if (app.get("env") === "development") {
       const { setupVite } = await import("./vite");
       await setupVite(server, app);
-      const PORT = Number(process.env.PORT) || 5000;
-      server.listen(PORT, "0.0.0.0", () => log(`serving on port ${PORT}`));
-    })();
-  } else {
-    (async () => {
+    } else {
       const { serveStatic } = await import("./vite");
       serveStatic(app);
-      const PORT = Number(process.env.PORT) || 5000;
-      server.listen(PORT, "0.0.0.0", () => log(`serving on port ${PORT}`));
-    })();
-  }
+    }
+    const PORT = Number(process.env.PORT) || 5000;
+    server.listen(PORT, "0.0.0.0", () => log(`serving on port ${PORT}`));
+  })();
 }
 
 export default app;
