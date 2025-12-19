@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { useState, useEffect } from "react";
-import { Menu, X, Heart, Stethoscope, Globe } from "lucide-react";
+import { Menu, X, Heart, Stethoscope, Globe, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 
 interface HeaderProps {
