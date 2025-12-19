@@ -16,39 +16,56 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Submit button clicked");
     setIsSubmitting(true);
 
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get("nome"),
-      email: formData.get("email"),
-      phone: formData.get("telefone"),
-      birthDate: formData.get("nascimento"),
-      location: formData.get("localidade"),
-      profile: formData.get("perfil"),
-      interest: formData.get("servico"),
-    };
-
     try {
-      await apiRequest("POST", "/api/waitlist", data);
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        name: formData.get("nome"),
+        email: formData.get("email"),
+        phone: formData.get("telefone"),
+        birthDate: formData.get("nascimento"),
+        location: formData.get("localidade"),
+        profile: formData.get("perfil"),
+        interest: formData.get("servico"),
+      };
+
+      console.log("Form data collected:", data);
+
+      const response = await apiRequest("POST", "/api/waitlist", data);
+      console.log("API Request successful, response:", response);
+      
       setIsSuccess(true);
       toast({
         title: "Sucesso!",
         description: "Ficaste registado na nossa lista de espera.",
       });
     } catch (error: any) {
-      const errorData = await error.json().catch(() => ({}));
-      const isDuplicate = error.status === 409;
+      console.error("Form submission error caught:", error);
+      
+      let errorMessage = "Não foi possível processar o teu pedido. Tenta novamente.";
+      let isDuplicate = false;
+
+      try {
+        const errorData = await error.json();
+        console.log("Error data from server:", errorData);
+        if (error.status === 409) {
+          isDuplicate = true;
+          errorMessage = errorData.message || "Este email já está registado.";
+        }
+      } catch (parseError) {
+        console.error("Could not parse error response JSON", parseError);
+      }
 
       toast({
         title: isDuplicate ? "Aviso" : "Erro",
-        description: isDuplicate 
-          ? "Este email já está registado na nossa lista de espera." 
-          : "Não foi possível processar o teu pedido. Tenta novamente.",
+        description: errorMessage,
         variant: isDuplicate ? "default" : "destructive",
       });
     } finally {
       setIsSubmitting(false);
+      console.log("Form submission process finished");
     }
   };
 
