@@ -50,7 +50,17 @@ async function buildAll() {
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.devDependencies || {}),
   ];
-  const externals = allDeps.filter((dep) => !allowlist.includes(dep));
+  
+  const nodeBuiltins = [
+    "assert", "buffer", "child_process", "cluster", "console", "constants", "crypto", "dgram", "dns", "domain", "events", 
+    "fs", "fs/promises", "http", "https", "module", "net", "os", "path", "process", "punycode", "querystring", "readline", 
+    "repl", "stream", "string_decoder", "sys", "timers", "tls", "tty", "url", "util", "v8", "vm", "zlib"
+  ];
+
+  const externals = [
+    ...allDeps.filter((dep) => !allowlist.includes(dep)),
+    ...nodeBuiltins
+  ];
 
   await esbuild({
     entryPoints: ["server/index.ts"],
