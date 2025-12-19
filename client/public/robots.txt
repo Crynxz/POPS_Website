@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://popshomecare.vercel.app/sitemap.xml

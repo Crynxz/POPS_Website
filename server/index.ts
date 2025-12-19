@@ -37,7 +37,7 @@ if (!process.env.VERCEL) {
     (async () => {
       const { setupVite } = await import("./vite");
       await setupVite(server, app);
-      const PORT = 5000;
+      const PORT = process.env.PORT || 5000;
       server.listen(PORT, "0.0.0.0", () => {
         log(`serving on port ${PORT}`);
       });
@@ -46,7 +46,7 @@ if (!process.env.VERCEL) {
     (async () => {
       const { serveStatic } = await import("./vite");
       serveStatic(app);
-      const PORT = 5000;
+      const PORT = process.env.PORT || 5000;
       server.listen(PORT, "0.0.0.0", () => {
         log(`serving on port ${PORT}`);
       });

@@ -41,20 +41,39 @@ export default function SEO({
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "POPS - Intermediário de Cuidados Domiciliários",
-          "url": url,
-          "logo": "https://pops.pt/logo.png",
-          "description": description,
+          "@type": "LocalBusiness",
+          "name": "POPS - Cuidados Domiciliários Verificados",
+          "image": "https://popshomecare.vercel.app/og-image.jpg",
+          "@id": "https://popshomecare.vercel.app",
+          "url": "https://popshomecare.vercel.app",
+          "telephone": "+351912345678",
           "address": {
             "@type": "PostalAddress",
+            "streetAddress": "Lisboa",
             "addressLocality": "Lisboa",
+            "addressRegion": "Lisboa",
+            "postalCode": "1000",
             "addressCountry": "PT"
           },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+351-912-345-678",
-            "contactType": "customer service"
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 38.7223,
+            "longitude": -9.1393
+          },
+          "description": description,
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
           },
           "sameAs": [
             "https://www.facebook.com/pops",
