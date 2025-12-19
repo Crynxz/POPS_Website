@@ -17,6 +17,7 @@ import PricingSection from "@/components/PricingSection";
 
 import WaitlistSection from "@/components/WaitlistSection";
 import { PartnersSection } from "@/components/PartnersSection";
+import FAQSection from "@/components/FAQSection";
 
 
 export default function Home() {
@@ -84,6 +85,10 @@ export default function Home() {
         
                 <FadeIn>
                   <PricingSection />
+                </FadeIn>
+
+                <FadeIn>
+                  <FAQSection />
                 </FadeIn>
                   
               
