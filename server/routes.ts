@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { storage } from "./storage";
-import { insertWaitlistSchema } from "@shared/schema";
+import { insertWaitlistSchema } from "../shared/schema";
 import { ZodError } from "zod";
 import { Resend } from "resend";
 

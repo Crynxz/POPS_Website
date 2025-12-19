@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type Waitlist, type InsertWaitlist, users, waitlist } from "@shared/schema";
+import { type User, type InsertUser, type Waitlist, type InsertWaitlist, users, waitlist } from "../shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
