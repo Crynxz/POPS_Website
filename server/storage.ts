@@ -1,16 +1,39 @@
-import { type User, type InsertUser, type Waitlist, type InsertWaitlist } from "@shared/schema";
+import { type User, type InsertUser, type Waitlist, type InsertWaitlist, users, waitlist } from "@shared/schema";
 import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  
-  // Waitlist methods
   createWaitlistEntry(entry: InsertWaitlist): Promise<Waitlist>;
+}
+
+export class DatabaseStorage implements IStorage {
+  async getUser(id: string): Promise<User | undefined> {
+    if (!db) throw new Error("Database not initialized");
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    if (!db) throw new Error("Database not initialized");
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    if (!db) throw new Error("Database not initialized");
+    const [user] = await db.insert(users).values(insertUser).returning();
+    return user;
+  }
+
+  async createWaitlistEntry(insertEntry: InsertWaitlist): Promise<Waitlist> {
+    if (!db) throw new Error("Database not initialized");
+    const [entry] = await db.insert(waitlist).values(insertEntry).returning();
+    return entry;
+  }
 }
 
 export class MemStorage implements IStorage {
@@ -51,4 +74,6 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export const storage = process.env.DATABASE_URL 
+  ? new DatabaseStorage() 
+  : new MemStorage();
