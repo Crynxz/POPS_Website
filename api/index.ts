@@ -46,23 +46,29 @@ export default async function handler(req: any, res: any) {
     // Validate Data
     const data = insertSchema.parse(req.body);
 
-    // Database Operation
+    // Database Operation - WRAPPED IN TRY/CATCH TO PREVENT CRASH
     if (process.env.DATABASE_URL) {
       const Pool = (pg.default as any)?.Pool || (pg as any).Pool;
       const pool = new Pool({
         connectionString: process.env.DATABASE_URL,
         max: 1,
-        ssl: { rejectUnauthorized: false }
-      });
-      const db = drizzle(pool);
-      
-      await db.insert(waitlist).values({
-        ...data,
-        createdAt: new Date()
+        ssl: { rejectUnauthorized: false },
+        connectionTimeoutMillis: 5000 // Don't wait forever
       });
       
-      console.log("Successfully saved to database");
-      await pool.end();
+      try {
+        const db = drizzle(pool);
+        await db.insert(waitlist).values({
+          ...data,
+          createdAt: new Date()
+        });
+        console.log("Successfully saved to database");
+      } catch (dbErr: any) {
+        console.error("DATABASE CONNECTIVITY ERROR:", dbErr.message);
+        console.log("Proceeding with email only...");
+      } finally {
+        await pool.end();
+      }
     }
 
     // Email Operation
@@ -85,7 +91,7 @@ export default async function handler(req: any, res: any) {
     return res.status(201).json({ success: true });
 
   } catch (error: any) {
-    console.error("Critical Handler Error:", error);
+    console.error("Vercel Handler Error:", error);
     
     if (error instanceof z.ZodError) {
       return res.status(400).json({ message: "Dados inválidos", details: error.errors });
