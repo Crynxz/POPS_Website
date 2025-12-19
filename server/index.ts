@@ -9,6 +9,11 @@ const __dirname = path.dirname(__filename)
 const app = express()
 const DEFAULT_PORT = 5000
 
+// API routes - Register these BEFORE the SPA fallback
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'Hello from Express' })
+})
+
 async function startServer() {
   if (process.env.NODE_ENV === 'production') {
     // Production: Serve static files from 'public' directory
@@ -18,6 +23,11 @@ async function startServer() {
     
     // Fallback to index.html for SPA
     app.use('*', (req, res) => {
+      // Check if it's an API route first (though they are registered above, 
+      // this is just to be safe if any other wildcards exist)
+      if (req.originalUrl.startsWith('/api')) {
+        return res.status(404).json({ error: 'Not Found' })
+      }
       res.sendFile(path.resolve(publicDir, 'index.html'))
     })
   } else {
@@ -46,39 +56,30 @@ async function startServer() {
     })
   }
 
-  // API routes (ensure these are registered before the SPA fallback if possible, 
-  // but for prod static middleware handles existing files first, so order matters for API vs wildcard)
-  // Re-registering API routes here if they were lost? 
-  // The original code had app.get('/api/data'...) AFTER app.use(vite.middlewares).
-  // In Express, order matters.
-  // Move API routes BEFORE the catch-all handler.
-
-  app.get('/api/data', (req, res) => {
-    res.json({ message: 'Hello from Express' })
-  })
-
-  // Try to start server on port, or find an available port
-  function tryListen(port: number): void {
-    const server = app.listen(port, () => {
-      console.log(`✨ Server running at http://localhost:${port}`)
-    }).on('error', (err: NodeJS.ErrnoException) => {
-      if (err.code === 'EADDRINUSE') {
-        if (port === DEFAULT_PORT) {
-          console.log(`⚠️  Port ${port} is in use, trying port ${port + 1}...`)
-          tryListen(port + 1)
+  // Only listen if not running on Vercel
+  if (!process.env.VERCEL) {
+    function tryListen(port: number): void {
+      const server = app.listen(port, () => {
+        console.log(`✨ Server running at http://localhost:${port}`)
+      }).on('error', (err: NodeJS.ErrnoException) => {
+        if (err.code === 'EADDRINUSE') {
+          if (port === DEFAULT_PORT) {
+            console.log(`⚠️  Port ${port} is in use, trying port ${port + 1}...`)
+            tryListen(port + 1)
+          } else {
+            console.error(`❌ Port ${port} is also in use. Please free up a port or kill the process.`)
+            process.exit(1)
+          }
         } else {
-          console.error(`❌ Port ${port} is also in use. Please free up a port or kill the process.`)
-          console.error(`   To find the process: lsof -ti:${port}`)
-          console.error(`   To kill it: kill -9 $(lsof -ti:${port})`)
-          process.exit(1)
+          throw err
         }
-      } else {
-        throw err
-      }
-    })
-  }
+      })
+    }
 
-  tryListen(DEFAULT_PORT)
+    tryListen(DEFAULT_PORT)
+  }
 }
 
 startServer()
+
+export default app
