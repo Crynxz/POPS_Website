@@ -24,17 +24,17 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
   return (
     <section 
       ref={targetRef}
-      className="relative min-h-[90vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500" 
+      className="relative min-h-[90vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50 transition-colors duration-500" 
       id="inicio"
     >
       {/* Dynamic Background Parallax Blobs */}
       <motion.div 
         style={{ y: yText, opacity: opacityValue }}
-        className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-primary/10 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" 
       />
       <motion.div 
         style={{ y: yImage, opacity: opacityValue }}
-        className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-secondary/10 dark:bg-secondary/5 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" 
       />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -46,7 +46,7 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
             className="max-w-2xl"
           >
             <FadeIn delay={100}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-8 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-8 shadow-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -56,7 +56,7 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
             </FadeIn>
             
             <FadeIn delay={200}>
-              <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-8 text-slate-900 dark:text-white tracking-tight">
+              <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-8 text-slate-900 tracking-tight">
                 {t("hero.title.1")} <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-teal-500 to-primary-dark">
                   {t("hero.title.2")}
@@ -65,7 +65,7 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
             </FadeIn>
             
             <FadeIn delay={300}>
-              <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed font-medium">
+              <p className="text-xl text-slate-600 mb-10 leading-relaxed font-medium">
                 {t("hero.desc")}
               </p>
             </FadeIn>
@@ -83,7 +83,7 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
                 <a 
                   href="#waitlist" 
                   onClick={() => onSelectProfile?.('cuidador')}
-                  className="inline-flex justify-center items-center gap-3 px-10 py-5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 rounded-2xl font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:-translate-y-1 active:scale-95 shadow-sm"
+                  className="inline-flex justify-center items-center gap-3 px-10 py-5 bg-white text-slate-700 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition-all hover:-translate-y-1 active:scale-95 shadow-sm"
                 >
                   <Stethoscope className="w-5 h-5 text-primary" />
                   {t("hero.cta.work")}
@@ -134,7 +134,7 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
             </FadeIn>
             
             {/* Soft Glow Effect - Professional backdrop */}
-            <div className="absolute -z-10 -top-32 -right-32 w-96 h-96 bg-primary/8 dark:bg-primary/5 rounded-full blur-3xl"></div>
+            <div className="absolute -z-10 -top-32 -right-32 w-96 h-96 bg-primary/8 rounded-full blur-3xl"></div>
           </motion.div>
         </div>
       </div>
