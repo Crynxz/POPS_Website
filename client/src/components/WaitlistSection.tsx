@@ -44,18 +44,12 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
     } catch (error: any) {
       console.error("Form submission error caught:", error);
       
+      const errorText = error.message || "";
+      const isDuplicate = errorText.includes("409");
+      
       let errorMessage = "Não foi possível processar o teu pedido. Tenta novamente.";
-      let isDuplicate = false;
-
-      try {
-        const errorData = await error.json();
-        console.log("Error data from server:", errorData);
-        if (error.status === 409) {
-          isDuplicate = true;
-          errorMessage = errorData.message || "Este email já está registado.";
-        }
-      } catch (parseError) {
-        console.error("Could not parse error response JSON", parseError);
+      if (isDuplicate) {
+        errorMessage = "Este email já está registado na nossa lista de espera.";
       }
 
       toast({

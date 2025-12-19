@@ -10,7 +10,8 @@ if (process.env.DATABASE_URL) {
   try {
     pool = new Pool({ 
       connectionString: process.env.DATABASE_URL,
-      max: 1,
+      max: 1, // Keep connections low for Serverless
+      ssl: { rejectUnauthorized: false } // <--- REQUIRED for Supabase
     });
     db = drizzle(pool, { schema });
   } catch (err) {
