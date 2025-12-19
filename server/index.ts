@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Register routes synchronously
+// Register routes synchronously on the app
 registerRoutes(app);
 
 // Global Error Handler
@@ -32,25 +32,25 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   res.status(status).json({ message });
 });
 
-// Only start the server if we're not in Vercel
-if (!process.env.VERCEL) {
-  const server = createServer(app);
-
-  if (process.env.NODE_ENV !== "production") {
-    (async () => {
-      const { setupVite } = await import("./vite");
-      await setupVite(server, app);
-      const PORT = 5000;
-      server.listen(PORT, "0.0.0.0", () => {
-        log(`serving on port ${PORT}`);
-      });
-    })();
-  } else {
+// Setup environment-specific logic
+if (process.env.NODE_ENV !== "production") {
+  (async () => {
+    const server = createServer(app);
+    const { setupVite } = await import("./vite");
+    await setupVite(server, app);
+    const PORT = 5000;
+    server.listen(PORT, "0.0.0.0", () => {
+      log(`serving on port ${PORT}`);
+    });
+  })();
+} else {
+  // In production (non-Vercel environments like Replit)
+  if (!process.env.VERCEL) {
     (async () => {
       const { serveStatic } = await import("./vite");
       serveStatic(app);
       const PORT = 5000;
-      server.listen(PORT, "0.0.0.0", () => {
+      app.listen(PORT, "0.0.0.0", () => {
         log(`serving on port ${PORT}`);
       });
     })();
