@@ -123,23 +123,33 @@ export default function Header({ variant = "default" }: HeaderProps) {
 
       {/* MOBILE MENU */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-6 flex flex-col gap-4 lg:hidden animate-in slide-in-from-top-5">
+        <div className="absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-2xl p-6 flex flex-col gap-2 lg:hidden animate-in slide-in-from-top-2 duration-300 origin-top">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              className="text-lg font-medium text-slate-800 py-2 border-b border-slate-50"
+              className="text-base font-bold text-slate-800 py-4 border-b border-slate-50 active:bg-slate-50 active:text-primary transition-colors flex items-center justify-between"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
+              <ArrowRight className="w-4 h-4 text-slate-300" />
             </a>
           ))}
-          <div className="flex flex-col gap-3 mt-4">
-            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-3 rounded-xl border border-slate-200 flex justify-center items-center gap-2 font-semibold text-slate-700">
+          <div className="grid grid-cols-1 gap-3 mt-6">
+            <button 
+              onClick={() => {
+                setLanguage(language === "PT" ? "EN" : "PT");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full py-4 rounded-xl bg-slate-50 border border-slate-100 flex justify-center items-center gap-2 font-bold text-slate-600"
+            >
+              <Globe size={18} /> {language === "PT" ? "Switch to English" : "Mudar para Português"}
+            </button>
+            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-4 rounded-xl border-2 border-primary/10 flex justify-center items-center gap-2 font-bold text-primary">
               <Stethoscope size={18} /> {t("cta.caregiver")}
             </a>
-            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-3 rounded-xl bg-primary text-white flex justify-center items-center gap-2 font-semibold">
-              <Heart size={18} /> {t("cta.family")}
+            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-4 rounded-xl bg-primary text-white flex justify-center items-center gap-2 font-bold shadow-lg shadow-primary/20">
+              <Heart size={18} className="fill-white/20" /> {t("cta.family")}
             </a>
           </div>
         </div>

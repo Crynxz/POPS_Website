@@ -82,7 +82,7 @@ const translations = {
     "waitlist.success.desc": "O teu registo foi confirmado. Receberás um email em breve.",
     "waitlist.security.ssl": "Dados protegidos por encriptação SSL",
     "waitlist.security.rgpd": "Conformidade Total RGPD",
-    "waitlist.security.social": "Junte-se a +500 famílias"
+   
   },
   EN: {
     // Header

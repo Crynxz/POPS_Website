@@ -51,9 +51,29 @@
     scroll-padding-top: 100px;
     scroll-behavior: smooth;
   }
+
+  /* Fluid Typography & Spacing for Mobile Look */
+  :root {
+    --fluid-32-64: clamp(2rem, 5vw + 1rem, 4rem);
+    --fluid-16-32: clamp(1rem, 2.5vw + 0.5rem, 2rem);
+  }
 }
 
 @layer utilities {
+  .mobile-touch-target {
+    @apply min-h-[48px] min-w-[48px] flex items-center justify-center;
+  }
+
+  .fluid-py {
+    padding-top: var(--fluid-32-64);
+    padding-bottom: var(--fluid-32-64);
+  }
+
+  .fluid-px {
+    padding-left: var(--fluid-16-32);
+    padding-right: var(--fluid-16-32);
+  }
+
   .text-balance {
     text-wrap: balance;
   }

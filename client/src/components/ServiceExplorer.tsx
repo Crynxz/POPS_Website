@@ -70,34 +70,34 @@ export default function ServiceExplorer() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 bg-slate-50 rounded-[2.5rem] p-4 md:p-6 border border-slate-100 shadow-xl">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 bg-slate-50 rounded-[2.5rem] p-2 md:p-6 border border-slate-100 shadow-xl">
           
-          {/* Navigation (Left) */}
-          <div className="lg:col-span-4 flex flex-col gap-3">
+          {/* Navigation (Left / Top on Mobile) */}
+          <div className="lg:col-span-4 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 px-2 lg:px-0 snap-x no-scrollbar">
             {services.map((service) => (
               <button
                 key={service.id}
                 onClick={() => setActiveTab(service)}
-                className={`text-left p-5 rounded-2xl transition-all duration-300 group relative overflow-hidden border ${
+                className={`text-left p-4 lg:p-5 rounded-2xl transition-all duration-300 group relative overflow-hidden border flex-shrink-0 w-[200px] lg:w-full snap-start ${
                   activeTab.id === service.id 
                     ? "bg-white shadow-md border-slate-100 scale-[1.02]" 
                     : "hover:bg-white/50 border-transparent hover:border-slate-200"
                 }`}
               >
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                <div className="flex items-center gap-3 lg:gap-4 relative z-10">
+                  <div className={`w-8 lg:w-10 h-8 lg:h-10 rounded-xl flex items-center justify-center transition-colors ${
                     activeTab.id === service.id ? `${service.color} text-white` : "bg-slate-200 text-slate-500 group-hover:text-slate-700"
                   }`}>
-                    <service.icon size={20} />
+                    <service.icon size={18} />
                   </div>
-                  <div>
-                    <h3 className={`font-bold text-base ${activeTab.id === service.id ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900"}`}>
+                  <div className="min-w-0">
+                    <h3 className={`font-bold text-sm lg:text-base truncate ${activeTab.id === service.id ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900"}`}>
                       {service.title}
                     </h3>
-                    <p className="text-xs text-slate-400 mt-0.5 hidden sm:block">{service.subtitle}</p>
+                    <p className="text-[10px] lg:text-xs text-slate-400 mt-0.5 hidden sm:block truncate">{service.subtitle}</p>
                   </div>
                   {activeTab.id === service.id && (
-                    <ArrowRight className="ml-auto text-primary w-4 h-4 animate-in fade-in slide-in-from-left-2" />
+                    <ArrowRight className="ml-auto text-primary w-4 h-4 animate-in fade-in slide-in-from-left-2 hidden lg:block" />
                   )}
                 </div>
               </button>
@@ -105,7 +105,7 @@ export default function ServiceExplorer() {
           </div>
 
           {/* Visualization (Right) */}
-          <div className="lg:col-span-8 bg-white rounded-[2rem] p-8 md:p-12 border border-slate-100 relative overflow-hidden flex flex-col justify-center min-h-[400px]">
+          <div className="lg:col-span-8 bg-white rounded-[2rem] p-6 lg:p-12 border border-slate-100 relative overflow-hidden flex flex-col justify-center min-h-[350px] lg:min-h-[400px]">
             {/* Background Blob */}
             <div className={`absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-10 blur-[80px] transition-colors duration-500 ${activeTab.color}`}></div>
             
