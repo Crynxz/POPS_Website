@@ -5,7 +5,7 @@ import { insertWaitlistSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { Resend } from "resend";
 
-// Initialize Resend if API key is provided
+// O import do Resend deve estar SEMPRE aqui no topo
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export function registerRoutes(app: Express): Server {
@@ -17,42 +17,32 @@ export function registerRoutes(app: Express): Server {
     try {
       console.log("Waitlist submission start:", req.body);
       const data = insertWaitlistSchema.parse(req.body);
-      console.log("Validation success:", data);
-      
       const entry = await storage.createWaitlistEntry(data);
-      console.log("Storage success:", entry);
       
-      // Send automated email if Resend is configured
       if (resend) {
         try {
-          console.log("Attempting to send email to:", data.email);
-          const emailResult = await resend.emails.send({
+          await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: data.email,
             subject: 'Bem-vindo à lista de espera da POPS!',
             html: `<p>Olá ${data.name},</p><p>Obrigado por te juntares à nossa lista de espera...</p>`
           });
-          console.log("Email result:", emailResult);
+          console.log("Email enviado com sucesso para:", data.email);
         } catch (emailError) {
-          console.error("Failed to send email:", emailError);
-          // We don't fail the request if the email fails
+          console.error("Erro ao enviar email:", emailError);
         }
       }
 
       res.status(201).json(entry);
     } catch (error) {
-      console.error("Waitlist error caught:", error);
       if (error instanceof ZodError) {
-        res.status(400).json({ 
-          message: "Dados de registo inválidos", 
-          details: error.errors 
-        });
+        res.status(400).json({ message: "Dados inválidos", details: error.errors });
       } else {
+        console.error("Erro na waitlist:", error);
         res.status(500).json({ message: "Erro interno do servidor" });
       }
     }
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
+  return createServer(app);
 }
