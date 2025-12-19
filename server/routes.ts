@@ -8,7 +8,7 @@ import { Resend } from "resend";
 // O import do Resend deve estar SEMPRE aqui no topo
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-export function registerRoutes(app: Express): Server {
+export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/ping", (_req, res) => {
     res.json({ message: "pong" });
   });
