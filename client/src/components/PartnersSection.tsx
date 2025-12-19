@@ -28,10 +28,10 @@ export function PartnersSection() {
                 <div className="max-w-2xl">
                     <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">Ecossistema POPS</span>
                     <h3 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
-                        Apoiados por quem sabe.
+                        Parceiros Estratégicos em Portugal
                     </h3>
                     <p className="text-lg text-slate-600 mt-4 leading-relaxed">
-                        A nossa rede não é construída sozinha. Trabalhamos com as melhores instituições para garantir que os nossos cuidadores têm a melhor formação e certificação do mercado.
+                        A nossa rede de apoio domiciliário é construída em colaboração com as instituições mais respeitadas. Trabalhamos em conjunto para elevar o padrão dos serviços ao domicílio, garantindo que cada cuidador possui a formação técnica e certificação necessária para prestar um cuidado de excelência em todo o território nacional.
                     </p>
                 </div>
                 <Link href="/parceiros">

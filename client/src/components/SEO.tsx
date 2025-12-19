@@ -10,10 +10,10 @@ interface SEOProps {
 
 export default function SEO({ 
   title = "POPS - Rede de Cuidados Domiciliários Verificados", 
-  description = "Conectamos famílias a cuidadores qualificados e verificados. Segurança, transparência e tecnologia para o cuidado domiciliário em Portugal.", 
-  keywords = "apoio domiciliário, cuidadores, idosos, saúde, enfermagem, lar, pops, portugal",
+  description = "A POPS oferece os melhores serviços de apoio domiciliário em Portugal. Conectamos famílias a cuidadores qualificados e verificados para serviços ao domicílio com total segurança.", 
+  keywords = "apoio domiciliário, serviços ao domicílio, cuidadores, idosos, saúde, enfermagem, lar, pops, portugal, lisboa, porto",
   image = "/og-image.jpg",
-  url = "https://pops.pt"
+  url = "https://popshomecare.vercel.app"
 }: SEOProps) {
   return (
     <Helmet>

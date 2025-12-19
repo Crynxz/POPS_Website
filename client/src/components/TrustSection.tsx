@@ -77,10 +77,10 @@ export default function TrustSection() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
-            O Ecossistema POPS: <span className="text-primary">Tecnologia & Confiança</span>
+            A Nova Era do Apoio Domiciliário em Portugal
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Resolvemos a fragmentação do mercado com uma solução integrada. Unimos segurança, saúde e gestão numa só plataforma.
+            A POPS redefine os serviços ao domicílio através de uma plataforma integrada que une segurança rigorosa, monitorização de saúde em tempo real e gestão transparente para todas as famílias.
           </p>
         </div>
 

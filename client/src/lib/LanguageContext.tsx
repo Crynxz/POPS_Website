@@ -22,10 +22,10 @@ const translations = {
     "cta.family": "Para Famílias",
 
     // Hero
-    "hero.badge": "Brevemente Disponível",
-    "hero.title.1": "Cuidadores verificados,",
-    "hero.title.2": "à distância de um clique.",
-    "hero.desc": "Mais de 500 mil famílias portuguesas procuram soluções. A POPS conecta-o a profissionais certificados, com antecedentes verificados e garantia de qualidade. Inscreva-se na lista de espera e garanta acesso antecipado com descontos exclusivos de lançamento.",
+      "hero.badge": "Plataforma #1 em Portugal",
+      "hero.title.1": "O melhor apoio domiciliário",
+      "hero.title.2": "agora ao seu alcance.",
+      "hero.desc": "A POPS é o intermediário líder em serviços ao domicílio verificados. Unimos tecnologia e empatia para garantir o bem-estar de quem mais ama com cuidadores certificados em todo o país.",
     "hero.cta.find": "Preciso de Cuidados",
     "hero.cta.work": "Quero Trabalhar",
     "hero.trust.1": "Verificação Criminal Rigorosa",
@@ -41,19 +41,19 @@ const translations = {
     // Service Items (IDs match the keys below)
     "service.senior.title": "Séniores e Longevidade",
     "service.senior.subtitle": "Envelhecer em casa com dignidade",
-    "service.senior.desc": "Apoio completo para manter a independência. Desde companhia e estimulação cognitiva até cuidados de higiene e gestão de medicação.",
+    "service.senior.desc": "Os nossos serviços ao domicílio focados na terceira idade promovem a autonomia e o conforto no lar. Este apoio domiciliário especializado inclui companhia, estimulação cognitiva e auxílio nas tarefas diárias.",
     
     "service.inclusion.title": "Deficiência e Inclusão",
     "service.inclusion.subtitle": "Autonomia para todas as idades",
-    "service.inclusion.desc": "Suporte especializado para desafios físicos ou intelectuais. Focamo-nos nas capacidades e na promoção da máxima autonomia possível.",
+    "service.inclusion.desc": "Apoio domiciliário dedicado a pessoas com mobilidade reduzida ou necessidades especiais. Prestamos serviços ao domicílio que garantem segurança nas deslocações e higiene, adaptados a cada patologia.",
 
     "service.health.title": "Saúde e Pós-Operatório",
     "service.health.subtitle": "Recuperação segura no lar",
-    "service.health.desc": "Cuidados de enfermagem e apoio técnico para recuperações de cirurgias, acidentes ou gestão de doenças crónicas complexas.",
+    "service.health.desc": "Serviços ao domicílio técnicos realizados por profissionais de saúde qualificados. Este apoio domiciliário avançado foca-se na monitorização de sinais vitais, curativos e gestão de medicação complexa.",
 
     "service.domestic.title": "Apoio Doméstico",
     "service.domestic.subtitle": "Famílias livres de tarefas",
-    "service.domestic.desc": "Gestão completa das tarefas domésticas para que as famílias possam focar-se no que realmente importa: estar juntas.",
+    "service.domestic.desc": "Complementamos o apoio domiciliário com serviços ao domicílio de manutenção do lar, garantindo que o ambiente está limpo, seguro e organizado para o bem-estar total da sua família.",
 
     // Waitlist
     "waitlist.badge": "Oferta de Lançamento",

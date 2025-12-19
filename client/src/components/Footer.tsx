@@ -52,6 +52,18 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Locations Column */}
+          <div>
+            <h4 className="text-white font-semibold mb-6">Localização</h4>
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li className="hover:text-primary transition-colors cursor-default">Lisboa & Vale do Tejo</li>
+              <li className="hover:text-primary transition-colors cursor-default">Porto & Norte</li>
+              <li className="hover:text-primary transition-colors cursor-default">Setúbal & Alentejo</li>
+              <li className="hover:text-primary transition-colors cursor-default">Coimbra & Centro</li>
+              <li className="hover:text-primary transition-colors cursor-default">Algarve</li>
+            </ul>
+          </div>
+
           {/* Contacts Column */}
           <div>
             <h4 className="text-white font-semibold mb-6">Contactos</h4>
