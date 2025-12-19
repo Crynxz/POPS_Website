@@ -22,10 +22,10 @@ const translations = {
     "cta.family": "Para Famílias",
 
     // Hero
-      "hero.badge": "Plataforma #1 em Portugal",
+      "hero.badge": "Brevement",
       "hero.title.1": "O melhor apoio domiciliário",
       "hero.title.2": "agora ao seu alcance.",
-      "hero.desc": "A POPS é o intermediário líder em serviços ao domicílio verificados. Unimos tecnologia e empatia para garantir o bem-estar de quem mais ama com cuidadores certificados em todo o país.",
+      "hero.desc": "A POPS é uma intermediária em serviços ao domicílio verificados. Unimos tecnologia e empatia para garantir o bem-estar de quem mais ama com cuidadores certificados em todo o país.",
     "hero.cta.find": "Preciso de Cuidados",
     "hero.cta.work": "Quero Trabalhar",
     "hero.trust.1": "Verificação Criminal Rigorosa",
