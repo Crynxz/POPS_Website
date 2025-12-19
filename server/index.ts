@@ -1,6 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { log } from "./log";
 
 const app = express();
 app.use(express.json());
@@ -34,6 +34,7 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 // Setup environment-specific logic
 if (process.env.NODE_ENV !== "production") {
   (async () => {
+    const { setupVite } = await import("./vite");
     await setupVite(server, app);
     const PORT = 5000;
     server.listen(PORT, "0.0.0.0", () => {
@@ -43,11 +44,14 @@ if (process.env.NODE_ENV !== "production") {
 } else {
   // In production (non-Vercel), we need to serve static files and listen
   if (!process.env.VERCEL) {
-    serveStatic(app);
-    const PORT = 5000;
-    server.listen(PORT, "0.0.0.0", () => {
-      log(`serving on port ${PORT}`);
-    });
+    (async () => {
+      const { serveStatic } = await import("./vite");
+      serveStatic(app);
+      const PORT = 5000;
+      server.listen(PORT, "0.0.0.0", () => {
+        log(`serving on port ${PORT}`);
+      });
+    })();
   }
 }
 
