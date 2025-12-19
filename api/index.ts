@@ -46,32 +46,50 @@ export default async function handler(req: any, res: any) {
     // Validate Data
     const data = insertSchema.parse(req.body);
 
-    // Database Operation - WRAPPED IN TRY/CATCH TO PREVENT CRASH
+    // Database Operation
+    let databaseSaved = false;
+    let dbErrorMessage = null;
+
     if (process.env.DATABASE_URL) {
-      const Pool = (pg.default as any)?.Pool || (pg as any).Pool;
+      // Ensure the URL has pgbouncer=true if using port 6543
+      let connectionString = process.env.DATABASE_URL;
+      if (connectionString.includes(":6543") && !connectionString.includes("pgbouncer=true")) {
+        connectionString += (connectionString.includes("?") ? "&" : "?") + "pgbouncer=true";
+      }
+
+      const Pool = (pg as any).default?.Pool || (pg as any).Pool;
       const pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
+        connectionString,
         max: 1,
         ssl: { rejectUnauthorized: false },
-        connectionTimeoutMillis: 5000 // Don't wait forever
+        connectionTimeoutMillis: 10000
       });
       
       try {
         const db = drizzle(pool);
+        // Explicitly map columns to be safe
         await db.insert(waitlist).values({
-          ...data,
+          name: data.name,
+          email: data.email,
+          phone: data.phone || null,
+          birthDate: data.birthDate || null,
+          location: data.location || null,
+          profile: data.profile || null,
+          interest: data.interest || null,
           createdAt: new Date()
         });
-        console.log("Successfully saved to database");
+        console.log("DATABASE: Insert successful");
+        databaseSaved = true;
       } catch (dbErr: any) {
-        console.error("DATABASE CONNECTIVITY ERROR:", dbErr.message);
-        console.log("Proceeding with email only...");
+        dbErrorMessage = dbErr.message;
+        console.error("DATABASE ERROR:", dbErr.message);
       } finally {
         await pool.end();
       }
     }
 
     // Email Operation
+    let emailSent = false;
     if (process.env.RESEND_API_KEY) {
       try {
         const { Resend } = await import("resend");
@@ -82,13 +100,18 @@ export default async function handler(req: any, res: any) {
           subject: 'Bem-vindo à lista de espera da POPS!',
           html: `<p>Olá ${data.name},</p><p>Obrigado por te juntares à nossa lista de espera da POPS!</p>`
         });
-        console.log("Email sent successfully");
+        emailSent = true;
       } catch (emailErr) {
-        console.error("Email failure:", emailErr);
+        console.error("EMAIL ERROR:", emailErr);
       }
     }
 
-    return res.status(201).json({ success: true });
+    return res.status(201).json({ 
+      success: true, 
+      database: databaseSaved, 
+      email: emailSent,
+      error: dbErrorMessage 
+    });
 
   } catch (error: any) {
     console.error("Vercel Handler Error:", error);
