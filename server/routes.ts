@@ -5,7 +5,6 @@ import { insertWaitlistSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { Resend } from "resend";
 
-// O import do Resend deve estar SEMPRE aqui no topo
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -15,7 +14,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/waitlist", async (req, res) => {
     try {
-      console.log("Waitlist submission start:", req.body);
       const data = insertWaitlistSchema.parse(req.body);
       const entry = await storage.createWaitlistEntry(data);
       
@@ -25,11 +23,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
             from: 'onboarding@resend.dev',
             to: data.email,
             subject: 'Bem-vindo à lista de espera da POPS!',
-            html: `<p>Olá ${data.name},</p><p>Obrigado por te juntares à nossa lista de espera...</p>`
+            html: `<p>Olá ${data.name},</p><p>Obrigado por te juntares à nossa lista de espera. Entraremos em contacto brevemente.</p>`
           });
-          console.log("Email enviado com sucesso para:", data.email);
         } catch (emailError) {
-          console.error("Erro ao enviar email:", emailError);
+          console.error("Email error:", emailError);
         }
       }
 
@@ -38,7 +35,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (error instanceof ZodError) {
         res.status(400).json({ message: "Dados inválidos", details: error.errors });
       } else {
-        console.error("Erro na waitlist:", error);
         res.status(500).json({ message: "Erro interno do servidor" });
       }
     }
