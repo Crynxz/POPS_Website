@@ -1,3 +1,4 @@
+// Vercel Entry Point - Optimized for Supabase & Resend
 import { z } from "zod";
 
 export default async function handler(req: any, res: any) {
