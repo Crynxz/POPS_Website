@@ -24,7 +24,7 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
   return (
     <section 
       ref={targetRef}
-      className="relative min-h-[90vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50 transition-colors duration-500" 
+      className="relative min-h-[90vh] flex items-center pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden bg-gradient-to-b from-slate-50 via-slate-50 to-white transition-colors duration-500" 
       id="inicio"
     >
       {/* Dynamic Background Parallax Blobs */}
@@ -142,3 +142,4 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
     </section>
   );
 }
+

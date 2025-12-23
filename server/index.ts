@@ -45,7 +45,7 @@ const init = async () => {
         const { serveStatic } = await import("./vite");
         serveStatic(app);
       }
-      const PORT = Number(process.env.PORT) || 5000;
+      const PORT = Number(process.env.PORT) || 5001;
       server.listen(PORT, "0.0.0.0", () => log(`serving on port ${PORT}`));
     } catch (e) {
       console.error("Local server start failed:", e);

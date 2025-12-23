@@ -57,7 +57,23 @@ export default function ServiceExplorer() {
   }
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden transition-colors duration-300" id="mercado">
+    <section className="py-24 pt-32 lg:pt-40 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden transition-colors duration-300" id="mercado">
+      
+      {/* Top Wave Divider */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 rotate-180">
+        <svg className="relative block w-[calc(100%+1.3px)] h-[60px] lg:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-white/0"></path> 
+          {/* Note: The previous section ends in white-ish gradient, so we use a path that 'cuts' out or overlays. 
+              Actually, a simpler approach for 'blending' is an SVG that matches the PREVIOUS background.
+              Since Hero ends in 'to-white', this section starts 'from-white', so no hard cut needed there.
+              Let's use a subtle curve that IS slate-50 to bridge if needed, but since we have gradient to gradient, 
+              we might just want a decorative element or nothing if the gradients match perfectly.
+              
+              Let's assume we want a distinct curve.
+          */}
+        </svg>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
