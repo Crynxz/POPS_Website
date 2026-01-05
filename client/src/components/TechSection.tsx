@@ -1,4 +1,5 @@
 import { MapPin, ClipboardList, Lock, Smartphone, Check, Bell, Shield, MessageSquare } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function TechSection() {
   return (
