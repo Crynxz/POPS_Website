@@ -27,12 +27,9 @@ export default function FAQSection() {
       questions: [
         {
           q: "Quanto tempo leva a encontrar um cuidador?",
-          a: "A maioria das famílias encontra um cuidador verificado em 3-7 dias após a inscrição. O tempo depende da sua localização, disponibilidade desejada e tipo de cuidado. Oferecemos uma garantia de reembolso se não encontrar um match satisfatório em 30 dias."
+          a: "A maioria das famílias poderá encontrar um cuidador verificado em qualquer momento. O tempo depende da sua localização, disponibilidade desejada e tipo de cuidado."
         },
-        {
-          q: "Posso experimentar vários cuidadores antes de escolher?",
-          a: "Absolutamente! Recomendamos fazer 1-2 encontros de avaliação (30 minutos) antes de confirmar. Estes encontros são gratuitos. Se decidir mudar de cuidador, pode fazê-lo sem penalidades ou custos adicionais."
-        },
+      
         {
           q: "Como é garantida a qualidade e compatibilidade?",
           a: "Cada cuidador passa por 4 etapas rigorosas de verificação: validação documental, consulta de registo criminal (recorrente), certificações técnicas validadas, e avaliação contínua. Os cuidadores com classificações baixas (<4.5 estrelas) são removidos da plataforma."
@@ -47,12 +44,12 @@ export default function FAQSection() {
           a: "Não há compromisso mínimo. Pode contratar um cuidador por uma única hora ou por meses. Somos completamente flexíveis. Se quiser ajustar o horário, aumentar/diminuir as horas ou cancelar, pode fazê-lo com aviso prévio de 48 horas."
         },
         {
-          q: "Como funciona o cancelamento?",
-          a: "Pode cancelar a qualquer momento sem penalidades. Basta comunicar com 48 horas de antecedência. Se cancelar dentro de 2 horas antes do início do serviço, cobra-se uma taxa de 10€ para compensar o cuidador. Após 30 dias contratados, oferecemos até 1 mês de pausa sem custo."
+          q: "Como funciona o cancelamento de um serviço?",
+          a: "Pode cancelar a qualquer momento sem penalidades. Basta comunicar com 48 horas de antecedência. Se cancelar dentro de 2 horas antes do início do serviço, cobra-se uma taxa de 10€ para compensar o cuidador."
         },
         {
           q: "Posso ajustar as horas/serviços durante o contrato?",
-          a: "Sim. Pode aumentar, diminuir ou modificar o tipo de cuidado a qualquer momento. As mudanças têm efeito no período seguinte (semana/mês). Oferecemos consulta gratuita com a nossa equipa para otimizar o seu plano."
+          a: "Sim. Pode aumentar, diminuir ou modificar o tipo de cuidado a qualquer momento. As mudanças têm efeito no período seguinte (semana/mês)."
         }
       ]
     },
@@ -61,7 +58,7 @@ export default function FAQSection() {
       questions: [
         {
           q: "Como me comunico com o meu cuidador?",
-          a: "Através da app POPS, que inclui chat em tempo real, chamadas de vídeo e partilha de localização GPS. A app tem um interface simples, mesmo para pessoas idosas. Oferecemos suporte telefónico 24/7 em português para emergências."
+          a: "Através da app POPS, que inclui chat em tempo real, chamadas de vídeo e partilha de localização GPS. A app tem um interface simples, mesmo para pessoas idosas. Oferecemos suporte telefónico 24/7 em português com pessoas reias, para emergências."
         },
         {
           q: "Posso acompanhar o meu familiar em tempo real?",
