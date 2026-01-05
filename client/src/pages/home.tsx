@@ -7,6 +7,7 @@ import FadeIn from "@/components/FadeIn";
 import SplashScreen from "@/components/SplashScreen";
 import StickyFloatingCTA from "@/components/StickyFloatingCTA";
 
+
 import HeroSection from "@/components/HeroSection";
 const ServiceExplorer = lazy(() => import("@/components/ServiceExplorer"));
 const ComparisonSection = lazy(() => import("@/components/ComparisonSection"));
@@ -33,6 +34,16 @@ export default function Home() {
       <SplashScreen />
       <SEO />
       
+      {/* Global Noise Texture Overlay */}
+      <div className="fixed inset-0 pointer-events-none z-[5] opacity-[0.03] mix-blend-overlay">
+        <svg className="w-full h-full">
+          <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.6" stitchTiles="stitch"/>
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+        </svg>
+      </div>
+
       {/* Global Parallax Background Layers */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Top Right Blob */}
@@ -57,6 +68,8 @@ export default function Home() {
       <main className="flex-1 relative z-10">
         {/* Secções */}
         <HeroSection onSelectProfile={setSelectedProfile} />
+        
+    
         
         <Suspense fallback={<div className="h-96" />}>
           <FadeIn>

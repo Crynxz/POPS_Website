@@ -57,57 +57,49 @@ export default function ServiceExplorer() {
   }
 
   return (
-    <section className="py-24 pt-32 lg:pt-40 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden transition-colors duration-300" id="mercado">
+    <section className="pt-32 md:pt-40 pb-24 md:pb-32 bg-gradient-to-b from-white via-white to-white relative overflow-hidden transition-colors duration-300" id="mercado">
       
       {/* Top Wave Divider */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 rotate-180">
         <svg className="relative block w-[calc(100%+1.3px)] h-[60px] lg:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-white/0"></path> 
-          {/* Note: The previous section ends in white-ish gradient, so we use a path that 'cuts' out or overlays. 
-              Actually, a simpler approach for 'blending' is an SVG that matches the PREVIOUS background.
-              Since Hero ends in 'to-white', this section starts 'from-white', so no hard cut needed there.
-              Let's use a subtle curve that IS slate-50 to bridge if needed, but since we have gradient to gradient, 
-              we might just want a decorative element or nothing if the gradients match perfectly.
-              
-              Let's assume we want a distinct curve.
-          */}
         </svg>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">{t("services.badge")}</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+          <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">{t("services.badge")}</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 tracking-tight">
             {t("services.title")}
           </h2>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-slate-600 leading-relaxed px-2 sm:px-0">
             {t("services.desc")}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 bg-slate-50 rounded-[2.5rem] p-2 md:p-6 border border-slate-100 shadow-xl">
+        <div className="grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 bg-slate-50 rounded-2xl md:rounded-3xl p-2 sm:p-4 md:p-6 border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300">
           
           {/* Navigation (Left / Top on Mobile) */}
-          <div className="lg:col-span-4 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 px-2 lg:px-0 snap-x no-scrollbar">
+          <div className="lg:col-span-4 flex flex-row lg:flex-col gap-2 sm:gap-3 overflow-x-auto lg:overflow-x-visible pb-3 sm:pb-4 lg:pb-0 px-1 sm:px-2 lg:px-0 snap-x no-scrollbar">
             {services.map((service) => (
               <button
                 key={service.id}
                 onClick={() => setActiveTab(service)}
-                className={`text-left p-4 lg:p-5 rounded-2xl transition-all duration-300 group relative overflow-hidden border flex-shrink-0 w-[200px] lg:w-full snap-start ${
+                className={`text-left p-3 sm:p-4 lg:p-5 rounded-lg sm:rounded-2xl transition-all duration-300 group relative overflow-hidden border flex-shrink-0 w-[180px] sm:w-[200px] lg:w-full snap-start font-medium text-sm sm:text-base ${
                   activeTab.id === service.id 
-                    ? "bg-white shadow-md border-slate-100 scale-[1.02]" 
-                    : "hover:bg-white/50 border-transparent hover:border-slate-200"
+                    ? "bg-white shadow-md sm:shadow-lg border-primary text-primary scale-[1.02] border-2" 
+                    : "hover:bg-white hover:border-slate-200 border-transparent text-slate-700 hover:shadow-md"
                 }`}
               >
-                <div className="flex items-center gap-3 lg:gap-4 relative z-10">
-                  <div className={`w-8 lg:w-10 h-8 lg:h-10 rounded-xl flex items-center justify-center transition-colors ${
+                <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 relative z-10">
+                  <div className={`w-7 sm:w-8 lg:w-10 h-7 sm:h-8 lg:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-colors flex-shrink-0 ${
                     activeTab.id === service.id ? `${service.color} text-white` : "bg-slate-200 text-slate-500 group-hover:text-slate-700"
                   }`}>
-                    <service.icon size={18} />
+                    <service.icon size={16} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className={`font-bold text-sm lg:text-base truncate ${activeTab.id === service.id ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900"}`}>
+                    <h3 className={`font-bold text-xs sm:text-sm lg:text-base truncate ${activeTab.id === service.id ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900"}`}>
                       {service.title}
                     </h3>
                     <p className="text-[10px] lg:text-xs text-slate-400 mt-0.5 hidden sm:block truncate">{service.subtitle}</p>

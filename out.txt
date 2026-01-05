@@ -1,0 +1,7 @@
+
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+2:54:51 PM [express] Routes registered successfully
+Re-optimizing dependencies because lockfile has changed
+2:54:51 PM [express] serving on port 5001

@@ -1,8 +1,10 @@
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 export default function FAQSection() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
+  const [expandedCategories, setExpandedCategories] = useState<Set<number>>(new Set([0]));
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   const faqs = [
     {
@@ -82,7 +84,7 @@ export default function FAQSection() {
           a: "O seguro cobre: (1) Acidentes acidentais durante o cuidado, (2) Danos a propriedade pessoal, (3) Lesões ao cuidador, (4) Responsabilidade civil. NÃO cobre negligência intencional, danos criminosos, ou situações fora do período de cuidado agendado."
         },
         {
-          q: "E se algo de ruim acontecer durante o cuidado?",
+          q: "E se algo de errado acontecer durante o cuidado?",
           a: "Temos um protocolo de emergência com 3 níveis: (1) Contactamos imediatamente os familiares registados, (2) Acionamos o INEM se necessário, (3) A nossa equipa acompanha e oferece suporte contínuo. Todas as emergências disparam investigação automática e cobertura de seguro acelerada."
         }
       ]
@@ -124,62 +126,120 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="py-24 bg-white transition-colors duration-300" id="faq">
+    <section className="py-24 md:py-32 bg-gradient-to-b from-slate-50 to-white transition-colors duration-300" id="faq">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">Perguntas Frequentes</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">Dúvidas? Temos Respostas.</h2>
-          <p className="text-lg text-slate-600">Tudo que precisa de saber sobre a POPS, da inscrição ao cuidado diário.</p>
+        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20 px-2 sm:px-0">
+          <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">Perguntas Frequentes (FAQ)</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 tracking-tight">
+            <span className="text-gradient-brand">Dúvidas</span> ? Temos Respostas.</h2>
+          <p className="text-lg text-slate-600 leading-relaxed">Tudo que precisa de saber sobre a POPS, da inscrição ao cuidado diário.</p>
         </div>
 
         {/* FAQ Tabs/Categories */}
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-8">
-            {faqs.map((faqGroup, groupIdx) => (
-              <div key={groupIdx} className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
-                <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                  <div className="w-1 h-6 bg-primary rounded-full"></div>
-                  {faqGroup.category}
-                </h3>
-                
-                <div className="space-y-4">
-                  {faqGroup.questions.map((faq, idx) => {
-                    const faqId = groupIdx * 100 + idx;
-                    return (
-                      <div key={idx} className="bg-white rounded-lg border border-slate-100 overflow-hidden hover:border-primary/20 transition-colors">
-                        <button
-                          onClick={() => setOpenFAQ(openFAQ === faqId ? null : faqId)}
-                          className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-slate-50 transition-colors"
-                        >
-                          <span className="font-semibold text-slate-900">{faq.q}</span>
-                          <ChevronDown 
-                            size={20} 
-                            className={`text-primary flex-shrink-0 transition-transform duration-300 ${
-                              openFAQ === faqId ? "rotate-180" : ""
-                            }`}
-                          />
-                        </button>
+          <div className="space-y-3 sm:space-y-4">
+            {faqs.map((faqGroup, groupIdx) => {
+              const isVisible = showAllCategories || groupIdx < 2; // Show first 2 categories by default
+              const isCategoryExpanded = expandedCategories.has(groupIdx);
+              
+              if (!isVisible && !showAllCategories) return null;
+              
+              return (
+                <div key={groupIdx} className="bg-slate-50 rounded-lg sm:rounded-2xl border border-slate-200 overflow-hidden">
+                  {/* Category Header - Clickable to expand/collapse */}
+                  <button
+                    onClick={() => {
+                      const newCategories = new Set(expandedCategories);
+                      if (newCategories.has(groupIdx)) {
+                        newCategories.delete(groupIdx);
+                      } else {
+                        newCategories.add(groupIdx);
+                      }
+                      setExpandedCategories(newCategories);
+                    }}
+                    className="w-full px-4 sm:px-6 md:px-8 py-4 sm:py-5 flex items-center justify-between hover:bg-slate-100 transition-colors"
+                  >
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2 sm:gap-3">
+                      <div className="w-0.5 sm:w-1 h-5 sm:h-6 bg-primary rounded-full"></div>
+                      {faqGroup.category}
+                    </h3>
+                    <ChevronRight 
+                      size={20} 
+                      className={`text-primary flex-shrink-0 transition-transform duration-300 ${
+                        isCategoryExpanded ? "rotate-90" : ""
+                      }`}
+                    />
+                  </button>
+                  
+                  {/* Questions - Show only when category expanded */}
+                  {isCategoryExpanded && (
+                    <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-6 bg-white space-y-2 sm:space-y-3 border-t border-slate-200 animate-in fade-in duration-200">
+                      {faqGroup.questions.map((faq, idx) => {
+                        const faqId = groupIdx * 100 + idx;
+                        const isOpen = openFAQ === faqId;
                         
-                        {openFAQ === faqId && (
-                          <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 text-slate-600 leading-relaxed animate-in fade-in duration-200">
-                            {faq.a}
+                        return (
+                          <div key={idx} className="bg-slate-50 rounded-lg border border-slate-100 overflow-hidden hover:border-primary/20 transition-colors">
+                            <button
+                              onClick={() => setOpenFAQ(openFAQ === faqId ? null : faqId)}
+                              className="w-full px-4 sm:px-5 py-3 sm:py-4 text-left flex justify-between items-start sm:items-center gap-3 hover:bg-slate-100 transition-colors"
+                            >
+                              <span className="font-medium text-slate-900 text-xs sm:text-sm leading-snug">{faq.q}</span>
+                              <ChevronDown 
+                                size={16} 
+                                className={`text-primary flex-shrink-0 mt-0.5 sm:mt-0 transition-transform duration-300 ${
+                                  isOpen ? "rotate-180" : ""
+                                }`}
+                              />
+                            </button>
+                            
+                            {isOpen && (
+                              <div className="px-4 sm:px-5 py-3 sm:py-4 bg-white border-t border-slate-100 text-slate-600 text-xs sm:text-sm leading-relaxed animate-in fade-in duration-200">
+                                {faq.a}
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
+          {/* Show More/Less Button */}
+          {!showAllCategories && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setShowAllCategories(true)}
+                className="btn-primary inline-flex items-center gap-2"
+              >
+                Ver Todas as Categorias
+                <ChevronDown size={20} className="rotate-180" />
+              </button>
+            </div>
+          )}
+
+          {showAllCategories && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setShowAllCategories(false)}
+                className="btn-secondary inline-flex items-center gap-2"
+              >
+                Mostrar Menos
+                <ChevronDown size={20} />
+              </button>
+            </div>
+          )}
+
           {/* Still have questions */}
-          <div className="mt-12 p-8 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl border border-primary/10 text-center">
-            <p className="text-slate-700 mb-4">Ainda tem dúvidas?</p>
-            <p className="text-sm text-slate-600 mb-6">
-              A nossa equipa está disponível para responder qualquer pergunta. Contacte-nos por chat, email ou telefone.
+          <div className="mt-12 p-8 md:p-10 bg-gradient-to-r from-primary/5 via-white to-secondary/5 rounded-2xl md:rounded-3xl border border-primary/20 text-center shadow-lg shadow-primary/5 hover:shadow-xl transition-all">
+            <p className="text-slate-900 font-semibold mb-3 text-lg">Ainda tem dúvidas?</p>
+            <p className="text-sm text-slate-600 mb-8">
+              A nossa equipa está disponível 24/7 para responder qualquer pergunta. Contacte-nos por chat, email ou telefone.
             </p>
-            <a href="#waitlist" className="inline-block px-6 py-3 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-colors">
+            <a href="#waitlist" className="btn-primary inline-block">
               Falar com a Equipa
             </a>
           </div>

@@ -1,0 +1,44 @@
+
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+3:18:04 PM [express] Routes registered successfully
+3:18:04 PM [express] serving on port 5001
+3:21:53 PM [vite] hmr update /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+3:23:09 PM [vite] hmr update /src/components/HeroSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+
+warn - The class `duration-[1.5s]` is ambiguous and matches multiple utilities.
+warn - If this is content and not a class, replace it with `duration-&lsqb;1.5s&rsqb;` to silence this warning.
+3:25:12 PM [vite] hmr update /src/components/HeroSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+3:57:04 PM [vite] hmr update /src/components/SplashScreen.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+3:59:02 PM [vite] hmr update /src/components/SplashScreen.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:02:13 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:08:05 PM [vite] hmr update /src/pages/home.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:08:07 PM [vite] hmr update /src/components/FadeIn.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:10:49 PM [vite] hmr update /src/components/ComparisonSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:11:26 PM [vite] hmr update /src/components/PricingSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:45:31 PM [vite] hmr update /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:45:41 PM [vite] hmr update /src/components/HeroSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:46:09 PM [vite] hmr update /src/components/ComparisonSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:48:30 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:49:44 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:49:51 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:50:02 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:50:50 PM [vite] hmr update /src/components/TrustSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:51:47 PM [vite] hmr update /src/components/PartnersSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:52:39 PM [vite] hmr update /src/components/PricingSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+4:53:13 PM [vite] hmr update /src/components/FAQSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:39:42 PM [vite] hmr update /src/components/ui/section.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:39:44 PM [vite] hmr update /src/components/TrustSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:39:45 PM [vite] page reload src/components/StatsSection.tsx
+5:39:46 PM [vite] hmr update /src/components/VettingSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:41:48 PM [vite] hmr update /src/components/ComparisonSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:41:49 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:41:50 PM [vite] hmr update /src/components/ServiceExplorer.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:43:06 PM [vite] hmr update /src/components/PartnersSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:43:07 PM [vite] page reload src/components/RealitySection.tsx
+5:47:30 PM [vite] hmr update /src/components/PricingSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:47:32 PM [vite] hmr update /src/components/WaitlistSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:47:33 PM [vite] hmr update /src/components/FAQSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:48:16 PM [vite] hmr update /src/components/HeroSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:48:25 PM [vite] hmr update /src/components/FAQSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu

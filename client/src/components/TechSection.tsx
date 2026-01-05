@@ -2,68 +2,72 @@ import { MapPin, ClipboardList, Lock, Smartphone, Check, Bell, Shield, MessageSq
 
 export default function TechSection() {
   return (
-    <section className="py-32 bg-slate-950 text-white overflow-hidden relative">
-      {/* Background Glows */}
+    <section className="py-24 md:py-32 bg-gradient-to-b from-white via-white to-slate-50/50 text-slate-900 overflow-hidden relative transition-colors duration-300">
+      {/* Subtle gradient overlay for visual interest - seamless blending */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50/15 to-transparent pointer-events-none"></div>
+      
+      {/* Background Glows - Very subtle to blend seamlessly */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-[120px] mix-blend-screen"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-primary/3 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-600/3 rounded-full blur-[120px] mix-blend-screen"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           
           <div className="order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-xs font-semibold text-primary-light mb-6 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200 border border-slate-300 text-xs font-semibold text-primary mb-6 backdrop-blur-md">
               <Smartphone size={14} /> App para Famílias
             </div>
             
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white drop-shadow-sm">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-slate-900 drop-shadow-sm tracking-tight">
               A tecnologia que protege <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-blue-300">quem você ama.</span>
+           
+              <span className="text-gradient-brand">quem amas.</span>
             </h2>
             
-            <p className="text-slate-400 text-lg mb-12 leading-relaxed max-w-xl">
-              Eliminamos a "caixa negra" dos cuidados domiciliários. A nossa aplicação permite acompanhar tudo em tempo real, trazendo transparência total para a sua família.
+            <p className="text-slate-600 text-lg mb-12 leading-relaxed max-w-xl">
+              Eliminamos a &quot;caixa negra&quot; dos cuidados domiciliários. A nossa aplicação permite acompanhar tudo em tempo real, trazendo transparência total para a sua família.
             </p>
 
             <div className="space-y-6">
-              <div className="group flex gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/20">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/80 to-primary/20 flex items-center justify-center text-white shrink-0 shadow-lg shadow-primary/20">
+              <div className="group flex gap-6 p-6 rounded-2xl bg-white hover:bg-slate-50 transition-all border border-slate-200 hover:border-primary/30">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-primary shrink-0 shadow-lg shadow-primary/10">
                   <MapPin size={28} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2 text-white">GPS & Check-in</h4>
-                  <p className="text-sm text-slate-400 leading-relaxed">Saiba o momento exato em que o cuidador entra e sai de sua casa. Receba notificações automáticas no seu telemóvel.</p>
+                  <h4 className="font-bold text-xl mb-2 text-slate-900">GPS & Check-in</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">Saiba o momento exato em que o cuidador entra e sai de sua casa. Receba notificações automáticas no seu telemóvel.</p>
                 </div>
               </div>
 
-              <div className="group flex gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/20">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/80 to-blue-500/20 flex items-center justify-center text-white shrink-0 shadow-lg shadow-blue-500/20">
+              <div className="group flex gap-6 p-6 rounded-2xl bg-white hover:bg-slate-50 transition-all border border-slate-200 hover:border-primary/30">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 flex items-center justify-center text-blue-600 shrink-0 shadow-lg shadow-blue-500/10">
                   <ClipboardList size={28} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2 text-white">Diário Digital</h4>
-                  <p className="text-sm text-slate-400 leading-relaxed">Check-in, Check-out, relatórios de higiene, alimentação e medicação preenchidos na app após cada visita. Nada fica por registar.</p>
+                  <h4 className="font-bold text-xl mb-2 text-slate-900">Diário Digital</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">Check-in, Check-out, relatórios de higiene, alimentação e medicação preenchidos na app após cada visita. Nada fica por registar.</p>
                 </div>
               </div>
 
-              <div className="group flex gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/20">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/80 to-purple-500/20 flex items-center justify-center text-white shrink-0 shadow-lg shadow-purple-500/20">
+              <div className="group flex gap-6 p-6 rounded-2xl bg-white hover:bg-slate-50 transition-all border border-slate-200 hover:border-primary/30">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 flex items-center justify-center text-purple-600 shrink-0 shadow-lg shadow-purple-500/10">
                   <Shield size={28} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2 text-white">Pagamentos Seguros</h4>
-                  <p className="text-sm text-slate-400 leading-relaxed">Faturação automática e pagamentos via app. Sem trocas de dinheiro físico, tudo declarado e legal.</p>
+                  <h4 className="font-bold text-xl mb-2 text-slate-900">Pagamentos Seguros</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">Faturação automática e pagamentos via app. Sem trocas de dinheiro físico, tudo declarado e legal.</p>
                 </div>
               </div>
 
-              <div className="group flex gap-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/20">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/80 to-emerald-500/20 flex items-center justify-center text-white shrink-0 shadow-lg shadow-emerald-500/20">
+              <div className="group flex gap-6 p-6 rounded-2xl bg-white hover:bg-slate-50 transition-all border border-slate-200 hover:border-primary/30">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center text-emerald-600 shrink-0 shadow-lg shadow-emerald-500/10">
                   <MessageSquare size={28} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2 text-white">Chat Seguro Encriptado</h4>
-                  <p className="text-sm text-slate-400 leading-relaxed">Comunicação direta, rápida e privada entre família e cuidador. Respostas que ficam documentadas.</p>
+                  <h4 className="font-bold text-xl mb-2 text-slate-900">Chat Seguro Encriptado</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">Comunicação direta, rápida e privada entre família e cuidador. Respostas que ficam documentadas.</p>
                 </div>
               </div>
             </div>

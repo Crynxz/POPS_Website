@@ -33,16 +33,16 @@ export default function RealitySection() {
   ];
 
   return (
-    <section className="py-24 bg-white" id="mercado">
+    <section className="py-24 md:py-32 bg-white" id="mercado">
       <div className="container mx-auto px-6">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">Uma Realidade Transversal</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+          <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">Uma Realidade Transversal</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 tracking-tight">
             O cuidado ao domicílio não é apenas sobre envelhecer.<br />É sobre viver com qualidade.
           </h2>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-slate-600 leading-relaxed">
             Em Portugal, milhões de pessoas enfrentam desafios diários que exigem apoio especializado. A POPS existe para todas elas, em qualquer fase da vida.
           </p>
         </div>

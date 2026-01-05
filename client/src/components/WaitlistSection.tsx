@@ -72,7 +72,7 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
   };
 
   return (
-    <section className="py-24 bg-slate-50 relative overflow-hidden" id="waitlist">
+    <section className="py-24 md:py-32 bg-gradient-to-b from-slate-50/50 to-slate-50 relative overflow-hidden" id="waitlist">
       {/* Background patterns */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
            style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
@@ -91,7 +91,7 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
                 <div className="w-16 md:w-20 h-16 md:h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8 border border-primary/30">
                   <CheckCircle2 size={32} className="text-primary-light" />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("waitlist.success.title") || "Obrigado!"}</h2>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{t("waitlist.success.title") || "Obrigado!"}</h2>
                 <p className="text-slate-400 text-base md:text-lg mb-8">
                   {t("waitlist.success.desc") || "O teu registo foi confirmado. Receberás um email em breve."}
                 </p>
@@ -108,7 +108,7 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
                   <Gift size={14} className="text-secondary" /> {t("waitlist.badge")}
                 </span>
                 
-                <h2 className="text-3xl md:text-6xl font-bold mb-6 md:mb-8 tracking-tight text-white leading-[1.2] md:leading-[1.1] text-balance">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 tracking-tight text-white leading-[1.2] md:leading-[1.1] text-balance">
                   {t("waitlist.title")}
                 </h2>
                 

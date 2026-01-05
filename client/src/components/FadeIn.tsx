@@ -1,46 +1,56 @@
-import { useRef, useEffect, useState, ReactNode } from 'react';
+import { ReactNode } from 'react';
+import { motion, HTMLMotionProps } from 'framer-motion';
 
-interface FadeInProps {
+interface FadeInProps extends HTMLMotionProps<"div"> {
   children: ReactNode;
   delay?: number;
   className?: string;
+  direction?: 'up' | 'down' | 'left' | 'right' | 'none';
+  blur?: boolean;
 }
 
-export default function FadeIn({ children, delay = 0, className = "" }: FadeInProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const domRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Once visible, we can stop observing to keep it visible
-          if (domRef.current) observer.unobserve(domRef.current);
-        }
-      });
-    }, {
-      threshold: 0.1, // Trigger when 10% of the element is visible
-      rootMargin: "0px 0px -50px 0px" // Trigger slightly before the bottom
-    });
-
-    const currentRef = domRef.current;
-    if (currentRef) observer.observe(currentRef);
-
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-    };
-  }, []);
+export default function FadeIn({ 
+  children, 
+  delay = 0, 
+  className = "", 
+  direction = 'up',
+  blur = true,
+  ...props 
+}: FadeInProps) {
+  
+  const getInitial = () => {
+    let initial: any = { opacity: 0 };
+    if (blur) initial.filter = "blur(10px)";
+    
+    switch (direction) {
+      case 'up': initial.y = 40; break;
+      case 'down': initial.y = -40; break;
+      case 'left': initial.x = 40; break;
+      case 'right': initial.x = -40; break;
+      case 'none': break;
+    }
+    return initial;
+  };
 
   return (
-    <div
-      ref={domRef}
-      className={`transition-all duration-1000 ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+    <motion.div
+      initial={getInitial()}
+      whileInView={{ 
+        opacity: 1, 
+        y: 0, 
+        x: 0,
+        filter: "blur(0px)" 
+      }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ 
+        duration: 0.8, 
+        delay: delay / 1000, 
+        ease: [0.21, 0.47, 0.32, 0.98] 
+      }}
+      className={className}
+      {...props}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
