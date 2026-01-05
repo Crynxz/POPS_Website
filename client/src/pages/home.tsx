@@ -14,6 +14,7 @@ const VettingSection = lazy(() => import("@/components/VettingSection"));
 const TechSection = lazy(() => import("@/components/TechSection"));
 const TrustSection = lazy(() => import("@/components/TrustSection"));
 const PricingSection = lazy(() => import("@/components/PricingSection"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
 const WaitlistSection = lazy(() => import("@/components/WaitlistSection"));
 import { PartnersSection } from "@/components/PartnersSection";
 
@@ -94,6 +95,12 @@ export default function Home() {
         <Suspense fallback={<div className="h-96" />}>
           <FadeIn>
             <PricingSection />
+          </FadeIn>
+        </Suspense>
+        
+        <Suspense fallback={<div className="h-96" />}>
+          <FadeIn>
+            <FAQSection />
           </FadeIn>
         </Suspense>
                   
