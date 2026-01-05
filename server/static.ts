@@ -10,9 +10,23 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  app.use(express.static(distPath, {
+    maxAge: "1y",
+    etag: true,
+    immutable: true,
+    setHeaders: (res, path) => {
+      if (path.endsWith(".html")) {
+        // HTML files should not be cached aggressively to allow for updates
+        res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+      } else {
+        // Assets (JS, CSS, Images) are hashed and can be cached effectively forever
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      }
+    }
+  }));
 
   // fall through to index.html if the file doesn't exist
+
   app.use("*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });

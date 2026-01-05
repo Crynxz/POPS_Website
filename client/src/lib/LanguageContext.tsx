@@ -34,8 +34,10 @@ const translations = {
 
     // Service Explorer
     "services.badge": "Soluções Integradas",
-    "services.title": "Uma resposta para cada fase da vida.",
+    "services.title.1": "Uma resposta para cada",
+    "services.title.2": "fase da vida.",
     "services.desc": "Explore as nossas áreas de atuação. Selecione uma categoria para ver como podemos ajudar a sua família.",
+
     "services.btn": "Encontrar Apoio",
     
     // Service Items (IDs match the keys below)
@@ -77,7 +79,7 @@ const translations = {
     "waitlist.form.interest.dk": "Não sei ainda",
     "waitlist.benefit.title": "Benefício exclusivo ativado",
     "waitlist.benefit.desc": "Ao submeter, garante o seu lugar para o desconto de 25%.",
-    "waitlist.cta": "Inscrever-me Agora",
+    "waitlist.cta": "Inscrever-me Agora (Sem Compromisso)",
     "waitlist.success.title": "Obrigado!",
     "waitlist.success.desc": "O teu registo foi confirmado. Receberás um email em breve.",
     "waitlist.security.ssl": "Dados protegidos por encriptação SSL",
@@ -109,8 +111,10 @@ const translations = {
 
     // Service Explorer
     "services.badge": "Integrated Solutions",
-    "services.title": "A solution for every stage of life.",
+    "services.title.1": "A solution for every",
+    "services.title.2": "stage of life.",
     "services.desc": "Explore our areas of expertise. Select a category to see how we can help your family.",
+
     "services.btn": "Find Support",
 
     // Service Items

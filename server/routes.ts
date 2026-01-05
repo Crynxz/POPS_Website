@@ -1,44 +1,15 @@
 import type { Express } from "express";
-import { storage } from "./storage";
-import { insertWaitlistSchema } from "../shared/schema";
-import { ZodError } from "zod";
+import { registerWaitlistRoutes } from "./api/waitlist";
+import { registerCmsRoutes } from "./api/cms";
+import { registerAnalyticsRoutes } from "./api/analytics";
 
 export function registerRoutes(app: Express) {
   app.get("/api/ping", (_req, res) => {
     res.json({ status: "alive" });
   });
 
-  app.post("/api/waitlist", async (req, res) => {
-    try {
-      const data = insertWaitlistSchema.parse(req.body);
-      const existingEntry = await storage.getWaitlistEntryByEmail(data.email);
-      if (existingEntry) {
-        return res.status(409).json({ message: "Email já registado." });
-      }
-
-      const entry = await storage.createWaitlistEntry(data);
-
-      if (process.env.RESEND_API_KEY) {
-        try {
-          const { Resend } = await import("resend");
-          const resend = new Resend(process.env.RESEND_API_KEY);
-          await resend.emails.send({
-            from: 'onboarding@resend.dev',
-            to: data.email,
-            subject: 'Bem-vindo à lista de espera da POPS!',
-            html: `<p>Olá ${data.name},</p><p>Obrigado por te juntares à nossa lista de espera!</p>`
-          });
-        } catch (e) {
-          console.error("Email failed:", e);
-        }
-      }
-
-      res.status(201).json(entry);
-    } catch (error: any) {
-      if (error instanceof ZodError) {
-        return res.status(400).json({ message: "Dados inválidos", details: error.errors });
-      }
-      res.status(500).json({ message: "Erro no servidor", error: error.message });
-    }
-  });
+  registerWaitlistRoutes(app);
+  registerCmsRoutes(app);
+  registerAnalyticsRoutes(app);
 }
+

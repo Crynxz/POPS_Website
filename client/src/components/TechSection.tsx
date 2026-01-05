@@ -75,8 +75,8 @@ export default function TechSection() {
           </div>
 
           <div className="relative flex justify-center order-1 lg:order-2 scale-110 lg:scale-125 transition-transform duration-500">
-             {/* Phone Mockup - Refined for Website Consistency */}
-             <div className="relative w-[340px] h-[680px] bg-slate-100 rounded-[50px] border-[10px] border-white shadow-colored overflow-hidden ring-1 ring-slate-200">
+             {/* Phone Mockup - Black frame with Light App Interface */}
+             <div className="relative w-[340px] h-[680px] bg-slate-900 rounded-[50px] border-[10px] border-slate-800 shadow-2xl overflow-hidden ring-1 ring-white/10">
                 {/* Screen Content - Light Mode aligned with Website */}
                 <div className="absolute top-0 left-0 right-0 h-full bg-white flex flex-col">
                     {/* Header/Banner Area */}
@@ -85,15 +85,16 @@ export default function TechSection() {
                             src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&q=80" 
                             alt="Map View" 
                             className="w-full h-full object-cover"
+                            loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
                         
-                        {/* Status Bar */}
-                        <div className="absolute top-4 left-6 right-6 flex justify-between text-xs font-bold text-slate-800">
+                        {/* Status Bar - White text for better visibility on image */}
+                        <div className="absolute top-4 left-6 right-6 flex justify-between text-xs font-bold text-white drop-shadow-sm">
                             <span>9:41</span>
                             <div className="flex gap-1.5 items-center">
-                                <div className="w-4 h-2 border border-slate-800 rounded-[1px]"></div>
-                                <div className="w-3 h-3 bg-slate-800 rounded-full"></div>
+                                <div className="w-4 h-2 border border-white rounded-[1px]"></div>
+                                <div className="w-3 h-3 bg-white rounded-full"></div>
                             </div>
                         </div>
                     </div>

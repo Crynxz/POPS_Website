@@ -42,3 +42,253 @@ warn - If this is content and not a class, replace it with `duration-&lsqb;1.5s&
 5:47:33 PM [vite] hmr update /src/components/FAQSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
 5:48:16 PM [vite] hmr update /src/components/HeroSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
 5:48:25 PM [vite] hmr update /src/components/FAQSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:50:03 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:52:26 PM [vite] hmr update /src/lib/LanguageContext.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:52:26 PM [vite] hmr invalidate /src/lib/LanguageContext.tsx Could not Fast Refresh ("useLanguage" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+5:52:26 PM [vite] hmr update /src/App.tsx?v=VLCdDiO97u6hSTWzzkMAu, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu, /src/components/Header.tsx, /src/components/StickyFloatingCTA.tsx, /src/components/HeroSection.tsx, /src/components/ServiceExplorer.tsx, /src/components/WaitlistSection.tsx
+5:53:35 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:55:26 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+5:59:30 PM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+10:18:36 PM [vite] hmr update /src/App.tsx?v=VLCdDiO97u6hSTWzzkMAu, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+10:21:16 PM [vite] hmr update /src/components/SEO.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+10:21:38 PM [vite] page reload src/main.tsx
+10:21:39 PM [vite] Pre-transform error: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=YYwQ-7OZ0oR89K1m9yiMq: Identifier 'React' has already been declared. (13:7)
+
+  11 | )
+  12 |
+> 13 | import React from 'react'
+     |        ^
+  14 | import ReactDOM from 'react-dom/client'
+  15 | import App from './App.tsx'      
+  16 | import './styles/index.css'
+10:21:39 PM [vite] Internal server error: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=YYwQ-7OZ0oR89K1m9yiMq: Identifier 'React' has already been declared. (13:7)
+
+  11 | )
+  12 |
+> 13 | import React from 'react'
+     |        ^
+  14 | import ReactDOM from 'react-dom/client'
+  15 | import App from './App.tsx'      
+  16 | import './styles/index.css'
+  Plugin: vite:react-babel
+  File: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=YYwQ-7OZ0oR89K1m9yiMq:13:7
+  11 |  )
+  12 |  
+  13 |  import React from 'react'
+     |         ^
+  14 |  import ReactDOM from 'react-dom/client'
+  15 |  import App from './App.tsx'      
+      at toParseError (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parse-error.ts:95:45)
+      at TypeScriptParserMixin.raise (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/tokenizer/index.ts:1507:19)
+      at TypeScriptScopeHandler.checkRedeclarationInScope (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/util/scope.ts:164:19)
+      at TypeScriptScopeHandler.declareName (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/util/scope.ts:118:12)
+      at TypeScriptScopeHandler.declareName (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/scope.ts:89:11)
+      at TypeScriptParserMixin.declareNameFromIdentifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/lval.ts:852:16)
+      at TypeScriptParserMixin.checkIdentifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/lval.ts:847:12)
+      at TypeScriptParserMixin.checkLVal (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/lval.ts:739:12)
+      at TypeScriptParserMixin.finishImportSpecifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3229:10)
+      at TypeScriptParserMixin.parseImportSpecifierLocal (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3216:31)
+      at TypeScriptParserMixin.maybeParseDefaultImportSpecifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3401:12)
+      at TypeScriptParserMixin.parseImportSpecifiersAndAfter (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3163:29)
+      at TypeScriptParserMixin.parseImport (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3148:17)
+      at TypeScriptParserMixin.parseImport (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/index.ts:2973:28)
+      at TypeScriptParserMixin.parseStatementContent (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:647:25)
+      at TypeScriptParserMixin.parseStatementContent (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/index.ts:3223:20)
+      at TypeScriptParserMixin.parseStatementLike (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:482:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:419:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:1443:16)
+      at TypeScriptParserMixin.parseBlockBody (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:1417:10)
+      at TypeScriptParserMixin.parseProgram (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:229:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:203:25)
+      at TypeScriptParserMixin.parse (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/index.ts:88:25)
+      at TypeScriptParserMixin.parse (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/index.ts:4337:20)
+      at parse (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/index.ts:86:38)
+      at parser (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/parser/index.ts:29:19)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/transformation/normalize-file.ts:50:24)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/transformation/index.ts:41:36)
+      at run.next (<anonymous>)
+      at transform (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/transform.ts:29:20)
+      at transform.next (<anonymous>)
+      at step (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:261:32)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:223:11)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:189:28
+      at <anonymous> (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/gensync-utils/async.ts:90:7)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:113:33
+      at step (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:287:14)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:223:11)
+10:21:39 PM [vite] Pre-transform error: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=DomP2XpCPVPzZ16I-7rUk: Identifier 'React' has already been declared. (13:7)
+
+  11 | )
+  12 |
+> 13 | import React from 'react'
+     |        ^
+  14 | import ReactDOM from 'react-dom/client'
+  15 | import App from './App.tsx'      
+  16 | import './styles/index.css'
+10:23:34 PM [vite] Pre-transform error: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=TtoM2bmjLAYjfVODs5dTF: Identifier 'React' has already been declared. (13:7)
+
+  11 | )
+  12 |
+> 13 | import React from 'react'
+     |        ^
+  14 | import ReactDOM from 'react-dom/client'
+  15 | import App from './App.tsx'      
+  16 | import './styles/index.css'
+10:23:34 PM [vite] Internal server error: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=TtoM2bmjLAYjfVODs5dTF: Identifier 'React' has already been declared. (13:7)
+
+  11 | )
+  12 |
+> 13 | import React from 'react'
+     |        ^
+  14 | import ReactDOM from 'react-dom/client'
+  15 | import App from './App.tsx'      
+  16 | import './styles/index.css'
+  Plugin: vite:react-babel
+  File: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=TtoM2bmjLAYjfVODs5dTF:13:7
+  11 |  )
+  12 |  
+  13 |  import React from 'react'
+     |         ^
+  14 |  import ReactDOM from 'react-dom/client'
+  15 |  import App from './App.tsx'      
+      at toParseError (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parse-error.ts:95:45)
+      at TypeScriptParserMixin.raise (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/tokenizer/index.ts:1507:19)
+      at TypeScriptScopeHandler.checkRedeclarationInScope (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/util/scope.ts:164:19)
+      at TypeScriptScopeHandler.declareName (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/util/scope.ts:118:12)
+      at TypeScriptScopeHandler.declareName (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/scope.ts:89:11)
+      at TypeScriptParserMixin.declareNameFromIdentifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/lval.ts:852:16)
+      at TypeScriptParserMixin.checkIdentifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/lval.ts:847:12)
+      at TypeScriptParserMixin.checkLVal (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/lval.ts:739:12)
+      at TypeScriptParserMixin.finishImportSpecifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3229:10)
+      at TypeScriptParserMixin.parseImportSpecifierLocal (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3216:31)
+      at TypeScriptParserMixin.maybeParseDefaultImportSpecifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3401:12)
+      at TypeScriptParserMixin.parseImportSpecifiersAndAfter (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3163:29)
+      at TypeScriptParserMixin.parseImport (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3148:17)
+      at TypeScriptParserMixin.parseImport (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/index.ts:2973:28)
+      at TypeScriptParserMixin.parseStatementContent (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:647:25)
+      at TypeScriptParserMixin.parseStatementContent (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/index.ts:3223:20)
+      at TypeScriptParserMixin.parseStatementLike (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:482:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:419:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:1443:16)
+      at TypeScriptParserMixin.parseBlockBody (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:1417:10)
+      at TypeScriptParserMixin.parseProgram (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:229:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:203:25)
+      at TypeScriptParserMixin.parse (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/index.ts:88:25)
+      at TypeScriptParserMixin.parse (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/index.ts:4337:20)
+      at parse (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/index.ts:86:38)
+      at parser (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/parser/index.ts:29:19)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/transformation/normalize-file.ts:50:24)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/transformation/index.ts:41:36)
+      at run.next (<anonymous>)
+      at transform (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/transform.ts:29:20)
+      at transform.next (<anonymous>)
+      at step (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:261:32)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:223:11)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:189:28
+      at <anonymous> (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/gensync-utils/async.ts:90:7)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:113:33
+      at step (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:287:14)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:223:11)
+10:23:34 PM [vite] Pre-transform error: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=qGeATVHu-hRmyFEShLIor: Identifier 'React' has already been declared. (13:7)
+
+  11 | )
+  12 |
+> 13 | import React from 'react'
+     |        ^
+  14 | import ReactDOM from 'react-dom/client'
+  15 | import App from './App.tsx'      
+  16 | import './styles/index.css'
+10:23:39 PM [vite] Pre-transform error: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=mxda_23aJXXCxao14mmpJ: Identifier 'React' has already been declared. (13:7)
+
+  11 | )
+  12 |
+> 13 | import React from 'react'
+     |        ^
+  14 | import ReactDOM from 'react-dom/client'
+  15 | import App from './App.tsx'      
+  16 | import './styles/index.css'
+10:23:39 PM [vite] Internal server error: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=mxda_23aJXXCxao14mmpJ: Identifier 'React' has already been declared. (13:7)
+
+  11 | )
+  12 |
+> 13 | import React from 'react'
+     |        ^
+  14 | import ReactDOM from 'react-dom/client'
+  15 | import App from './App.tsx'      
+  16 | import './styles/index.css'
+  Plugin: vite:react-babel
+  File: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=mxda_23aJXXCxao14mmpJ:13:7
+  11 |  )
+  12 |  
+  13 |  import React from 'react'
+     |         ^
+  14 |  import ReactDOM from 'react-dom/client'
+  15 |  import App from './App.tsx'      
+      at toParseError (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parse-error.ts:95:45)
+      at TypeScriptParserMixin.raise (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/tokenizer/index.ts:1507:19)
+      at TypeScriptScopeHandler.checkRedeclarationInScope (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/util/scope.ts:164:19)
+      at TypeScriptScopeHandler.declareName (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/util/scope.ts:118:12)
+      at TypeScriptScopeHandler.declareName (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/scope.ts:89:11)
+      at TypeScriptParserMixin.declareNameFromIdentifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/lval.ts:852:16)
+      at TypeScriptParserMixin.checkIdentifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/lval.ts:847:12)
+      at TypeScriptParserMixin.checkLVal (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/lval.ts:739:12)
+      at TypeScriptParserMixin.finishImportSpecifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3229:10)
+      at TypeScriptParserMixin.parseImportSpecifierLocal (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3216:31)
+      at TypeScriptParserMixin.maybeParseDefaultImportSpecifier (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3401:12)
+      at TypeScriptParserMixin.parseImportSpecifiersAndAfter (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3163:29)
+      at TypeScriptParserMixin.parseImport (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:3148:17)
+      at TypeScriptParserMixin.parseImport (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/index.ts:2973:28)
+      at TypeScriptParserMixin.parseStatementContent (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:647:25)
+      at TypeScriptParserMixin.parseStatementContent (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/index.ts:3223:20)
+      at TypeScriptParserMixin.parseStatementLike (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:482:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:419:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:1443:16)
+      at TypeScriptParserMixin.parseBlockBody (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:1417:10)
+      at TypeScriptParserMixin.parseProgram (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:229:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/statement.ts:203:25)
+      at TypeScriptParserMixin.parse (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/parser/index.ts:88:25)
+      at TypeScriptParserMixin.parse (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/plugins/typescript/index.ts:4337:20)
+      at parse (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/parser/src/index.ts:86:38)
+      at parser (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/parser/index.ts:29:19)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/transformation/normalize-file.ts:50:24)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/transformation/index.ts:41:36)
+      at run.next (<anonymous>)
+      at transform (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/transform.ts:29:20)
+      at transform.next (<anonymous>)
+      at step (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:261:32)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:223:11)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:189:28
+      at <anonymous> (/Users/joaosousa/Desktop/POPS_Website/node_modules/@babel/core/src/gensync-utils/async.ts:90:7)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:113:33
+      at step (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:287:14)
+      at /Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/Users/joaosousa/Desktop/POPS_Website/node_modules/gensync/index.js:223:11)
+10:23:39 PM [vite] Pre-transform error: /Users/joaosousa/Desktop/POPS_Website/client/src/main.tsx?v=QlKYCUK8aSc9_ufwXNdne: Identifier 'React' has already been declared. (13:7)
+
+  11 | )
+  12 |
+> 13 | import React from 'react'
+     |        ^
+  14 | import ReactDOM from 'react-dom/client'
+  15 | import App from './App.tsx'      
+  16 | import './styles/index.css'
+10:24:13 PM [vite] page reload src/main.tsx
+10:28:22 PM [vite] hmr update /src/components/HeroSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+10:37:06 PM [vite] hmr update /src/lib/LanguageContext.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+10:37:06 PM [vite] hmr invalidate /src/lib/LanguageContext.tsx Could not Fast Refresh ("useLanguage" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+10:37:06 PM [vite] hmr update /src/App.tsx?v=VLCdDiO97u6hSTWzzkMAu, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu, /src/components/Header.tsx, /src/components/StickyFloatingCTA.tsx, /src/components/HeroSection.tsx, /src/components/ServiceExplorer.tsx, /src/components/WaitlistSection.tsx
+10:37:10 PM [vite] hmr update /src/lib/LanguageContext.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+10:37:10 PM [vite] hmr invalidate /src/lib/LanguageContext.tsx Could not Fast Refresh ("useLanguage" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+10:37:10 PM [vite] hmr update /src/App.tsx?v=VLCdDiO97u6hSTWzzkMAu, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu, /src/components/Header.tsx, /src/components/StickyFloatingCTA.tsx, /src/components/HeroSection.tsx, /src/components/ServiceExplorer.tsx, /src/components/WaitlistSection.tsx
+10:37:17 PM [vite] hmr update /src/components/ServiceExplorer.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu

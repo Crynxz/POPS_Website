@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useContent } from '@/hooks/useContent';
 
 interface SEOProps {
   title?: string;
@@ -9,17 +10,23 @@ interface SEOProps {
 }
 
 export default function SEO({ 
-  title = "POPS - Intermediário de Cuidados Domiciliários Verificados em Portugal", 
-  description = "A POPS é a plataforma líder em apoio domiciliário em Portugal. Encontre cuidadores certificados, auxiliares de geriatria e serviços de enfermagem ao domicílio com verificação rigorosa e tecnologia de monitorização.", 
+  title, 
+  description, 
   keywords = "apoio domiciliário, serviços ao domicílio, cuidadores idosos, enfermagem domicílio, auxiliares geriatria, cuidados paliativos, descanso do cuidador, pops portugal, lisboa, porto",
   image = "/og-image.jpg",
   url = "https://popshomecare.vercel.app"
 }: SEOProps) {
+  const { value: cmsTitle } = useContent("site_title_default", "POPS - Intermediário de Cuidados Domiciliários Verificados em Portugal");
+  const { value: cmsDesc } = useContent("site_desc_default", "A POPS é a plataforma líder em apoio domiciliário em Portugal. Encontre cuidadores certificados, auxiliares de geriatria e serviços de enfermagem ao domicílio com verificação rigorosa e tecnologia de monitorização.");
+
+  const finalTitle = title || cmsTitle;
+  const finalDesc = description || cmsDesc;
+
   return (
     <Helmet>
       {/* Standard Metadata */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      <title>{finalTitle}</title>
+      <meta name="description" content={finalDesc} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={url} />
       
@@ -32,15 +39,15 @@ export default function SEO({
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="pt_PT" />
       <meta property="og:url" content={url} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={finalTitle} />
+      <meta property="og:description" content={finalDesc} />
       <meta property="og:image" content={image} />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={url} />
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={description} />
+      <meta property="twitter:title" content={finalTitle} />
+      <meta property="twitter:description" content={finalDesc} />
       <meta property="twitter:image" content={image} />
 
       {/* JSON-LD Schema Markup: LocalBusiness + Services */}
@@ -68,7 +75,7 @@ export default function SEO({
                 "latitude": 38.7223,
                 "longitude": -9.1393
               },
-              "description": description,
+              "description": finalDesc,
               "openingHoursSpecification": {
                 "@type": "OpeningHoursSpecification",
                 "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],

@@ -10,7 +10,20 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 )
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals(console.log);
+const sendToAnalytics = (metric: any) => {
+  const body = JSON.stringify({
+    eventName: "web_vital",
+    properties: metric,
+    sessionId: localStorage.getItem("analytics_session_id")
+  });
+  
+  // Use fetch with keepalive to ensure request completes even if tab closes
+  fetch('/api/analytics/event', { 
+    body, 
+    method: 'POST', 
+    headers: { 'Content-Type': 'application/json' }, 
+    keepalive: true 
+  }).catch(e => console.error("Analytics error:", e));
+}
+
+reportWebVitals(sendToAnalytics);

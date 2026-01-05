@@ -71,12 +71,16 @@ export default function ServiceExplorer() {
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
           <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">{t("services.badge")}</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 tracking-tight">
-            {t("services.title")}
+            {t("services.title.1")}{" "}
+            <span className="text-gradient-brand">
+              {t("services.title.2")}
+            </span>
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed px-2 sm:px-0">
             {t("services.desc")}
           </p>
         </div>
+
 
         <div className="grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 bg-slate-50 rounded-2xl md:rounded-3xl p-2 sm:p-4 md:p-6 border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300">
           

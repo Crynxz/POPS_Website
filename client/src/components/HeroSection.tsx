@@ -127,16 +127,17 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
             <FadeIn delay={300} className="relative">
               {/* Primary Image Container - Minimalist & Professional */}
               <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl max-w-lg mx-auto lg:max-w-none">
-                                    <img 
-                                      src="/assets/heroimg.jpg" 
-                                      alt="Cuidadora profissional da POPS prestando apoio domiciliário a idoso em Portugal - Serviço de confiança e verificado" 
-                                      className="w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-full object-cover hover:scale-102 transition-transform duration-1000 ease-out"
-                                      loading="eager"
-                                      fetchPriority="high"
-                                      width="800"
-                                      height="600"
-                                    />                
+                <img 
+                  src="/assets/heroimg.jpg" 
+                  alt="Cuidadora profissional da POPS prestando apoio domiciliário a idoso em Portugal" 
+                  className="w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-full object-cover hover:scale-102 transition-transform duration-1000 ease-out"
+                  fetchPriority="high"
+                  width="800"
+                  height="600"
+                  decoding="async"
+                />                
                 {/* Subtle Overlay - Very Light for Professional Look */}
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
               </div>
               
