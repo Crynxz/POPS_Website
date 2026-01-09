@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { useState, useEffect } from "react";
 import { Menu, X, Heart, Stethoscope, Globe, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
+import MagneticButton from "@/components/MagneticButton";
 
 interface HeaderProps {
   variant?: "default" | "light";
@@ -80,20 +81,23 @@ export default function Header({ variant = "default" }: HeaderProps) {
             <Globe size={14} /> {language}
           </button>
           
-      
+          <MagneticButton>
+            <a 
+              href="#waitlist" 
+              className={`text-sm font-semibold transition-colors flex items-center gap-2 px-4 py-2 rounded-full ${isLightText ? "text-slate-200 hover:text-white hover:bg-white/10" : "text-slate-700 hover:text-primary hover:bg-slate-100"}`}
+            >
+              <Stethoscope size={16} /> {t("cta.caregiver")}
+            </a>
+          </MagneticButton>
 
-          <a 
-            href="#waitlist" 
-            className={`text-sm font-semibold transition-colors flex items-center gap-2 ${isLightText ? "text-slate-200 hover:text-white" : "text-slate-700 hover:text-primary"}`}
-          >
-            <Stethoscope size={16} /> {t("cta.caregiver")}
-          </a>
-          <a 
-            href="#waitlist" 
-            className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 flex items-center gap-2 hover:-translate-y-0.5"
-          >
-            <Heart size={16} className="fill-white/20" /> {t("cta.family")}
-          </a>
+          <MagneticButton>
+            <a 
+              href="#waitlist" 
+              className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 flex items-center gap-2"
+            >
+              <Heart size={16} className="fill-white/20" /> {t("cta.family")}
+            </a>
+          </MagneticButton>
         </div>
 
         {/* MOBILE TOGGLE */}

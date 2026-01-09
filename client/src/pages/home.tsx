@@ -65,7 +65,7 @@ export default function Home() {
       {/* Header Global */}
       <Header />
 
-      <main className="flex-1 relative z-10">
+      <main id="main-content" className="flex-1 relative z-10">
         {/* Secções */}
         <HeroSection onSelectProfile={setSelectedProfile} />
         

@@ -1,5 +1,6 @@
-import { MapPin, ClipboardList, Lock, Smartphone, Check, Bell, Shield, MessageSquare, Battery, Signal, Wifi } from "lucide-react";
+import { MapPin, ClipboardList, Lock, Smartphone, Check, Bell, Shield, MessageSquare, Battery, Signal, Wifi, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import MagneticButton from "@/components/MagneticButton";
 
 export default function TechSection() {
   return (
@@ -31,7 +32,7 @@ export default function TechSection() {
               Eliminamos a incerteza dos cuidados domiciliários. A nossa aplicação traz transparência total, permitindo acompanhar o bem-estar dos seus familiares em tempo real.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-6 mb-12">
               {[
                 {
                   icon: <MapPin size={24} />,
@@ -73,6 +74,12 @@ export default function TechSection() {
                 </div>
               ))}
             </div>
+
+            <MagneticButton>
+              <a href="#waitlist" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1">
+                Conhecer a App <ArrowRight size={18} />
+              </a>
+            </MagneticButton>
           </div>
 
           {/* Right Column: Creative Mockup */}

@@ -1,5 +1,6 @@
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import MagneticButton from "@/components/MagneticButton";
 
 export default function FAQSection() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -239,9 +240,11 @@ export default function FAQSection() {
             <p className="text-xs sm:text-sm text-slate-600 mb-6 sm:mb-8">
               A nossa equipa está disponível 24/7 para responder qualquer pergunta. Contacte-nos por chat, email ou telefone.
             </p>
-            <a href="#waitlist" className="btn-primary inline-block text-sm sm:text-base">
-              Falar com a Equipa
-            </a>
+            <MagneticButton>
+              <a href="#waitlist" className="btn-primary inline-block text-sm sm:text-base">
+                Falar com a Equipa
+              </a>
+            </MagneticButton>
           </div>
         </div>
       </div>

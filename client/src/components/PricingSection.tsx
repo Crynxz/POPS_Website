@@ -1,6 +1,7 @@
-import { Check, AlertCircle, ArrowRight } from "lucide-react";
+import { Check, AlertCircle, ArrowRight, Star, Zap, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
+import MagneticButton from "@/components/MagneticButton";
 
 export default function PricingSection() {
   const tiers = [
@@ -11,6 +12,7 @@ export default function PricingSection() {
       features: ["Companhia social e conversa", "Supervisionamento de atividades", "Pequenas ajudas com refeições", "Limpeza leve", "Acompanhamento a consultas", "Comunicação via app POPS"],
       cta: "Tenho Interesse",
       highlight: false,
+      icon: Shield,
       style: "bg-white border-slate-200 hover:border-slate-300"
     },
     {
@@ -20,6 +22,7 @@ export default function PricingSection() {
       features: ["Tudo do plano Básico, mais:", "Higiene pessoal completa", "Apoio na mobilidade", "Ajuda a vestir/despir", "Preparação de refeições", "Gestão de roupa e limpeza", "GPS em tempo real", "Suporte prioritário 24/7"],
       cta: "Começar Agora",
       highlight: true,
+      icon: Star,
       style: "bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/40 shadow-2xl shadow-primary/15 relative overflow-hidden"
     },
     {
@@ -29,6 +32,7 @@ export default function PricingSection() {
       features: ["Tudo do plano Completo, mais:", "Cuidadores com Certificação Avançada", "Especialização em Alzheimer/Demência", "Monitorização médica contínua", "Equipamentos técnicos inclusos", "Estimulação cognitiva personalizada"],
       cta: "Saber Mais",
       highlight: false,
+      icon: Zap,
       style: "bg-white border-slate-200 hover:border-slate-300"
     }
   ];
@@ -72,6 +76,10 @@ export default function PricingSection() {
               </div>
             )}
 
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 ${tier.highlight ? 'bg-primary/10 text-primary' : 'bg-slate-100 text-slate-500'}`}>
+                <tier.icon size={24} />
+            </div>
+
             <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">{tier.name}</h3>
             <p className="text-xs sm:text-sm text-slate-600 mb-6 flex-grow">{tier.desc}</p>
             
@@ -91,16 +99,18 @@ export default function PricingSection() {
               ))}
             </ul>
 
-            <Button 
-              asChild
-              variant={tier.highlight ? "default" : "secondary"}
-              className={`w-full gap-2 group/btn ${tier.highlight ? "shadow-lg shadow-primary/20" : ""}`}
-            >
-              <a href="#waitlist">
-                {tier.cta}
-                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-              </a>
-            </Button>
+            <MagneticButton className="w-full">
+              <Button 
+                asChild
+                variant={tier.highlight ? "default" : "secondary"}
+                className={`w-full gap-2 group/btn ${tier.highlight ? "shadow-lg shadow-primary/20" : ""}`}
+              >
+                <a href="#waitlist">
+                  {tier.cta}
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </a>
+              </Button>
+            </MagneticButton>
           </div>
         ))}
       </div>

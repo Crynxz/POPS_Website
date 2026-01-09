@@ -1,4 +1,5 @@
 import { FileCheck, ShieldCheck, GraduationCap, Star, ArrowRight, Check, Lock, AlertTriangle } from "lucide-react";
+import MagneticButton from "@/components/MagneticButton";
 
 export default function VettingSection() {
   const steps = [
@@ -123,10 +124,12 @@ export default function VettingSection() {
         </div>
 
         <div className="text-center">
-          <a href="#waitlist" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary/90 text-white rounded-xl font-bold hover:shadow-xl transition-all hover:-translate-y-1 group shadow-lg">
-            <Lock size={18} /> Conhecer Cuidadores Verificados
-            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </a>
+          <MagneticButton>
+            <a href="#waitlist" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary/90 text-white rounded-xl font-bold hover:shadow-xl transition-all hover:-translate-y-1 group shadow-lg">
+              <Lock size={18} /> Conhecer Cuidadores Verificados
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </a>
+          </MagneticButton>
         </div>
       </div>
     </section>

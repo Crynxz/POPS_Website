@@ -1,8 +1,36 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { log } from "./log";
 import compression from "compression";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 
 const app = express();
+
+// Security Headers
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://www.google-analytics.com", "https://ssl.google-analytics.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "data:", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https://popshomecare.vercel.app"],
+      connectSrc: ["'self'", "https://api.emailjs.com"], // Adjust if needed
+    },
+  },
+}));
+
+// Rate Limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: "Too many requests from this IP, please try again after 15 minutes"
+});
+// Apply rate limiting to all requests (or specific API routes if preferred)
+app.use("/api", limiter);
+
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -16,8 +16,8 @@ export default function SEO({
   image = "/og-image.jpg",
   url = "https://popshomecare.vercel.app"
 }: SEOProps) {
-  const { value: cmsTitle } = useContent("site_title_default", "POPS - Intermediário de Cuidados Domiciliários Verificados em Portugal");
-  const { value: cmsDesc } = useContent("site_desc_default", "A POPS é a plataforma líder em apoio domiciliário em Portugal. Encontre cuidadores certificados, auxiliares de geriatria e serviços de enfermagem ao domicílio com verificação rigorosa e tecnologia de monitorização.");
+  const { value: cmsTitle } = useContent("site_title_default", "POPS - Apoio Domiciliário e Cuidadores de Idosos Verificados");
+  const { value: cmsDesc } = useContent("site_desc_default", "Encontre os melhores serviços de apoio domiciliário em Portugal. A POPS conecta famílias a cuidadores de idosos verificados e profissionais de saúde com total segurança e transparência.");
 
   const finalTitle = title || cmsTitle;
   const finalDesc = description || cmsDesc;

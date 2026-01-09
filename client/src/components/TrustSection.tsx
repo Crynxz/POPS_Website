@@ -21,7 +21,7 @@ export default function TrustSection() {
     { 
       icon: MapPin, 
       title: "Monitorização GPS Real", 
-      desc: "Acabou a incerteza. Receba notificações de Check-in e Check-out no seu telemóvel. O sistema valida a presença física do cuidador para garantir o cumprimento do horário." 
+      desc: "Receba notificações de Check-in e Check-out no seu telemóvel. O sistema valida a presença física do cuidador para garantir o cumprimento do horário." 
     },
     { 
       icon: FileText, 
@@ -73,8 +73,8 @@ export default function TrustSection() {
   const visibleFeatures = isExpanded ? allFeatures : allFeatures.slice(0, 4);
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-slate-50/50 via-white to-white transition-colors duration-300" id="diferenciais">
-      <div className="container mx-auto px-6">
+    <section className="py-24 md:py-32 bg-gradient-to-b from-slate-50/50 via-white to-white transition-colors duration-300 relative overflow-hidden" id="diferenciais">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 md:mb-20">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 tracking-tight">
             A Nova Era do   <span className="text-gradient-brand">Apoio Domiciliário </span>em Portugal
