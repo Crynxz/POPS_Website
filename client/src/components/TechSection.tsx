@@ -1,197 +1,229 @@
-import { MapPin, ClipboardList, Lock, Smartphone, Check, Bell, Shield, MessageSquare } from "lucide-react";
+import { MapPin, ClipboardList, Lock, Smartphone, Check, Bell, Shield, MessageSquare, Battery, Signal, Wifi } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function TechSection() {
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-white via-white to-slate-50/50 text-slate-900 overflow-hidden relative transition-colors duration-300">
-      {/* Subtle gradient overlay for visual interest - seamless blending */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50/15 to-transparent pointer-events-none"></div>
-      
-      {/* Background Glows - Very subtle to blend seamlessly */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-primary/3 rounded-full blur-[120px] mix-blend-screen"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-600/3 rounded-full blur-[120px] mix-blend-screen"></div>
+    <section className="py-24 md:py-32 bg-slate-50 relative overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[20%] -right-[10%] w-[70vh] h-[70vh] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute top-[40%] -left-[10%] w-[50vh] h-[50vh] bg-blue-400/5 rounded-full blur-[100px]" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
+          {/* Left Column: Content */}
           <div className="order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200 border border-slate-300 text-xs font-semibold text-primary mb-6 backdrop-blur-md">
-              <Smartphone size={14} /> App para Famílias
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-sm font-semibold text-primary mb-8">
+              <Smartphone size={16} /> 
+              <span>App para Famílias</span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-slate-900 drop-shadow-sm tracking-tight">
-              A tecnologia que protege <br/>
-           
-              <span className="text-gradient-brand">quem amas.</span>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight text-slate-900 tracking-tight">
+              Tecnologia que protege <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
+                quem mais ama.
+              </span>
             </h2>
             
             <p className="text-slate-600 text-lg mb-12 leading-relaxed max-w-xl">
-              Eliminamos a &quot;caixa negra&quot; dos cuidados domiciliários. A nossa aplicação permite acompanhar tudo em tempo real, trazendo transparência total para a sua família.
+              Eliminamos a incerteza dos cuidados domiciliários. A nossa aplicação traz transparência total, permitindo acompanhar o bem-estar dos seus familiares em tempo real.
             </p>
 
-            <div className="space-y-6">
-              <div className="group flex gap-6 p-6 rounded-2xl bg-white hover:bg-slate-50 transition-all border border-slate-200 hover:border-primary/30">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-primary shrink-0 shadow-lg shadow-primary/10">
-                  <MapPin size={28} />
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[
+                {
+                  icon: <MapPin size={24} />,
+                  title: "GPS & Check-in",
+                  desc: "Monitorização em tempo real da chegada e saída dos cuidadores.",
+                  color: "text-primary",
+                  bg: "bg-primary/10"
+                },
+                {
+                  icon: <ClipboardList size={24} />,
+                  title: "Diário Digital",
+                  desc: "Relatórios detalhados de higiene, alimentação e medicação.",
+                  color: "text-blue-600",
+                  bg: "bg-blue-600/10"
+                },
+                {
+                  icon: <Shield size={24} />,
+                  title: "Pagamentos Seguros",
+                  desc: "Transações automáticas, seguras e totalmente declaradas.",
+                  color: "text-emerald-600",
+                  bg: "bg-emerald-600/10"
+                },
+                {
+                  icon: <MessageSquare size={24} />,
+                  title: "Chat Encriptado",
+                  desc: "Comunicação direta e privada com a equipa de cuidados.",
+                  color: "text-purple-600",
+                  bg: "bg-purple-600/10"
+                }
+              ].map((item, index) => (
+                <div key={index} className="flex gap-4 items-start group">
+                  <div className={`w-12 h-12 rounded-xl ${item.bg} ${item.color} flex items-center justify-center shrink-0 transition-transform group-hover:scale-110`}>
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 mb-1">{item.title}</h4>
+                    <p className="text-sm text-slate-600 leading-snug">{item.desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-xl mb-2 text-slate-900">GPS & Check-in</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed">Saiba o momento exato em que o cuidador entra e sai de sua casa. Receba notificações automáticas no seu telemóvel.</p>
-                </div>
-              </div>
-
-              <div className="group flex gap-6 p-6 rounded-2xl bg-white hover:bg-slate-50 transition-all border border-slate-200 hover:border-primary/30">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 flex items-center justify-center text-blue-600 shrink-0 shadow-lg shadow-blue-500/10">
-                  <ClipboardList size={28} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl mb-2 text-slate-900">Diário Digital</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed">Check-in, Check-out, relatórios de higiene, alimentação e medicação preenchidos na app após cada visita. Nada fica por registar.</p>
-                </div>
-              </div>
-
-              <div className="group flex gap-6 p-6 rounded-2xl bg-white hover:bg-slate-50 transition-all border border-slate-200 hover:border-primary/30">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 flex items-center justify-center text-purple-600 shrink-0 shadow-lg shadow-purple-500/10">
-                  <Shield size={28} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl mb-2 text-slate-900">Pagamentos Seguros</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed">Faturação automática e pagamentos via app. Sem trocas de dinheiro físico, tudo declarado e legal.</p>
-                </div>
-              </div>
-
-              <div className="group flex gap-6 p-6 rounded-2xl bg-white hover:bg-slate-50 transition-all border border-slate-200 hover:border-primary/30">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center text-emerald-600 shrink-0 shadow-lg shadow-emerald-500/10">
-                  <MessageSquare size={28} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl mb-2 text-slate-900">Chat Seguro Encriptado</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed">Comunicação direta, rápida e privada entre família e cuidador. Respostas que ficam documentadas.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          <div className="relative flex justify-center order-1 lg:order-2 scale-110 lg:scale-125 transition-transform duration-500">
-             {/* Phone Mockup - Black frame with Light App Interface */}
-             <div className="relative w-[340px] h-[680px] bg-slate-900 rounded-[50px] border-[10px] border-slate-800 shadow-2xl overflow-hidden ring-1 ring-white/10">
-                {/* Screen Content - Light Mode aligned with Website */}
-                <div className="absolute top-0 left-0 right-0 h-full bg-white flex flex-col">
-                    {/* Header/Banner Area */}
-                    <div className="h-1/3 relative overflow-hidden">
-                        <img 
-                            src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&q=80" 
-                            alt="Map View" 
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
-                        
-                        {/* Status Bar - White text for better visibility on image */}
-                        <div className="absolute top-4 left-6 right-6 flex justify-between text-xs font-bold text-white drop-shadow-sm">
-                            <span>9:41</span>
-                            <div className="flex gap-1.5 items-center">
-                                <div className="w-4 h-2 border border-white rounded-[1px]"></div>
-                                <div className="w-3 h-3 bg-white rounded-full"></div>
-                            </div>
-                        </div>
-                    </div>
+          {/* Right Column: Creative Mockup */}
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-center relative">
+            {/* Abstract Background behind phone */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-slate-200/50 to-slate-100/50 rounded-full blur-3xl transform scale-90 translate-y-10 -z-10" />
 
-                    {/* Dynamic Notification - Premium Style */}
-                    <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[90%] bg-white/90 backdrop-blur-xl border border-primary/20 p-3.5 rounded-2xl flex items-center gap-3 shadow-xl animate-in slide-in-from-top-4 fade-in duration-700">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                            <Check size={20} className="text-primary" />
-                        </div>
-                        <div className="flex-1">
-                            <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Apoio em curso</div>
-                            <div className="text-xs font-bold text-slate-900">Ana Sousa iniciou o serviço</div>
-                        </div>
-                    </div>
-
-                    {/* App Content */}
-                    <div className="flex-1 px-5 -mt-16 relative z-10 space-y-4">
-                        {/* Status Card - Matches Website Card Style */}
-                        <div className="bg-white border border-slate-100 rounded-3xl p-5 shadow-lg">
-                            <div className="flex items-center gap-4 mb-5">
-                                <div className="relative">
-                                    <img src="https://ui-avatars.com/api/?name=Ana+S&background=0E6973&color=fff" className="w-14 h-14 rounded-2xl shadow-sm" alt="Avatar"/>
-                                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
-                                </div>
-                                <div className="flex-1">
-                                    <div className="text-slate-900 font-bold text-base">Ana Sousa</div>
-                                    <div className="text-primary text-[10px] font-bold uppercase tracking-widest">Cuidadora Nível Ouro</div>
-                                </div>
-                                <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400">
-                                    <MessageSquare size={16} />
-                                </div>
-                            </div>
-                            
-                            <div className="space-y-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                                <div className="flex justify-between text-[10px] font-bold text-slate-500 uppercase">
-                                    <span>Progresso do Turno</span>
-                                    <span className="text-primary">75%</span>
-                                </div>
-                                <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
-                                    <motion.div 
-                                      initial={{ width: 0 }}
-                                      animate={{ width: "75%" }}
-                                      transition={{ duration: 1, delay: 0.5 }}
-                                      className="h-full bg-primary rounded-full"
-                                    ></motion.div>
-                                </div>
-                                <div className="flex justify-between text-[10px] font-medium text-slate-400 italic">
-                                    <span>Início: 09:00</span>
-                                    <span>Fim: 13:00</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Quick Actions/Checklist */}
-                        <div className="grid grid-cols-2 gap-3">
-                            <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-col gap-2">
-                                <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
-                                    <ClipboardList size={18} />
-                                </div>
-                                <span className="text-[11px] font-bold text-slate-800">Tarefas Realizadas</span>
-                                <span className="text-[10px] text-slate-400">12/15 concluídas</span>
-                            </div>
-                            <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-col gap-2">
-                                <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600">
-                                    <Shield size={18} />
-                                </div>
-                                <span className="text-[11px] font-bold text-slate-800">Seguro Ativo</span>
-                                <span className="text-[10px] text-green-500 font-bold flex items-center gap-1">
-                                    <Check size={10} /> Protegido
-                                </span>
-                            </div>
-                        </div>
-
-                        {/* Notification Log */}
-                        <div className="bg-slate-50 rounded-2xl p-4 border border-dashed border-slate-200">
-                            <div className="text-[10px] font-bold text-slate-400 uppercase mb-3">Últimas Atualizações</div>
-                            <div className="space-y-3">
-                                {[
-                                    { time: "10:30", msg: "Medicação administrada", color: "bg-blue-500" },
-                                    { time: "11:15", msg: "Higiene pessoal concluída", color: "bg-primary" }
-                                ].map((item, i) => (
-                                    <div key={i} className="flex items-center gap-3">
-                                        <div className={`w-1.5 h-1.5 rounded-full ${item.color}`}></div>
-                                        <span className="text-[11px] font-medium text-slate-600 flex-1">{item.msg}</span>
-                                        <span className="text-[10px] text-slate-400 font-mono">{item.time}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    {/* Bottom Indicator */}
-                    <div className="h-1 w-32 bg-slate-200 rounded-full mx-auto mb-3 mt-auto"></div>
+            <div className="relative w-[320px] h-[640px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl ring-1 ring-slate-900/5 rotate-[-2deg] hover:rotate-0 transition-all duration-500 ease-out-expo">
+              {/* Phone Frame */}
+              <div className="absolute inset-0 bg-slate-900 rounded-[3rem] pointer-events-none" />
+              
+              {/* Screen Area */}
+              <div className="relative h-full w-full bg-slate-50 rounded-[2.25rem] overflow-hidden flex flex-col">
+                
+                {/* Status Bar */}
+                <div className="px-6 pt-3 pb-2 flex justify-between items-center bg-white z-20">
+                  <span className="text-xs font-semibold text-slate-900">9:41</span>
+                  <div className="flex gap-1.5 text-slate-900">
+                    <Signal size={12} />
+                    <Wifi size={12} />
+                    <Battery size={12} />
+                  </div>
                 </div>
-             </div>
-          </div>
 
+                {/* App Header */}
+                <div className="px-6 pb-4 bg-white border-b border-slate-100 z-10 sticky top-0">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900">Olá, João 👋</h3>
+                      <p className="text-xs text-slate-500 font-medium">Tudo tranquilo com a Avó Maria</p>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-slate-100 p-0.5 border border-slate-200">
+                      <img src="https://ui-avatars.com/api/?name=Joao+S&background=random" className="w-full h-full rounded-full" alt="Profile" />
+                    </div>
+                  </div>
+                  
+                  {/* Status Banner */}
+                  <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-3 flex items-center gap-3">
+                    <div className="relative">
+                      <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse" />
+                      <div className="absolute inset-0 bg-emerald-500 rounded-full animate-ping opacity-20" />
+                    </div>
+                    <span className="text-xs font-bold text-emerald-700 uppercase tracking-wide">Visita em Curso</span>
+                    <span className="ml-auto text-xs font-semibold text-emerald-600">Desde 09:00</span>
+                  </div>
+                </div>
+
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-hidden relative">
+                  <div className="absolute inset-0 overflow-y-auto no-scrollbar pb-20">
+                    <div className="p-5 space-y-5">
+                      
+                      {/* Live Map Widget (Abstract) */}
+                      <div className="bg-white rounded-3xl p-1 shadow-sm border border-slate-100 overflow-hidden relative group">
+                        <div className="h-32 bg-slate-100 rounded-[1.2rem] relative overflow-hidden">
+                           <div className="absolute inset-0 opacity-40 mix-blend-multiply filter grayscale-[0.2]">
+                              {/* Abstract Map Pattern */}
+                              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#cbd5e1" strokeWidth="0.5"/>
+                                </pattern>
+                                <rect width="100%" height="100%" fill="url(#grid)" />
+                              </svg>
+                           </div>
+                           {/* Avatar on Map */}
+                           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1">
+                              <div className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg overflow-hidden">
+                                <img src="https://ui-avatars.com/api/?name=Ana+C&background=0E6973&color=fff" className="w-full h-full object-cover" alt="Caregiver" />
+                              </div>
+                              <div className="px-2 py-0.5 bg-white/90 backdrop-blur shadow-sm rounded-md text-[10px] font-bold text-slate-800">
+                                Ana C.
+                              </div>
+                           </div>
+                        </div>
+                      </div>
+
+                      {/* Timeline Feed */}
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <h4 className="text-sm font-bold text-slate-900">Hoje, 12 Jan</h4>
+                        </div>
+
+                        <div className="relative pl-4 border-l-2 border-slate-100 space-y-6">
+                          {/* Timeline Item 1 */}
+                          <div className="relative">
+                            <div className="absolute -left-[21px] top-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white shadow-sm ring-1 ring-emerald-100" />
+                            <div className="bg-white p-3 rounded-2xl border border-slate-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)]">
+                              <div className="flex justify-between items-start mb-1">
+                                <span className="text-xs font-bold text-slate-900">Higiene & Conforto</span>
+                                <span className="text-[10px] text-slate-400 font-mono">10:15</span>
+                              </div>
+                              <p className="text-[11px] text-slate-500 leading-relaxed">
+                                Banho realizado com sucesso. Mudança de roupa de cama efetuada.
+                              </p>
+                              <div className="mt-2 flex gap-1">
+                                <span className="px-1.5 py-0.5 bg-slate-50 rounded text-[9px] font-medium text-slate-500 border border-slate-100">Banho Completo</span>
+                                <span className="px-1.5 py-0.5 bg-slate-50 rounded text-[9px] font-medium text-slate-500 border border-slate-100">Vestuário</span>
+                              </div>
+                            </div>
+                          </div>
+
+                           {/* Timeline Item 2 */}
+                           <div className="relative">
+                            <div className="absolute -left-[21px] top-1 w-3 h-3 bg-blue-500 rounded-full border-2 border-white shadow-sm ring-1 ring-blue-100" />
+                            <div className="bg-white p-3 rounded-2xl border border-slate-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)]">
+                              <div className="flex justify-between items-start mb-1">
+                                <span className="text-xs font-bold text-slate-900">Medicação</span>
+                                <span className="text-[10px] text-slate-400 font-mono">09:30</span>
+                              </div>
+                              <div className="flex items-center gap-2 mt-1">
+                                <div className="w-5 h-5 rounded-md bg-blue-50 flex items-center justify-center text-blue-600">
+                                  <Check size={10} strokeWidth={4} />
+                                </div>
+                                <span className="text-[11px] text-slate-600">Toma da manhã completa</span>
+                              </div>
+                            </div>
+                          </div>
+
+                           {/* Timeline Item 3 */}
+                           <div className="relative opacity-60">
+                            <div className="absolute -left-[21px] top-1 w-3 h-3 bg-slate-300 rounded-full border-2 border-white shadow-sm" />
+                            <div className="bg-white p-3 rounded-2xl border border-slate-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)]">
+                              <div className="flex justify-between items-start mb-1">
+                                <span className="text-xs font-bold text-slate-900">Check-in</span>
+                                <span className="text-[10px] text-slate-400 font-mono">09:00</span>
+                              </div>
+                              <span className="text-[11px] text-slate-500">Ana C. iniciou o turno.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  
+               
+                  
+                  {/* Bottom Fade */}
+                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-slate-50 to-transparent pointer-events-none z-10" />
+                </div>
+
+                {/* Home Indicator */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-900/20 rounded-full z-30" />
+              </div>
+            </div>
+
+        
+
+           
+
+          </div>
         </div>
       </div>
     </section>

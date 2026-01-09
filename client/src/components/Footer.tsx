@@ -25,13 +25,13 @@ export default function Footer() {
               Conectamos famílias a cuidadores verificados com segurança total.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all hover:-translate-y-1">
+              <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all hover:-translate-y-1">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all hover:-translate-y-1">
+              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all hover:-translate-y-1">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all hover:-translate-y-1">
+              <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all hover:-translate-y-1">
                 <Linkedin size={18} />
               </a>
             </div>
@@ -52,7 +52,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <h4 className="text-white font-bold mb-6 tracking-wide text-sm uppercase">Comunidade</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="/carreiras"><a className="hover:text-primary transition-colors flex items-center gap-2">Carreiras</a></Link></li>
+        
               <li><Link href="/parceiros"><a className="hover:text-primary transition-colors flex items-center gap-2">Parceiros</a></Link></li>
               <li><a href="#" className="hover:text-primary transition-colors flex items-center gap-2">Blog</a></li>
               <li><a href="#" className="hover:text-primary transition-colors flex items-center gap-2">Centro de Ajuda</a></li>

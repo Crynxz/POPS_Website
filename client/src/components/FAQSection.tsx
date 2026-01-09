@@ -210,36 +210,36 @@ export default function FAQSection() {
 
           {/* Show More/Less Button */}
           {!showAllCategories && (
-            <div className="mt-8 text-center">
+            <div className="mt-6 sm:mt-8 text-center">
               <button
                 onClick={() => setShowAllCategories(true)}
-                className="btn-primary inline-flex items-center gap-2"
+                className="btn-primary inline-flex items-center gap-2 text-sm sm:text-base"
               >
                 Ver Todas as Categorias
-                <ChevronDown size={20} className="rotate-180" />
+                <ChevronDown size={18} className="rotate-180" />
               </button>
             </div>
           )}
 
           {showAllCategories && (
-            <div className="mt-8 text-center">
+            <div className="mt-6 sm:mt-8 text-center">
               <button
                 onClick={() => setShowAllCategories(false)}
-                className="btn-secondary inline-flex items-center gap-2"
+                className="btn-secondary inline-flex items-center gap-2 text-sm sm:text-base"
               >
                 Mostrar Menos
-                <ChevronDown size={20} />
+                <ChevronDown size={18} />
               </button>
             </div>
           )}
 
           {/* Still have questions */}
-          <div className="mt-12 p-8 md:p-10 bg-gradient-to-r from-primary/5 via-white to-secondary/5 rounded-2xl md:rounded-3xl border border-primary/20 text-center shadow-lg shadow-primary/5 hover:shadow-xl transition-all">
-            <p className="text-slate-900 font-semibold mb-3 text-lg">Ainda tem dúvidas?</p>
-            <p className="text-sm text-slate-600 mb-8">
+          <div className="mt-10 sm:mt-12 p-6 sm:p-8 md:p-10 bg-gradient-to-r from-primary/5 via-white to-secondary/5 rounded-xl sm:rounded-2xl md:rounded-3xl border border-primary/20 text-center shadow-lg shadow-primary/5 hover:shadow-xl transition-all">
+            <p className="text-slate-900 font-semibold mb-2 sm:mb-3 text-base sm:text-lg">Ainda tem dúvidas?</p>
+            <p className="text-xs sm:text-sm text-slate-600 mb-6 sm:mb-8">
               A nossa equipa está disponível 24/7 para responder qualquer pergunta. Contacte-nos por chat, email ou telefone.
             </p>
-            <a href="#waitlist" className="btn-primary inline-block">
+            <a href="#waitlist" className="btn-primary inline-block text-sm sm:text-base">
               Falar com a Equipa
             </a>
           </div>

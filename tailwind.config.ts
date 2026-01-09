@@ -28,14 +28,36 @@ export default {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "#0E6973", // Deeper, more premium Teal
-          dark: "#084B52",
-          light: "#E2F3F5",
+          DEFAULT: "#0E6973", // Main Brand (Teal 600)
+          50: "#F0F9FA",
+          100: "#DBF0F2",
+          200: "#BDE0E4",
+          300: "#92C8CF",
+          400: "#62A8B3",
+          500: "#3E8996",
+          600: "#0E6973",
+          700: "#0B545D",
+          800: "#09464E",
+          900: "#073941",
+          950: "#03252C",
+          dark: "#084B52", // mapped to ~800
+          light: "#E2F3F5", // mapped to ~100
           soft: "rgba(14, 105, 115, 0.08)",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#FF8B5B", // Warm Coral
+          DEFAULT: "#FF8B5B", // Warm Coral (Coral 400)
+          50: "#FFF5F0",
+          100: "#FFE8DB",
+          200: "#FFD1B8",
+          300: "#FFB38F",
+          400: "#FF8B5B",
+          500: "#F96A35",
+          600: "#EA4E1B",
+          700: "#C23610", // WCAG AA compliant on white
+          800: "#9D2B0B",
+          900: "#7E240B",
+          950: "#431005",
           hover: "#E57040",
           foreground: "hsl(var(--secondary-foreground))",
         },
@@ -50,6 +72,18 @@ export default {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        success: {
+          DEFAULT: "#10B981", // Emerald 500
+          foreground: "#FFFFFF",
+        },
+        warning: {
+          DEFAULT: "#F59E0B", // Amber 500
+          foreground: "#FFFFFF",
+        },
+        info: {
+          DEFAULT: "#3B82F6", // Blue 500
+          foreground: "#FFFFFF",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

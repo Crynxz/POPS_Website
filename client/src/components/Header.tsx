@@ -11,25 +11,14 @@ export default function Header({ variant = "default" }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const [activeHash, setActiveHash] = useState("");
+
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
       
-      // Active link logic
-      const sections = ["mercado", "diferenciais", "precos", "seguranca"];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveHash(`#${section}`);
-            return;
-          }
-        }
-      }
-      setActiveHash("");
+    
+  
     };
     
     window.addEventListener("scroll", handleScroll);
@@ -43,7 +32,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
     { name: t("nav.safety"), href: "/#seguranca" },
     { name: t("nav.partners"), href: "/parceiros" },
     { name: t("nav.about"), href: "/sobre" },
-    { name: t("nav.careers"), href: "/carreiras" },
+   
   ];
 
 
@@ -56,14 +45,14 @@ export default function Header({ variant = "default" }: HeaderProps) {
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || mobileMenuOpen ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+        isScrolled || mobileMenuOpen ? "bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm py-3" : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* LOGO */}
         <Link href="/">
           <a className={`text-2xl font-extrabold tracking-tighter flex items-center gap-2 transition-colors ${textColorClass}`}>
-            POPS<span className="w-2 h-2 rounded-full bg-primary"></span>
+            POPS<span className="w-2 h-2 rounded-full bg-primary ring-4 ring-primary/20"></span>
           </a>
         </Link>
 
@@ -73,13 +62,10 @@ export default function Header({ variant = "default" }: HeaderProps) {
             <a 
               key={link.name} 
               href={link.href} 
-              className={`text-sm font-medium transition-colors ${
-                (link.href.includes("#") && link.href.endsWith(activeHash)) || (window.location.pathname === link.href)
-                  ? "text-primary font-bold" 
-                  : navColorClass
-              }`}
+            
             >
               {link.name}
+            
             </a>
           ))}
         </nav>
@@ -88,7 +74,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
         <div className="hidden lg:flex items-center gap-4">
           <button 
             onClick={() => setLanguage(language === "PT" ? "EN" : "PT")}
-            className={`flex items-center gap-1 text-xs font-bold transition-colors mr-2 ${isLightText ? "text-slate-300 hover:text-white" : "text-slate-500 hover:text-primary"}`}
+            className={`flex items-center gap-1 text-xs font-bold transition-colors mr-2 px-2 py-1 rounded-md hover:bg-slate-100/10 ${isLightText ? "text-slate-300 hover:text-white" : "text-slate-500 hover:text-primary"}`}
             aria-label="Toggle Language"
           >
             <Globe size={14} /> {language}
@@ -104,7 +90,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
           </a>
           <a 
             href="#waitlist" 
-            className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary/25 flex items-center gap-2"
+            className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 flex items-center gap-2 hover:-translate-y-0.5"
           >
             <Heart size={16} className="fill-white/20" /> {t("cta.family")}
           </a>
@@ -121,16 +107,16 @@ export default function Header({ variant = "default" }: HeaderProps) {
 
       {/* MOBILE MENU */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-2xl p-6 flex flex-col gap-2 lg:hidden animate-in slide-in-from-top-2 duration-300 origin-top">
+        <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-slate-100 shadow-2xl p-6 flex flex-col gap-2 lg:hidden animate-in slide-in-from-top-2 duration-300 origin-top">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              className="text-base font-bold text-slate-800 py-4 border-b border-slate-50 active:bg-slate-50 active:text-primary transition-colors flex items-center justify-between"
+              className="text-base font-bold text-slate-800 py-4 border-b border-slate-50 active:bg-slate-50 active:text-primary transition-colors flex items-center justify-between group"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
-              <ArrowRight className="w-4 h-4 text-slate-300" />
+              <ArrowRight className="w-4 h-4 text-slate-300 group-active:text-primary transition-colors" />
             </a>
           ))}
           <div className="grid grid-cols-1 gap-3 mt-6">
@@ -139,14 +125,14 @@ export default function Header({ variant = "default" }: HeaderProps) {
                 setLanguage(language === "PT" ? "EN" : "PT");
                 setMobileMenuOpen(false);
               }}
-              className="w-full py-4 rounded-xl bg-slate-50 border border-slate-100 flex justify-center items-center gap-2 font-bold text-slate-600"
+              className="w-full py-4 rounded-xl bg-slate-50 border border-slate-100 flex justify-center items-center gap-2 font-bold text-slate-600 hover:bg-slate-100 transition-colors"
             >
               <Globe size={18} /> {language === "PT" ? "Switch to English" : "Mudar para Português"}
             </button>
-            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-4 rounded-xl border-2 border-primary/10 flex justify-center items-center gap-2 font-bold text-primary">
+            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-4 rounded-xl border-2 border-primary/10 flex justify-center items-center gap-2 font-bold text-primary active:bg-primary/5 transition-colors">
               <Stethoscope size={18} /> {t("cta.caregiver")}
             </a>
-            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-4 rounded-xl bg-primary text-white flex justify-center items-center gap-2 font-bold shadow-lg shadow-primary/20">
+            <a href="#waitlist" onClick={() => setMobileMenuOpen(false)} className="w-full py-4 rounded-xl bg-primary text-white flex justify-center items-center gap-2 font-bold shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
               <Heart size={18} className="fill-white/20" /> {t("cta.family")}
             </a>
           </div>
