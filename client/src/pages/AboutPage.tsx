@@ -352,12 +352,7 @@ export default function AboutPage() {
                       >
                         Começar Agora <ArrowRight size={18} />
                       </a>
-                      <a 
-                        href="/carreiras" 
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 transition-all hover:shadow-md active:scale-95"
-                      >
-                        Ver Vagas
-                      </a>
+                   
                     </div>
                   </FadeIn>
                 </div>

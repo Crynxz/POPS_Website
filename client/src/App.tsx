@@ -18,8 +18,8 @@ const queryClient = new QueryClient();
 const Home = lazy(() => import("@/pages/home"));
 const PartnersPage = lazy(() => import("@/pages/PartnersPage").then(module => ({ default: module.PartnersPage })));
 const AboutPage = lazy(() => import("@/pages/AboutPage"));
-const CareersPage = lazy(() => import("@/pages/CareersPage"));
 const AdminPage = lazy(() => import("@/pages/AdminPage"));
+const ThankYouPage = lazy(() => import("@/pages/ThankYouPage"));
 
 export default function App() {
   return (
@@ -39,7 +39,7 @@ export default function App() {
                 <Route path="/" component={Home} />
                 <Route path="/parceiros" component={PartnersPage} />
                 <Route path="/sobre" component={AboutPage} />
-                <Route path="/carreiras" component={CareersPage} />
+                <Route path="/obrigado" component={ThankYouPage} />
                 <Route path="/admin" component={AdminPage} />
                 <Route component={NotFound} />
               </Switch>

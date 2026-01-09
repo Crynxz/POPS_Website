@@ -582,3 +582,14 @@ warn - If this is content and not a class, replace it with `duration-&lsqb;1.5s&
 11:30:56 AM [vite] hmr update /src/pages/CareersPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
 11:31:59 AM [vite] hmr update /src/components/StickyFloatingCTA.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
 11:32:00 AM [vite] hmr update /src/components/StickyFloatingCTA.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:42:54 AM [vite] hmr update /src/pages/CareersPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:43:10 AM [vite] hmr update /src/pages/AboutPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:47:46 AM [vite] hmr update /src/App.tsx?v=VLCdDiO97u6hSTWzzkMAu, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:47:47 AM [vite] hmr update /src/App.tsx?v=VLCdDiO97u6hSTWzzkMAu, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:47:56 AM [vite] hmr update /src/App.tsx?v=VLCdDiO97u6hSTWzzkMAu, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:47:59 AM [vite] hmr update /src/components/WaitlistSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:48:00 AM [vite] hmr update /src/components/WaitlistSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:48:42 AM [vite] hmr update /src/pages/CareersPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+12:30:02 PM [vite] hmr update /src/pages/CareersPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+12:30:24 PM [vite] hmr update /src/App.tsx?v=VLCdDiO97u6hSTWzzkMAu, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+12:30:24 PM [vite] hmr update /src/App.tsx?v=VLCdDiO97u6hSTWzzkMAu, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu

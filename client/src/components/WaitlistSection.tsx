@@ -3,6 +3,7 @@ import { useLanguage } from "@/lib/LanguageContext";
 import { useState } from "react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
 
 interface WaitlistSectionProps {
   selectedProfile?: "familia" | "cuidador";
@@ -11,6 +12,7 @@ interface WaitlistSectionProps {
 export default function WaitlistSection({ selectedProfile }: WaitlistSectionProps) {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -36,11 +38,9 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
       const response = await apiRequest("POST", "/api/waitlist", data);
       console.log("API Request successful, response:", response);
       
-      setIsSuccess(true);
-      toast({
-        title: "Sucesso!",
-        description: "Ficaste registado na nossa lista de espera.",
-      });
+      // Redirect to thank you page
+      setLocation("/obrigado");
+      
     } catch (error: any) {
       console.error("Form submission error caught:", error);
       
