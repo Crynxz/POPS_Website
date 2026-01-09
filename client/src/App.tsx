@@ -12,6 +12,7 @@ import BackToTop from "@/components/BackToTop";
 import SkipLink from "@/components/SkipLink";
 import CookieConsent from "@/components/CookieConsent";
 import ScrollProgress from "@/components/ScrollProgress";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ export default function App() {
             <Toaster />
             <BackToTop />
             <CookieConsent />
+            <SpeedInsights />
             <ReactQueryDevtools initialIsOpen={false} />
           </QueryClientProvider>
         </TooltipProvider>
