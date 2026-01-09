@@ -155,8 +155,8 @@ export default function AboutPage() {
         {/* HERO SECTION */}
         <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-white">
           {/* Sophisticated gradient backgrounds */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/8 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-          <div className="absolute -bottom-32 left-1/4 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/8 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none hidden md:block"></div>
+          <div className="absolute -bottom-32 left-1/4 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
 
           <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
             {/* Badge */}
@@ -250,7 +250,7 @@ export default function AboutPage() {
                 {/* Vision */}
                 <FadeIn delay={400}>
                   <div className="group h-full bg-gradient-to-br from-primary to-primary-dark rounded-2xl border border-primary/20 p-8 hover:shadow-xl transition-all duration-500 relative overflow-hidden shadow-lg">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/20 transition-colors duration-500"></div>
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/20 transition-colors duration-500 hidden md:block"></div>
                     
                     <div className="flex items-start gap-4 mb-4 relative z-10">
                       <div className="p-3 rounded-lg bg-white/10 border border-white/20 group-hover:bg-white/20 transition-all">
@@ -328,8 +328,8 @@ export default function AboutPage() {
             <FadeIn>
               <div className="relative bg-white border border-slate-200 rounded-[3rem] overflow-hidden shadow-2xl">
                 {/* Decorative backgrounds */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none hidden md:block"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none hidden md:block"></div>
                 
                 <div className="relative z-10 px-8 md:px-16 py-16 md:py-24 text-center max-w-3xl mx-auto">
                   <FadeIn delay={100}>

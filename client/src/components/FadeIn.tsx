@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface FadeInProps extends HTMLMotionProps<"div"> {
   children: ReactNode;
@@ -17,10 +18,11 @@ export default function FadeIn({
   blur = true,
   ...props 
 }: FadeInProps) {
+  const isMobile = useIsMobile();
   
   const getInitial = () => {
     let initial: any = { opacity: 0 };
-    if (blur) initial.filter = "blur(10px)";
+    if (blur && !isMobile) initial.filter = "blur(10px)";
     
     switch (direction) {
       case 'up': initial.y = 40; break;

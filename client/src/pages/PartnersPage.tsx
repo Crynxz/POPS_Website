@@ -120,7 +120,7 @@ export function PartnersPage() {
         {/* HERO SECTION */}
         <section className="relative pt-32 pb-24 bg-slate-50 overflow-hidden">
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 hidden md:block"></div>
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="mb-8 flex justify-center">
@@ -275,7 +275,7 @@ export function PartnersPage() {
                  </div>
 
                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-blue-500/20 rounded-[3rem] blur-2xl transform rotate-3"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-blue-500/20 rounded-[3rem] blur-2xl transform rotate-3 hidden md:block"></div>
                     <div className="relative bg-slate-800 border border-slate-700 p-8 md:p-12 rounded-[2.5rem] shadow-2xl">
                        <div className="mb-8">
                           <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary mb-4">

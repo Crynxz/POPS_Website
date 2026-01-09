@@ -119,7 +119,7 @@ export default function ServiceExplorer() {
           {/* Visualization (Right) */}
           <div className="lg:col-span-8 bg-white rounded-[2rem] p-6 lg:p-12 border border-slate-100 relative overflow-hidden flex flex-col justify-center min-h-[350px] lg:min-h-[400px]">
             {/* Background Blob */}
-            <div className={`absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-10 blur-[80px] transition-colors duration-500 ${activeTab.color}`}></div>
+            <div className={`absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-10 blur-[80px] transition-colors duration-500 ${activeTab.color} hidden md:block`}></div>
             
             <AnimatePresence mode="wait">
               <motion.div

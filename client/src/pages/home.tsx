@@ -35,7 +35,7 @@ export default function Home() {
       <SEO />
       
       {/* Global Noise Texture Overlay */}
-      <div className="fixed inset-0 pointer-events-none z-[5] opacity-[0.03] mix-blend-overlay">
+      <div className="fixed inset-0 pointer-events-none z-[5] opacity-[0.03] mix-blend-overlay hidden md:block">
         <svg className="w-full h-full">
           <filter id="noiseFilter">
             <feTurbulence type="fractalNoise" baseFrequency="0.6" stitchTiles="stitch"/>
@@ -45,9 +45,9 @@ export default function Home() {
       </div>
 
       {/* Global Parallax Background Layers */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden hidden md:block">
         {/* Top Right Blob */}
-        <motion.div 
+        <motion.div  
           style={{ y: y1, opacity: 0.6 }}
           className="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]" 
         />

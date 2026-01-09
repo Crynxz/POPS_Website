@@ -5,7 +5,7 @@ export default function TechSection() {
   return (
     <section className="py-24 md:py-32 bg-slate-50 relative overflow-hidden">
       {/* Background Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
         <div className="absolute -top-[20%] -right-[10%] w-[70vh] h-[70vh] bg-primary/5 rounded-full blur-[100px]" />
         <div className="absolute top-[40%] -left-[10%] w-[50vh] h-[50vh] bg-blue-400/5 rounded-full blur-[100px]" />
       </div>
@@ -78,7 +78,7 @@ export default function TechSection() {
           {/* Right Column: Creative Mockup */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-center relative">
             {/* Abstract Background behind phone */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-slate-200/50 to-slate-100/50 rounded-full blur-3xl transform scale-90 translate-y-10 -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-slate-200/50 to-slate-100/50 rounded-full blur-3xl transform scale-90 translate-y-10 -z-10 hidden md:block" />
 
             <div className="relative w-[320px] h-[640px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl ring-1 ring-slate-900/5 rotate-[-2deg] hover:rotate-0 transition-all duration-500 ease-out-expo">
               {/* Phone Frame */}

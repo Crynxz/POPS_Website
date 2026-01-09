@@ -45,7 +45,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || mobileMenuOpen ? "bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm py-3" : "bg-transparent py-5"
+        isScrolled || mobileMenuOpen ? "bg-white/95 md:bg-white/70 md:backdrop-blur-xl border-b border-white/20 shadow-sm py-3" : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
@@ -107,7 +107,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
 
       {/* MOBILE MENU */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-slate-100 shadow-2xl p-6 flex flex-col gap-2 lg:hidden animate-in slide-in-from-top-2 duration-300 origin-top">
+        <div className="absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-2xl p-6 flex flex-col gap-2 lg:hidden animate-in slide-in-from-top-2 duration-300 origin-top">
           {navLinks.map((link) => (
             <a 
               key={link.name} 

@@ -549,3 +549,36 @@ warn - If this is content and not a class, replace it with `duration-&lsqb;1.5s&
 12:49:44 AM [vite] hmr update /src/pages/CareersPage.tsx
 12:55:38 AM [vite] page reload /Users/joaosousa/Desktop/POPS_Website/tailwind.config.ts
 12:55:42 AM [vite] page reload /Users/joaosousa/Desktop/POPS_Website/tailwind.config.ts
+11:23:36 AM [vite] hmr update /src/components/Header.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:23:38 AM [vite] hmr update /src/components/Header.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:23:39 AM [vite] hmr update /src/components/FadeIn.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:24:04 AM [vite] hmr update /src/components/HeroSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:24:05 AM [vite] hmr update /src/components/HeroSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:24:06 AM [vite] hmr update /src/components/HeroSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:24:07 AM [vite] hmr update /src/pages/home.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:24:08 AM [vite] hmr update /src/pages/home.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:26:38 AM [vite] hmr update /src/components/PricingSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:26:38 AM [vite] hmr update /src/components/VettingSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:26:39 AM [vite] hmr update /src/components/VettingSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:26:40 AM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:26:41 AM [vite] hmr update /src/components/TechSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:26:41 AM [vite] hmr update /src/components/WaitlistSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:26:42 AM [vite] hmr update /src/components/WaitlistSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:26:43 AM [vite] hmr update /src/components/WaitlistSection.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:29:09 AM [vite] hmr update /src/components/Footer.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:29:11 AM [vite] page reload src/components/StatsSection.tsx
+11:29:12 AM [vite] hmr update /src/components/ServiceExplorer.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:29:13 AM [vite] hmr update /src/components/SplashScreen.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:29:17 AM [vite] hmr update /src/components/Footer.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:29:20 AM [vite] hmr update /src/components/SplashScreen.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:29:20 AM [vite] hmr update /src/components/ServiceExplorer.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:29:20 AM [vite] page reload src/components/StatsSection.tsx
+11:30:53 AM [vite] hmr update /src/pages/AboutPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:30:54 AM [vite] hmr update /src/pages/AboutPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:30:54 AM [vite] hmr update /src/pages/AboutPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:30:55 AM [vite] hmr update /src/pages/AboutPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:30:55 AM [vite] hmr update /src/pages/PartnersPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:30:56 AM [vite] hmr update /src/pages/PartnersPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:30:56 AM [vite] hmr update /src/pages/CareersPage.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:31:59 AM [vite] hmr update /src/components/StickyFloatingCTA.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu
+11:32:00 AM [vite] hmr update /src/components/StickyFloatingCTA.tsx, /src/styles/index.css?v=VLCdDiO97u6hSTWzzkMAu

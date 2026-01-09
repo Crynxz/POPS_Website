@@ -82,8 +82,8 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
         
         <div className="bg-slate-900 rounded-[2rem] md:rounded-[3rem] p-6 md:p-20 text-center text-white relative overflow-hidden shadow-2xl shadow-slate-900/20">
           {/* Enhanced Decor */}
-          <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-secondary/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none hidden md:block"></div>
+          <div className="absolute bottom-0 left-0 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-secondary/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none hidden md:block"></div>
 
           <div className="relative z-10 max-w-3xl mx-auto">
             {isSuccess ? (
@@ -104,7 +104,7 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
               </div>
             ) : (
               <>
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-primary-light text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8 border border-white/10 backdrop-blur-md">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-primary-light text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8 border border-white/10 md:backdrop-blur-md">
                   <Gift size={14} className="text-secondary" /> {t("waitlist.badge")}
                 </span>
                 
@@ -116,7 +116,7 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
                   {t("waitlist.desc")}
                 </p>
 
-                <div className="bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-5 md:p-8 backdrop-blur-sm shadow-inner">
+                <div className="bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-5 md:p-8 md:backdrop-blur-sm shadow-inner">
                   <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5 text-left">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       <div className="space-y-2">

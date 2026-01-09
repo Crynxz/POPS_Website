@@ -41,7 +41,7 @@ export default function SplashScreen({ onFinish }: { onFinish?: () => void }) {
               }}
               className="relative w-24 h-24 mb-8"
             >
-              <div className="absolute inset-0 bg-white/10 rounded-full blur-xl transform scale-150"></div>
+              <div className="absolute inset-0 bg-white/10 rounded-full blur-xl transform scale-150 hidden md:block"></div>
               <div className="relative w-full h-full bg-white rounded-2xl flex items-center justify-center shadow-2xl shadow-black/20">
                 <div className="w-12 h-12 border-4 border-primary rounded-full flex items-center justify-center">
                   <div className="w-4 h-4 bg-primary rounded-full"></div>

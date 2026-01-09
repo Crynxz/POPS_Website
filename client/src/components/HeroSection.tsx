@@ -38,11 +38,11 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
       {/* Dynamic Background Parallax Blobs */}
       <motion.div 
         style={{ y: yText, opacity: opacityValue }}
-        className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none hidden md:block" 
       />
       <motion.div 
         style={{ y: yImage, opacity: opacityValue }}
-        className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none hidden md:block" 
       />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -146,7 +146,7 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
             </FadeIn>
             
             {/* Soft Glow Effect - Professional backdrop */}
-            <div className="absolute -z-10 -top-16 lg:-top-32 -right-16 lg:-right-32 w-64 lg:w-96 h-64 lg:h-96 bg-primary/8 rounded-full blur-3xl"></div>
+            <div className="absolute -z-10 -top-16 lg:-top-32 -right-16 lg:-right-32 w-64 lg:w-96 h-64 lg:h-96 bg-primary/8 rounded-full blur-3xl hidden md:block"></div>
           </motion.div>
         </div>
       </div>

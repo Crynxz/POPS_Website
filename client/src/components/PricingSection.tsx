@@ -36,7 +36,7 @@ export default function PricingSection() {
   return (
     <Section className="bg-gradient-to-b from-white via-white to-slate-50/50 overflow-hidden" id="precos">
       {/* Decorative elements - subtle */}
-      <div className="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-primary/3 rounded-full blur-2xl sm:blur-3xl -translate-y-1/2 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-primary/3 rounded-full blur-2xl sm:blur-3xl -translate-y-1/2 pointer-events-none hidden md:block"></div>
 
       <div className="text-center mb-16 md:mb-20 relative z-10">
         <span className="text-primary font-bold text-xs uppercase tracking-widest mb-3 block">Planos de Preço</span>

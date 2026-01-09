@@ -69,8 +69,8 @@ export default function CareersPage() {
         {/* HERO */}
         <section className="relative pt-32 pb-24 overflow-hidden bg-slate-50">
            {/* Background Decor */}
-           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none hidden md:block"></div>
+           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none hidden md:block"></div>
 
            <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
               <span className="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">Junte-se à Equipa</span>

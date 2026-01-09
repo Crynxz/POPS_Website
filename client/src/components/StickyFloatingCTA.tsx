@@ -75,10 +75,10 @@ export default function StickyFloatingCTA({ selectedProfile }: StickyFloatingCTA
         >
           <div className={`relative ${content.shadowColor} shadow-2xl`}>
             {/* Animated background glow */}
-            <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-20 rounded-3xl blur-xl transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-20 rounded-3xl blur-xl transition-opacity duration-300 hidden md:block" />
 
             {/* Main card */}
-            <div className={`relative ${content.bgColor} ${content.borderColor} border rounded-3xl p-5 backdrop-blur-md`}>
+            <div className={`relative ${content.bgColor} ${content.borderColor} border rounded-3xl p-5 md:backdrop-blur-md`}>
               <div className="flex items-center gap-4">
                 {/* Icon container */}
                 <motion.div
