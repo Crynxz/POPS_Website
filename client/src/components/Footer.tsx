@@ -60,16 +60,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Locations Column */}
-            <div className="lg:col-span-2">
-              <h4 className="text-white font-bold mb-6 tracking-wide text-sm uppercase">Cobertura</h4>
-              <ul className="space-y-4 text-sm text-slate-400">
-                <li className="flex items-center gap-2"><div className="w-1 h-1 rounded-full bg-primary"></div> Lisboa & Vale do Tejo</li>
-                <li className="flex items-center gap-2"><div className="w-1 h-1 rounded-full bg-slate-600"></div> Porto & Norte</li>
-                <li className="flex items-center gap-2"><div className="w-1 h-1 rounded-full bg-slate-600"></div> Setúbal & Alentejo</li>
-                <li className="flex items-center gap-2"><div className="w-1 h-1 rounded-full bg-slate-600"></div> Algarve</li>
-              </ul>
-            </div>
 
             {/* Contacts Column */}
             <div className="lg:col-span-2">
