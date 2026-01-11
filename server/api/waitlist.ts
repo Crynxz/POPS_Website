@@ -36,20 +36,28 @@ export function registerWaitlistRoutes(app: Express) {
               updateEnabled: true,
               attributes: {
                 NOME: data.name,
-                TELEFONE: data.phone
+                TELEFONE: data.phone,
+                DATA_NASCIMENTO: data.birthDate,
+                LOCALIDADE: data.location,
+                PERFIL: data.profile,
+                INTERESSE: data.interest
               }
             })
           });
 
+          const responseData = await response.json();
+
           if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Erro Brevo API:", errorData);
+            console.error("Erro Brevo API:", responseData);
+            // Still return success to user as they're in local DB
+            // but log the Brevo failure for monitoring
           } else {
-            console.log("Sucesso: Contacto adicionado ao Brevo.");
+            console.log("Sucesso: Contacto adicionado ao Brevo.", responseData);
           }
 
         } catch (e) {
           console.error("Falha ao conectar com o Brevo:", e);
+          // Non-blocking error - user is still saved locally
         }
       } else {
         console.warn("AVISO: BREVO_API_KEY não encontrada nas variáveis de ambiente.");
