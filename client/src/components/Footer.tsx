@@ -77,7 +77,7 @@ export default function Footer() {
               <ul className="space-y-4 text-sm">
                 <li className="flex items-start gap-3 group cursor-pointer">
                   <Mail size={18} className="text-primary mt-0.5 group-hover:text-white transition-colors" />
-                  <span className="group-hover:text-white transition-colors">geral@pops.com</span>
+                  <span className="group-hover:text-white transition-colors">geral@popshomecare.pt</span>
                 </li>
                 <li className="flex items-start gap-3 group cursor-pointer">
                   <Phone size={18} className="text-primary mt-0.5 group-hover:text-white transition-colors" />
