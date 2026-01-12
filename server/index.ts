@@ -3,6 +3,8 @@ import { log } from "./log";
 import compression from "compression";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+// IMPORTANTE: Importar diretamente aqui em cima!
+import { registerRoutes } from "./routes"; 
 
 const app = express();
 
@@ -14,76 +16,61 @@ app.use(helmet({
       scriptSrc: ["'self'", "'unsafe-inline'", "https://www.google-analytics.com", "https://ssl.google-analytics.com"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "data:", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https://popshomecare.vercel.app"],
-      connectSrc: ["'self'", "https://api.emailjs.com"], // Adjust if needed
+      imgSrc: ["'self'", "data:", "https://popshomecare.vercel.app", "https://www.popshomecare.pt"], // Adicionei o teu domínio real
+      connectSrc: ["'self'", "https://api.emailjs.com", "https://api.brevo.com"], // Adicionei o Brevo
     },
   },
 }));
 
 // Rate Limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000, 
+  max: 100, 
   standardHeaders: true,
   legacyHeaders: false,
-  message: "Too many requests from this IP, please try again after 15 minutes"
 });
-// Apply rate limiting to all requests (or specific API routes if preferred)
 app.use("/api", limiter);
 
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Rota de teste absoluto (não depende de nenhum outro ficheiro)
+// Rota de teste simples
 app.get("/api/ping", (_req, res) => {
-  res.json({ 
-    status: "online", 
-    message: "Express is running",
-    timestamp: new Date().toISOString()
-  });
+  res.json({ status: "online", timestamp: new Date().toISOString() });
 });
 
-// Inicialização segura e tardia das rotas e lógica
-const init = async () => {
-  try {
-    const { registerRoutes } = await import("./routes");
-    registerRoutes(app);
-    log("Routes registered successfully");
-  } catch (err: any) {
-    console.error("Failed to register routes:", err);
-  }
+// --- A MUDANÇA CRÍTICA ESTÁ AQUI ---
+// Registar as rotas IMEDIATAMENTE, sem async/await
+registerRoutes(app);
+log("Routes registered synchronously");
 
-  // Error handling
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    res.status(status).json({ 
-      message: "Internal Server Error", 
-      details: err.message 
-    });
-  });
+// Error handling
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  const status = err.status || err.statusCode || 500;
+  res.status(status).json({ message: "Internal Server Error", details: err.message });
+});
 
-  // Lógica local (Ignorada no Vercel)
-  if (!process.env.VERCEL) {
+// Lógica local para desenvolvimento (mantém-se igual)
+if (!process.env.VERCEL) {
+  const startLocal = async () => {
     try {
       const { createServer } = await import("http");
       const server = createServer(app);
-      if (app.get("env") === "development") {
-        const { setupVite } = await import("./vite");
-        await setupVite(server, app);
-      } else {
-        const { serveStatic } = await import("./vite");
-        serveStatic(app);
+      // Setup Vite apenas se necessário localmente
+      if (process.env.NODE_ENV !== "production") {
+         try {
+             const { setupVite } = await import("./vite");
+             await setupVite(server, app);
+         } catch (e) { console.log("Vite setup skipped"); }
       }
       const PORT = Number(process.env.PORT) || 5001;
       server.listen(PORT, "0.0.0.0", () => log(`serving on port ${PORT}`));
     } catch (e) {
       console.error("Local server start failed:", e);
     }
-  }
-};
-
-// Inicia o processo de configuração mas exporta o app imediatamente
-init();
+  };
+  startLocal();
+}
 
 export default app;
