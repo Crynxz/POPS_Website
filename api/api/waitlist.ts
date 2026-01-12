@@ -1,5 +1,6 @@
 import type { Express, Request, Response } from "express";
-import { storage } from "../storage";
+// CORREÇÃO AQUI: "../storage" em vez de "../../api/storage"
+import { storage } from "../storage"; 
 import { insertWaitlistSchema } from "../../shared/schema";
 import { ZodError } from "zod";
 
@@ -20,7 +21,8 @@ export function registerWaitlistRoutes(app: Express) {
 
       console.log(">>> BASE DE DADOS FUNCIONOU! <<<");
       console.log("TEMOS CHAVE API?", process.env.BREVO_API_KEY ? "SIM" : "NÃO");
-      console.log("CHAVE PRIMEIROS 10 CARACTERES:", process.env.BREVO_API_KEY?.substring(0, 10)); // Debug log
+      // Debug log de segurança (apenas primeiros caracteres)
+      console.log("CHAVE (Check):", process.env.BREVO_API_KEY?.substring(0, 5) + "..."); 
       console.log("Starting Brevo integration for:", data.email);
 
       // 4. Enviar para o Brevo (Adicionar à Lista #5)
@@ -74,15 +76,15 @@ export function registerWaitlistRoutes(app: Express) {
                 email: 'geral@popshomecare.pt',
                 name: 'POPS Home Care'
               },
-              subject: 'Bem-vindo à POPS - Confirme sua inscrição',
+              subject: 'Bem-vindo à POPS - Confirme a sua inscrição',
               htmlContent: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                   <h2>Obrigado por se inscrever na POPS!</h2>
                   <p>Olá ${data.name},</p>
-                  <p>Recebemos sua inscrição na nossa lista de espera. Em breve, você receberá mais informações sobre os nossos serviços de cuidados domiciliares.</p>
+                  <p>Recebemos a sua inscrição na nossa lista de espera. Em breve, receberá mais informações sobre os nossos serviços de cuidados domiciliários.</p>
                   <p>Estamos entusiasmados em poder ajudá-lo!</p>
                   <br>
-                  <p>Atenciosamente,<br><strong>Equipe POPS</strong></p>
+                  <p>Atenciosamente,<br><strong>Equipa POPS</strong></p>
                 </div>
               `
             })
@@ -102,7 +104,7 @@ export function registerWaitlistRoutes(app: Express) {
         console.warn("✗ BREVO_API_KEY não encontrada nas variáveis de ambiente");
       }
 
-      // 5. RESPONDER COM SUCESSO AO CLIENT (DEPOIS de todas as operações!)
+      // 5. RESPONDER COM SUCESSO AO CLIENT
       res.status(201).json({ success: true, entry });
 
     } catch (error: any) {

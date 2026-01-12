@@ -1,5 +1,5 @@
 {
-  "include": ["client/src/**/*", "shared/**/*", "server/**/*", "client/vitest.setup.ts"],
+  "include": ["client/src/**/*", "shared/**/*", "server/**/*", "client/vitest.setup.ts", "api/api", "api/db.ts", "api/index.ts", "api/log.ts", "api/routes.ts", "api/static.ts", "api/storage.ts", "api/vite.ts"],
   "exclude": ["node_modules", "build", "dist"],
   "compilerOptions": {
     "incremental": true,
