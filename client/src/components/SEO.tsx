@@ -12,12 +12,12 @@ interface SEOProps {
 export default function SEO({ 
   title, 
   description, 
-  keywords = "apoio domiciliário, serviços ao domicílio, cuidadores idosos, enfermagem domicílio, auxiliares geriatria, cuidados paliativos, descanso do cuidador, pops portugal, lisboa, porto",
+  keywords = "apoio domiciliário, app, aplicação, cuidadores, idosos, deficiência, saúde, apoio, serviços ao domicílio, enfermagem domicílio, auxiliares geriatria, cuidados paliativos, descanso, cuidador, pops, portugal, lisboa, porto",
   image = "/og-image.jpg",
-  url = "https://popshomecare.vercel.app"
+  url = "https://popshomecare.pt"
 }: SEOProps) {
-  const { value: cmsTitle } = useContent("site_title_default", "POPS - Apoio Domiciliário e Cuidadores de Idosos Verificados");
-  const { value: cmsDesc } = useContent("site_desc_default", "Encontre os melhores serviços de apoio domiciliário em Portugal. A POPS conecta famílias a cuidadores de idosos verificados e profissionais de saúde com total segurança e transparência.");
+  const { value: cmsTitle } = useContent("site_title_default", "POPS - Apoio Domiciliário e Cuidadores de Idosos em Portugal");
+  const { value: cmsDesc } = useContent("site_desc_default", "Encontre os melhores serviços de Apoio Domiciliário e Cuidadores de Idosos em Portugal. A POPS liga famílias a profissionais verificados com total segurança e transparência.");
 
   const finalTitle = title || cmsTitle;
   const finalDesc = description || cmsDesc;
@@ -58,9 +58,9 @@ export default function SEO({
             {
               "@type": "LocalBusiness",
               "name": "POPS - Apoio Domiciliário",
-              "image": "https://popshomecare.vercel.app/og-image.jpg",
-              "@id": "https://popshomecare.vercel.app",
-              "url": "https://popshomecare.vercel.app",
+              "image": "https://popshomecare.pt/og-image.jpg",
+              "@id": "https://popshomecare.pt",
+              "url": "https://popshomecare.pt",
               "telephone": "+351915613345",
               "address": {
                 "@type": "PostalAddress",
@@ -91,7 +91,7 @@ export default function SEO({
             {
               "@type": "Service",
               "serviceType": "Apoio Domiciliário",
-              "provider": { "@id": "https://popshomecare.vercel.app" },
+              "provider": { "@id": "https://popshomecare.pt" },
               "areaServed": {
                 "@type": "Country",
                 "name": "Portugal"

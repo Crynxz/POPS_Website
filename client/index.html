@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>POPS - Intermediário de Cuidados Domiciliários Verificados | Lista de Espera</title>
-    <meta name="description" content="Cuidadores verificados, confiáveis e certificados. Inscreva-se na lista de espera da POPS e receba descontos exclusivos no lançamento.">
+    <title>POPS - Apoio Domiciliário por Cuidadores Para Todas as Idades</title>
+    <meta name="description" content="Encontre os melhores serviços de Apoio Domiciliário e Cuidadores para todas as idades em Portugal. A POPS liga famílias a profissionais verificados com total segurança e transparência.">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#0E6973" />
@@ -19,6 +19,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <link rel="preload" as="image" href="/assets/heroimg.jpg" fetchpriority="high">
+
+    <!-- Static JSON-LD Schema for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "name": "POPS - Apoio Domiciliário",
+            "image": "https://popshomecare.pt/og-image.jpg",
+            "@id": "https://popshomecare.pt",
+            "url": "https://popshomecare.pt",
+            "telephone": "+351915613345",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Porto",
+              "addressLocality": "Porto",
+              "addressRegion": "Porto",
+              "postalCode": "1000",
+              "addressCountry": "PT"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 38.7223,
+              "longitude": -9.1393
+            },
+            "description": "Encontre os melhores serviços de Apoio Domiciliário e Cuidadores de Idosos em Portugal. A POPS liga famílias a profissionais verificados com total segurança e transparência.",
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "00:00",
+              "closes": "23:59"
+            },
+            "sameAs": [
+              "https://www.facebook.com/pops",
+              "https://www.instagram.com/pops",
+              "https://www.linkedin.com/company/pops"
+            ]
+          },
+          {
+            "@type": "Service",
+            "serviceType": "Apoio Domiciliário",
+            "provider": { "@id": "https://popshomecare.pt" },
+            "areaServed": {
+              "@type": "Country",
+              "name": "Portugal"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Serviços de Cuidado",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Apoio Sénior e Geriatria"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Enfermagem e Cuidados de Saúde"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

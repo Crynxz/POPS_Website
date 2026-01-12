@@ -3,10 +3,11 @@ import {
   type Waitlist, type InsertWaitlist, 
   type CmsContent, type InsertCmsContent,
   type AnalyticsEvent, type InsertAnalyticsEvent,
-  users, waitlist, cmsContent, analyticsEvents 
+  type Referrer,
+  users, waitlist, cmsContent, analyticsEvents, referrers
 } from "../shared/schema.js";
 import { getDb } from "./db.js";
-import { eq } from "drizzle-orm";
+import { eq, sql, desc } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -20,6 +21,8 @@ export interface IStorage {
   listCmsContent(): Promise<CmsContent[]>;
   updateCmsContent(content: InsertCmsContent): Promise<CmsContent>;
   logAnalyticsEvent(event: InsertAnalyticsEvent): Promise<AnalyticsEvent>;
+  logReferrer(url: string): Promise<void>;
+  getTopReferrers(): Promise<Referrer[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -106,6 +109,29 @@ export class DatabaseStorage implements IStorage {
     const [event] = await db.insert(analyticsEvents).values(insertEvent).returning();
     return event;
   }
+
+  async logReferrer(url: string): Promise<void> {
+    const db = getDb();
+    if (!db) return memStorage.logReferrer(url);
+    await db.insert(referrers)
+      .values({ url, count: 1 })
+      .onConflictDoUpdate({
+        target: referrers.url,
+        set: {
+          count: sql`${referrers.count} + 1`,
+          lastSeen: new Date()
+        }
+      });
+  }
+
+  async getTopReferrers(): Promise<Referrer[]> {
+    const db = getDb();
+    if (!db) return memStorage.getTopReferrers();
+    return await db.select()
+      .from(referrers)
+      .orderBy(desc(referrers.count))
+      .limit(50);
+  }
 }
 
 export class MemStorage implements IStorage {
@@ -113,16 +139,19 @@ export class MemStorage implements IStorage {
   private waitlist: Map<number, Waitlist>;
   private cms: Map<string, CmsContent>;
   private analytics: Map<number, AnalyticsEvent>;
+  private referrers: Map<string, Referrer>;
   private uId = 1;
   private wId = 1;
   private cId = 1;
   private aId = 1;
+  private rId = 1;
 
   constructor() {
     this.users = new Map();
     this.waitlist = new Map();
     this.cms = new Map();
     this.analytics = new Map();
+    this.referrers = new Map();
   }
 
   async getUser(id: number) { return this.users.get(id); }
@@ -179,6 +208,28 @@ export class MemStorage implements IStorage {
     };
     this.analytics.set(res.id, res);
     return res;
+  }
+
+  async logReferrer(url: string) {
+    const existing = this.referrers.get(url);
+    if (existing) {
+      existing.count++;
+      existing.lastSeen = new Date();
+    } else {
+      const res: Referrer = {
+        id: this.rId++,
+        url,
+        count: 1,
+        lastSeen: new Date()
+      };
+      this.referrers.set(url, res);
+    }
+  }
+
+  async getTopReferrers() {
+    return Array.from(this.referrers.values())
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 50);
   }
 }
 

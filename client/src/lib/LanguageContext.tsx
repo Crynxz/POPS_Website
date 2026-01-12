@@ -22,11 +22,10 @@ const translations = {
     "cta.family": "Para Famílias",
 
     // Hero
-      "hero.badge": "Lançamento em Breve",
-      "hero.title.1": "Apoio Domiciliário por",
-      "hero.title.2": "Cuidadores de Excelência.",
-      "hero.desc": "Encontre cuidadores para todas as idades oferecendo apoio domiciliário de confiança para os mais variados serviços. A POPS liga famílias a profissionais verificados para cuidados personalizados, seguros e sem burocracia.",
-    "hero.cta.find": "Encontrar Cuidador",
+          "hero.badge": "Lançamento em Breve",
+          "hero.title.1": "Cuidadores de Confiança",
+          "hero.title.2": "para Apoio Domiciliário.",
+          "hero.desc": "Encontre cuidadores para todas as idades oferecendo apoio domiciliário de confiança para os mais variados serviços. A POPS liga famílias a profissionais verificados para cuidados personalizados, seguros e sem burocracia.",    "hero.cta.find": "Encontrar Cuidador",
     "hero.cta.work": "Quero Trabalhar",
     "hero.trust.1": "Verificação Criminal Rigorosa",
     "hero.trust.2": "Certificações Validadas",
@@ -34,11 +33,46 @@ const translations = {
 
     // Service Explorer
     "services.badge": "Soluções Integradas",
-    "services.title.1": "Uma resposta para cada",
-    "services.title.2": "fase da vida.",
+    "services.title.1": "Serviços de Apoio Domiciliário",
+    "services.title.2": "para Cada Fase da Vida.",
     "services.desc": "Explore as nossas áreas de atuação. Selecione uma categoria para ver como podemos ajudar a sua família.",
 
     "services.btn": "Encontrar Apoio",
+
+    // Comparison Section
+    "comparison.badge": "A Verdade do Mercado",
+    "comparison.title.1": "Apoio Domiciliário Seguro:",
+    "comparison.title.2": "POPS vs Mercado Tradicional.",
+    "comparison.desc": "Compare e veja porque somos a escolha segura para a sua família. Eliminamos o risco do mercado informal com cuidadores verificados.",
+
+    // Vetting Section
+    "vetting.badge": "Protocolo de Segurança",
+    "vetting.title.1": "Segurança e Confiança:",
+    "vetting.title.2": "Cuidadores Verificados.",
+    "vetting.desc": "O mercado informal coloca em risco milhares de famílias. A POPS garante cuidadores certificados através de um processo de verificação rigoroso.",
+
+    // Tech Section
+    "tech.badge": "App para Famílias",
+    "tech.title.1": "Tecnologia para Acompanhar",
+    "tech.title.2": "os Cuidados ao Domicílio.",
+    "tech.desc": "Eliminamos a incerteza. Acompanhe o bem-estar dos seus familiares em tempo real com a nossa aplicação de monitorização de cuidados.",
+
+    // Trust Section
+    "trust.title.1": "Vantagens da POPS",
+    "trust.title.2": "no Apoio Domiciliário.",
+    "trust.desc": "A POPS redefine os serviços ao domicílio com segurança, monitorização de saúde e gestão transparente para todas as famílias.",
+
+    // Pricing Section
+    "pricing.badge": "Planos de Preço",
+    "pricing.title.1": "Planos e Preços de",
+    "pricing.title.2": "Apoio Domiciliário.",
+    "pricing.desc": "Escolha o plano de cuidados certo para as suas necessidades. Preços transparentes, sem contratos longos e sem surpresas.",
+
+    // FAQ Section
+    "faq.badge": "Perguntas Frequentes (FAQ)",
+    "faq.title.1": "Dúvidas Comuns sobre",
+    "faq.title.2": "Contratação de Cuidadores.",
+    "faq.desc": "Tudo o que precisa de saber sobre os nossos serviços de apoio domiciliário, da inscrição ao cuidado diário.",
     
     // Service Items (IDs match the keys below)
     "service.senior.title": "Séniores e Longevidade",
@@ -100,8 +134,8 @@ const translations = {
 
     // Hero
     "hero.badge": "Coming Soon",
-    "hero.title.1": "Verified caregivers,",
-    "hero.title.2": "just a click away.",
+    "hero.title.1": "Trusted Caregivers",
+    "hero.title.2": "for Home Support.",
     "hero.desc": "Over 500,000 Portuguese families are looking for solutions. POPS connects you to certified professionals with verified backgrounds and quality assurance. Join the waitlist and secure early access with exclusive launch discounts.",
     "hero.cta.find": "Find Care",
     "hero.cta.work": "Find Work",
@@ -111,11 +145,46 @@ const translations = {
 
     // Service Explorer
     "services.badge": "Integrated Solutions",
-    "services.title.1": "A solution for every",
-    "services.title.2": "stage of life.",
+    "services.title.1": "Home Support Services",
+    "services.title.2": "for Every Life Stage.",
     "services.desc": "Explore our areas of expertise. Select a category to see how we can help your family.",
 
     "services.btn": "Find Support",
+
+    // Comparison Section
+    "comparison.badge": "The Market Truth",
+    "comparison.title.1": "Safe Home Support:",
+    "comparison.title.2": "POPS vs Traditional Market.",
+    "comparison.desc": "Compare and see why we are the safe choice for your family. We eliminate the risk of the informal market with verified caregivers.",
+
+    // Vetting Section
+    "vetting.badge": "Safety Protocol",
+    "vetting.title.1": "Safety and Trust:",
+    "vetting.title.2": "Verified Caregivers.",
+    "vetting.desc": "The informal market puts thousands of families at risk. POPS guarantees certified caregivers through a rigorous verification process.",
+
+    // Tech Section
+    "tech.badge": "App for Families",
+    "tech.title.1": "Technology to Monitor",
+    "tech.title.2": "Home Care Services.",
+    "tech.desc": "We eliminate uncertainty. Monitor your family members' well-being in real-time with our care monitoring application.",
+
+    // Trust Section
+    "trust.title.1": "Advantages of POPS",
+    "trust.title.2": "in Home Support.",
+    "trust.desc": "POPS redefines home services with safety, health monitoring, and transparent management for all families.",
+
+    // Pricing Section
+    "pricing.badge": "Pricing Plans",
+    "pricing.title.1": "Home Support Plans",
+    "pricing.title.2": "and Pricing.",
+    "pricing.desc": "Choose the right care plan for your needs. Transparent pricing, no long contracts, and no surprises.",
+
+    // FAQ Section
+    "faq.badge": "Frequently Asked Questions (FAQ)",
+    "faq.title.1": "Common Questions about",
+    "faq.title.2": "Hiring Caregivers.",
+    "faq.desc": "Everything you need to know about our home support services, from registration to daily care.",
 
     // Service Items
     "service.senior.title": "Seniors & Longevity",

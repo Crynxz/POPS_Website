@@ -1,4 +1,4 @@
-import { pgTable, text, serial, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, jsonb, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -37,6 +37,13 @@ export const analyticsEvents = pgTable("analytics_events", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
+export const referrers = pgTable("referrers", {
+  id: serial("id").primaryKey(),
+  url: text("url").notNull().unique(),
+  count: integer("count").notNull().default(1),
+  lastSeen: timestamp("last_seen", { withTimezone: true }).defaultNow(),
+});
+
 export const insertUserSchema = createInsertSchema(users);
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -55,3 +62,7 @@ export type CmsContent = typeof cmsContent.$inferSelect;
 export const insertAnalyticsEventSchema = createInsertSchema(analyticsEvents);
 export type InsertAnalyticsEvent = z.infer<typeof insertAnalyticsEventSchema>;
 export type AnalyticsEvent = typeof analyticsEvents.$inferSelect;
+
+export const insertReferrerSchema = createInsertSchema(referrers);
+export type InsertReferrer = z.infer<typeof insertReferrerSchema>;
+export type Referrer = typeof referrers.$inferSelect;

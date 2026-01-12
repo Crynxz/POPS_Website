@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import Sitemap from 'vite-plugin-sitemap';
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -15,6 +16,11 @@ export default defineConfig({
       jpeg: { quality: 80 },
       webp: { quality: 80 },
       avif: { quality: 70 },
+    }),
+    Sitemap({
+      hostname: 'https://popshomecare.pt',
+      dynamicRoutes: ['/', '/sobre', '/parceiros'],
+      outDir: path.resolve(__dirname, "dist/public"),
     }),
   ],
   resolve: {

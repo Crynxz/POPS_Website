@@ -10,8 +10,8 @@ export default function ThankYouPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       <SEO 
-        title="Obrigado - POPS" 
-        description="Obrigado por se juntar à lista de espera da POPS. Em breve entraremos em contacto."
+        title="Obrigado - POPS Apoio Domiciliário" 
+        description="Obrigado por se juntar à lista de espera da POPS. A plataforma que vem revolucionar o Apoio Domiciliário em Portugal. Em breve entraremos em contacto."
       />
       
       <Header />

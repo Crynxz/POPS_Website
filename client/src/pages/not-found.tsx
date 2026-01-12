@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
+import SEO from "@/components/SEO";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-background text-center px-4">
+      <SEO 
+        title="404 - Página Não Encontrada | POPS Apoio Domiciliário"
+        description="Lamentamos, mas a página que procura não existe ou foi movida. Volte para a página inicial da POPS para encontrar serviços de Apoio Domiciliário."
+      />
       <h1 className="text-9xl font-extrabold text-primary tracking-tighter">
         404
       </h1>

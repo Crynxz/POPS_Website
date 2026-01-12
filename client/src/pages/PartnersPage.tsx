@@ -111,8 +111,8 @@ export function PartnersPage() {
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
       <SEO 
-        title="Parceiros POPS - Junte-se à Rede de Excelência" 
-        description="Torne-se um parceiro oficial da POPS. Aumente a sua visibilidade, aceda a novos clientes e faça parte da revolução nos cuidados domiciliários."
+        title="Parceiros POPS - Rede de Apoio Domiciliário e Cuidadores" 
+        description="Torne-se um parceiro da POPS. Junte-se à nossa rede de Apoio Domiciliário e conecte os seus Cuidadores a famílias por todo o território de Portugal."
       />
       <Header />
 
