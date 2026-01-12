@@ -15,7 +15,7 @@ export function registerWaitlistRoutes(app: Express) {
         return res.status(409).json({ message: "Email já registado." });
       }
 
-      // 3. Guardar na base de dados local
+      // 3. Guardar na base de dados local.
       const entry = await storage.createWaitlistEntry(data);
 
       console.log(">>> A BASE DE DADOS FUNCIONOU! AGORA VAMOS AO BREVO <<<"); // <--- Adiciona isto
