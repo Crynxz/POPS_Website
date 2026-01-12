@@ -58,6 +58,35 @@ export function registerWaitlistRoutes(app: Express) {
             console.log("Sucesso: Contacto adicionado ao Brevo.", responseData);
           }
 
+          // After adding contact to Brevo, send a confirmation email:
+          const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+            method: 'POST',
+            headers: {
+              'accept': 'application/json',
+              'api-key': process.env.BREVO_API_KEY,
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+              to: [{ email: data.email, name: data.name }],
+              from: { 
+                email: 'geral@popshomecare.pt',
+                name: 'POPS Home Care'
+              },
+              subject: 'Welcome to POPS Waitlist',
+              htmlContent: `
+                <h1>Thank you for joining our waitlist!</h1>
+                <p>Hi ${data.name},</p>
+                <p>We're excited to have you on our POPS Home Care waitlist.</p>
+                <p>We'll be in touch soon with updates!</p>
+                <p>Best regards,<br>POPS Team</p>
+              `
+            })
+          });
+
+          if (!emailResponse.ok) {
+            console.error("Failed to send confirmation email:", await emailResponse.json());
+          }
+
         } catch (e) {
           console.error("Falha ao conectar com o Brevo:", e);
           // Non-blocking error - user is still saved locally
