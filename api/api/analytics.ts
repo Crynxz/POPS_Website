@@ -1,6 +1,8 @@
 import type { Express, Request, Response } from "express";
-import { storage } from "../storage";
-import { insertAnalyticsEventSchema } from "../../shared/schema";
+// MUDANÇA 1: Adicionar .js
+import { storage } from "../storage.js"; 
+// MUDANÇA 2: Adicionar .js
+import { insertAnalyticsEventSchema } from "../../shared/schema.js"; 
 import { ZodError } from "zod";
 
 export function registerAnalyticsRoutes(app: Express) {

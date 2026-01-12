@@ -1,7 +1,7 @@
 import type { Express, Request, Response } from "express";
 // CORREÇÃO AQUI: "../storage" em vez de "../../api/storage"
-import { storage } from "../storage"; 
-import { insertWaitlistSchema } from "../../shared/schema";
+import { storage } from "../storage.ts"; 
+import { insertWaitlistSchema } from "../../shared/schema.ts";
 import { ZodError } from "zod";
 
 export function registerWaitlistRoutes(app: Express) {
