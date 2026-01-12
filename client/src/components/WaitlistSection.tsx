@@ -35,8 +35,21 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
 
       console.log("Form data collected:", data);
 
-      const response = await apiRequest("POST", "/api/waitlist", data);
-      console.log("API Request successful, response:", response);
+    const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // OBRIGATÓRIO para o backend ler o JSON
+        },
+        body: JSON.stringify(data), // Transforma o objeto em texto
+      });
+
+      if (!response.ok) {
+        // Se der erro (400, 500), lançamos o erro para o catch apanhar
+        const errorData = await response.json();
+        throw new Error(errorData.message || JSON.stringify(errorData) || "Erro no envio");
+      }
+
+      console.log("API Request successful");
       
       // Redirect to thank you page
       setLocation("/obrigado");
