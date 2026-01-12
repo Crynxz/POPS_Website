@@ -1,6 +1,6 @@
 
 > rest-express@1.0.0 dev
-> NODE_ENV=development tsx server/index.ts
+> NODE_ENV=development tsx api/index.ts
 
 10:47:50 PM [express] Routes registered successfully
 10:47:50 PM [express] serving on port 5001

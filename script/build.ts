@@ -63,7 +63,7 @@ async function buildAll() {
   ];
 
   await esbuild({
-    entryPoints: ["server/index.ts"],
+    entryPoints: ["api/index.ts"],
     platform: "node",
     bundle: true,
     format: "esm",
