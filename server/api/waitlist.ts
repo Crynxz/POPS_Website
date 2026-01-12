@@ -1,4 +1,3 @@
-ISTO_TEM_DE_DAR_ERRO_FATAL_AGORA!!!!
 import type { Express, Request, Response } from "express";
 import { storage } from "../storage";
 import { insertWaitlistSchema } from "../../shared/schema";
