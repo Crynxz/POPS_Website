@@ -18,6 +18,9 @@ export function registerWaitlistRoutes(app: Express) {
       // 3. Guardar na base de dados local
       const entry = await storage.createWaitlistEntry(data);
 
+      console.log(">>> A BASE DE DADOS FUNCIONOU! AGORA VAMOS AO BREVO <<<"); // <--- Adiciona isto
+      console.log("TEMOS CHAVE API?", process.env.BREVO_API_KEY ? "SIM" : "NÃO"); // <--- Adiciona isto
+
       // 4. Enviar para o Brevo (Adicionar à Lista #5)
       if (process.env.BREVO_API_KEY) {
         try {
