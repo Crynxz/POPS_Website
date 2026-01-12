@@ -15,11 +15,12 @@ export function registerWaitlistRoutes(app: Express) {
         return res.status(409).json({ message: "Email já registado." });
       }
 
-      // 3. Guardar na base de dados local.
+      // 3. Guardar na base de dados local
       const entry = await storage.createWaitlistEntry(data);
 
-      console.log(">>> A BASE DE DADOS FUNCIONOU! AGORA VAMOS AO BREVO <<<"); // <--- Adiciona isto
-      console.log("TEMOS CHAVE API?", process.env.BREVO_API_KEY ? "SIM" : "NÃO"); // <--- Adiciona isto
+      console.log(">>> BASE DE DADOS FUNCIONOU! <<<");
+      console.log("TEMOS CHAVE API?", process.env.BREVO_API_KEY ? "SIM" : "NÃO");
+      console.log("Starting Brevo integration for:", data.email);
 
       // 4. Enviar para o Brevo (Adicionar à Lista #5)
       if (process.env.BREVO_API_KEY) {
@@ -35,7 +36,7 @@ export function registerWaitlistRoutes(app: Express) {
             },
             body: JSON.stringify({
               email: data.email,
-              listIds: [5], // ID da lista Waitlist POPS
+              listIds: [5],
               updateEnabled: true,
               attributes: {
                 NOME: data.name,
@@ -51,14 +52,14 @@ export function registerWaitlistRoutes(app: Express) {
           const responseData = await response.json();
 
           if (!response.ok) {
-            console.error("Erro Brevo API:", responseData);
-            // Still return success to user as they're in local DB
-            // but log the Brevo failure for monitoring
+            console.error("Erro Brevo API ao adicionar contacto:", responseData);
           } else {
-            console.log("Sucesso: Contacto adicionado ao Brevo.", responseData);
+            console.log("✓ Contacto adicionado ao Brevo com sucesso");
           }
 
-          // After adding contact to Brevo, send a confirmation email:
+          // Send confirmation email
+          console.log("A enviar email de confirmação para:", data.email);
+          
           const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
             method: 'POST',
             headers: {
@@ -88,21 +89,20 @@ export function registerWaitlistRoutes(app: Express) {
 
           const emailData = await emailResponse.json();
           if (!emailResponse.ok) {
-            console.error("Erro ao enviar email:", emailData);
+            console.error("✗ Erro ao enviar email:", emailData);
           } else {
-            console.log("Email de confirmação enviado com sucesso para:", data.email);
+            console.log("✓ Email de confirmação enviado com sucesso para:", data.email);
           }
 
         } catch (e) {
-          console.error("Falha ao conectar com o Brevo:", e);
-          // Non-blocking error - user is still saved locally
+          console.error("✗ Falha ao conectar com o Brevo:", e);
         }
       } else {
-        console.warn("AVISO: BREVO_API_KEY não encontrada nas variáveis de ambiente.");
+        console.warn("✗ BREVO_API_KEY não encontrada nas variáveis de ambiente");
       }
 
-      // 5. Responder com sucesso ao Website (Apenas uma vez!)
-      res.status(201).json(entry);
+      // 5. RESPONDER COM SUCESSO AO CLIENT (DEPOIS de todas as operações!)
+      res.status(201).json({ success: true, entry });
 
     } catch (error: any) {
       if (error instanceof ZodError) {
