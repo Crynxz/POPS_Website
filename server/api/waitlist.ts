@@ -20,6 +20,7 @@ export function registerWaitlistRoutes(app: Express) {
 
       console.log(">>> BASE DE DADOS FUNCIONOU! <<<");
       console.log("TEMOS CHAVE API?", process.env.BREVO_API_KEY ? "SIM" : "NÃO");
+      console.log("CHAVE PRIMEIROS 10 CARACTERES:", process.env.BREVO_API_KEY?.substring(0, 10)); // Debug log
       console.log("Starting Brevo integration for:", data.email);
 
       // 4. Enviar para o Brevo (Adicionar à Lista #5)
