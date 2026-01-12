@@ -72,19 +72,25 @@ export function registerWaitlistRoutes(app: Express) {
                 email: 'geral@popshomecare.pt',
                 name: 'POPS Home Care'
               },
-              subject: 'Welcome to POPS Waitlist',
+              subject: 'Bem-vindo à POPS - Confirme sua inscrição',
               htmlContent: `
-                <h1>Thank you for joining our waitlist!</h1>
-                <p>Hi ${data.name},</p>
-                <p>We're excited to have you on our POPS Home Care waitlist.</p>
-                <p>We'll be in touch soon with updates!</p>
-                <p>Best regards,<br>POPS Team</p>
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                  <h2>Obrigado por se inscrever na POPS!</h2>
+                  <p>Olá ${data.name},</p>
+                  <p>Recebemos sua inscrição na nossa lista de espera. Em breve, você receberá mais informações sobre os nossos serviços de cuidados domiciliares.</p>
+                  <p>Estamos entusiasmados em poder ajudá-lo!</p>
+                  <br>
+                  <p>Atenciosamente,<br><strong>Equipe POPS</strong></p>
+                </div>
               `
             })
           });
 
+          const emailData = await emailResponse.json();
           if (!emailResponse.ok) {
-            console.error("Failed to send confirmation email:", await emailResponse.json());
+            console.error("Erro ao enviar email:", emailData);
+          } else {
+            console.log("Email de confirmação enviado com sucesso para:", data.email);
           }
 
         } catch (e) {
