@@ -4,8 +4,8 @@ import {
   type CmsContent, type InsertCmsContent,
   type AnalyticsEvent, type InsertAnalyticsEvent,
   users, waitlist, cmsContent, analyticsEvents 
-} from "../shared/schema";
-import { getDb } from "./db";
+} from "../shared/schema.js";
+import { getDb } from "./db.js";
 import { eq } from "drizzle-orm";
 
 export interface IStorage {

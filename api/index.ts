@@ -1,10 +1,10 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { log } from "./log"; // Agora encontra o log.ts na mesma pasta
+import { log } from "./log.js"; // Agora encontra o log.ts na mesma pasta
 import compression from "compression";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 // MUDANÇA AQUI: Agora usamos "./" porque o ficheiro está ao lado!
-import { registerRoutes } from "./routes"; 
+import { registerRoutes } from "./routes.js"; 
 
 const app = express();
 
