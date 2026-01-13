@@ -104,6 +104,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
         <button 
           className={`lg:hidden p-2 transition-colors ${mobileToggleClass}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

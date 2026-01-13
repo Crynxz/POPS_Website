@@ -128,7 +128,7 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
               {/* Primary Image Container - Minimalist & Professional */}
               <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl max-w-lg mx-auto lg:max-w-none">
                 <img 
-                  src="/assets/heroimg.jpg" 
+                  src="/assets/heroimg.webp" 
                   alt="Cuidadora profissional da POPS prestando apoio domiciliário a idoso em Portugal" 
                   className="w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-full object-cover hover:scale-102 transition-transform duration-1000 ease-out"
                   fetchPriority="high"

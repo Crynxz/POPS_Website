@@ -133,35 +133,35 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
                   <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5 text-left">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.name")}</label>
-                        <input type="text" name="nome" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm md:text-base" required />
+                        <label htmlFor="nome" className="text-[10px] font-bold text-slate-300 uppercase ml-1">{t("waitlist.form.name")}</label>
+                        <input id="nome" type="text" name="nome" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm md:text-base" required />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.phone")}</label>
-                        <input type="tel" name="telefone" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm md:text-base" required />
+                        <label htmlFor="telefone" className="text-[10px] font-bold text-slate-300 uppercase ml-1">{t("waitlist.form.phone")}</label>
+                        <input id="telefone" type="tel" name="telefone" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm md:text-base" required />
                       </div>
                     </div>
                     
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.email")}</label>
-                      <input type="email" name="email" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm md:text-base" required />
+                      <label htmlFor="email" className="text-[10px] font-bold text-slate-300 uppercase ml-1">{t("waitlist.form.email")}</label>
+                      <input id="email" type="email" name="email" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm md:text-base" required />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.birth")}</label>
-                        <input type="date" name="nascimento" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none text-sm md:text-base" required />
+                        <label htmlFor="nascimento" className="text-[10px] font-bold text-slate-300 uppercase ml-1">{t("waitlist.form.birth")}</label>
+                        <input id="nascimento" type="date" name="nascimento" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none text-sm md:text-base" required />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.loc")}</label>
-                        <input type="text" name="localidade" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm md:text-base" required />
+                        <label htmlFor="localidade" className="text-[10px] font-bold text-slate-300 uppercase ml-1">{t("waitlist.form.loc")}</label>
+                        <input id="localidade" type="text" name="localidade" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm md:text-base" required />
                       </div>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.role")}</label>
-                        <select name="perfil" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer appearance-none text-sm md:text-base" defaultValue={selectedProfile || ""} required>
+                        <label htmlFor="perfil" className="text-[10px] font-bold text-slate-300 uppercase ml-1">{t("waitlist.form.role")}</label>
+                        <select id="perfil" name="perfil" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer appearance-none text-sm md:text-base" defaultValue={selectedProfile || ""} required>
                           <option value="" disabled className="bg-slate-900">{t("waitlist.form.role.ph")}</option>
                           <option value="familia" className="bg-slate-900 text-white">{t("waitlist.form.role.family")}</option>
                           <option value="cuidador" className="bg-slate-900 text-white">{t("waitlist.form.role.pro")}</option>
@@ -169,8 +169,8 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
                         </select>
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">{t("waitlist.form.interest")}</label>
-                        <select name="servico" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer appearance-none text-sm md:text-base" defaultValue="" required>
+                        <label htmlFor="servico" className="text-[10px] font-bold text-slate-300 uppercase ml-1">{t("waitlist.form.interest")}</label>
+                        <select id="servico" name="servico" className="w-full bg-white/10 border border-white/10 rounded-xl md:rounded-2xl px-4 md:px-5 py-3.5 md:py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer appearance-none text-sm md:text-base" defaultValue="" required>
                           <option value="" disabled className="bg-slate-900">{t("waitlist.form.interest.ph")}</option>
                           <option value="basico" className="bg-slate-900 text-white">{t("waitlist.form.interest.basic")}</option>
                           <option value="completo" className="bg-slate-900 text-white">{t("waitlist.form.interest.complete")}</option>
@@ -185,8 +185,8 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
                           <Percent size={20} strokeWidth={2.5} className="md:w-6 md:h-6" />
                        </div>
                        <div>
-                          <h4 className="font-bold text-white text-sm md:text-base">{t("waitlist.benefit.title")}</h4>
-                          <p className="text-[10px] md:text-xs text-slate-400">{t("waitlist.benefit.desc")}</p>
+                          <h3 className="font-bold text-white text-sm md:text-base">{t("waitlist.benefit.title")}</h3>
+                          <p className="text-[10px] md:text-xs text-slate-300">{t("waitlist.benefit.desc")}</p>
                        </div>
                     </div>
 

@@ -12,11 +12,11 @@ import BackToTop from "@/components/BackToTop";
 import SkipLink from "@/components/SkipLink";
 import CookieConsent from "@/components/CookieConsent";
 import ScrollProgress from "@/components/ScrollProgress";
+import Home from "@/pages/home";
 
 const queryClient = new QueryClient();
 
 // Lazy Loading das Páginas e Componentes Pesados
-const Home = lazy(() => import("@/pages/home"));
 const PartnersPage = lazy(() => import("@/pages/PartnersPage").then(module => ({ default: module.PartnersPage })));
 const AboutPage = lazy(() => import("@/pages/AboutPage"));
 const AdminPage = lazy(() => import("@/pages/AdminPage"));

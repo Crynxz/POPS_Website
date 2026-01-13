@@ -21,7 +21,7 @@ export default function Footer() {
                   POPS<span className="w-2 h-2 rounded-full bg-primary"></span>
                 </a>
               </Link>
-              <p className="text-sm leading-relaxed mb-8 text-slate-400 max-w-sm">
+              <p className="text-sm leading-relaxed mb-8 text-slate-300 max-w-sm">
                 Transformamos o cuidado domiciliário em Portugal através de tecnologia, confiança e profissionalismo. 
                 Conectamos famílias a cuidadores verificados com segurança total.
               </p>
@@ -75,7 +75,7 @@ export default function Footer() {
                 </li>
                 <li className="flex items-start gap-3">
                   <MapPin size={18} className="text-primary mt-0.5" />
-                  <span>Lisboa, Portugal</span>
+                  <span> Porto, Portugal</span>
                 </li>
               </ul>
             </div>

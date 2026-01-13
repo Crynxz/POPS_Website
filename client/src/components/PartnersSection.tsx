@@ -27,9 +27,9 @@ export function PartnersSection() {
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-20 gap-6">
                 <div className="max-w-2xl">
                     <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">Ecossistema POPS</span>
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
                          <span className="text-gradient-brand">Parceiros</span>  Estratégicos em Portugal
-                    </h3>
+                    </h2>
                     <p className="text-lg text-slate-600 mt-6 leading-relaxed">
                         A nossa rede de apoio domiciliário é construída em colaboração com as instituições mais respeitadas. Trabalhamos em conjunto para elevar o padrão dos serviços ao domicílio, garantindo que cada cuidador possui a formação técnica e certificação necessária para prestar um cuidado de excelência em todo o território nacional.
                     </p>

@@ -68,7 +68,7 @@ export default function TechSection() {
                     {item.icon}
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 mb-1">{item.title}</h4>
+                    <h3 className="font-bold text-slate-900 mb-1">{item.title}</h3>
                     <p className="text-sm text-slate-600 leading-snug">{item.desc}</p>
                   </div>
                 </div>
