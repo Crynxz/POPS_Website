@@ -5,10 +5,10 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import FadeIn from "@/components/FadeIn";
 import SplashScreen from "@/components/SplashScreen";
-import StickyFloatingCTA from "@/components/StickyFloatingCTA";
 
 
 import HeroSection from "@/components/HeroSection";
+const StickyFloatingCTA = lazy(() => import("@/components/StickyFloatingCTA"));
 const ServiceExplorer = lazy(() => import("@/components/ServiceExplorer"));
 const ComparisonSection = lazy(() => import("@/components/ComparisonSection"));
 const VettingSection = lazy(() => import("@/components/VettingSection"));
@@ -17,7 +17,7 @@ const TrustSection = lazy(() => import("@/components/TrustSection"));
 const PricingSection = lazy(() => import("@/components/PricingSection"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 const WaitlistSection = lazy(() => import("@/components/WaitlistSection"));
-import { PartnersSection } from "@/components/PartnersSection";
+const PartnersSection = lazy(() => import("@/components/PartnersSection").then(module => ({ default: module.PartnersSection })));
 
 
 export default function Home() {
@@ -60,7 +60,9 @@ export default function Home() {
       </div>
 
       {/* Sticky Floating CTA */}
-      <StickyFloatingCTA selectedProfile={selectedProfile} />
+      <Suspense fallback={null}>
+        <StickyFloatingCTA selectedProfile={selectedProfile} />
+      </Suspense>
 
       {/* Header Global */}
       <Header />
@@ -101,9 +103,11 @@ export default function Home() {
           </FadeIn>
         </Suspense>
         
-        <FadeIn>
-          <PartnersSection />
-        </FadeIn>
+        <Suspense fallback={<div className="h-96" />}>
+          <FadeIn>
+            <PartnersSection />
+          </FadeIn>
+        </Suspense>
         
         <Suspense fallback={<div className="h-96" />}>
           <FadeIn>

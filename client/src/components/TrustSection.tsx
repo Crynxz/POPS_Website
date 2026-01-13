@@ -36,7 +36,7 @@ export default function TrustSection() {
     { 
       icon: Wallet, 
       title: "Preços Transparentes", 
-      desc: "Nada de orçamentos. Os valores são tabelados e claros desde o início (9€ a 30€+), com faturação automática e benefícios fiscais inclusos." 
+      desc: "Nada de orçamentos. Os valores são tabelados e claros desde o início, com faturação automática e benefícios fiscais inclusos." 
     },
     { 
       icon: ShieldCheck, 

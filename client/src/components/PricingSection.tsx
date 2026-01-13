@@ -4,6 +4,8 @@ import { Section } from "@/components/ui/section";
 import MagneticButton from "@/components/MagneticButton";
 import { Link } from "wouter";
 
+import { PlanQuiz } from "@/components/PlanQuiz";
+
 export default function PricingSection() {
   const tiers = [
     {
@@ -70,9 +72,13 @@ export default function PricingSection() {
         <span className="text-primary font-bold text-xs uppercase tracking-widest mb-3 block">Planos de Preço</span>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 text-balance tracking-tight">
            <span className="text-gradient-brand">Flexibilidade</span> Orçamental</h2>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto px-2 sm:px-0 text-balance leading-relaxed">
+        <p className="text-lg text-slate-600 max-w-2xl mx-auto px-2 sm:px-0 text-balance leading-relaxed mb-8">
           Escolha o plano certo para as suas necessidades. Sem contratos longos, sem surpresas. Tudo transparente.
         </p>
+        
+        <div className="flex justify-center">
+            <PlanQuiz />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto mb-12 sm:mb-14 md:mb-16 relative z-10">

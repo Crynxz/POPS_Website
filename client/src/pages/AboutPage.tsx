@@ -129,7 +129,7 @@ export default function AboutPage() {
      { name: "Guilherme Lupi", role: "COO", desc: "Operações & Compliance. Garante a qualidade do serviço e conformidade com as normas de saúde." },
      
     { 
-      name: "Maria Urizar", 
+      name: "María Urízar", 
       role: "Design & Marketing Lead", 
       desc: "Estratégia de marca e UI/UX. Focada em taxas de conversão, criação de conteúdo e visibilidade." 
     },
