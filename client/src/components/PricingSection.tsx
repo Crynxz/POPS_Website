@@ -2,20 +2,21 @@ import { Check, AlertCircle, ArrowRight, Star, Zap, Shield } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import MagneticButton from "@/components/MagneticButton";
+import { Link } from "wouter";
 
 export default function PricingSection() {
   const tiers = [
     {
+      id: "basico",
       name: "Cuidados Básicos",
       price: "10€",
       desc: "Ideal para combater a solidão e manter a segurança.",
       features: [
-        "Companhia e Estímulo Social", // "Estímulo" soa melhor que "conversa"
-        "Supervisão de Segurança", // Dá paz de espírito à família
-        "Preparação de Lanches Leves", // Define limite: não é cozinhar banquetes
-        "Manutenção do Espaço do Idoso", // EVITA a palavra "Limpeza" para não virar faxina
-        "Acompanhamento ao Exterior", // Mais claro que "consultas"
-        "Check-in/Out via App POPS" // Feature tecnológica
+        "Companhia e Estímulo Social",
+        "Supervisão de Segurança",
+        "Preparação de Lanches Leves",
+        "Manutenção do Espaço do Idoso",
+        "Acompanhamento ao Exterior"
       ],
       cta: "Escolher Básico",
       highlight: false,
@@ -23,41 +24,40 @@ export default function PricingSection() {
       style: "bg-white border-slate-200 hover:border-slate-300"
     },
     {
+      id: "completo",
       name: "Cuidados Completos",
       price: "15€",
       desc: "O nosso plano mais popular. Apoio total à rotina diária.",
       features: [
         "Tudo do plano Básico, mais:",
-        "Higiene Pessoal (Banho)", // O grande diferenciador deste plano
-        "Transferências Seguras", // Termo técnico para tirar da cama/cadeira
-        "Lembrete de Medicação", // LEGALMENTE SEGURO: "Lembrete" não é "Administração"
-        "Confeção de Refeições", // Aqui sim, cozinhar
+        "Higiene Pessoal (Banho)",
+        "Transferências Seguras",
+        "Lembrete de Medicação",
+        "Confeção de Refeições",
         "Tratamento de Roupa",
-        "Monitorização GPS em tempo real",
-        "Relatório de Bem-Estar na App" // Valoriza o serviço
+        "Relatório Digital feito por IA"
       ],
       cta: "Começar Agora",
-      highlight: true, // Mantém o destaque, é o "Best Seller"
+      highlight: true,
       icon: Star,
       style: "bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/40 shadow-xl shadow-primary/10 relative overflow-hidden"
     },
     {
+      id: "especializado",
       name: "Especializado",
-price: "20€+",
-desc: "Para situações de dependência elevada ou demências, com os nossos profissionais de topo.",
-features: [
-  "Tudo do plano Completo, mais:",
-  "Cuidadores Elite (Top 5% Avaliados)", // Vende a qualidade humana
-  "Apoio à Reabilitação e Mobilidade", // Substitui "Fisioterapia" legalmente
-  "Especialização em Alzheimer/Demência", // Mantém, é fortíssimo
-  "Relatório Diário Digital Detalhado", // A família adora controlo
-  "Gestor de Caso Dedicado", // Serviço VIP
-  "Prevenção de Úlceras e Posicionamento" // Técnico e valorizado
-],
-cta: "Pedir Avaliação", // Mudança subtil: Planos caros pedem conversa, não compra direta
-highlight: false,
-icon: Zap,
-style: "bg-white border-slate-200 hover:border-slate-300"
+      price: "20€+",
+      desc: "Para situações de dependência elevada ou demências, com os nossos profissionais de topo.",
+      features: [
+        "Tudo do plano Completo, mais:",
+        "Cuidadores Elite (Top 5% Avaliados)",
+        "Apoio à Reabilitação e Mobilidade",
+        "Especialização em Alzheimer/Demência",
+        "Prevenção de Úlceras e Posicionamento"
+      ],
+      cta: "Pedir Avaliação",
+      highlight: false,
+      icon: Zap,
+      style: "bg-white border-slate-200 hover:border-slate-300"
     }
   ];
 
@@ -100,18 +100,18 @@ style: "bg-white border-slate-200 hover:border-slate-300"
               </div>
             )}
 
-            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 ${tier.highlight ? 'bg-primary/10 text-primary' : 'bg-slate-100 text-slate-500'}`}>
-                <tier.icon size={24} />
+            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 mx-auto ${tier.highlight ? 'bg-primary/10 text-primary' : 'bg-slate-100 text-slate-500'}`}>
+                <tier.icon size={28} />
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">{tier.name}</h3>
-            <p className="text-xs sm:text-sm text-slate-600 mb-6 flex-grow">{tier.desc}</p>
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2 text-center">{tier.name}</h3>
+            <p className="text-sm text-slate-600 mb-8 text-center px-2">{tier.desc}</p>
             
-            <div className="mb-8">
-              <div className="text-4xl sm:text-5xl md:text-4xl font-extrabold gradient-text-primary">
+            <div className="mb-10 text-center">
+              <div className="text-5xl sm:text-6xl font-black gradient-text-primary tracking-tighter">
                 {tier.price}
               </div>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1">por hora</p>
+              <p className="text-xs font-bold text-slate-500 mt-1 uppercase tracking-widest">por hora</p>
             </div>
 
             <ul className="space-y-2 sm:space-y-3 mb-8">
@@ -123,48 +123,78 @@ style: "bg-white border-slate-200 hover:border-slate-300"
               ))}
             </ul>
 
-            <MagneticButton className="w-full">
-              <Button 
-                asChild
-                variant={tier.highlight ? "default" : "secondary"}
-                className={`w-full gap-2 group/btn ${tier.highlight ? "shadow-lg shadow-primary/20" : ""}`}
-              >
-                <a href="#waitlist">
-                  {tier.cta}
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </a>
-              </Button>
-            </MagneticButton>
+            <div className="space-y-4 mt-auto">
+              <MagneticButton className="w-full">
+                <Button 
+                  asChild
+                  variant={tier.highlight ? "default" : "secondary"}
+                  className={`w-full gap-2 group/btn ${tier.highlight ? "shadow-lg shadow-primary/20" : ""}`}
+                >
+                  <a href="#waitlist">
+                    {tier.cta}
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </a>
+                </Button>
+              </MagneticButton>
+
+              <div className="text-center">
+                <Link href={`/servicos/${tier.id}`}>
+                  <a className="text-sm font-medium text-slate-500 hover:text-primary transition-colors inline-flex items-center gap-1 group/link">
+                    Saber mais detalhes
+                    <ArrowRight className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
+                  </a>
+                </Link>
+              </div>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Trust & Features callout */}
-      <div className="max-w-4xl mx-auto bg-blue-50/50 border border-blue-200/50 rounded-2xl p-6 sm:p-8 md:p-10 flex flex-col sm:flex-row gap-4 relative z-10 backdrop-blur-sm">
-        <AlertCircle className="w-5 sm:w-6 h-5 sm:h-6 text-blue-600 flex-shrink-0 mt-0 sm:mt-0.5" />
-        <div className="flex-1">
-          <h3 className="font-bold text-slate-900 mb-3 sm:mb-2 text-base sm:text-lg">Incluído em Todos os Planos</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm text-slate-700">
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-primary flex-shrink-0" />
-              Verificação rigorosa do cuidador
-            </div>
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-primary flex-shrink-0" />
-              Seguro de responsabilidade civil
-            </div>
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-primary flex-shrink-0" />
-              Suporte telefónico 24/7
-            </div>
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-primary flex-shrink-0" />
-              Sem taxas ocultas
-            </div>
-          </div>
-        </div>
-      </div>
+
+     {/* Trust & Features callout */}
+<div className="max-w-4xl mx-auto bg-blue-50/50 border border-blue-200/50 rounded-2xl p-6 sm:p-8 md:p-10 flex flex-col sm:flex-row gap-4 relative z-10 backdrop-blur-sm">
+  <AlertCircle className="w-5 sm:w-6 h-5 sm:h-6 text-blue-600 flex-shrink-0 mt-0 sm:mt-0.5" />
+  <div className="flex-1">
+    <h3 className="font-bold text-slate-900 mb-3 sm:mb-4 text-base sm:text-lg">
+      A Segurança POPS (Incluído em Todos os Planos)
+    </h3>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm text-slate-700">
       
+      {/* Ponto 1: Verificação */}
+      <div className="flex items-center gap-2">
+        <Check className="w-4 h-4 text-primary flex-shrink-0" />
+        <span>Verificação criminal e profissional rigorosa</span>
+      </div>
+
+      {/* Ponto 2: O DASHBOARD (Melhorado) */}
+      <div className="flex items-start gap-2">
+        <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+        <span className="leading-tight">
+         GPS, Chat e Registo de Tarefas em tempo real na App
+        </span>
+      </div>
+
+      {/* Ponto 3: Seguro */}
+      <div className="flex items-center gap-2">
+        <Check className="w-4 h-4 text-primary flex-shrink-0" />
+        <span>Seguro de responsabilidade civil incluído</span>
+      </div>
+
+      {/* Ponto 4: Suporte */}
+      <div className="flex items-center gap-2">
+        <Check className="w-4 h-4 text-primary flex-shrink-0" />
+        <span>Suporte telefónico humano 24/7</span>
+      </div>
+
+      {/* Ponto 5: Transparência */}
+      <div className="flex items-center gap-2">
+        <Check className="w-4 h-4 text-primary flex-shrink-0" />
+        <span>Preços finais, sem taxas ocultas</span>
+      </div>
+
+    </div>
+  </div>
+</div>
       <p className="text-center text-[10px] sm:text-xs text-slate-500 mt-8 sm:mt-10 md:mt-12 relative z-10">
         *Preços meramente indicativos. Valores finais definidos no lançamento. Descontos de 20-30% em contratos mensais de permanência.
       </p>

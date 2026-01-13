@@ -44,14 +44,14 @@ export default function TechSection() {
                 {
                   icon: <ClipboardList size={24} />,
                   title: "Diário Digital",
-                  desc: "Relatórios detalhados de higiene, alimentação e medicação.",
+                  desc: "Relatórios detalhados gerados por IA após cada serviço, com base nos registos do cuidador.",
                   color: "text-blue-600",
                   bg: "bg-blue-600/10"
                 },
                 {
                   icon: <Shield size={24} />,
                   title: "Pagamentos Seguros",
-                  desc: "Transações automáticas, seguras e totalmente declaradas.",
+                  desc: "Transações automáticas, seguras e totalmente declaradas. Pagamento é sempre feito até 48 horas após o serviço para garantir a segurança do cliente e cuidador.",
                   color: "text-emerald-600",
                   bg: "bg-emerald-600/10"
                 },

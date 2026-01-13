@@ -22,6 +22,11 @@ const AboutPage = lazy(() => import("@/pages/AboutPage"));
 const AdminPage = lazy(() => import("@/pages/AdminPage"));
 const ThankYouPage = lazy(() => import("@/pages/ThankYouPage"));
 
+// Planos
+const BasicPlanPage = lazy(() => import("@/pages/plans/BasicPlanPage"));
+const CompletePlanPage = lazy(() => import("@/pages/plans/CompletePlanPage"));
+const SpecializedPlanPage = lazy(() => import("@/pages/plans/SpecializedPlanPage"));
+
 export default function App() {
   return (
     <HelmetProvider>
@@ -43,6 +48,12 @@ export default function App() {
                 <Route path="/sobre" component={AboutPage} />
                 <Route path="/obrigado" component={ThankYouPage} />
                 <Route path="/admin" component={AdminPage} />
+                
+                {/* Rotas de Planos */}
+                <Route path="/servicos/basico" component={BasicPlanPage} />
+                <Route path="/servicos/completo" component={CompletePlanPage} />
+                <Route path="/servicos/especializado" component={SpecializedPlanPage} />
+                
                 <Route component={NotFound} />
               </Switch>
             </Suspense>
