@@ -7,33 +7,57 @@ export default function PricingSection() {
   const tiers = [
     {
       name: "Cuidados Básicos",
-      price: "9€ - 13€",
-      desc: "Companhia, supervisão e apoio domiciliário leve.",
-      features: ["Companhia social e conversa", "Supervisionamento de atividades", "Pequenas ajudas com refeições", "Limpeza leve", "Acompanhamento a consultas", "Comunicação via app POPS"],
-      cta: "Tenho Interesse",
+      price: "10€",
+      desc: "Ideal para combater a solidão e manter a segurança.",
+      features: [
+        "Companhia e Estímulo Social", // "Estímulo" soa melhor que "conversa"
+        "Supervisão de Segurança", // Dá paz de espírito à família
+        "Preparação de Lanches Leves", // Define limite: não é cozinhar banquetes
+        "Manutenção do Espaço do Idoso", // EVITA a palavra "Limpeza" para não virar faxina
+        "Acompanhamento ao Exterior", // Mais claro que "consultas"
+        "Check-in/Out via App POPS" // Feature tecnológica
+      ],
+      cta: "Escolher Básico",
       highlight: false,
       icon: Shield,
       style: "bg-white border-slate-200 hover:border-slate-300"
     },
     {
       name: "Cuidados Completos",
-      price: "14€ - 20€",
-      desc: "Cuidados pessoais completos, mobilidade e gestão doméstica.",
-      features: ["Tudo do plano Básico, mais:", "Higiene pessoal completa", "Apoio na mobilidade", "Ajuda a vestir/despir", "Preparação de refeições", "Gestão de roupa e limpeza", "GPS em tempo real", "Suporte prioritário 24/7"],
+      price: "15€",
+      desc: "O nosso plano mais popular. Apoio total à rotina diária.",
+      features: [
+        "Tudo do plano Básico, mais:",
+        "Higiene Pessoal (Banho)", // O grande diferenciador deste plano
+        "Transferências Seguras", // Termo técnico para tirar da cama/cadeira
+        "Lembrete de Medicação", // LEGALMENTE SEGURO: "Lembrete" não é "Administração"
+        "Confeção de Refeições", // Aqui sim, cozinhar
+        "Tratamento de Roupa",
+        "Monitorização GPS em tempo real",
+        "Relatório de Bem-Estar na App" // Valoriza o serviço
+      ],
       cta: "Começar Agora",
-      highlight: true,
+      highlight: true, // Mantém o destaque, é o "Best Seller"
       icon: Star,
-      style: "bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/40 shadow-2xl shadow-primary/15 relative overflow-hidden"
+      style: "bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/40 shadow-xl shadow-primary/10 relative overflow-hidden"
     },
     {
-      name: "Premium",
-      price: "21€ - 30€+",
-      desc: "Especialização avançada para necessidades complexas.",
-      features: ["Tudo do plano Completo, mais:", "Cuidadores com Certificação Avançada", "Especialização em Alzheimer/Demência", "Monitorização médica contínua", "Equipamentos técnicos inclusos", "Estimulação cognitiva personalizada"],
-      cta: "Saber Mais",
-      highlight: false,
-      icon: Zap,
-      style: "bg-white border-slate-200 hover:border-slate-300"
+      name: "Especializado",
+price: "20€+",
+desc: "Para situações de dependência elevada ou demências, com os nossos profissionais de topo.",
+features: [
+  "Tudo do plano Completo, mais:",
+  "Cuidadores Elite (Top 5% Avaliados)", // Vende a qualidade humana
+  "Apoio à Reabilitação e Mobilidade", // Substitui "Fisioterapia" legalmente
+  "Especialização em Alzheimer/Demência", // Mantém, é fortíssimo
+  "Relatório Diário Digital Detalhado", // A família adora controlo
+  "Gestor de Caso Dedicado", // Serviço VIP
+  "Prevenção de Úlceras e Posicionamento" // Técnico e valorizado
+],
+cta: "Pedir Avaliação", // Mudança subtil: Planos caros pedem conversa, não compra direta
+highlight: false,
+icon: Zap,
+style: "bg-white border-slate-200 hover:border-slate-300"
     }
   ];
 
