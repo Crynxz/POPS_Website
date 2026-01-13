@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import Sitemap from 'vite-plugin-sitemap';
+import vitePluginCompression from 'vite-plugin-compression';
+import { visualizer } from 'rollup-plugin-visualizer';
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -17,10 +19,22 @@ export default defineConfig({
       webp: { quality: 80 },
       avif: { quality: 70 },
     }),
+    vitePluginCompression({
+      algorithm: 'gzip',
+      ext: '.gz',
+    }),
+    vitePluginCompression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+    }),
     Sitemap({
       hostname: 'https://popshomecare.pt',
       dynamicRoutes: ['/', '/sobre', '/parceiros'],
       outDir: path.resolve(__dirname, "dist/public"),
+    }),
+    visualizer({
+      filename: path.resolve(__dirname, 'dist/stats.html'),
+      open: false,
     }),
   ],
   resolve: {
@@ -40,7 +54,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'wouter'],
+          'vendor-react': ['react', 'react-dom', 'wouter', 'react-helmet-async'],
           'vendor-framer': ['framer-motion'],
           'vendor-ui': [
             '@radix-ui/react-accordion', 
@@ -52,9 +66,11 @@ export default defineConfig({
             '@radix-ui/react-scroll-area',
             'class-variance-authority', 
             'clsx', 
-            'tailwind-merge'
+            'tailwind-merge',
+            'lucide-react'
           ],
-          'vendor-utils': ['date-fns', 'zod', 'react-hook-form'],
+          'vendor-utils': ['date-fns', 'zod', 'react-hook-form', '@tanstack/react-query'],
+          'vendor-charts': ['recharts'],
         }
       }
     }
