@@ -87,10 +87,18 @@ export default function ServiceExplorer() {
           {/* Navigation (Left / Top on Mobile) */}
           <div className="lg:col-span-4 flex flex-row lg:flex-col gap-2 sm:gap-3 overflow-x-auto lg:overflow-x-visible pb-3 sm:pb-4 lg:pb-0 px-1 sm:px-2 lg:px-0 snap-x no-scrollbar">
             {services.map((service) => (
-              <button
+              <div
                 key={service.id}
+                role="button"
+                tabIndex={0}
                 onClick={() => setActiveTab(service)}
-                className={`text-left p-3 sm:p-4 lg:p-5 rounded-lg sm:rounded-2xl transition-all duration-300 group relative overflow-hidden border flex-shrink-0 w-[180px] sm:w-[200px] lg:w-full snap-start font-medium text-sm sm:text-base ${
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveTab(service);
+                  }
+                }}
+                className={`text-left p-3 sm:p-4 lg:p-5 rounded-lg sm:rounded-2xl transition-all duration-300 group relative overflow-hidden border flex-shrink-0 w-[180px] sm:w-[200px] lg:w-full snap-start font-medium text-sm sm:text-base cursor-pointer ${
                   activeTab.id === service.id 
                     ? "bg-white shadow-md sm:shadow-lg border-primary text-primary scale-[1.02] border-2" 
                     : "hover:bg-white hover:border-slate-200 border-transparent text-slate-700 hover:shadow-md"
@@ -112,7 +120,7 @@ export default function ServiceExplorer() {
                     <ArrowRight className="ml-auto text-primary w-4 h-4 animate-in fade-in slide-in-from-left-2 hidden lg:block" />
                   )}
                 </div>
-              </button>
+              </div>
             ))}
           </div>
 

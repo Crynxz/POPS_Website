@@ -16,10 +16,8 @@ export default function Footer() {
             
             {/* Brand Column */}
             <div className="lg:col-span-4">
-              <Link href="/">
-                <a className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                  POPS<span className="w-2 h-2 rounded-full bg-primary"></span>
-                </a>
+              <Link href="/" className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                POPS<span className="w-2 h-2 rounded-full bg-primary"></span>
               </Link>
               <p className="text-sm leading-relaxed mb-8 text-slate-300 max-w-sm">
                 Transformamos o cuidado domiciliário em Portugal através de tecnologia, confiança e profissionalismo. 
@@ -54,7 +52,7 @@ export default function Footer() {
               <h4 className="text-white font-bold mb-6 tracking-wide text-sm uppercase">Comunidade</h4>
               <ul className="space-y-4 text-sm">
           
-                <li><Link href="/parceiros"><a className="hover:text-primary transition-colors flex items-center gap-2">Parceiros</a></Link></li>
+                <li><Link href="/parceiros" className="hover:text-primary transition-colors flex items-center gap-2">Parceiros</Link></li>
                 <li><a href="#" className="hover:text-primary transition-colors flex items-center gap-2">Blog</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors flex items-center gap-2">Centro de Ajuda</a></li>
               </ul>

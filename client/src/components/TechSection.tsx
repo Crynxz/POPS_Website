@@ -4,7 +4,7 @@ import MagneticButton from "@/components/MagneticButton";
 
 export default function TechSection() {
   return (
-    <section className="py-24 md:py-32 bg-slate-50 relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-slate-50 relative overflow-hidden" id="tecnologia">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
         <div className="absolute -top-[20%] -right-[10%] w-[70vh] h-[70vh] bg-primary/5 rounded-full blur-[100px]" />

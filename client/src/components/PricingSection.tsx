@@ -143,11 +143,9 @@ export default function PricingSection() {
               </MagneticButton>
 
               <div className="text-center">
-                <Link href={`/servicos/${tier.id}`}>
-                  <a className="text-sm font-medium text-slate-500 hover:text-primary transition-colors inline-flex items-center gap-1 group/link">
+                <Link href={`/servicos/${tier.id}`} className="text-sm font-medium text-slate-500 hover:text-primary transition-colors inline-flex items-center gap-1 group/link">
                     Saber mais detalhes
                     <ArrowRight className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
-                  </a>
                 </Link>
               </div>
             </div>

@@ -73,7 +73,7 @@ export default function TrustSection() {
   const visibleFeatures = isExpanded ? allFeatures : allFeatures.slice(0, 4);
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-slate-50/50 via-white to-white transition-colors duration-300 relative overflow-hidden" id="diferenciais">
+    <section className="py-24 md:py-32 bg-gradient-to-b from-slate-50/50 via-white to-white transition-colors duration-300 relative overflow-hidden" id="recursos">
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 md:mb-20">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 tracking-tight">

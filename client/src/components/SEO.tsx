@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useContent } from '@/hooks/useContent';
+import { useLocation } from 'wouter';
 
 interface SEOProps {
   title?: string;
@@ -20,9 +21,10 @@ export default function SEO({
   url,
   noindex = false
 }: SEOProps) {
+  const [location] = useLocation();
   // Configuração Base
   const siteUrl = "https://popshomecare.pt";
-  const currentUrl = url || siteUrl;
+  const currentUrl = url || `${siteUrl}${location === '/' ? '' : location}`;
   
   // Garante que a imagem é um URL absoluto para o Open Graph (Evita erros no Facebook/WhatsApp)
   const absoluteImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;

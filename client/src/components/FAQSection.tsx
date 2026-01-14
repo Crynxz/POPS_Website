@@ -197,7 +197,7 @@ export default function FAQSection() {
                 A nossa equipa de suporte está disponível todos os dias para ajudar a encontrar a solução ideal para a sua família.
               </p>
               <MagneticButton>
-                <a href="#contacto" className="inline-flex items-center justify-center px-6 py-3 bg-slate-900 text-white font-semibold rounded-full hover:bg-slate-800 transition-colors text-sm">
+                <a href="#waitlist" className="inline-flex items-center justify-center px-6 py-3 bg-slate-900 text-white font-semibold rounded-full hover:bg-slate-800 transition-colors text-sm">
                   Falar com a Equipa POPS
                 </a>
               </MagneticButton>

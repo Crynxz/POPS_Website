@@ -34,11 +34,9 @@ export function PartnersSection() {
                         A nossa rede de apoio domiciliário é construída em colaboração com as instituições mais respeitadas. Trabalhamos em conjunto para elevar o padrão dos serviços ao domicílio, garantindo que cada cuidador possui a formação técnica e certificação necessária para prestar um cuidado de excelência em todo o território nacional.
                     </p>
                 </div>
-                <Link href="/parceiros">
-                    <a className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold hover:border-primary/50 hover:text-primary hover:shadow-md transition-all group shrink-0">
-                        Ver Todos os Parceiros 
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </a>
+                <Link href="/parceiros" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold hover:border-primary/50 hover:text-primary hover:shadow-md transition-all group shrink-0">
+                    Ver Todos os Parceiros 
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
             </div>
 

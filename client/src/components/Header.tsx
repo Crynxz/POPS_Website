@@ -28,7 +28,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
 
   const navLinks = [
     { name: t("nav.market"), href: "/#mercado" },
-    { name: t("nav.diff"), href: "/#diferenciais" },
+    { name: t("nav.diff"), href: "/#comparacao" },
     { name: t("nav.prices"), href: "/#precos" },
     { name: t("nav.safety"), href: "/#seguranca" },
     { name: t("nav.partners"), href: "/parceiros" },
@@ -51,10 +51,8 @@ export default function Header({ variant = "default" }: HeaderProps) {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* LOGO */}
-        <Link href="/">
-          <a className={`text-2xl font-extrabold tracking-tighter flex items-center gap-2 transition-colors ${textColorClass}`}>
-            POPS<span className="w-2 h-2 rounded-full bg-primary ring-4 ring-primary/20"></span>
-          </a>
+        <Link href="/" className={`text-2xl font-extrabold tracking-tighter flex items-center gap-2 transition-colors ${textColorClass}`}>
+          POPS<span className="w-2 h-2 rounded-full bg-primary ring-4 ring-primary/20"></span>
         </Link>
 
         {/* DESKTOP NAV */}

@@ -3,7 +3,7 @@ import { Section } from "@/components/ui/section";
 
 export default function ComparisonSection() {
   return (
-    <Section className="bg-gradient-to-b from-white via-white to-slate-50/30 transition-colors duration-300">
+    <Section className="bg-gradient-to-b from-white via-white to-slate-50/30 transition-colors duration-300" id="comparacao">
       
       {/* Top Wave Divider */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 rotate-180">

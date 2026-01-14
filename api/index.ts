@@ -3,17 +3,22 @@ import { log } from "./log.js";
 import compression from "compression";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import session from "express-session";
+import createMemoryStore from "memorystore";
 import { registerRoutes } from "./routes.js"; 
+import { serveStatic } from "./static.js";
 
+const MemoryStore = createMemoryStore(session);
 const app = express();
 
 app.set("trust proxy", 1);
 
-// Security Headers
+// Security Headers & HSTS
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
+      upgradeInsecureRequests: [],
       scriptSrc: ["'self'", "'unsafe-inline'", "https://www.google-analytics.com", "https://ssl.google-analytics.com"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "data:", "https://fonts.gstatic.com"],
@@ -21,6 +26,30 @@ app.use(helmet({
       connectSrc: ["'self'", "https://api.emailjs.com", "https://api.brevo.com"],
     },
   },
+  strictTransportSecurity: {
+    maxAge: 31536000, // 1 year
+    includeSubDomains: true,
+    preload: true,
+  },
+  referrerPolicy: {
+    policy: "strict-origin-when-cross-origin",
+  },
+}));
+
+// Secure Session & Cookies
+app.use(session({
+  cookie: {
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    httpOnly: true,
+    maxAge: 86400000, // 1 day
+  },
+  store: new MemoryStore({
+    checkPeriod: 86400000, // prune expired entries every 24h
+  }),
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.SESSION_SECRET || "default_secret_change_me",
 }));
 
 // Rate Limiting
@@ -50,6 +79,11 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
   res.status(status).json({ message: "Internal Server Error", details: err.message });
 });
+
+// Production Static Serving (for non-Vercel environments)
+if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
+  serveStatic(app);
+}
 
 // Lógica local para desenvolvimento
 if (!process.env.VERCEL) {
