@@ -33,11 +33,10 @@ export default function PricingSection() {
       features: [
         "Tudo do plano Básico, mais:",
         "Higiene Pessoal (Banho)",
-        "Transferências Seguras",
-        "Lembrete de Medicação",
+        "Gerência de Medicação sensível",
         "Confeção de Refeições",
         "Tratamento de Roupa",
-        "Relatório Digital feito por IA"
+        "Relatório Digital gerado por IA"
       ],
       cta: "Começar Agora",
       highlight: true,
