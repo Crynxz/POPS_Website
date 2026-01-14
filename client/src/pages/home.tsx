@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import FadeIn from "@/components/FadeIn";
 import SplashScreen from "@/components/SplashScreen";
+import LazyRender from "@/components/LazyRender";
 
 
 import HeroSection from "@/components/HeroSection";
@@ -74,60 +75,78 @@ export default function Home() {
     
         
         <Suspense fallback={<div className="h-96" />}>
-          <FadeIn>
-            <ServiceExplorer />
-          </FadeIn>
+          <LazyRender rootMargin="300px">
+            <FadeIn>
+              <ServiceExplorer />
+            </FadeIn>
+          </LazyRender>
         </Suspense>
         
         <Suspense fallback={<div className="h-96" />}>
-          <FadeIn>
-            <ComparisonSection />
-          </FadeIn>
+          <LazyRender>
+            <FadeIn>
+              <ComparisonSection />
+            </FadeIn>
+          </LazyRender>
         </Suspense>
         
         <Suspense fallback={<div className="h-96" />}>
-          <FadeIn>
-            <VettingSection />
-          </FadeIn>
+          <LazyRender>
+            <FadeIn>
+              <VettingSection />
+            </FadeIn>
+          </LazyRender>
         </Suspense>
         
         <Suspense fallback={<div className="h-96" />}>
-          <FadeIn>
-            <TechSection />
-          </FadeIn>
+          <LazyRender>
+            <FadeIn>
+              <TechSection />
+            </FadeIn>
+          </LazyRender>
         </Suspense>
         
         <Suspense fallback={<div className="h-96" />}>
-          <FadeIn>
-            <TrustSection />
-          </FadeIn>
+          <LazyRender>
+            <FadeIn>
+              <TrustSection />
+            </FadeIn>
+          </LazyRender>
         </Suspense>
         
         <Suspense fallback={<div className="h-96" />}>
-          <FadeIn>
-            <PartnersSection />
-          </FadeIn>
+          <LazyRender>
+            <FadeIn>
+              <PartnersSection />
+            </FadeIn>
+          </LazyRender>
         </Suspense>
         
         <Suspense fallback={<div className="h-96" />}>
-          <FadeIn>
-            <PricingSection />
-          </FadeIn>
+          <LazyRender>
+            <FadeIn>
+              <PricingSection />
+            </FadeIn>
+          </LazyRender>
         </Suspense>
         
         <Suspense fallback={<div className="h-96" />}>
-          <FadeIn>
-            <FAQSection />
-          </FadeIn>
+          <LazyRender>
+            <FadeIn>
+              <FAQSection />
+            </FadeIn>
+          </LazyRender>
         </Suspense>
                   
               
                 
         {/* Formulário de Lista de Espera */}
         <Suspense fallback={<div className="h-96" />}>
-          <FadeIn>
-            <WaitlistSection selectedProfile={selectedProfile} />
-          </FadeIn>
+          <LazyRender>
+            <FadeIn>
+              <WaitlistSection selectedProfile={selectedProfile} />
+            </FadeIn>
+          </LazyRender>
         </Suspense>
       </main>
 
