@@ -109,8 +109,7 @@ export default function SEO({
               "image": absoluteImageUrl,
               "url": siteUrl,
               "telephone": "+351915613345",
-              // Preços baseados no PDF: 9€ (Básico) a 45€ (Enfermagem) 
-              "priceRange": "9€ - 45€ por hora", 
+              "priceRange": "10€ - 20€ por hora", 
               "address": {
                 "@type": "PostalAddress",
                 // Atualizado para PORTO conforme Plano de Negócios 
@@ -154,7 +153,7 @@ export default function SEO({
                       "description": "Companhia, supervisão e apoio leve para idosos independentes.",
                       "priceSpecification": {
                          "@type": "UnitPriceSpecification",
-                         "price": "9.00",
+                         "price": "10.00",
                          "priceCurrency": "EUR",
                          "unitCode": "HUR" // Hora
                       }
@@ -164,11 +163,11 @@ export default function SEO({
                     "@type": "Offer",
                     "itemOffered": {
                       "@type": "Service",
-                      "name": "Cuidados de Enfermagem e Clínicos",
+                      "name": "Cuidados Especializados",
                       "description": "Apoio pós-operatório, gestão de medicação e tratamentos complexos.",
                       "priceSpecification": {
                          "@type": "UnitPriceSpecification",
-                         "price": "31.00",
+                         "price": "20.00",
                          "priceCurrency": "EUR",
                          "unitCode": "HUR"
                       }

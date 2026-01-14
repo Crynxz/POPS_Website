@@ -82,8 +82,8 @@ export default function Footer() {
           <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
             <p>&copy; {new Date().getFullYear()} POPS Plataforma. Todos os direitos reservados.</p>
             <div className="flex gap-8">
-              <a href="#" className="hover:text-white transition-colors">Política de Privacidade</a>
-              <a href="#" className="hover:text-white transition-colors">Termos de Serviço</a>
+              <Link href="/privacidade" className="hover:text-white transition-colors">Política de Privacidade</Link>
+              <Link href="/termos" className="hover:text-white transition-colors">Termos de Serviço</Link>
               <a href="#" className="hover:text-white transition-colors">Definições de Cookies</a>
             </div>
           </div>

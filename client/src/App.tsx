@@ -26,6 +26,8 @@ const ThankYouPage = lazy(() => import("@/pages/ThankYouPage"));
 const BasicPlanPage = lazy(() => import("@/pages/plans/BasicPlanPage"));
 const CompletePlanPage = lazy(() => import("@/pages/plans/CompletePlanPage"));
 const SpecializedPlanPage = lazy(() => import("@/pages/plans/SpecializedPlanPage"));
+const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 
 export default function App() {
   return (
@@ -48,6 +50,8 @@ export default function App() {
                 <Route path="/sobre" component={AboutPage} />
                 <Route path="/obrigado" component={ThankYouPage} />
                 <Route path="/admin" component={AdminPage} />
+                <Route path="/privacidade" component={PrivacyPolicy} />
+                <Route path="/termos" component={TermsOfService} />
                 
                 {/* Rotas de Planos */}
                 <Route path="/servicos/basico" component={BasicPlanPage} />
