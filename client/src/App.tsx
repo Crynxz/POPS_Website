@@ -30,6 +30,9 @@ const SpecializedPlanPage = lazy(() => import("@/pages/plans/SpecializedPlanPage
 const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 
+// Guides
+const SpeedInsightsGuidePage = lazy(() => import("@/pages/SpeedInsightsGuidePage"));
+
 export default function App() {
   return (
     <HelmetProvider>
@@ -58,6 +61,9 @@ export default function App() {
                 <Route path="/servicos/basico" component={BasicPlanPage} />
                 <Route path="/servicos/completo" component={CompletePlanPage} />
                 <Route path="/servicos/especializado" component={SpecializedPlanPage} />
+                
+                {/* Rotas de Guias */}
+                <Route path="/guides/speed-insights" component={SpeedInsightsGuidePage} />
                 
                 <Route component={NotFound} />
               </Switch>
