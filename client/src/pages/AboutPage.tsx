@@ -120,7 +120,7 @@ export default function AboutPage() {
       name: "Ana Pinto", 
       role: "CEO & Co-Founder", 
       desc: "Visão Estratégica & Relações Institucionais. Lidera a expansão da rede POPS em Portugal.",
-      image: "/assets/TeamPOPSphotos/Ana.webp"
+      image: "/assets/TeamPOPSphotos/AnaCEO.webp"
     },
     { 
       name: "Gonçalo Oliveira", 
