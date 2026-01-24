@@ -1,0 +1,37 @@
+import express, { type Express } from "express";
+import fs from "fs";
+import path from "path";
+
+export function serveStatic(app: Express) {
+  const distPath = path.resolve(__dirname, "public");
+  if (!fs.existsSync(distPath)) {
+    throw new Error(
+      `Could not find the build directory: ${distPath}, make sure to build the client first`,
+    );
+  }
+
+  app.use(express.static(distPath, {
+    maxAge: "1y",
+    etag: true,
+    immutable: true,
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith(".html")) {
+        // HTML files should not be cached aggressively to allow for updates
+        res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+      } else if (filePath.endsWith("ads.txt")) {
+        // Ensure ads.txt is served as text/plain
+        res.setHeader("Content-Type", "text/plain; charset=utf-8");
+        res.setHeader("Cache-Control", "public, max-age=3600"); // Lower cache for ads.txt
+      } else {
+        // Assets (JS, CSS, Images) are hashed and can be cached effectively forever
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      }
+    }
+  }));
+
+  // fall through to index.html if the file doesn't exist
+
+  app.use("*", (_req, res) => {
+    res.sendFile(path.resolve(distPath, "index.html"));
+  });
+}

@@ -1,0 +1,77 @@
+import { pgTable, text, serial, timestamp, jsonb, integer } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  password: text("password").notNull(),
+});
+
+export const waitlist = pgTable("waitlist", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  birthDate: text("birth_date"),
+  location: text("location"),
+  profile: text("profile"),
+  interest: text("interest"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+});
+
+export const cmsContent = pgTable("cms_content", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  type: text("type").notNull().default("text"), // text, html, image, json
+  value: text("value").notNull(),
+  metadata: jsonb("metadata"),
+  lastUpdated: timestamp("last_updated", { withTimezone: true }).defaultNow(),
+});
+
+export const analyticsEvents = pgTable("analytics_events", {
+  id: serial("id").primaryKey(),
+  eventName: text("event_name").notNull(),
+  properties: jsonb("properties"),
+  sessionId: text("session_id"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+});
+
+export const referrers = pgTable("referrers", {
+  id: serial("id").primaryKey(),
+  url: text("url").notNull().unique(),
+  count: integer("count").notNull().default(1),
+  lastSeen: timestamp("last_seen", { withTimezone: true }).defaultNow(),
+});
+
+export const insertUserSchema = createInsertSchema(users);
+export type InsertUser = z.infer<typeof insertUserSchema>;
+export type User = typeof users.$inferSelect;
+
+export const insertWaitlistSchema = createInsertSchema(waitlist).extend({
+  email: z.string().email("Email inválido"),
+  phone: z.string().optional(),
+});
+export type InsertWaitlist = z.infer<typeof insertWaitlistSchema>;
+export type Waitlist = typeof waitlist.$inferSelect;
+
+export const insertCmsContentSchema = createInsertSchema(cmsContent);
+export type InsertCmsContent = z.infer<typeof insertCmsContentSchema>;
+export type CmsContent = typeof cmsContent.$inferSelect;
+
+export const insertAnalyticsEventSchema = createInsertSchema(analyticsEvents);
+export type InsertAnalyticsEvent = z.infer<typeof insertAnalyticsEventSchema>;
+export type AnalyticsEvent = typeof analyticsEvents.$inferSelect;
+
+export const insertReferrerSchema = createInsertSchema(referrers);
+export type InsertReferrer = z.infer<typeof insertReferrerSchema>;
+export type Referrer = typeof referrers.$inferSelect;
+
+export const contactFormSchema = z.object({
+  name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
+  email: z.string().email("Email inválido"),
+  subject: z.string().min(5, "Assunto deve ter pelo menos 5 caracteres"),
+  message: z.string().min(10, "Mensagem deve ter pelo menos 10 caracteres"),
+});
+
+export type ContactForm = z.infer<typeof contactFormSchema>;
