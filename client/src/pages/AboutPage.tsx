@@ -123,36 +123,38 @@ export default function AboutPage() {
       image: "/assets/TeamPOPSphotos/AnaCEO.webp"
     },
     { 
-      name: "Gonçalo Oliveira", 
-      role: "CFO & Co-Founder", 
-      desc: "Gestão Financeira & Planeamento. Garante a sustentabilidade e viabilidade do modelo de negócio.",
-      image: "/assets/TeamPOPSphotos/Gonçalo.webp"
-    },
-    { 
       name: "João Sousa", 
       role: "CTO & Co-Founder", 
       desc: "Tecnologia & Infraestrutura. Responsável pela visão técnica e escalabilidade da plataforma.",
       image: "/assets/TeamPOPSphotos/Joao.webp",
       linkedin: "https://www.linkedin.com/in/joaosousa-in"
     },
-    { 
-      name: "Gustavo Fajardo", 
-      role: "CMO & Co-Founder", 
-      desc: "Gestão de projetos e estratégia de marketing. Coordena a aquisição de utilizadores e estratégias de crescimento da rede.",
-      image: "/assets/TeamPOPSphotos/Gustavo.webp"
+     { 
+      name: "María Urízar", 
+      role: "Marketing Director & Co-Founder", 
+      desc: "Estratégia de marca e UI/UX. Focada na experiência do utilizador, criação de conteúdo e estratégias de conversão digital.",
+      image: "/assets/TeamPOPSphotos/Maria4.webp"
     },
-    { 
+     { 
       name: "Guilherme Lupi", 
       role: "COO & Co-Founder", 
       desc: "Operações & Trust and Safety. Gere a verificação rigorosa de perfis e a conformidade dos processos da plataforma.",
       image: "/assets/TeamPOPSphotos/Guilherme.webp"
     },
     { 
-      name: "María Urízar", 
-      role: "Design & Marketing Lead & Co-Founder", 
-      desc: "Estratégia de marca e UI/UX. Focada na experiência do utilizador, criação de conteúdo e estratégias de conversão digital.",
-      image: "/assets/TeamPOPSphotos/Maria.webp"
+      name: "Gonçalo Oliveira", 
+      role: "CFO & Co-Founder", 
+      desc: "Gestão Financeira & Planeamento. Garante a sustentabilidade e viabilidade do modelo de negócio.",
+      image: "/assets/TeamPOPSphotos/Gonçalo.webp"
     },
+    
+    { 
+      name: "Gustavo Fajardo", 
+      role: "CMO & Co-Founder", 
+      desc: "Gestão de projetos e estratégia de marketing. Coordena a aquisição de utilizadores e estratégias de crescimento da rede.",
+      image: "/assets/TeamPOPSphotos/Gustavo.webp"
+    },
+   
     { 
       name: "Nuno Pinto", 
       role: "Lead Back-end Engineer & DPO", 
