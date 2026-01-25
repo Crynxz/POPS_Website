@@ -61,6 +61,9 @@ const TeamMember = ({ name, role, desc, delay, image, linkedin }: TeamMemberProp
         <img 
           src={image || `https://ui-avatars.com/api/?name=${name}&background=f1f5f9&color=64748b&size=512`} 
           alt={name} 
+          width="800"
+          height="533"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
@@ -120,47 +123,47 @@ export default function AboutPage() {
       name: "Ana Pinto", 
       role: "CEO & Co-Founder", 
       desc: "Visão Estratégica & Relações Institucionais. Lidera a expansão da rede POPS em Portugal.",
-      image: "/assets/TeamPOPSphotos/AnaCEO.webp"
+      image: "/assets/TeamPOPSphotos/AnaCEO_opt.webp"
     },
     { 
       name: "João Sousa", 
       role: "CTO & Co-Founder", 
       desc: "Tecnologia & Infraestrutura. Responsável pela visão técnica e escalabilidade da plataforma.",
-      image: "/assets/TeamPOPSphotos/Joao.webp",
+      image: "/assets/TeamPOPSphotos/Joao_opt.webp",
       linkedin: "https://www.linkedin.com/in/joaosousa-in"
     },
      {  
       name: "María Urízar", 
       role: "Marketing Director & Co-Founder", 
       desc: "Estratégia de marca e UI/UX. Focada na experiência do utilizador, criação de conteúdo e estratégias de conversão digital.",
-      image: "/assets/TeamPOPSphotos/Maria4.webp",
+      image: "/assets/TeamPOPSphotos/Maria4_opt.webp",
       linkedin: "https://www.linkedin.com/in/mar%C3%ADa-ur%C3%ADzar-25886a2b5/"
     },
      { 
       name: "Guilherme Lupi", 
       role: "COO & Co-Founder", 
       desc: "Operações & Trust and Safety. Gere a verificação rigorosa de perfis e a conformidade dos processos da plataforma.",
-      image: "/assets/TeamPOPSphotos/Guilherme.webp"
+      image: "/assets/TeamPOPSphotos/Guilherme_opt.webp"
     },
     { 
       name: "Gonçalo Oliveira", 
       role: "CFO & Co-Founder", 
       desc: "Gestão Financeira & Planeamento. Garante a sustentabilidade e viabilidade do modelo de negócio.",
-      image: "/assets/TeamPOPSphotos/Gonçalo.webp"
+      image: "/assets/TeamPOPSphotos/Gonçalo_opt.webp"
     },
     
     { 
       name: "Gustavo Fajardo", 
       role: "CMO & Co-Founder", 
       desc: "Gestão de projetos e estratégia de marketing. Coordena a aquisição de utilizadores e estratégias de crescimento da rede.",
-      image: "/assets/TeamPOPSphotos/Gustavo.webp"
+      image: "/assets/TeamPOPSphotos/Gustavo_opt.webp"
     },
    
     { 
       name: "Nuno Pinto", 
       role: "Lead Back-end Engineer & DPO", 
       desc: "Desenvolvimento, Arquitetura de Segurança e Proteção de Dados. Focado em performance e privacidade.",
-      image: "/assets/TeamPOPSphotos/placeholder.webp"
+      image: "/assets/TeamPOPSphotos/placeholder_opt.webp"
     }
   ];
 
@@ -211,8 +214,12 @@ export default function AboutPage() {
               <FadeIn delay={400}>
                  <div className="relative w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-slate-100 group bg-slate-50/50">
                     <img 
-                       src="/assets/TeamPOPSphotos/grouphoto.webp"
+                       src="/assets/TeamPOPSphotos/grouphoto_opt.webp"
                        alt="Equipa POPS unida" 
+                       width="1920"
+                       height="1280"
+                       loading="lazy"
+                       decoding="async"
                        className="w-full h-auto object-contain block group-hover:scale-[1.02] transition-transform duration-[2s]"
                     />
                  </div>
