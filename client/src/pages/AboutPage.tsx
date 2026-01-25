@@ -134,6 +134,7 @@ export default function AboutPage() {
       role: "Marketing Director & Co-Founder", 
       desc: "Estratégia de marca e UI/UX. Focada na experiência do utilizador, criação de conteúdo e estratégias de conversão digital.",
       image: "/assets/TeamPOPSphotos/Maria4.webp"
+      linkedin: "https://www.linkedin.com/in/mar%C3%ADa-ur%C3%ADzar-25886a2b5/"
     },
      { 
       name: "Guilherme Lupi", 
