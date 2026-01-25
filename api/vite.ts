@@ -32,7 +32,7 @@ export async function setupVite(server: Server, app: Express) {
   }
   
   log("Imported vite config module");
-  let viteConfig = viteConfigModule.default;
+  let viteConfig = viteConfigModule.default as any;
   
   if (typeof viteConfig === 'function') {
     log("Vite config is a function, calling it...");

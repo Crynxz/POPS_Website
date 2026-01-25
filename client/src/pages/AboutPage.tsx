@@ -129,7 +129,7 @@ export default function AboutPage() {
       image: "/assets/TeamPOPSphotos/Joao.webp",
       linkedin: "https://www.linkedin.com/in/joaosousa-in"
     },
-     { 
+     {  
       name: "María Urízar", 
       role: "Marketing Director & Co-Founder", 
       desc: "Estratégia de marca e UI/UX. Focada na experiência do utilizador, criação de conteúdo e estratégias de conversão digital.",
