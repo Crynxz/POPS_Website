@@ -85,7 +85,7 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
   };
 
   return (
-    <section className="py-16 md:py-32 bg-gradient-to-b from-slate-50/50 to-slate-50 relative overflow-hidden" id="waitlist">
+    <section className="py-16 md:py-32 bg-gradient-to-b from-slate-50/50 to-slate-50 relative overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
            style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '32px 32px' }}>

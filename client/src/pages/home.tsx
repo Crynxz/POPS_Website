@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -26,6 +26,20 @@ export default function Home() {
   // Estado para controlar a seleção no Hero (Cuidador vs Família)
   const [selectedProfile, setSelectedProfile] = useState<"familia" | "cuidador" | undefined>();
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    // Handle hash on initial load
+    if (window.location.hash) {
+      const id = window.location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        // Small delay to ensure any initial animations/SplashScreen are not interfering
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 500);
+      }
+    }
+  }, []);
   
   const y1 = useTransform(scrollY, [0, 2000], [0, 300]);
   const y2 = useTransform(scrollY, [0, 2000], [0, -200]);
@@ -152,13 +166,15 @@ export default function Home() {
               
                 
         {/* Formulário de Lista de Espera */}
-        <Suspense fallback={<div className="h-96" />}>
-          <LazyRender>
-            <FadeIn>
-              <WaitlistSection selectedProfile={selectedProfile} />
-            </FadeIn>
-          </LazyRender>
-        </Suspense>
+        <div id="waitlist">
+          <Suspense fallback={<div className="h-96" />}>
+            <LazyRender>
+              <FadeIn>
+                <WaitlistSection selectedProfile={selectedProfile} />
+              </FadeIn>
+            </LazyRender>
+          </Suspense>
+        </div>
       </main>
 
       {/* Footer Global */}
