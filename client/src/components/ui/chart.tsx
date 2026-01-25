@@ -111,6 +111,10 @@ const ChartTooltipContent = React.forwardRef<
       indicator?: "line" | "dot" | "dashed"
       nameKey?: string
       labelKey?: string
+      // FIX: Explicitly defined these props to avoid TS2339
+      active?: boolean
+      payload?: any[]
+      label?: any
     }
 >(
   (
@@ -185,7 +189,6 @@ const ChartTooltipContent = React.forwardRef<
       >
         {!nestLabel ? tooltipLabel : null}
         <div className="grid gap-1.5">
-          {/* FIX: Explicitly typed 'item' as any and 'index' as number */}
           {payload.map((item: any, index: number) => {
             const key = `${nameKey || item.name || item.dataKey || "value"}`
             const itemConfig = getPayloadConfigFromPayload(config, item, key)
@@ -262,9 +265,13 @@ const ChartLegend = RechartsPrimitive.Legend
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> &
-    Pick<RechartsPrimitive.LegendProps, "payload" | "verticalAlign"> & {
+    // FIX: Removed Pick<RechartsPrimitive.LegendProps> to avoid TS2344
+    // Manually defined the expected props below
+    {
       hideIcon?: boolean
       nameKey?: string
+      payload?: any[]
+      verticalAlign?: "top" | "middle" | "bottom"
     }
 >(
   (
@@ -286,7 +293,6 @@ const ChartLegendContent = React.forwardRef<
           className
         )}
       >
-        {/* FIX: Explicitly typed 'item' as any */}
         {payload.map((item: any) => {
           const key = `${nameKey || item.dataKey || "value"}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
