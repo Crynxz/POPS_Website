@@ -6,6 +6,8 @@ import SEO from "@/components/SEO";
 import FadeIn from "@/components/FadeIn";
 import { Users, Heart, Target, Lightbulb, ShieldCheck, ArrowRight, Eye, Linkedin, Mail } from "lucide-react";
 
+
+
 interface ValueCardProps {
   icon: typeof Heart;
   title: string;
@@ -156,7 +158,7 @@ export default function AboutPage() {
       name: "Gustavo Fajardo", 
       role: "CMO & Co-Founder", 
       desc: "Gestão de projetos e estratégia de marketing. Coordena a aquisição de utilizadores e estratégias de crescimento da rede.",
-      image: "/assets/TeamPOPSphotos/Gustavo_opt.webp"
+      image: "/assets/TeamPOPSphotos/Gustavo_opt_v2.webp"
     },
    
     { 
@@ -207,6 +209,8 @@ export default function AboutPage() {
             </FadeIn>
           </div>
         </section>
+
+        
 
         {/* GRAND TEAM PHOTO SECTION - Modern Full Width */}
         <section className="pb-24">
