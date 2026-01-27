@@ -80,7 +80,7 @@ export default function TrustSection() {
 
   return (
     <section className="py-24 md:py-32 bg-gradient-to-b from-slate-50/50 via-white to-white transition-colors duration-300 relative overflow-hidden" id="recursos">
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="text-center mb-16 md:mb-20">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 tracking-tight">
             A Nova Era do <span className="text-gradient-brand">Cuidado em Casa</span>

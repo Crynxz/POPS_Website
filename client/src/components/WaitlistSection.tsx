@@ -91,7 +91,7 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
            style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         
         <div className="bg-slate-900 rounded-[1.5rem] md:rounded-[3rem] p-5 sm:p-8 md:p-20 text-center text-white relative overflow-hidden shadow-2xl shadow-slate-900/20">
           {/* Enhanced Decor */}

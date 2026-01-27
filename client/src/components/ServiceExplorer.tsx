@@ -66,7 +66,7 @@ export default function ServiceExplorer() {
         </svg>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
           <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">{t("services.badge")}</span>

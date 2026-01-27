@@ -25,7 +25,7 @@ export function PartnersSection() {
              style={{ backgroundImage: 'radial-gradient(#0E6973 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-20 gap-6">
                 <div className="max-w-2xl">
                     <span className="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">{t("partners.badge")}</span>

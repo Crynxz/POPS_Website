@@ -216,7 +216,7 @@ export default function AboutPage() {
         <section className="pb-24">
            <div className="container mx-auto px-4 lg:px-6">
               <FadeIn delay={400}>
-                 <div className="relative w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-slate-100 group bg-slate-50/50">
+                 <div className="relative w-full max-w-5xl mx-auto overflow-hidden rounded-[2.5rem] shadow-2xl border border-slate-100 group bg-slate-50/50">
                     <img 
                        src="/assets/TeamPOPSphotos/grouphoto_opt.webp"
                        alt="Equipa POPS unida" 
