@@ -36,7 +36,8 @@ app.use(helmet({
         "https://popshomecare.vercel.app", 
         "https://www.popshomecare.pt",
         "https://www.google-analytics.com",
-        "https://www.googletagmanager.com"
+        "https://www.googletagmanager.com",
+        "https://images.unsplash.com"
       ],
       connectSrc: [
         "'self'", 

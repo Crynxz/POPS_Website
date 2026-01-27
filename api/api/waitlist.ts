@@ -2,9 +2,19 @@ import type { Express, Request, Response } from "express";
 import { storage } from "../storage.js";
 import { insertWaitlistSchema } from "../../shared/schema.js";
 import { ZodError } from "zod";
+import rateLimit from "express-rate-limit";
+
+// Strict limiter for Waitlist to prevent spam
+const waitlistLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 5, // Limit each IP to 5 requests per windowMs
+  message: { message: "Muitas tentativas. Por favor tente novamente mais tarde." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 export function registerWaitlistRoutes(app: Express) {
-  app.post("/api/waitlist", async (req: Request, res: Response) => {
+  app.post("/api/waitlist", waitlistLimiter, async (req: Request, res: Response) => {
     try {
       // 1. Validar dados recebidos
       const data = insertWaitlistSchema.parse(req.body);

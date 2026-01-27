@@ -1,4 +1,4 @@
-import { CheckCircle, Heart, Stethoscope, ArrowRight } from "lucide-react";
+import { CheckCircle, Heart, Stethoscope, ArrowRight, ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 import FadeIn from "@/components/FadeIn";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -71,7 +71,7 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
             </FadeIn>
             
             <FadeIn delay={200}>
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl 3xl:text-8xl 4xl:text-9xl font-extrabold leading-[1.1] mb-6 text-slate-900 tracking-tight text-balance">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl 3xl:text-8xl 4xl:text-9xl font-extrabold leading-[1.1] mb-6 text-slate-900 tracking-tighter text-balance">
                 {t("hero.title.1")} <br className="hidden sm:block" />
                 <span className="text-gradient-brand">
                   {t("hero.title.2")}
@@ -90,11 +90,12 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
                 <Button 
                   asChild
                   size="lg"
-                  className="rounded-full px-8 h-12 3xl:h-16 3xl:px-12 3xl:text-xl 4xl:h-20 4xl:px-16 4xl:text-2xl text-base font-bold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all"
+                  className="group relative overflow-hidden rounded-full px-8 h-12 3xl:h-16 3xl:px-12 3xl:text-xl 4xl:h-20 4xl:px-16 4xl:text-2xl text-base font-bold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all"
                 >
                   <a href="#waitlist" onClick={() => onSelectProfile?.('familia')}>
-                    <Heart className="mr-2 h-5 w-5 3xl:h-7 3xl:w-7" />
-                    {t("hero.cta.find")}
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
+                    <Heart className="mr-2 h-5 w-5 3xl:h-7 3xl:w-7 relative z-10" />
+                    <span className="relative z-10">{t("hero.cta.find")}</span>
                   </a>
                 </Button>
 
@@ -144,8 +145,18 @@ export default function HeroSection({ onSelectProfile }: HeroSectionProps) {
                   decoding="sync"
                 />                
                 {/* Subtle Overlay - Very Light for Professional Look */}
-
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
+
+                {/* TRUST BADGE - New Technical Enhancement for Trust */}
+                <div className="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-lg border border-white/20 flex items-center gap-4 animate-in slide-in-from-bottom-4 duration-1000 delay-500 hidden sm:flex">
+                  <div className="bg-green-100 p-2 rounded-full">
+                    <ShieldCheck className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Safety First</p>
+                    <p className="text-sm font-bold text-slate-800">100% Verified Profiles</p>
+                  </div>
+                </div>
               </div>
               
               {/* Accent Line - Modern minimal detail */}

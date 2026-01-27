@@ -1,12 +1,19 @@
 import { Link } from "wouter";
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
+import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   const { t } = useLanguage();
   return (
-    <footer className="bg-slate-900 text-slate-300 relative overflow-hidden flex flex-col">
-      <div className="py-12 md:py-20 border-t border-slate-800 relative">
+    <footer className="bg-slate-900 text-slate-300 relative overflow-hidden flex flex-col pt-12 md:pt-20">
+      
+      {/* Massive Watermark */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[20%] text-[20vw] font-black text-slate-800/20 select-none pointer-events-none whitespace-nowrap z-0 tracking-tighter">
+        POPS
+      </div>
+
+      <div className="py-12 md:py-16 relative">
         {/* Decorative background element */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20 hidden md:block">
           <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-[100px]"></div>

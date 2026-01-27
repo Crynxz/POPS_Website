@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useContent } from '@/hooks/useContent';
 import { useLocation } from 'wouter';
+import { useLanguage } from '@/lib/LanguageContext';
 
 interface SEOProps {
   title?: string;
@@ -25,6 +26,7 @@ export default function SEO({
   noindex = false
 }: SEOProps) {
   const [location] = useLocation();
+  const { t } = useLanguage();
 
   // Configuração Base
   const siteUrl = "https://popshomecare.pt";
@@ -46,6 +48,37 @@ export default function SEO({
 
   const finalTitle = title ? `${title} | POPS` : cmsTitle;
   const finalDesc = description || cmsDesc;
+
+  // Gerar FAQ Schema dinamicamente a partir das traduções
+  // Estrutura baseada nas chaves do LanguageContext
+  const faqStructure = [
+    { category: "pricing", count: 4 },
+    { category: "safety", count: 4 },
+    { category: "services", count: 4 },
+    { category: "app", count: 4 },
+    { category: "legal", count: 3 },
+    { category: "scope", count: 3 }
+  ];
+
+  const faqEntities = faqStructure.flatMap(group => 
+    Array.from({ length: group.count }).map((_, i) => {
+      const idx = i + 1;
+      return {
+        "@type": "Question",
+        "name": t(`faq.q.${group.category}.${idx}.q`),
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": t(`faq.q.${group.category}.${idx}.a`)
+        }
+      };
+    })
+  );
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqEntities
+  };
 
   // JSON-LD Schema - Organization + LocalBusiness
   // Alinhado com marketplace descentralizado: POPS oferece plataforma, não emprega diretamente
@@ -182,8 +215,13 @@ export default function SEO({
       <script type="application/ld+json">
         {JSON.stringify(schemaOrg)}
       </script>
+      
+      {/* 10. FAQ Schema (Perguntas Frequentes) */}
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </script>
 
-      {/* 10. Breadcrumb Schema (para navegação clara no Google) */}
+      {/* 11. Breadcrumb Schema (para navegação clara no Google) */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
@@ -205,7 +243,7 @@ export default function SEO({
         })}
       </script>
 
-      {/* 11. Trust Signals - Verification & Security */}
+      {/* 12. Trust Signals - Verification & Security */}
       <meta name="format-detection" content="telephone=no" />
       <meta name="format-detection" content="email=no" />
     </Helmet>

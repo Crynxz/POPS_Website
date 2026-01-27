@@ -117,6 +117,7 @@ export default function WaitlistSection({ selectedProfile }: WaitlistSectionProp
               </div>
             ) : (
               <>
+                
                 <span className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white/10 text-primary-light text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8 border border-white/10 md:backdrop-blur-md">
                   <Gift size={12} className="text-secondary md:w-3.5 md:h-3.5" /> {t("waitlist.badge")}
                 </span>

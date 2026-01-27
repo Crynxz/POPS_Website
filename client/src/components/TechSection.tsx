@@ -9,7 +9,14 @@ import {
   Signal, 
   Wifi, 
   ArrowRight,
-  BarChart3
+  BarChart3,
+  Camera,
+  Calendar,
+  Bell,
+  HeartPulse,
+  Clock,
+  ChevronRight,
+  Home
 } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
 
@@ -99,196 +106,224 @@ export default function TechSection() {
 
           {/* Right Column: Creative Mockup */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-center relative">
-            {/* Abstract Background behind phone */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-slate-200/50 to-slate-100/50 rounded-full blur-3xl transform scale-90 translate-y-10 -z-10 hidden md:block" />
+            {/* Ambient Background Effect */}
+            <div className="absolute inset-0 bg-primary/20 rounded-full blur-[120px] transform scale-75 opacity-30 -z-10" />
 
-            <div className="relative w-[320px] h-[640px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl ring-1 ring-slate-900/5 rotate-[-2deg] hover:rotate-0 transition-all duration-500 ease-out-expo">
-              {/* Phone Frame */}
-              <div className="absolute inset-0 bg-slate-900 rounded-[3rem] pointer-events-none" />
+            <div className="relative w-[340px] h-[700px] bg-slate-950 rounded-[3.5rem] p-[10px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] ring-1 ring-white/10 rotate-[-1deg] hover:rotate-0 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group">
+              {/* Internal Bezel */}
+              <div className="absolute inset-[2px] bg-slate-900 rounded-[3.3rem] shadow-inner border border-white/5" />
               
-              {/* Screen Area */}
-              <div className="relative h-full w-full bg-slate-50 rounded-[2.25rem] overflow-hidden flex flex-col font-sans">
+              {/* Notch */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-slate-900 rounded-b-3xl z-40 flex items-center justify-center gap-3">
+                <div className="w-10 h-1 bg-white/5 rounded-full" />
+                <div className="w-2 h-2 rounded-full bg-indigo-500/20" />
+              </div>
+
+              {/* Screen Content */}
+              <div className="relative h-full w-full bg-slate-50 rounded-[2.8rem] overflow-hidden flex flex-col font-sans border border-slate-900/10">
                 
                 {/* Status Bar */}
-                <div className="px-6 pt-3 pb-2 flex justify-between items-center bg-white z-20 select-none">
-                  <span className="text-[10px] font-bold text-slate-900">9:41</span>
+                <div className="px-6 pt-5 pb-2 flex justify-between items-center bg-white z-20">
+                  <span className="text-[14px] font-semibold text-slate-900 tracking-tight">9:41</span>
                   <div className="flex gap-1.5 text-slate-900">
-                    <Signal size={12} strokeWidth={2.5} />
-                    <Wifi size={12} strokeWidth={2.5} />
-                    <Battery size={12} strokeWidth={2.5} />
+                    <Signal size={16} className="fill-slate-900" />
+                    <Wifi size={16} />
+                    <Battery size={16} className="fill-slate-900" />
                   </div>
                 </div>
 
-                {/* App Header (Sticky) */}
-                <div className="px-6 pb-4 bg-white border-b border-slate-100 z-10 shadow-[0_4px_10px_-5px_rgba(0,0,0,0.05)]">
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-1">
-                      <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide">
-                        Área da Família
-                      </p>
-                      <h3 className="text-sm font-bold text-slate-900 leading-snug">
-                        Olá, João
-                      </h3>
-                    </div>
-                    <div className="relative w-10 h-10">
-                      <div className="w-10 h-10 rounded-full bg-slate-100 p-0.5 border border-slate-200 shadow-sm overflow-hidden">
+                {/* App Header */}
+                <div className="px-6 py-4 bg-white z-10 border-b border-slate-50/50">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="relative">
                         <img
-                          src="https://images.pexels.com/photos/3760853/pexels-photo-3760853.jpeg?auto=compress&cs=tinysrgb&w=80"
-                          alt="Foto de João"
-                          className="w-full h-full object-cover rounded-full"
+                          src="/assets/mockup/senior-patient.jpg"
+                          alt="Senior Patient"
+                          className="w-10 h-10 rounded-full border border-slate-100 object-cover shadow-sm bg-slate-200"
                         />
+                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white" />
                       </div>
-                      <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center">
-                        <Shield className="w-2.5 h-2.5 text-white" />
+                      <div>
+                        <p className="text-xs text-slate-500 font-medium">Bom dia,</p>
+                        <h3 className="text-sm font-bold text-slate-900">João Sousa</h3>
                       </div>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 relative text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer">
+                      <Bell size={20} />
+                      <div className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white" />
                     </div>
                   </div>
 
-                  <div className="mt-3 space-y-1.5">
-                    <p className="text-[11px] font-semibold text-emerald-700 leading-snug">
-                      Tudo tranquilo com a Avó Maria
-                    </p>
-                    <p className="text-[10px] text-slate-500 leading-snug">
-                      Última atualização há 3 minutos • Sem alertas pendentes
-                    </p>
-                  </div>
-
-                  {/* Status Banner */}
-                  <div className="mt-3 bg-emerald-50 border border-emerald-100 rounded-2xl p-3 flex items-center gap-3 shadow-sm">
-                    <div className="relative flex-shrink-0">
-                      <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse" />
-                      <div className="absolute inset-0 bg-emerald-500 rounded-full animate-ping opacity-20" />
+                  {/* Active Visit Card */}
+                  <div className="bg-slate-900 rounded-3xl p-5 shadow-lg relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                    
+                    <div className="flex justify-between items-start mb-4 relative z-10">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                          <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Apoio a decorrer</span>
+                        </div>
+                        <h4 className="text-white font-bold text-lg">Visita Domiciliária</h4>
+                      </div>
+                      <div className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                        <span className="text-xs font-mono font-medium text-white">02:15:30</span>
+                      </div>
                     </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wide leading-none mb-0.5">
-                        Visita em Curso
-                      </span>
-                      <span className="text-[10px] font-medium text-emerald-600 leading-none">
-                        Cuid. Ana C. • Desde 09:00
-                      </span>
+
+                    <div className="flex items-center gap-3 relative z-10">
+                      <img
+                        src="/assets/mockup/ana-carvalho.jpg"
+                        alt="Caregiver Ana Carvalho"
+                        className="w-10 h-10 rounded-full border-2 border-white/20 object-cover bg-slate-200"
+                      />
+                      <div className="flex-1">
+                        <p className="text-white text-sm font-semibold">Ana Carvalho</p>
+                        <p className="text-slate-400 text-xs">Cuidadora Certificada</p>
+                      </div>
+                      <button className="bg-white text-slate-900 p-2 rounded-full hover:bg-slate-100 transition-colors">
+                        <MessageSquare size={18} />
+                      </button>
                     </div>
                   </div>
                 </div>
 
-                {/* Scrollable Content */}
-                <div className="flex-1 overflow-hidden relative bg-slate-50/50">
-                  <div className="absolute inset-0 overflow-y-auto no-scrollbar pb-24 pt-4">
-                    <div className="px-5 space-y-5">
+                {/* Main Content (Scrollable) */}
+                <div className="flex-1 overflow-y-auto no-scrollbar bg-slate-50 p-6 space-y-6">
+                  
+                  {/* Map Section */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between px-1">
+                      <h4 className="text-sm font-bold text-slate-900">Localização Atual</h4>
+                      <span className="text-xs font-medium text-primary flex items-center gap-1 cursor-pointer">
+                        Ver mapa <ChevronRight size={14} />
+                      </span>
+                    </div>
+                    <div className="h-40 bg-slate-200 rounded-3xl relative overflow-hidden shadow-sm border border-slate-200 group">
+                       <img 
+                        src="/assets/mockup/google-satellite.jpg" 
+                        alt="Map Preview"
+                        className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent pointer-events-none" />
                       
-                      {/* Live Map Widget */}
-                      <div className="bg-white rounded-3xl p-1 shadow-sm border border-slate-100 overflow-hidden relative group">
-                        <div className="h-32 bg-slate-100 rounded-[1.2rem] relative overflow-hidden">
-                          {/* Abstract Map Background */}
-                          <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] opacity-50" />
-                          <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-slate-200/50 mix-blend-multiply" />
-                          
-                          {/* Path Line */}
-                          <svg
-                            className="absolute inset-0 w-full h-full opacity-30"
-                            viewBox="0 0 100 100"
-                            preserveAspectRatio="none"
-                          >
-                            <path
-                              d="M20,80 Q50,50 80,20"
-                              stroke="#0f172a"
-                              strokeWidth="2"
-                              fill="none"
-                              strokeDasharray="4 4"
+                      {/* Precise Location Marker */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                        <div className="relative">
+                          {/* Pulsing Effect */}
+                          <div className="w-8 h-8 bg-primary/40 rounded-full animate-ping absolute inset-0 -translate-x-1 -translate-y-1" />
+                          <div className="w-6 h-6 bg-primary rounded-full shadow-lg border-2 border-white flex items-center justify-center relative z-10">
+                            <img
+                              src="/assets/mockup/ana-carvalho.jpg"
+                              className="w-full h-full rounded-full object-cover"
+                             
                             />
-                          </svg>
+                          </div>
+                          {/* Pin Triangle */}
+                          <div className="absolute top-[90%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[6px] border-t-primary z-0" />
+                        </div>
+                        
+                        <div className="mt-2 bg-white/95 backdrop-blur px-2 py-0.5 rounded shadow-sm border border-black/5">
+                          <p className="text-[9px] font-bold text-slate-900 whitespace-nowrap flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"/>
+                            No local
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                          {/* Avatar on Map */}
-                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1 z-10">
-                            <div className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg overflow-hidden relative">
-                              <img
-                                src="https://ui-avatars.com/api/?name=Ana+C&background=0E6973&color=fff"
-                                className="w-full h-full object-cover"
-                                alt="Caregiver"
-                              />
-                              <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full" />
-                            </div>
-                            <div className="px-2 py-1 bg-white/95 backdrop-blur shadow-sm rounded-md text-[9px] font-bold text-slate-800 tracking-tight">
-                              Ana C. com a Avó Maria
-                            </div>
+                  {/* Timeline Activity */}
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-slate-900 px-1">Atividade Hoje</h4>
+                    
+                    <div className="relative pl-4 space-y-6 before:absolute before:left-[27px] before:top-2 before:bottom-2 before:w-[2px] before:bg-slate-200">
+                      
+                      {/* Timeline Item 1: Health */}
+                      <div className="relative flex gap-4">
+                        <div className="w-8 h-8 rounded-full bg-blue-100 border-4 border-slate-50 flex items-center justify-center shrink-0 z-10 text-blue-600 shadow-sm">
+                          <HeartPulse size={14} />
+                        </div>
+                        <div className="flex-1 bg-white p-3 rounded-2xl shadow-sm border border-slate-100">
+                          <div className="flex justify-between items-start mb-1">
+                            <h5 className="text-sm font-bold text-slate-900">Sinais Vitais</h5>
+                            <span className="text-[10px] font-medium text-slate-400">14:30</span>
+                          </div>
+                          <p className="text-xs text-slate-600 mb-2">Tensão arterial normal (120/80). O Sr. Manuel está bem disposto.</p>
+                          <div className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-50 rounded-md border border-emerald-100">
+                             <Check size={10} className="text-emerald-600" />
+                             <span className="text-[10px] font-bold text-emerald-700">Registado</span>
                           </div>
                         </div>
                       </div>
 
-                      {/* Timeline Feed */}
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-between px-1">
-                          <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                            Hoje, 12 Jan
-                          </h4>
+                      {/* Timeline Item 2: Food/Photo */}
+                      <div className="relative flex gap-4">
+                        <div className="w-8 h-8 rounded-full bg-orange-100 border-4 border-slate-50 flex items-center justify-center shrink-0 z-10 text-orange-600 shadow-sm">
+                          <Camera size={14} />
                         </div>
-
-                        <div className="relative pl-6 border-l-2 border-slate-200 ml-2 space-y-7">
-                          {/* Timeline Item 1 */}
-                          <div className="relative group">
-                            <div className="absolute -left-[29px] top-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white shadow-sm ring-1 ring-emerald-100 z-10" />
-                            <div className="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)] group-hover:shadow-md transition-shadow">
-                              <div className="flex justify-between items-start mb-1.5">
-                                <span className="text-xs font-bold text-slate-900">Higiene & Conforto</span>
-                                <span className="text-[10px] text-slate-400 font-mono">10:15</span>
-                              </div>
-                              <p className="text-[11px] text-slate-500 leading-relaxed mb-2">
-                                Banho concluído e roupa de cama trocada.
-                              </p>
-                              <div className="flex flex-wrap gap-1.5">
-                                <span className="px-1.5 py-0.5 bg-slate-50 rounded text-[9px] font-semibold text-slate-600 border border-slate-200">
-                                  Banho
-                                </span>
-                                <span className="px-1.5 py-0.5 bg-slate-50 rounded text-[9px] font-semibold text-slate-600 border border-slate-200">
-                                  Roupa
-                                </span>
-                              </div>
-                            </div>
+                        <div className="flex-1 bg-white p-3 rounded-2xl shadow-sm border border-slate-100">
+                          <div className="flex justify-between items-start mb-2">
+                            <h5 className="text-sm font-bold text-slate-900">Almoço Completo</h5>
+                            <span className="text-[10px] font-medium text-slate-400">12:15</span>
                           </div>
-
-                          {/* Timeline Item 2 */}
-                          <div className="relative group">
-                            <div className="absolute -left-[29px] top-1 w-3 h-3 bg-blue-500 rounded-full border-2 border-white shadow-sm ring-1 ring-blue-100 z-10" />
-                            <div className="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)]">
-                              <div className="flex justify-between items-start mb-1.5">
-                                <span className="text-xs font-bold text-slate-900">Medicação</span>
-                                <span className="text-[10px] text-slate-400 font-mono">09:30</span>
-                              </div>
-                              <div className="flex items-center gap-2 bg-blue-50/50 p-1.5 rounded-lg">
-                                <div className="w-4 h-4 rounded bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
-                                  <Check size={10} strokeWidth={4} />
-                                </div>
-                                <span className="text-[10px] font-medium text-slate-700">
-                                  Toma da manhã completa
-                                </span>
-                              </div>
-                            </div>
+                          <div className="rounded-xl overflow-hidden h-32 relative group cursor-pointer mb-2">
+                            <img 
+                              src="/assets/mockup/healthy-meal.jpg"
+                              alt="Healthy Meal"
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors flex items-center justify-center" />
                           </div>
+                          <p className="text-xs text-slate-500">Sopa de legumes e fruta fresca consumida.</p>
+                        </div>
+                      </div>
 
-                          {/* Timeline Item 3 */}
-                          <div className="relative opacity-70">
-                            <div className="absolute -left-[29px] top-1 w-3 h-3 bg-slate-300 rounded-full border-2 border-white shadow-sm z-10" />
-                            <div className="bg-white p-3 rounded-2xl border border-slate-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)]">
-                              <div className="flex justify-between items-start mb-1">
-                                <span className="text-xs font-bold text-slate-900">Check-in (GPS)</span>
-                                <span className="text-[10px] text-slate-400 font-mono">09:00</span>
-                              </div>
-                              <span className="text-[10px] text-slate-500">
-                                Ana C. chegou à localização.
-                              </span>
-                            </div>
+                       {/* Timeline Item 3: Check-in */}
+                       <div className="relative flex gap-4">
+                        <div className="w-8 h-8 rounded-full bg-purple-100 border-4 border-slate-50 flex items-center justify-center shrink-0 z-10 text-purple-600 shadow-sm">
+                          <Clock size={14} />
+                        </div>
+                        <div className="flex-1 bg-white p-3 rounded-2xl shadow-sm border border-slate-100">
+                           <div className="flex justify-between items-start">
+                            <h5 className="text-sm font-bold text-slate-900">Início do Turno</h5>
+                            <span className="text-[10px] font-medium text-slate-400">09:00</span>
                           </div>
+                          <p className="text-xs text-slate-500">Ana Carvalho realizou o check-in no domicílio.</p>
                         </div>
                       </div>
 
                     </div>
                   </div>
-                  
-                  {/* Bottom Fade */}
-                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-slate-50 to-transparent pointer-events-none z-10" />
+
+                </div>
+
+                {/* Bottom Navigation */}
+                <div className="bg-white border-t border-slate-100 px-6 pb-8 pt-3 flex justify-between items-end z-30">
+                  <button className="flex flex-col items-center gap-1 w-12">
+                    <Home size={22} className="text-primary fill-current" />
+                    <span className="text-[10px] font-bold text-primary">Início</span>
+                  </button>
+                  <button className="flex flex-col items-center gap-1 w-12 group">
+                    <Calendar size={22} className="text-slate-300 group-hover:text-slate-500 transition-colors" />
+                    <span className="text-[10px] font-medium text-slate-300 group-hover:text-slate-500 transition-colors">Agenda</span>
+                  </button>
+                  <div className="w-14 h-14 bg-slate-900 rounded-full flex items-center justify-center text-white shadow-lg -translate-y-4 border-4 border-slate-50 cursor-pointer hover:scale-105 transition-transform">
+                    <HeartPulse size={24} />
+                  </div>
+                   <button className="flex flex-col items-center gap-1 w-12 group">
+                    <MessageSquare size={22} className="text-slate-300 group-hover:text-slate-500 transition-colors" />
+                    <span className="text-[10px] font-medium text-slate-300 group-hover:text-slate-500 transition-colors">Chat</span>
+                  </button>
+                   <button className="flex flex-col items-center gap-1 w-12 group">
+                    <Shield size={22} className="text-slate-300 group-hover:text-slate-500 transition-colors" />
+                    <span className="text-[10px] font-medium text-slate-300 group-hover:text-slate-500 transition-colors">Conta</span>
+                  </button>
                 </div>
 
                 {/* Home Indicator */}
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-900/20 rounded-full z-30" />
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-900/10 rounded-full z-40" />
               </div>
             </div>
 
