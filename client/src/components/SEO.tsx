@@ -43,7 +43,7 @@ export default function SEO({
 
   const { value: cmsDesc } = useContent(
     "site_desc_default",
-    "Encontre cuidadores de confiança para apoio domiciliário. A POPS liga famílias a profissionais verificados para cuidados personalizados e seguros. Serviços no Grande Porto."
+    "Encontre cuidadores de confiança para apoio domiciliário no Porto. A POPS liga famílias a profissionais verificados para cuidados personalizados e seguros."
   );
 
   const finalTitle = title ? `${title} | POPS` : cmsTitle;
