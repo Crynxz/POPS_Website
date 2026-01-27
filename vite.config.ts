@@ -2,7 +2,7 @@ import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 // import Sitemap from 'vite-plugin-sitemap';
-// import vitePluginCompression from 'vite-plugin-compression';
+import vitePluginCompression from 'vite-plugin-compression';
 // import { visualizer } from 'rollup-plugin-visualizer';
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -59,14 +59,14 @@ export default defineConfig(({ mode }) => {
           htmlFile.source = html;
         }
       },
-      // vitePluginCompression({
-      //   algorithm: 'gzip',
-      //   ext: '.gz',
-      // }),
-      // vitePluginCompression({
-      //   algorithm: 'brotliCompress',
-      //   ext: '.br',
-      // }),
+      vitePluginCompression({
+        algorithm: 'gzip',
+        ext: '.gz',
+      }),
+      vitePluginCompression({
+        algorithm: 'brotliCompress',
+        ext: '.br',
+      }),
       // Sitemap({
       //   hostname: 'https://popshomecare.pt',
       //   dynamicRoutes: ['/', '/sobre', '/parceiros'],
@@ -96,6 +96,8 @@ export default defineConfig(({ mode }) => {
           manualChunks: {
             'vendor-react': ['react', 'react-dom', 'wouter', 'react-helmet-async'],
             'vendor-framer': ['framer-motion'],
+            'vendor-ui': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', 'lucide-react'],
+            'vendor-utils': ['date-fns', 'clsx', 'tailwind-merge'],
           }
         }
       }
